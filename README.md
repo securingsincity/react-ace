@@ -20,6 +20,16 @@ React.render(
 );
 
 ```
+Available Props
+
+|Prop|Description| 
+|-----|----------|
+|name| Unique Id to be used for the editor|
+|mode| Language for parsing and code highlighting| 
+|theme| theme to use|
+|height| CSS value for height|
+|width| CSS value for width|
+
 
 ##List of available modes and themes
 
@@ -27,6 +37,19 @@ React.render(
 
 * javascript
 * java
+* python
+* xml
+* ruby
+* sass
+* markdown
+* mysql
+* json
+* html
+* handlebars
+* golang
+* csharp
+* coffee
+* css
 
 ###Themes
 
@@ -37,3 +60,6 @@ React.render(
 * twilight
 * xcode
 * textmate
+* solarized dark
+* solarized light
+* terminal
