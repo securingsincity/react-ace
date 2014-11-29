@@ -1,0 +1,21 @@
+{
+	"name":"example",
+	"description":"",
+	"version":"0.0.1",
+	"author":"Ishai Jaffe <ishai@empeeric.com>",
+	"contributors": [
+	],
+	"dependencies":{
+		"underscore":"",
+		"mongoose":"",
+		"express":"",
+		"sji":""
+	},
+	"devDependencies":{ 
+	},
+	"main":"authorization.js",
+	"keywords":[],
+	"engines":{
+		"node":">= 0.4.1"
+	}
+}

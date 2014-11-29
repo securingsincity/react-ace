@@ -1,0 +1,32 @@
+{
+  "name": "react-ace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^6.3.3",
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.0",
+    "gulp-react": "^2.0.0",
+    "jest": "^0.1.37",
+    "reactify": "^0.17.1",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "reactify"
+      ]
+    ]
+  },
+  "dependencies": {
+    "brace": "^0.4.0",
+    "lodash": "^2.4.1",
+    "react": "^0.12.1"
+  }
+}
