@@ -1,6 +1,6 @@
 {
   "name": "react-ace",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A react component for Ace Editor",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,13 @@
     "reactify": "^0.17.1",
     "vinyl-source-stream": "^1.0.0"
   },
+  "keywords": [
+    "ace",
+    "ace editor",
+    "react-component",
+    "react",
+    "brace"
+  ]
   "browserify": {
     "transform": [
       [
