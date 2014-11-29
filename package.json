@@ -1,13 +1,13 @@
 {
   "name": "react-ace",
   "version": "1.0.0",
-  "description": "",
+  "description": "A react component for Ace Editor",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "James Hrisho",
+  "license": "MIT",
   "devDependencies": {
     "browserify": "^6.3.3",
     "gulp": "^3.8.10",
