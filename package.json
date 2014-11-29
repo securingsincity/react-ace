@@ -23,7 +23,7 @@
     "react-component",
     "react",
     "brace"
-  ]
+  ],
   "browserify": {
     "transform": [
       [
