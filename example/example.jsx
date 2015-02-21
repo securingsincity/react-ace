@@ -1,5 +1,5 @@
 var React = require('react');
-var AceEditor  = require('../src/ace.js');
+var AceEditor  = require('../src/ace.jsx');
 
 
 // render a first

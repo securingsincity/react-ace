@@ -5,12 +5,12 @@ var jshint = require('gulp-jshint');
 var react = require('gulp-react');
 
 gulp.task('default',['jshint','build'],function() {
-  gulp.watch(['src/**/**.js'],['jshint','build'])
+  gulp.watch(['src/**/**.jsx'],['jshint','build'])
 });
 
 gulp.task('build',function() {
   return browserify({
-    entries: ['./src/ace.js'],
+    entries: ['./src/ace.jsx'],
     debug: true
   })
   .bundle()
@@ -21,7 +21,7 @@ gulp.task('build',function() {
 
 gulp.task('example',function() {
   return browserify({
-    entries: ['./example/example.js'],
+    entries: ['./example/example.jsx'],
     debug: true
   })
   .bundle()
@@ -31,6 +31,6 @@ gulp.task('example',function() {
 
 
 gulp.task('jshint',function() {
-  gulp.src('src/**/**.js').pipe(react()).pipe(jshint())
+  gulp.src('src/**/**.jsx').pipe(react()).pipe(jshint())
   .pipe(jshint.reporter('default'))
 });
