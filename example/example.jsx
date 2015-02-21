@@ -1,15 +1,46 @@
 var React = require('react');
 var AceEditor  = require('../src/ace.jsx');
 
+function onLoad() {
+  console.log('i\'ve loaded');
+}
+
+function onChange(newValue) {
+  console.log('change',newValue)
+}
 
 // render a first
 React.render(
-  <AceEditor mode="java" theme="github" name="blah1" height="6em"/>,
+  <AceEditor 
+    mode="java"
+    theme="github"
+    name="blah1"
+    height="6em"
+    onChange={onChange}
+    />,
   document.getElementById('example')
 );
 
+
+
+var defaultValue = "function onLoad() { \n  console.log(\"i've loaded\");\n}";
 //render a second 
 React.render(
-  <AceEditor mode="javascript" theme="monokai" name="blah2" height="6em"/>,
+  <AceEditor 
+    mode="javascript"
+    theme="monokai"
+    name="blah2"
+    onLoad={onLoad}
+    fontSize={14}
+    height="6em"
+    value={defaultValue}
+  />,
   document.getElementById('example2')
 );
+
+global.reloadProps = function () {
+  React.render(
+  <AceEditor mode="javascript" theme="solarized_light" name="blah2" fontSize={40} height="8em"/>,
+  document.getElementById('example2')
+);
+}
