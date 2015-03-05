@@ -35,5 +35,9 @@
     "brace": "^0.4.0",
     "lodash": "^2.4.1",
     "react": "^0.12.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/securingsincity/react-ace.git"
   }
 }
