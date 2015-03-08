@@ -14,7 +14,6 @@
     "gulp-jshint": "^1.9.0",
     "gulp-react": "^2.0.0",
     "jest": "^0.1.37",
-    "reactify": "^0.17.1",
     "vinyl-source-stream": "^1.0.0"
   },
   "keywords": [
@@ -34,6 +33,11 @@
   "dependencies": {
     "brace": "^0.4.0",
     "lodash": "^2.4.1",
-    "react": "^0.12.1"
+    "react": "^0.12.1",
+    "reactify": "^0.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/securingsincity/react-ace.git"
   }
 }
