@@ -27,7 +27,15 @@ React.render(
   document.getElementById('example')
 );
 
+
 ```
+
+
+Looking for a way to set it up using webpack? Checkout this example : 
+
+[React-Ace Webpack Example](https://github.com/securingsincity/react-ace-webpack-example) a working example using webpack
+
+
 Available Props
 
 |Prop|Description| 
