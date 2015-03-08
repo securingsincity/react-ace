@@ -1,3 +1,5 @@
+/** @jsx React.DOM */
+
 var ace = require('brace');
 var React = require('react');
 require('brace/theme/monokai');
@@ -93,7 +95,7 @@ module.exports = React.createClass({
 
   render: function() {
     var divStyle = {
-      width: this.props.width, 
+      width: this.props.width,
       height: this.props.height
     };
     return (<div id={this.props.name} onChange={this.onChange} style={divStyle}></div>);

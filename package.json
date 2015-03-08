@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "brace": "^0.4.0",
+    "jsx-loader": "^0.12.2",
     "lodash": "^2.4.1",
     "react": "^0.12.1",
     "reactify": "^0.17.1"
