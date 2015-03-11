@@ -86,7 +86,9 @@ module.exports = React.createClass({
     this.editor.getSession().setMode('ace/mode/'+nextProps.mode);
     this.editor.setTheme('ace/theme/'+nextProps.theme);
     this.editor.setFontSize(nextProps.fontSize);
-    this.editor.setValue(nextProps.value);
+    if (this.editor.getValue() !== nextProps.value) {
+      this.editor.setValue(nextProps.value);
+    }
     this.editor.renderer.setShowGutter(nextProps.showGutter);
     if (nextProps.onLoad) {
       nextProps.onLoad();
