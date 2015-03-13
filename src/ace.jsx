@@ -45,7 +45,11 @@ module.exports = React.createClass({
     showGutter : React.PropTypes.bool,
     onChange: React.PropTypes.func,
     value: React.PropTypes.string,
-    onLoad: React.PropTypes.func
+    onLoad: React.PropTypes.func,
+    maxLines : React.PropTypes.number,
+    readOnly : React.PropTypes.bool,
+    highlightActiveLine : React.PropTypes.bool,
+    showPrintMargin : React.PropTypes.bool
   },
   getDefaultProps: function() {
     return {
