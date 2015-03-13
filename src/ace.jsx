@@ -54,11 +54,15 @@ module.exports = React.createClass({
       theme  : 'monokai',
       height : '500px',
       width  : '500px',
-      fontSize  : 12,
-      value: '',
+      value  : '',
+      fontSize   : 12,
       showGutter : true,
-      onChange : null,
-      onLoad : null
+      onChange   : null,
+      onLoad     : null,
+      maxLines   : null,
+      readOnly   : false,
+      highlightActiveLine : true,
+      showPrintMargin     : true
     };
   },
   onChange: function() {
@@ -76,6 +80,11 @@ module.exports = React.createClass({
     this.editor.on('change', this.onChange);
     this.editor.setValue(this.props.value);
     this.editor.renderer.setShowGutter(this.props.showGutter);
+    this.editor.setOption('maxLines', this.props.maxLines);
+    this.editor.setOption('readOnly', this.props.readOnly);
+    this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
+    this.editor.setShowPrintMargin(this.props.setShowPrintMargin);
+
     if (this.props.onLoad) {
       this.props.onLoad();
     }
@@ -86,6 +95,10 @@ module.exports = React.createClass({
     this.editor.getSession().setMode('ace/mode/'+nextProps.mode);
     this.editor.setTheme('ace/theme/'+nextProps.theme);
     this.editor.setFontSize(nextProps.fontSize);
+    this.editor.setOption('maxLines', nextProps.maxLines);
+    this.editor.setOption('readOnly', nextProps.readOnly);
+    this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
+    this.editor.setShowPrintMargin(nextProps.setShowPrintMargin);
     if (this.editor.getValue() !== nextProps.value) {
       this.editor.setValue(nextProps.value);
     }
