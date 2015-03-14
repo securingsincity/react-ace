@@ -47,6 +47,10 @@ Available Props
 |width| CSS value for width|
 |fontSize| pixel value for font-size|
 |showGutter| boolean|
+|showPrintMargin| boolean|
+|highlightActiveLine| boolean|
+|readOnly| boolean|
+|maxLines| Maximum number of lines to be displayed|
 |value | String value you want to populate in the code highlighter|
 |onLoad| Function onLoad |
 |onChange| function that occurs on document change it has 1 argument value. see the example above| 
