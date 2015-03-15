@@ -108,7 +108,7 @@ module.exports = React.createClass({
     }
     this.editor.renderer.setShowGutter(nextProps.showGutter);
     if (nextProps.onLoad) {
-      nextProps.onLoad();
+      nextProps.onLoad(this.editor);
     }
   },
 
