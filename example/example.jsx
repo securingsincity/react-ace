@@ -1,7 +1,7 @@
 var React = require('react');
 var AceEditor  = require('../src/ace.jsx');
 
-function onLoad() {
+function onLoad(editor) {
   console.log('i\'ve loaded');
 }
 
@@ -23,7 +23,7 @@ React.render(
 
 
 
-var defaultValue = "function onLoad() { \n  console.log(\"i've loaded\");\n}";
+var defaultValue = "function onLoad(editor) { \n  console.log(\"i've loaded\");\n}";
 //render a second 
 React.render(
   <AceEditor 

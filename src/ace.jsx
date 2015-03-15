@@ -90,7 +90,7 @@ module.exports = React.createClass({
     this.editor.setShowPrintMargin(this.props.setShowPrintMargin);
 
     if (this.props.onLoad) {
-      this.props.onLoad();
+      this.props.onLoad(this.editor);
     }
   },
 
