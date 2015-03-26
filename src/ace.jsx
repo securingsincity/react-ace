@@ -31,6 +31,7 @@ require('brace/mode/golang');
 require('brace/mode/csharp');
 require('brace/mode/coffee');
 require('brace/mode/css');
+require('brace/mode/c_cpp');
 
 
 

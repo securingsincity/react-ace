@@ -75,6 +75,7 @@ Available Props
 * csharp
 * coffee
 * css
+* c_cpp
 
 ###Themes
 
