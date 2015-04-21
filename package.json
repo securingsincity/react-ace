@@ -32,10 +32,11 @@
   },
   "dependencies": {
     "brace": "^0.4.0",
+    "browserify": "^9.0.8",
     "jsx-loader": "^0.12.2",
     "lodash": "^2.4.1",
-    "react": "^0.12.1",
-    "reactify": "^0.17.1"
+    "react": "^0.13.2",
+    "reactify": "^1.1.0"
   },
   "repository": {
     "type": "git",
