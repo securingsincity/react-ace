@@ -51,7 +51,7 @@ module.exports = React.createClass({
     highlightActiveLine : React.PropTypes.bool,
     showPrintMargin : React.PropTypes.bool
   },
-  getDefaultProps: function() {
+  defaultProps: function() {
     return {
       name   : 'brace-editor',
       mode   : 'javascript',
