@@ -19,7 +19,7 @@ function onChange(newValue) {
 
 // render a first
 React.render(
-  <AceEditor 
+  <AceEditor
     mode="java"
     theme="github"
     name="blah1"
@@ -32,9 +32,9 @@ React.render(
 
 
 var defaultValue = "function onLoad(editor) { \n  console.log(\"i've loaded\");\n}";
-//render a second 
+//render a second
 React.render(
-  <AceEditor 
+  <AceEditor
     mode="javascript"
     theme="monokai"
     name="blah2"
