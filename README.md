@@ -10,7 +10,11 @@ A react component for Ace / Brace
 
 ```javascript
 var React = require('react');
+var brace  = require('brace');
 var AceEditor  = require('react-ace');
+
+require('brace/mode/java')
+require('brace/theme/github')
 
 function onChange(newValue) {
   console.log('change',newValue)
@@ -55,10 +59,11 @@ Available Props
 |onLoad| Function onLoad |
 |onChange| function that occurs on document change it has 1 argument value. see the example above| 
 
+## Modes and Themes
 
-##List of available modes and themes
+All modes and themes should be required through ```brace``` directly.  Browserify will grab these modes / themes through ```brace``` and will be available at run time.  See the example above.  This prevents bloating the compiled javascript with extra modes and themes for your application.
 
-###Modes
+### Example Modes
 
 * javascript
 * java
@@ -76,7 +81,7 @@ Available Props
 * coffee
 * css
 
-###Themes
+### Example Themes
 
 * monokai
 * github
