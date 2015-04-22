@@ -22,10 +22,10 @@ function onChange(newValue) {
 
 // render a first
 React.render(
-  <AceEditor 
+  <AceEditor
     mode="java"
     theme="github"
-    onChange={onChange} 
+    onChange={onChange}
     name="UNIQUE_ID_OF_DIV"
   />,
   document.getElementById('example')
@@ -35,17 +35,17 @@ React.render(
 ```
 
 
-Looking for a way to set it up using webpack? Checkout this example : 
+Looking for a way to set it up using webpack? Checkout this example :
 
 [React-Ace Webpack Example](https://github.com/securingsincity/react-ace-webpack-example) a working example using webpack
 
 
 Available Props
 
-|Prop|Description| 
+|Prop|Description|
 |-----|----------|
 |name| Unique Id to be used for the editor|
-|mode| Language for parsing and code highlighting| 
+|mode| Language for parsing and code highlighting|
 |theme| theme to use|
 |height| CSS value for height|
 |width| CSS value for width|
@@ -57,7 +57,8 @@ Available Props
 |maxLines| Maximum number of lines to be displayed|
 |value | String value you want to populate in the code highlighter|
 |onLoad| Function onLoad |
-|onChange| function that occurs on document change it has 1 argument value. see the example above| 
+|onChange| function that occurs on document change it has 1 argument value. see the example above|
+
 
 ## Modes and Themes
 
