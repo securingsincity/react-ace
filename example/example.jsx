@@ -1,6 +1,14 @@
 var React = require('react');
 var AceEditor  = require('../src/ace.jsx');
 
+var brace = require("brace");
+require('brace/mode/java')
+require('brace/mode/javascript')
+
+require('brace/theme/github')
+require('brace/theme/monokai')
+require('brace/theme/solarized_light')
+
 function onLoad(editor) {
   console.log('i\'ve loaded');
 }
