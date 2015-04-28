@@ -4,6 +4,8 @@
   "description": "A react component for Ace Editor",
   "main": "index.js",
   "scripts": {
+    "build_example": "gulp example",
+    "build_watch": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "James Hrisho",
