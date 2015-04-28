@@ -10,7 +10,11 @@ A react component for Ace / Brace
 
 ```javascript
 var React = require('react');
+var brace  = require('brace');
 var AceEditor  = require('react-ace');
+
+require('brace/mode/java')
+require('brace/theme/github')
 
 function onChange(newValue) {
   console.log('change',newValue)
@@ -18,10 +22,10 @@ function onChange(newValue) {
 
 // render a first
 React.render(
-  <AceEditor 
+  <AceEditor
     mode="java"
     theme="github"
-    onChange={onChange} 
+    onChange={onChange}
     name="UNIQUE_ID_OF_DIV"
   />,
   document.getElementById('example')
@@ -31,17 +35,17 @@ React.render(
 ```
 
 
-Looking for a way to set it up using webpack? Checkout this example : 
+Looking for a way to set it up using webpack? Checkout this example :
 
 [React-Ace Webpack Example](https://github.com/securingsincity/react-ace-webpack-example) a working example using webpack
 
 
 Available Props
 
-|Prop|Description| 
+|Prop|Description|
 |-----|----------|
 |name| Unique Id to be used for the editor|
-|mode| Language for parsing and code highlighting| 
+|mode| Language for parsing and code highlighting|
 |theme| theme to use|
 |height| CSS value for height|
 |width| CSS value for width|
@@ -53,12 +57,14 @@ Available Props
 |maxLines| Maximum number of lines to be displayed|
 |value | String value you want to populate in the code highlighter|
 |onLoad| Function onLoad |
-|onChange| function that occurs on document change it has 1 argument value. see the example above| 
+|onChange| function that occurs on document change it has 1 argument value. see the example above|
 
 
-##List of available modes and themes
+## Modes and Themes
 
-###Modes
+All modes and themes should be required through ```brace``` directly.  Browserify will grab these modes / themes through ```brace``` and will be available at run time.  See the example above.  This prevents bloating the compiled javascript with extra modes and themes for your application.
+
+### Example Modes
 
 * javascript
 * java
@@ -76,7 +82,7 @@ Available Props
 * coffee
 * css
 
-###Themes
+### Example Themes
 
 * monokai
 * github
