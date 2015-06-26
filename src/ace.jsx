@@ -46,7 +46,6 @@ module.exports = React.createClass({
     }
   },
   componentDidMount: function() {
-    var self = this;
     this.editor = ace.edit(this.props.name);
     this.editor.getSession().setMode('ace/mode/'+this.props.mode);
     this.editor.setTheme('ace/theme/'+this.props.theme);
