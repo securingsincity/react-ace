@@ -1,6 +1,6 @@
 {
   "name": "react-ace",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A react component for Ace Editor",
   "main": "dist/react-ace.min.js",
   "es6": "index.js",
