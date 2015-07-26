@@ -3,9 +3,11 @@ node_js:
 - '0.12'
 - '0.11'
 - '0.10'
+install:
+  - npm install
+  - npm install react
 script:
-- npm install react
-- npm run build
+  - npm run build
 deploy:
   - provider: releases
     api_key:
