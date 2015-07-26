@@ -1,8 +1,5 @@
-/** @jsx React.DOM */
-
 var ace = require('brace');
 var React = require('react');
-
 
 module.exports = React.createClass({
   propTypes: {
