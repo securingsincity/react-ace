@@ -1,16 +1,24 @@
 language: node_js
 node_js:
-  - "0.12"
-  - "0.11"
-  - "0.10"
+- '0.12'
+- '0.11'
+- '0.10'
 script:
-  - npm run build
+- npm run build
 deploy:
-  provider: npm
-  email: james.hrisho@gmail.com
-  api_key:
-    secure: NAaETCUEyK/SxJIv8vcX3RjCSoY5FYEcwVHgU/102IqfTiqQZFSjvN24odEdYE4AqaxRhefhywxDuSZ5oF9hlcmRb/cjf0mbPSdxifS1SIYAHO7WTmIYs380weXTItRu8u54nkX35yPSWUdnORnl2rowtpK3MDr/Y9Jsbss80Zo=
-  skip_cleanup: true
-  on:
-    tags: true
-    repo: securingsincity/react-ace
+  - provider: releases
+    api_key:
+      secure: R4xxz1QwZlkXP3jFKqCnIW/IdGCBpaKJ9dPm53PM1cHcovvIJtY/ZJXS+e1Vs1zwCODhj6AN7BjyysS/YLVs2SV7G9YgjZECKnINXVIGnNGefutWuKho2uXFBBU25pXe10/GjvadlJDA7lbAKJoL0mDi0RituksIx6K+rDheOSI=
+    file: dist/react-ace.min.js
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: securingsincity/react-ace
+  - provider: npm
+    email: james.hrisho@gmail.com
+    api_key:
+      secure: NAaETCUEyK/SxJIv8vcX3RjCSoY5FYEcwVHgU/102IqfTiqQZFSjvN24odEdYE4AqaxRhefhywxDuSZ5oF9hlcmRb/cjf0mbPSdxifS1SIYAHO7WTmIYs380weXTItRu8u54nkX35yPSWUdnORnl2rowtpK3MDr/Y9Jsbss80Zo=
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: securingsincity/react-ace
