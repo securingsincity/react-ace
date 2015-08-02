@@ -4,10 +4,10 @@ node_js:
 - '0.11'
 - '0.10'
 install:
-  - npm install
-  - npm install react
+- npm install
+- npm install react
 script:
-  - npm run build
+- npm run build
 deploy:
   - provider: releases
     api_key:
@@ -20,7 +20,7 @@ deploy:
   - provider: npm
     email: james.hrisho@gmail.com
     api_key:
-      secure: NAaETCUEyK/SxJIv8vcX3RjCSoY5FYEcwVHgU/102IqfTiqQZFSjvN24odEdYE4AqaxRhefhywxDuSZ5oF9hlcmRb/cjf0mbPSdxifS1SIYAHO7WTmIYs380weXTItRu8u54nkX35yPSWUdnORnl2rowtpK3MDr/Y9Jsbss80Zo=
+      secure: J5+W0ILDSk70KElNF7jzAOSQc72G+U/gbYml+ULepm4xMxUHwB1b5R0P0UTVDQ5x1H+tfrXruTSTF81ood4DYmQRicrvjAOxdgDDaLQ118sw6dIA67IpIbjUgu5KJeFvM48jU3HcxH73myZv/EaKSVHAFP5ZQhLOi818zCTyeh0=
     skip_cleanup: true
     on:
       tags: true
