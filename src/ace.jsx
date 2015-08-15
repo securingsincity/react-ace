@@ -16,7 +16,8 @@ module.exports = React.createClass({
     maxLines : React.PropTypes.number,
     readOnly : React.PropTypes.bool,
     highlightActiveLine : React.PropTypes.bool,
-    showPrintMargin : React.PropTypes.bool
+    showPrintMargin : React.PropTypes.bool,
+    cursorStart: React.PropTypes.number
   },
   getDefaultProps: function() {
     return {
@@ -33,7 +34,8 @@ module.exports = React.createClass({
       maxLines   : null,
       readOnly   : false,
       highlightActiveLine : true,
-      showPrintMargin     : true
+      showPrintMargin     : true,
+      cursorStart: 1
     };
   },
   onChange: function() {
@@ -48,7 +50,7 @@ module.exports = React.createClass({
     this.editor.setTheme('ace/theme/'+this.props.theme);
     this.editor.setFontSize(this.props.fontSize);
     this.editor.on('change', this.onChange);
-    this.editor.setValue(this.props.value, 1);
+    this.editor.setValue(this.props.value, this.props.cursorStart);
     this.editor.renderer.setShowGutter(this.props.showGutter);
     this.editor.setOption('maxLines', this.props.maxLines);
     this.editor.setOption('readOnly', this.props.readOnly);
@@ -70,7 +72,7 @@ module.exports = React.createClass({
     this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
     this.editor.setShowPrintMargin(nextProps.setShowPrintMargin);
     if (this.editor.getValue() !== nextProps.value) {
-      this.editor.setValue(nextProps.value, 1);
+      this.editor.setValue(nextProps.value, nextProps.cursorStart);
     }
     this.editor.renderer.setShowGutter(nextProps.showGutter);
     if (nextProps.onLoad) {
