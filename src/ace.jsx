@@ -16,7 +16,8 @@ module.exports = React.createClass({
     maxLines : React.PropTypes.number,
     readOnly : React.PropTypes.bool,
     highlightActiveLine : React.PropTypes.bool,
-    showPrintMargin : React.PropTypes.bool
+    showPrintMargin : React.PropTypes.bool,
+    editorProps: React.PropTypes.object
   },
   getDefaultProps: function() {
     return {
