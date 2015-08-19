@@ -59,7 +59,11 @@ module.exports = React.createClass({
       this.props.onLoad(this.editor);
     }
   },
-
+  
+  componentWillUnmount: function() {
+    this.editor = null;
+  },
+  
   componentWillReceiveProps: function(nextProps) {
     this.editor = ace.edit(nextProps.name);
     this.editor.getSession().setMode('ace/mode/'+nextProps.mode);
