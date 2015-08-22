@@ -2,6 +2,8 @@ var ace = require('brace');
 var React = require('react');
 
 module.exports = React.createClass({
+  displayName: 'ReactAce',
+  
   propTypes: {
     mode  : React.PropTypes.string,
     theme : React.PropTypes.string,
