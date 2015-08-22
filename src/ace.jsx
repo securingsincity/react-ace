@@ -16,7 +16,8 @@ module.exports = React.createClass({
     maxLines : React.PropTypes.number,
     readOnly : React.PropTypes.bool,
     highlightActiveLine : React.PropTypes.bool,
-    showPrintMargin : React.PropTypes.bool
+    showPrintMargin : React.PropTypes.bool,
+    editorProps: React.PropTypes.object
   },
   getDefaultProps: function() {
     return {
@@ -33,7 +34,8 @@ module.exports = React.createClass({
       maxLines   : null,
       readOnly   : false,
       highlightActiveLine : true,
-      showPrintMargin     : true
+      showPrintMargin     : true,
+      editorProps : {}
     };
   },
   onChange: function() {
@@ -44,6 +46,12 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     this.editor = ace.edit(this.props.name);
+
+    var editorProps = Object.getOwnPropertyNames(this.props.editorProps)
+    for (var i = 0; i < editorProps.length; i++) {
+      this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]]
+    }
+
     this.editor.getSession().setMode('ace/mode/'+this.props.mode);
     this.editor.setTheme('ace/theme/'+this.props.theme);
     this.editor.setFontSize(this.props.fontSize);
