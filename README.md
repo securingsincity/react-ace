@@ -27,6 +27,7 @@ React.render(
     theme="github"
     onChange={onChange}
     name="UNIQUE_ID_OF_DIV"
+    editorProps={{$blockScrolling: true}}
   />,
   document.getElementById('example')
 );
@@ -58,6 +59,7 @@ Available Props
 |value | String value you want to populate in the code highlighter|
 |onLoad| Function onLoad |
 |onChange| function that occurs on document change it has 1 argument value. see the example above|
+|editorProps| Object of properties to apply directly to the Ace editor instance|
 
 
 ## Modes and Themes

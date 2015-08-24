@@ -2,6 +2,8 @@ var ace = require('brace');
 var React = require('react');
 
 module.exports = React.createClass({
+  displayName: 'ReactAce',
+  
   propTypes: {
     mode  : React.PropTypes.string,
     theme : React.PropTypes.string,
@@ -16,7 +18,9 @@ module.exports = React.createClass({
     maxLines : React.PropTypes.number,
     readOnly : React.PropTypes.bool,
     highlightActiveLine : React.PropTypes.bool,
-    showPrintMargin : React.PropTypes.bool
+    showPrintMargin : React.PropTypes.bool,
+    cursorStart: React.PropTypes.number,
+    editorProps: React.PropTypes.object
   },
   getDefaultProps: function() {
     return {
@@ -33,7 +37,9 @@ module.exports = React.createClass({
       maxLines   : null,
       readOnly   : false,
       highlightActiveLine : true,
-      showPrintMargin     : true
+      showPrintMargin     : true,
+      cursorStart: 1,
+      editorProps : {}
     };
   },
   onChange: function() {
@@ -44,11 +50,17 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     this.editor = ace.edit(this.props.name);
+
+    var editorProps = Object.getOwnPropertyNames(this.props.editorProps)
+    for (var i = 0; i < editorProps.length; i++) {
+      this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]]
+    }
+
     this.editor.getSession().setMode('ace/mode/'+this.props.mode);
     this.editor.setTheme('ace/theme/'+this.props.theme);
     this.editor.setFontSize(this.props.fontSize);
     this.editor.on('change', this.onChange);
-    this.editor.setValue(this.props.value, 1);
+    this.editor.setValue(this.props.value, this.props.cursorStart);
     this.editor.renderer.setShowGutter(this.props.showGutter);
     this.editor.setOption('maxLines', this.props.maxLines);
     this.editor.setOption('readOnly', this.props.readOnly);
@@ -59,7 +71,11 @@ module.exports = React.createClass({
       this.props.onLoad(this.editor);
     }
   },
-
+  
+  componentWillUnmount: function() {
+    this.editor = null;
+  },
+  
   componentWillReceiveProps: function(nextProps) {
     this.editor = ace.edit(nextProps.name);
     this.editor.getSession().setMode('ace/mode/'+nextProps.mode);
@@ -70,7 +86,7 @@ module.exports = React.createClass({
     this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
     this.editor.setShowPrintMargin(nextProps.setShowPrintMargin);
     if (this.editor.getValue() !== nextProps.value) {
-      this.editor.setValue(nextProps.value, 1);
+      this.editor.setValue(nextProps.value, nextProps.cursorStart);
     }
     this.editor.renderer.setShowGutter(nextProps.showGutter);
     if (nextProps.onLoad) {
