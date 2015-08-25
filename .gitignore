@@ -18,7 +18,7 @@ coverage
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build
-dist
+
 
 # Dependency directory
 # Commenting this out is preferred by some people, see
@@ -28,3 +28,8 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
+# UMD Build
+dist
+
+# Babel Build
+lib

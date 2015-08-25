@@ -6,6 +6,10 @@ var react = require('gulp-react');
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 
+
+var EXPOSE_MODULE_NAME = 'ReactAce';
+
+
 gulp.task('default',['jshint','build'],function() {
   gulp.watch(['src/**/**.jsx'],['jshint','build']);
 });
@@ -20,15 +24,29 @@ gulp.task('build',function() {
   .pipe(gulp.dest('build'));
 });
 
-gulp.task('release', function() {
+gulp.task('build:umd',function() {
   return browserify({
-    entries: ['./src/ace.jsx']
+    entries: ['./src/ace.jsx'],
+    standalone: EXPOSE_MODULE_NAME
   })
+  .external('react')
+  .bundle()
+  .pipe(source('react-ace.js'))
+  .pipe(gulp.dest('dist'));
+});
+
+gulp.task('build:umd:min',function() {
+  return browserify({
+    entries: ['./src/ace.jsx'],
+    standalone: EXPOSE_MODULE_NAME
+  })
+  .external('react')
   .bundle()
   .pipe(source('react-ace.min.js'))
   .pipe(streamify(uglify()))
   .pipe(gulp.dest('dist'));
 });
+
 
 gulp.task('example',function() {
   return browserify({
