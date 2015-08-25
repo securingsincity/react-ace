@@ -29,6 +29,7 @@ gulp.task('build:umd',function() {
     entries: ['./src/ace.jsx'],
     standalone: EXPOSE_MODULE_NAME
   })
+  .external('react')
   .bundle()
   .pipe(source('react-ace.js'))
   .pipe(gulp.dest('dist'));
@@ -39,6 +40,7 @@ gulp.task('build:umd:min',function() {
     entries: ['./src/ace.jsx'],
     standalone: EXPOSE_MODULE_NAME
   })
+  .external('react')
   .bundle()
   .pipe(source('react-ace.min.js'))
   .pipe(streamify(uglify()))
