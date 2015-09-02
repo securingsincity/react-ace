@@ -8,6 +8,7 @@ module.exports = React.createClass({
     mode  : React.PropTypes.string,
     theme : React.PropTypes.string,
     name : React.PropTypes.string,
+    className: React.PropTypes.string,
     height : React.PropTypes.string,
     width : React.PropTypes.string,
     fontSize : React.PropTypes.number,
@@ -99,6 +100,7 @@ module.exports = React.createClass({
       width: this.props.width,
       height: this.props.height
     };
-    return (<div id={this.props.name} onChange={this.onChange} style={divStyle}></div>);
+    var className = this.props.className;
+    return (<div id={this.props.name} className={className} onChange={this.onChange} style={divStyle}></div>);
   }
 });
