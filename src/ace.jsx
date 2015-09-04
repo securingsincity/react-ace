@@ -52,9 +52,9 @@ module.exports = React.createClass({
   componentDidMount: function() {
     this.editor = ace.edit(this.props.name);
 
-    var editorProps = Object.getOwnPropertyNames(this.props.editorProps)
+    var editorProps = Object.keys(this.props.editorProps);
     for (var i = 0; i < editorProps.length; i++) {
-      this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]]
+      this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
     }
 
     this.editor.getSession().setMode('ace/mode/'+this.props.mode);
