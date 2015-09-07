@@ -3,49 +3,56 @@ var React = require('react');
 
 module.exports = React.createClass({
   displayName: 'ReactAce',
-  
+
   propTypes: {
-    mode  : React.PropTypes.string,
-    theme : React.PropTypes.string,
-    name : React.PropTypes.string,
-    height : React.PropTypes.string,
-    width : React.PropTypes.string,
-    fontSize : React.PropTypes.number,
-    showGutter : React.PropTypes.bool,
+    mode: React.PropTypes.string,
+    theme: React.PropTypes.string,
+    name: React.PropTypes.string,
+    height: React.PropTypes.string,
+    width: React.PropTypes.string,
+    fontSize: React.PropTypes.number,
+    showGutter: React.PropTypes.bool,
     onChange: React.PropTypes.func,
+    onPaste: React.PropTypes.func,
     value: React.PropTypes.string,
     onLoad: React.PropTypes.func,
-    maxLines : React.PropTypes.number,
-    readOnly : React.PropTypes.bool,
-    highlightActiveLine : React.PropTypes.bool,
-    showPrintMargin : React.PropTypes.bool,
+    maxLines: React.PropTypes.number,
+    readOnly: React.PropTypes.bool,
+    highlightActiveLine: React.PropTypes.bool,
+    showPrintMargin: React.PropTypes.bool,
     cursorStart: React.PropTypes.number,
     editorProps: React.PropTypes.object
   },
   getDefaultProps: function() {
     return {
-      name   : 'brace-editor',
-      mode   : '',
-      theme  : '',
-      height : '500px',
-      width  : '500px',
-      value  : '',
-      fontSize   : 12,
-      showGutter : true,
-      onChange   : null,
-      onLoad     : null,
-      maxLines   : null,
-      readOnly   : false,
-      highlightActiveLine : true,
-      showPrintMargin     : true,
+      name: 'brace-editor',
+      mode: '',
+      theme: '',
+      height: '500px',
+      width: '500px',
+      value: '',
+      fontSize: 12,
+      showGutter: true,
+      onChange: null,
+      onPaste: null,
+      onLoad: null,
+      maxLines: null,
+      readOnly: false,
+      highlightActiveLine: true,
+      showPrintMargin: true,
       cursorStart: 1,
-      editorProps : {}
+      editorProps: {}
     };
   },
   onChange: function() {
     var value = this.editor.getValue();
     if (this.props.onChange) {
       this.props.onChange(value);
+    }
+  },
+  onPaste: function(text) {
+    if (this.props.onPaste) {
+      this.props.onPaste(text);
     }
   },
   componentDidMount: function() {
@@ -56,10 +63,11 @@ module.exports = React.createClass({
       this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]]
     }
 
-    this.editor.getSession().setMode('ace/mode/'+this.props.mode);
-    this.editor.setTheme('ace/theme/'+this.props.theme);
+    this.editor.getSession().setMode('ace/mode/' + this.props.mode);
+    this.editor.setTheme('ace/theme/' + this.props.theme);
     this.editor.setFontSize(this.props.fontSize);
     this.editor.on('change', this.onChange);
+    this.editor.on('paste', this.onPaste);
     this.editor.setValue(this.props.value, this.props.cursorStart);
     this.editor.renderer.setShowGutter(this.props.showGutter);
     this.editor.setOption('maxLines', this.props.maxLines);
@@ -71,15 +79,15 @@ module.exports = React.createClass({
       this.props.onLoad(this.editor);
     }
   },
-  
+
   componentWillUnmount: function() {
     this.editor = null;
   },
-  
+
   componentWillReceiveProps: function(nextProps) {
     this.editor = ace.edit(nextProps.name);
-    this.editor.getSession().setMode('ace/mode/'+nextProps.mode);
-    this.editor.setTheme('ace/theme/'+nextProps.theme);
+    this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
+    this.editor.setTheme('ace/theme/' + nextProps.theme);
     this.editor.setFontSize(nextProps.fontSize);
     this.editor.setOption('maxLines', nextProps.maxLines);
     this.editor.setOption('readOnly', nextProps.readOnly);
@@ -99,6 +107,9 @@ module.exports = React.createClass({
       width: this.props.width,
       height: this.props.height
     };
-    return (<div id={this.props.name} onChange={this.onChange} style={divStyle}></div>);
+    return (<div id={this.props.name}
+      onChange={this.onChange}
+      onPaste={this.onPaste}
+      style={divStyle}></div>);
   }
 });
