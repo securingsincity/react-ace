@@ -5,9 +5,11 @@ module.exports = React.createClass({
   displayName: 'ReactAce',
 
   propTypes: {
+
     mode: React.PropTypes.string,
     theme: React.PropTypes.string,
     name: React.PropTypes.string,
+    className: React.PropTypes.string,
     height: React.PropTypes.string,
     width: React.PropTypes.string,
     fontSize: React.PropTypes.number,
@@ -58,9 +60,9 @@ module.exports = React.createClass({
   componentDidMount: function() {
     this.editor = ace.edit(this.props.name);
 
-    var editorProps = Object.getOwnPropertyNames(this.props.editorProps)
+    var editorProps = Object.keys(this.props.editorProps);
     for (var i = 0; i < editorProps.length; i++) {
-      this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]]
+      this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
     }
 
     this.editor.getSession().setMode('ace/mode/' + this.props.mode);
@@ -74,6 +76,7 @@ module.exports = React.createClass({
     this.editor.setOption('readOnly', this.props.readOnly);
     this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
     this.editor.setShowPrintMargin(this.props.setShowPrintMargin);
+    this.editor.on('change', this.onChange);
 
     if (this.props.onLoad) {
       this.props.onLoad(this.editor);
@@ -107,9 +110,14 @@ module.exports = React.createClass({
       width: this.props.width,
       height: this.props.height
     };
-    return (<div id={this.props.name}
-      onChange={this.onChange}
-      onPaste={this.onPaste}
-      style={divStyle}></div>);
+    var className = this.props.className;
+    return (
+      <div id={this.props.name}
+        className={className}
+        onChange={this.onChange}
+        onPaste={this.onPaste}
+        style={divStyle}>
+      </div>
+    );
   }
 });
