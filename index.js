@@ -1,1 +1,1 @@
-module.exports = require('./src/ace.jsx');
+module.exports = require('./lib/ace');

@@ -7,11 +7,14 @@
     "build_example": "gulp example",
     "build_watch": "gulp",
     "build": "gulp release",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf lib dist",
+    "build:lib": "babel src --out-dir lib"
   },
   "author": "James Hrisho",
   "license": "MIT",
   "devDependencies": {
+    "babel": "^5.8.23",
     "browserify": "^9.0.8",
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.0",
@@ -21,6 +24,7 @@
     "jest": "^0.1.37",
     "jsx-loader": "^0.12.2",
     "reactify": "^1.1.0",
+    "rimraf": "^2.4.3",
     "vinyl-source-stream": "^1.0.0"
   },
   "keywords": [
