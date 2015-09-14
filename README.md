@@ -1,5 +1,7 @@
 #React-Ace
 
+[![npm version](https://badge.fury.io/js/react-ace.svg)](http://badge.fury.io/js/react-ace)
+
 A react component for Ace / Brace
 
 ##Install
