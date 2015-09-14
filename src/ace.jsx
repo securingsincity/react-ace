@@ -59,6 +59,9 @@ module.exports = React.createClass({
   },
   componentDidMount: function() {
     this.editor = ace.edit(this.props.name);
+    if (this.props.onBeforeLoad) {
+      this.props.onBeforeLoad(ace);
+    }
 
     var editorProps = Object.keys(this.props.editorProps);
     for (var i = 0; i < editorProps.length; i++) {
