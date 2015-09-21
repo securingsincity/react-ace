@@ -71,8 +71,6 @@ module.exports = React.createClass({
     this.editor.getSession().setMode('ace/mode/' + this.props.mode);
     this.editor.setTheme('ace/theme/' + this.props.theme);
     this.editor.setFontSize(this.props.fontSize);
-    this.editor.on('change', this.onChange);
-    this.editor.on('paste', this.onPaste);
     this.editor.setValue(this.props.value, this.props.cursorStart);
     this.editor.renderer.setShowGutter(this.props.showGutter);
     this.editor.setOption('maxLines', this.props.maxLines);
@@ -80,6 +78,7 @@ module.exports = React.createClass({
     this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
     this.editor.setShowPrintMargin(this.props.setShowPrintMargin);
     this.editor.on('change', this.onChange);
+    this.editor.on('paste', this.onPaste);
 
     if (this.props.onLoad) {
       this.props.onLoad(this.editor);
