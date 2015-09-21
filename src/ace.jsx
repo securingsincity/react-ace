@@ -116,8 +116,6 @@ module.exports = React.createClass({
     return (
       <div id={this.props.name}
         className={className}
-        onChange={this.onChange}
-        onPaste={this.onPaste}
         style={divStyle}>
       </div>
     );
