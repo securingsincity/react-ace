@@ -15,7 +15,10 @@ module.exports = React.createClass({
     fontSize: React.PropTypes.number,
     showGutter: React.PropTypes.bool,
     onChange: React.PropTypes.func,
+    onCopy: React.PropTypes.func,
     onPaste: React.PropTypes.func,
+    onFocus: React.PropTypes.func,
+    onBlur: React.PropTypes.func,
     value: React.PropTypes.string,
     onLoad: React.PropTypes.func,
     maxLines: React.PropTypes.number,
@@ -52,6 +55,21 @@ module.exports = React.createClass({
       this.props.onChange(value);
     }
   },
+  onFocus: function() {
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
+  },
+  onBlur: function() {
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
+  },
+  onCopy: function(text) {
+    if (this.props.onCopy) {
+      this.props.onCopy(text);
+    }
+  },
   onPaste: function(text) {
     if (this.props.onPaste) {
       this.props.onPaste(text);
@@ -77,8 +95,12 @@ module.exports = React.createClass({
     this.editor.setOption('readOnly', this.props.readOnly);
     this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
     this.editor.setShowPrintMargin(this.props.setShowPrintMargin);
-    this.editor.on('change', this.onChange);
+    this.editor.on('focus', this.onFocus);
+    this.editor.on('blur', this.onBlur);
+    this.editor.on('copy', this.onCopy);
     this.editor.on('paste', this.onPaste);
+    this.editor.on('change', this.onChange);
+    
 
     if (this.props.onLoad) {
       this.props.onLoad(this.editor);
