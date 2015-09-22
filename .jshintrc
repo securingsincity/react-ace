@@ -1,7 +1,0 @@
-{
-  "node": true,
-  "browser": true,
-  "esnext": true,
-  "newcap": false,
-  "sub": true
-}
