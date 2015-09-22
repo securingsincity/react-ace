@@ -7,7 +7,7 @@ install:
 - npm install
 - npm install react
 script:
-- npm run build:lib
+- npm run build
 deploy:
   - provider: releases
     api_key:
