@@ -18,6 +18,7 @@ module.exports = React.createClass({
     onPaste: React.PropTypes.func,
     value: React.PropTypes.string,
     onLoad: React.PropTypes.func,
+    onBeforeLoad: React.PropTypes.func,
     maxLines: React.PropTypes.number,
     readOnly: React.PropTypes.bool,
     highlightActiveLine: React.PropTypes.bool,
