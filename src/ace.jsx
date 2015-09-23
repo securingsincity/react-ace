@@ -25,6 +25,7 @@ module.exports = React.createClass({
     maxLines: React.PropTypes.number,
     readOnly: React.PropTypes.bool,
     highlightActiveLine: React.PropTypes.bool,
+    tabSize: React.PropTypes.number,
     showPrintMargin: React.PropTypes.bool,
     cursorStart: React.PropTypes.number,
     editorProps: React.PropTypes.object
@@ -46,6 +47,7 @@ module.exports = React.createClass({
       readOnly: false,
       highlightActiveLine: true,
       showPrintMargin: true,
+      tabSize: 4,
       cursorStart: 1,
       editorProps: {}
     };
@@ -95,6 +97,7 @@ module.exports = React.createClass({
     this.editor.setOption('maxLines', this.props.maxLines);
     this.editor.setOption('readOnly', this.props.readOnly);
     this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
+    this.editor.setOption('tabSize', this.props.tabSize);
     this.editor.setShowPrintMargin(this.props.setShowPrintMargin);
     this.editor.on('focus', this.onFocus);
     this.editor.on('blur', this.onBlur);
@@ -120,6 +123,7 @@ module.exports = React.createClass({
     this.editor.setOption('maxLines', nextProps.maxLines);
     this.editor.setOption('readOnly', nextProps.readOnly);
     this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
+    this.editor.setOption('tabSize', nextProps.tabSize);
     this.editor.setShowPrintMargin(nextProps.setShowPrintMargin);
     if (this.editor.getValue() !== nextProps.value) {
       this.editor.setValue(nextProps.value, nextProps.cursorStart);
