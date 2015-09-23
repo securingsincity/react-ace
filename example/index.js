@@ -1,20 +1,21 @@
 var React = require('react');
-var AceEditor  = require('../src/ace.jsx');
+var AceEditor  = require('react-ace');
+var brace = require('brace');
 
-var brace = require("brace");
-require('brace/mode/java')
-require('brace/mode/javascript')
+require('brace/mode/java');
+require('brace/mode/javascript');
 
-require('brace/theme/github')
-require('brace/theme/monokai')
-require('brace/theme/solarized_light')
+require('brace/theme/github');
+require('brace/theme/monokai');
+require('brace/theme/solarized_light');
+
 
 function onLoad(editor) {
   console.log('i\'ve loaded');
 }
 
 function onChange(newValue) {
-  console.log('change',newValue)
+  console.log('change', newValue);
 }
 
 // render a first
@@ -25,13 +26,14 @@ React.render(
     name="blah1"
     height="6em"
     onChange={onChange}
-    />,
+  />,
   document.getElementById('example')
 );
 
 
 
-var defaultValue = "function onLoad(editor) { \n  console.log(\"i've loaded\");\n}";
+var defaultValue = 'function onLoad(editor) { \n  console.log(\"i\'ve loaded\");\n}';
+
 //render a second
 React.render(
   <AceEditor
@@ -46,9 +48,9 @@ React.render(
   document.getElementById('example2')
 );
 
-global.reloadProps = function () {
+global.reloadProps = function() {
   React.render(
-  <AceEditor mode="javascript" theme="solarized_light" name="blah2" fontSize={40} height="8em"/>,
-  document.getElementById('example2')
-);
-}
+    <AceEditor mode="javascript" theme="solarized_light" name="blah2" fontSize={40} height="8em"/>,
+    document.getElementById('example2')
+  );
+};
