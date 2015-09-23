@@ -48,7 +48,7 @@ module.exports = React.createClass({
   },
   onChange: function() {
     var value = this.editor.getValue();
-    if (this.props.onChange) {
+    if (this.props.onChange && !this.silent) {
       this.props.onChange(value);
     }
   },
@@ -99,7 +99,10 @@ module.exports = React.createClass({
     this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
     this.editor.setShowPrintMargin(nextProps.setShowPrintMargin);
     if (this.editor.getValue() !== nextProps.value) {
+      // editor.setValue is a synchronous function call, change event is emitted before setValue return.
+      this.silent = true;
       this.editor.setValue(nextProps.value, nextProps.cursorStart);
+      this.silent = false;
     }
     this.editor.renderer.setShowGutter(nextProps.showGutter);
     if (nextProps.onLoad) {
