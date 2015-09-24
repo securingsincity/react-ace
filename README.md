@@ -54,15 +54,22 @@ Available Props
 |theme| theme to use|
 |height| CSS value for height|
 |width| CSS value for width|
+|className|custom className|
 |fontSize| pixel value for font-size|
 |showGutter| boolean|
 |showPrintMargin| boolean|
 |highlightActiveLine| boolean|
 |readOnly| boolean|
 |maxLines| Maximum number of lines to be displayed|
+|tabSize| tabSize number|
 |value | String value you want to populate in the code highlighter|
-|onLoad| Function onLoad |
+|onLoad| Function onLoad|
+|onBeforeLoad| function that trigger before editor setup|
 |onChange| function that occurs on document change it has 1 argument value. see the example above|
+|onCopy| function that trigger by editor `copy` event, and pass text as argument|
+|onPaste| function that trigger by editor `paste` event, and pass text as argument|
+|onFocus| function that trigger by editor `focus` event|
+|onBlur| function that trigger by editor `blur` event|
 |editorProps| Object of properties to apply directly to the Ace editor instance|
 
 
