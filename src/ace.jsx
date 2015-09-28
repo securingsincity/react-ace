@@ -28,7 +28,8 @@ module.exports = React.createClass({
     tabSize: React.PropTypes.number,
     showPrintMargin: React.PropTypes.bool,
     cursorStart: React.PropTypes.number,
-    editorProps: React.PropTypes.object
+    editorProps: React.PropTypes.object,
+    keyboardHandler: React.PropTypes.string
   },
   getDefaultProps: function() {
     return {
@@ -105,6 +106,9 @@ module.exports = React.createClass({
     this.editor.on('paste', this.onPaste);
     this.editor.on('change', this.onChange);
     
+    if (this.props.keyboardHandler) {
+      this.editor.setKeyboardHandler('ace/keyboard/' + this.props.keyboardHandler);
+    }
 
     if (this.props.onLoad) {
       this.props.onLoad(this.editor);
