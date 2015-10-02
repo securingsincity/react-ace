@@ -98,7 +98,7 @@ module.exports = React.createClass({
     this.editor.setOption('readOnly', this.props.readOnly);
     this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
     this.editor.setOption('tabSize', this.props.tabSize);
-    this.editor.setShowPrintMargin(this.props.setShowPrintMargin);
+    this.editor.setShowPrintMargin(this.props.showPrintMargin);
     this.editor.on('focus', this.onFocus);
     this.editor.on('blur', this.onBlur);
     this.editor.on('copy', this.onCopy);
@@ -124,7 +124,7 @@ module.exports = React.createClass({
     this.editor.setOption('readOnly', nextProps.readOnly);
     this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
     this.editor.setOption('tabSize', nextProps.tabSize);
-    this.editor.setShowPrintMargin(nextProps.setShowPrintMargin);
+    this.editor.setShowPrintMargin(nextProps.showPrintMargin);
     if (this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
