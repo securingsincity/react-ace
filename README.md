@@ -71,11 +71,12 @@ Available Props
 |onFocus| function that trigger by editor `focus` event|
 |onBlur| function that trigger by editor `blur` event|
 |editorProps| Object of properties to apply directly to the Ace editor instance|
+|keyboardHandler| String corresponding to the keybinding mode to set (such as vim)|
 
 
-## Modes and Themes
+## Modes, Themes, and Keyboard Handlers
 
-All modes and themes should be required through ```brace``` directly.  Browserify will grab these modes / themes through ```brace``` and will be available at run time.  See the example above.  This prevents bloating the compiled javascript with extra modes and themes for your application.
+All modes, themes, and keyboard handlers should be required through ```brace``` directly.  Browserify will grab these modes / themes / keyboard handlers through ```brace``` and will be available at run time.  See the example above.  This prevents bloating the compiled javascript with extra modes and themes for your application.
 
 ### Example Modes
 
@@ -107,3 +108,8 @@ All modes and themes should be required through ```brace``` directly.  Browserif
 * solarized dark
 * solarized light
 * terminal
+
+### Example Keyboard Handlers
+
+* vim
+* emacs
