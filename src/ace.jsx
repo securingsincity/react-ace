@@ -54,8 +54,8 @@ module.exports = React.createClass({
     };
   },
   onChange: function() {
-    var value = this.editor.getValue();
     if (this.props.onChange && !this.silent) {
+      var value = this.editor.getValue();
       this.props.onChange(value);
     }
   },
