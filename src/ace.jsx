@@ -29,7 +29,8 @@ module.exports = React.createClass({
     showPrintMargin: React.PropTypes.bool,
     cursorStart: React.PropTypes.number,
     editorProps: React.PropTypes.object,
-    keyboardHandler: React.PropTypes.string
+    keyboardHandler: React.PropTypes.string,
+    wrapEnabled: React.PropTypes.bool
   },
   getDefaultProps: function() {
     return {
@@ -50,7 +51,8 @@ module.exports = React.createClass({
       showPrintMargin: true,
       tabSize: 4,
       cursorStart: 1,
-      editorProps: {}
+      editorProps: {},
+      wrapEnabled:false
     };
   },
   onChange: function() {
@@ -95,6 +97,7 @@ module.exports = React.createClass({
     this.editor.setFontSize(this.props.fontSize);
     this.editor.setValue(this.props.value, this.props.cursorStart);
     this.editor.renderer.setShowGutter(this.props.showGutter);
+    this.editor.getSession().setUseWrapMode(this.props.wrapEnabled);
     this.editor.setOption('maxLines', this.props.maxLines);
     this.editor.setOption('readOnly', this.props.readOnly);
     this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
@@ -105,7 +108,7 @@ module.exports = React.createClass({
     this.editor.on('copy', this.onCopy);
     this.editor.on('paste', this.onPaste);
     this.editor.on('change', this.onChange);
-    
+
     if (this.props.keyboardHandler) {
       this.editor.setKeyboardHandler('ace/keyboard/' + this.props.keyboardHandler);
     }
