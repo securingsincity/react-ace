@@ -136,9 +136,6 @@ module.exports = React.createClass({
       this.silent = false;
     }
     this.editor.renderer.setShowGutter(nextProps.showGutter);
-    if (nextProps.onLoad) {
-      nextProps.onLoad(this.editor);
-    }
   },
 
   render: function() {
