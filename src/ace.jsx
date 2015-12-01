@@ -5,7 +5,6 @@ module.exports = React.createClass({
   displayName: 'ReactAce',
 
   propTypes: {
-
     mode: React.PropTypes.string,
     theme: React.PropTypes.string,
     name: React.PropTypes.string,
@@ -120,7 +119,6 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    this.editor = ace.edit(nextProps.name);
     this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
     this.editor.setTheme('ace/theme/' + nextProps.theme);
     this.editor.setFontSize(nextProps.fontSize);
