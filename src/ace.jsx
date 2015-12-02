@@ -122,21 +122,39 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
-    this.editor.setTheme('ace/theme/' + nextProps.theme);
-    this.editor.setFontSize(nextProps.fontSize);
-    this.editor.setOption('maxLines', nextProps.maxLines);
-    this.editor.setOption('readOnly', nextProps.readOnly);
-    this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
-    this.editor.setOption('tabSize', nextProps.tabSize);
-    this.editor.setShowPrintMargin(nextProps.showPrintMargin);
+    if (nextProps.mode !== this.props.mode) {
+      this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
+    }
+    if (nextProps.theme !== this.props.theme) {
+      this.editor.setTheme('ace/theme/' + nextProps.theme);
+    }
+    if (nextProps.fontSize !== this.props.fontSize) {
+      this.editor.setFontSize(nextProps.fontSize);
+    }
+    if (nextProps.maxLines !== this.props.maxLines) {
+      this.editor.setOption('maxLines', nextProps.maxLines);
+    }
+    if (nextProps.readOnly !== this.props.readOnly) {
+      this.editor.setOption('readOnly', nextProps.readOnly);
+    }
+    if (nextProps.highlightActiveLine !== this.props.highlightActiveLine) {
+      this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
+    }
+    if (nextProps.tabSize !== this.props.tabSize) {
+      this.editor.setOption('tabSize', nextProps.tabSize);
+    }
+    if (nextProps.showPrintMargin !== this.props.showPrintMargin) {
+      this.editor.setShowPrintMargin(nextProps.showPrintMargin);
+    }
+    if (nextProps.showGutter !== this.props.showGutter) {
+      this.editor.renderer.setShowGutter(nextProps.showGutter);
+    }
     if (this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
       this.editor.setValue(nextProps.value, nextProps.cursorStart);
       this.silent = false;
     }
-    this.editor.renderer.setShowGutter(nextProps.showGutter);
   },
 
   render: function() {
