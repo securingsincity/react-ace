@@ -155,6 +155,9 @@ module.exports = React.createClass({
       this.editor.setValue(nextProps.value, nextProps.cursorStart);
       this.silent = false;
     }
+    if(nextProps.height !== this.props.height){
+      this.editor.resize();
+    }
   },
 
   render: function() {
