@@ -29,7 +29,8 @@ module.exports = React.createClass({
     cursorStart: React.PropTypes.number,
     editorProps: React.PropTypes.object,
     keyboardHandler: React.PropTypes.string,
-    wrapEnabled: React.PropTypes.bool
+    wrapEnabled: React.PropTypes.bool,
+    autoScrollEditorIntoView: React.PropTypes.bool
   },
   getDefaultProps: function() {
     return {
@@ -102,6 +103,7 @@ module.exports = React.createClass({
     this.editor.setOption('highlightActiveLine', this.props.highlightActiveLine);
     this.editor.setOption('tabSize', this.props.tabSize);
     this.editor.setShowPrintMargin(this.props.showPrintMargin);
+    this.editor.setAutoScrollEditorIntoView(this.props.autoScrollEditorIntoView)
     this.editor.on('focus', this.onFocus);
     this.editor.on('blur', this.onBlur);
     this.editor.on('copy', this.onCopy);
