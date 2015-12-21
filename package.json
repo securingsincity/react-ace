@@ -36,7 +36,7 @@
     "brace"
   ],
   "dependencies": {
-    "brace": "^0.5.1"
+    "brace": "^0.7.0"
   },
   "peerDependencies": {
     "react": "^0.13.0 || ^0.14.0"
