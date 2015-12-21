@@ -56,6 +56,7 @@ Available Props
 |showPrintMargin| boolean|
 |highlightActiveLine| boolean|
 |readOnly| boolean|
+|minLines| Minimum number of lines to be displayed|
 |maxLines| Maximum number of lines to be displayed|
 |tabSize| tabSize number|
 |value | String value you want to populate in the code highlighter|

@@ -27,6 +27,7 @@ export default class ReactAce extends Component {
       cursorStart,
       showGutter,
       wrapEnabled,
+      minLines,
       maxLines,
       readOnly,
       highlightActiveLine,
@@ -53,6 +54,7 @@ export default class ReactAce extends Component {
     this.editor.setValue(value, cursorStart);
     this.editor.renderer.setShowGutter(showGutter);
     this.editor.getSession().setUseWrapMode(wrapEnabled);
+    this.editor.setOption('minLines', minLines);
     this.editor.setOption('maxLines', maxLines);
     this.editor.setOption('readOnly', readOnly);
     this.editor.setOption('highlightActiveLine', highlightActiveLine);
@@ -83,6 +85,9 @@ export default class ReactAce extends Component {
     }
     if (nextProps.fontSize !== oldProps.fontSize) {
       this.editor.setFontSize(nextProps.fontSize);
+    }
+    if (nextProps.minLines !== oldProps.minLines) {
+      this.editor.setOption('minLines', nextProps.minLines);
     }
     if (nextProps.maxLines !== oldProps.maxLines) {
       this.editor.setOption('maxLines', nextProps.maxLines);
@@ -175,6 +180,7 @@ ReactAce.propTypes = {
   value: PropTypes.string,
   onLoad: PropTypes.func,
   onBeforeLoad: PropTypes.func,
+  minLines: PropTypes.number,
   maxLines: PropTypes.number,
   readOnly: PropTypes.bool,
   highlightActiveLine: PropTypes.bool,
@@ -198,6 +204,7 @@ ReactAce.defaultProps = {
   onChange: null,
   onPaste: null,
   onLoad: null,
+  minLines: null,
   maxLines: null,
   readOnly: false,
   highlightActiveLine: true,
