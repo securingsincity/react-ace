@@ -13,19 +13,20 @@ A react component for Ace / Brace
 ##Usage
 
 ```javascript
-var React = require('react');
-var brace  = require('brace');
-var AceEditor  = require('react-ace');
+import React from 'react';
+import { render } from 'react-dom';
+import brace from 'brace';
+import AceEditor from 'react-ace';
 
-require('brace/mode/java')
-require('brace/theme/github')
+import 'brace/mode/java';
+import 'brace/theme/github';
 
 function onChange(newValue) {
-  console.log('change',newValue)
+  console.log('change',newValue);
 }
 
-// render a first
-React.render(
+// Render editor
+render(
   <AceEditor
     mode="java"
     theme="github"
@@ -35,14 +36,9 @@ React.render(
   />,
   document.getElementById('example')
 );
-
-
 ```
 
-
-Looking for a way to set it up using webpack? Checkout this example :
-
-[React-Ace Webpack Example](https://github.com/securingsincity/react-ace-webpack-example) a working example using webpack
+Looking for a way to set it up using webpack? Checkout `example` directory for a working example using webpack.
 
 
 Available Props

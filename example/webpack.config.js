@@ -12,6 +12,11 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/static/'
   },
+  resolve: {
+    alias: {
+      'react-ace':  path.join(__dirname, '..', 'src', 'ace.jsx')
+    }
+  },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -21,28 +26,7 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       loaders: ['babel'],
-      exclude: /node_modules/,
-      include: __dirname
+      exclude: /node_modules/
     }]
   }
 };
-
-
-// When inside Redux repo, prefer src to compiled version.
-// You can safely delete these lines in your project.
-var reactAceSrc = path.join(__dirname, '..', 'src');
-var nodeModules = path.join(__dirname, '..', 'node_modules');
-var fs = require('fs');
-if (fs.existsSync(reactAceSrc) && fs.existsSync(nodeModules)) {
-  // Resolve Redux to source
-  module.exports.resolve = {
-    alias: { 'react-ace':  path.join(reactAceSrc, 'ace.jsx') },
-    extensions: ['', '.js']
-  };
-  // Compile Redux from source
-  module.exports.module.loaders.push({
-    test: /\.jsx?$/,
-    loaders: ['babel'],
-    include: reactAceSrc
-  });
-}
