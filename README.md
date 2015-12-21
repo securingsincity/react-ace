@@ -1,4 +1,4 @@
-#React-Ace
+# React-Ace
 
 [![npm version](https://badge.fury.io/js/react-ace.svg)](http://badge.fury.io/js/react-ace)
 
@@ -6,11 +6,11 @@
 
 A react component for Ace / Brace
 
-##Install
+## Install
 
 `npm install react-ace`
 
-##Usage
+## Usage
 
 ```javascript
 import React from 'react';
