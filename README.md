@@ -41,7 +41,7 @@ render(
 Looking for a way to set it up using webpack? Checkout `example` directory for a working example using webpack.
 
 
-Available Props
+#### Available Props
 
 |Prop|Description|
 |-----|----------|
