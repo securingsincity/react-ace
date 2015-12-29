@@ -116,7 +116,7 @@ export default class ReactAce extends Component {
 
   onChange() {
     if (this.props.onChange && !this.silent) {
-      var value = this.editor.getValue();
+      const value = this.editor.getValue();
       this.props.onChange(value);
     }
   }
@@ -147,12 +147,13 @@ export default class ReactAce extends Component {
 
   render() {
     const { name, className, width, height } = this.props;
-    var divStyle = { width, height };
+    const divStyle = { width, height };
     return (
       <div
         id={name}
         className={className}
-        style={divStyle}>
+        style={divStyle}
+      >
       </div>
     );
   }
@@ -183,7 +184,7 @@ ReactAce.propTypes = {
   cursorStart: PropTypes.number,
   editorProps: PropTypes.object,
   keyboardHandler: PropTypes.string,
-  wrapEnabled: PropTypes.bool
+  wrapEnabled: PropTypes.bool,
 };
 
 ReactAce.defaultProps = {
@@ -205,5 +206,5 @@ ReactAce.defaultProps = {
   tabSize: 4,
   cursorStart: 1,
   editorProps: {},
-  wrapEnabled: false
+  wrapEnabled: false,
 };
