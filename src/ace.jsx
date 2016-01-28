@@ -86,6 +86,9 @@ export default class ReactAce extends Component {
     if (nextProps.fontSize !== oldProps.fontSize) {
       this.editor.setFontSize(nextProps.fontSize);
     }
+    if (nextProps.wrapEnabled !== oldProps.wrapEnabled) {
+      this.editor.getSession().setUseWrapMode(nextProps.wrapEnabled);
+    }
     if (nextProps.minLines !== oldProps.minLines) {
       this.editor.setOption('minLines', nextProps.minLines);
     }
