@@ -112,7 +112,7 @@ export default class ReactAce extends Component {
     if (nextProps.showGutter !== oldProps.showGutter) {
       this.editor.renderer.setShowGutter(nextProps.showGutter);
     }
-    if (nextProps.sortOptions !== oldProps.sortOptions) {
+    if (nextProps.setOptions !== oldProps.setOptions) {
       this.handleOptions(nextProps);
     }
     if (this.editor.getValue() !== nextProps.value) {
