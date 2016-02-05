@@ -48,6 +48,7 @@ export default class ReactAce extends Component {
     for (let i = 0; i < editorProps.length; i++) {
       this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
     }
+
     this.editor.getSession().setMode(`ace/mode/${mode}`);
     this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(fontSize);
