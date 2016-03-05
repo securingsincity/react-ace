@@ -35,6 +35,7 @@ export default class ReactAce extends Component {
       showPrintMargin,
       keyboardHandler,
       onLoad,
+      commands,
     } = this.props;
 
     this.editor = ace.edit(name);
@@ -65,6 +66,12 @@ export default class ReactAce extends Component {
     this.editor.on('copy', this.onCopy);
     this.editor.on('paste', this.onPaste);
     this.editor.on('change', this.onChange);
+
+    if (Array.isArray(commands)) {
+      commands.forEach((command) => {
+        this.editor.commands.addCommand(command);
+      });
+    }
 
     if (keyboardHandler) {
       this.editor.setKeyboardHandler('ace/keyboard/' + keyboardHandler);
@@ -194,6 +201,7 @@ ReactAce.propTypes = {
   editorProps: PropTypes.object,
   keyboardHandler: PropTypes.string,
   wrapEnabled: PropTypes.bool,
+  commands: PropTypes.array,
 };
 
 ReactAce.defaultProps = {
