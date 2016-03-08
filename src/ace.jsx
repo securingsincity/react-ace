@@ -119,6 +119,7 @@ export default class ReactAce extends Component {
   }
 
   componentWillUnmount() {
+    this.editor.destroy();
     this.editor = null;
   }
 
