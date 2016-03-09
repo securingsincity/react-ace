@@ -1,5 +1,6 @@
 import ace from 'brace';
 import React, { Component, PropTypes } from 'react';
+import isEqual from 'lodash.isequal';
 
 export default class ReactAce extends Component {
   constructor(props) {
@@ -112,7 +113,7 @@ export default class ReactAce extends Component {
     if (nextProps.showGutter !== oldProps.showGutter) {
       this.editor.renderer.setShowGutter(nextProps.showGutter);
     }
-    if (nextProps.setOptions !== oldProps.setOptions) {
+    if (!isEqual(nextProps.setOptions, oldProps.setOptions)) {
       this.handleOptions(nextProps);
     }
     if (this.editor.getValue() !== nextProps.value) {
