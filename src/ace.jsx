@@ -1,6 +1,16 @@
 import ace from 'brace';
 import React, { Component, PropTypes } from 'react';
 
+const editorOptions = [
+  'minLines',
+  'maxLines',
+  'readOnly',
+  'highlightActiveLine',
+  'tabSize',
+  'enableBasicAutocompletion',
+  'enableLiveAutocompletion',
+];
+
 export default class ReactAce extends Component {
   constructor(props) {
     super(props);
@@ -27,11 +37,6 @@ export default class ReactAce extends Component {
       cursorStart,
       showGutter,
       wrapEnabled,
-      minLines,
-      maxLines,
-      readOnly,
-      highlightActiveLine,
-      tabSize,
       showPrintMargin,
       keyboardHandler,
       onLoad,
@@ -54,17 +59,17 @@ export default class ReactAce extends Component {
     this.editor.setValue(value, cursorStart);
     this.editor.renderer.setShowGutter(showGutter);
     this.editor.getSession().setUseWrapMode(wrapEnabled);
-    this.editor.setOption('minLines', minLines);
-    this.editor.setOption('maxLines', maxLines);
-    this.editor.setOption('readOnly', readOnly);
-    this.editor.setOption('highlightActiveLine', highlightActiveLine);
-    this.editor.setOption('tabSize', tabSize);
     this.editor.setShowPrintMargin(showPrintMargin);
     this.editor.on('focus', this.onFocus);
     this.editor.on('blur', this.onBlur);
     this.editor.on('copy', this.onCopy);
     this.editor.on('paste', this.onPaste);
     this.editor.on('change', this.onChange);
+
+    for (let i = 0; i < editorOptions.length; i++) {
+      const option = editorOptions[i];
+      this.editor.setOption(option, this.props[option]);
+    }
 
     if (keyboardHandler) {
       this.editor.setKeyboardHandler('ace/keyboard/' + keyboardHandler);
@@ -77,6 +82,14 @@ export default class ReactAce extends Component {
 
   componentWillReceiveProps(nextProps) {
     const oldProps = this.props;
+
+    for (let i = 0; i < editorOptions.length; i++) {
+      const option = editorOptions[i];
+      if (nextProps[option] !== oldProps[option]) {
+        this.editor.setOption(option, nextProps[option]);
+      }
+    }
+
     if (nextProps.mode !== oldProps.mode) {
       this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
     }
@@ -88,21 +101,6 @@ export default class ReactAce extends Component {
     }
     if (nextProps.wrapEnabled !== oldProps.wrapEnabled) {
       this.editor.getSession().setUseWrapMode(nextProps.wrapEnabled);
-    }
-    if (nextProps.minLines !== oldProps.minLines) {
-      this.editor.setOption('minLines', nextProps.minLines);
-    }
-    if (nextProps.maxLines !== oldProps.maxLines) {
-      this.editor.setOption('maxLines', nextProps.maxLines);
-    }
-    if (nextProps.readOnly !== oldProps.readOnly) {
-      this.editor.setOption('readOnly', nextProps.readOnly);
-    }
-    if (nextProps.highlightActiveLine !== oldProps.highlightActiveLine) {
-      this.editor.setOption('highlightActiveLine', nextProps.highlightActiveLine);
-    }
-    if (nextProps.tabSize !== oldProps.tabSize) {
-      this.editor.setOption('tabSize', nextProps.tabSize);
     }
     if (nextProps.showPrintMargin !== oldProps.showPrintMargin) {
       this.editor.setShowPrintMargin(nextProps.showPrintMargin);
@@ -194,6 +192,14 @@ ReactAce.propTypes = {
   editorProps: PropTypes.object,
   keyboardHandler: PropTypes.string,
   wrapEnabled: PropTypes.bool,
+  enableBasicAutocompletion: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array,
+  ]),
+  enableLiveAutocompletion: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array,
+  ]),
 };
 
 ReactAce.defaultProps = {
@@ -217,4 +223,6 @@ ReactAce.defaultProps = {
   cursorStart: 1,
   editorProps: {},
   wrapEnabled: false,
+  enableBasicAutocompletion: false,
+  enableLiveAutocompletion: false,
 };

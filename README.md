@@ -58,6 +58,8 @@ Looking for a way to set it up using webpack? Checkout `example` directory for a
 |readOnly| boolean|
 |minLines| Minimum number of lines to be displayed|
 |maxLines| Maximum number of lines to be displayed|
+|enableBasicAutocompletion| Enable basic autocompletion|
+|enableLiveAutocompletion| Enable live autocompletion|
 |tabSize| tabSize number|
 |value | String value you want to populate in the code highlighter|
 |onLoad| Function onLoad|
