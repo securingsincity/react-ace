@@ -9,6 +9,7 @@ const editorOptions = [
   'tabSize',
   'enableBasicAutocompletion',
   'enableLiveAutocompletion',
+  'enableSnippets '
 ];
 
 export default class ReactAce extends Component {
