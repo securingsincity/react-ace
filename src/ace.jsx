@@ -40,6 +40,7 @@ export default class ReactAce extends Component {
       showPrintMargin,
       keyboardHandler,
       onLoad,
+      commands,
     } = this.props;
 
     this.editor = ace.edit(name);
@@ -69,6 +70,12 @@ export default class ReactAce extends Component {
     for (let i = 0; i < editorOptions.length; i++) {
       const option = editorOptions[i];
       this.editor.setOption(option, this.props[option]);
+    }
+
+    if (Array.isArray(commands)) {
+      commands.forEach((command) => {
+        this.editor.commands.addCommand(command);
+      });
     }
 
     if (keyboardHandler) {
@@ -201,6 +208,7 @@ ReactAce.propTypes = {
     PropTypes.bool,
     PropTypes.array,
   ]),
+  commands: PropTypes.array,
 };
 
 ReactAce.defaultProps = {

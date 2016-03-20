@@ -71,6 +71,7 @@ Looking for a way to set it up using webpack? Checkout `example` directory for a
 |onBlur| function that trigger by editor `blur` event|
 |editorProps| Object of properties to apply directly to the Ace editor instance|
 |keyboardHandler| String corresponding to the keybinding mode to set (such as vim)|
+|commands| Array of new commands to add to the editor
 
 
 ## Modes, Themes, and Keyboard Handlers
