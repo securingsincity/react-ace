@@ -65,6 +65,7 @@ Looking for a way to set it up using webpack? Checkout `example` directory for a
 |value | String value you want to populate in the code highlighter|
 |onLoad| Function onLoad|
 |onBeforeLoad| function that trigger before editor setup|
+|onAnnotationChange| function that occurs on annotation change it has 1 argument value.|
 |onChange| function that occurs on document change it has 1 argument value. see the example above|
 |onCopy| function that trigger by editor `copy` event, and pass text as argument|
 |onPaste| function that trigger by editor `paste` event, and pass text as argument|

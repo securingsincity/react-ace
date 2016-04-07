@@ -16,10 +16,11 @@ export default class ReactAce extends Component {
   constructor(props) {
     super(props);
     [
-      'onChange',
-      'onFocus',
+      'onAnnotationChange',
       'onBlur',
+      'onChange',
       'onCopy',
+      'onFocus',
       'onPaste',
     ]
     .forEach(method => {
@@ -56,6 +57,7 @@ export default class ReactAce extends Component {
     }
 
     this.editor.getSession().setMode(`ace/mode/${mode}`);
+    this.editor.getSession().on('changeAnnotation', this.onAnnotationChange);
     this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(fontSize);
     this.editor.setValue(value, cursorStart);
@@ -129,6 +131,13 @@ export default class ReactAce extends Component {
     this.editor = null;
   }
 
+  onAnnotationChange() {
+    if (this.props.onAnnotationChange) {
+      const annotations = this.editor.getSession().getAnnotations();
+      this.props.onAnnotationChange(annotations);
+    }
+  }
+
   onChange() {
     if (this.props.onChange && !this.silent) {
       const value = this.editor.getValue();
@@ -183,11 +192,12 @@ ReactAce.propTypes = {
   width: PropTypes.string,
   fontSize: PropTypes.number,
   showGutter: PropTypes.bool,
+  onAnnotationChange: PropTypes.func,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onCopy: PropTypes.func,
-  onPaste: PropTypes.func,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
+  onPaste: PropTypes.func,
   value: PropTypes.string,
   onLoad: PropTypes.func,
   onBeforeLoad: PropTypes.func,
@@ -221,6 +231,7 @@ ReactAce.defaultProps = {
   value: '',
   fontSize: 12,
   showGutter: true,
+  onAnnotationChange: null,
   onChange: null,
   onPaste: null,
   onLoad: null,
