@@ -71,6 +71,7 @@ Looking for a way to set it up using webpack? Checkout `example` directory for a
 |onFocus| function that trigger by editor `focus` event|
 |onBlur| function that trigger by editor `blur` event|
 |editorProps| Object of properties to apply directly to the Ace editor instance|
+|setOptions| Object of [options](https://github.com/ajaxorg/ace/wiki/Configuring-Ace) to apply directly to the Ace editor instance|
 |keyboardHandler| String corresponding to the keybinding mode to set (such as vim)|
 |commands| Array of new commands to add to the editor
 
