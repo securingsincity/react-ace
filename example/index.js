@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
 import AceEditor from 'react-ace';
 import brace from 'brace';
 
@@ -9,6 +9,7 @@ import 'brace/mode/javascript';
 import 'brace/theme/github';
 import 'brace/theme/monokai';
 import 'brace/theme/solarized_light';
+import 'brace/ext/language_tools';
 
 
 function onLoad(editor) {
@@ -60,5 +61,54 @@ global.reloadProps = function() {
       height="8em"
     />,
     document.getElementById('example2')
+  );
+};
+
+// Render the third editor using setOptions prop
+
+const defaultValue2 =
+`function onLoad(editor) {
+  if (true) {
+    console.log(\"i\'ve loaded\");
+  }
+}`;
+
+render(
+  <AceEditor
+    mode="javascript"
+    theme="monokai"
+    name="blah3"
+    onLoad={onLoad}
+    height="6em"
+    setOptions={{
+      enableBasicAutocompletion: false,
+      enableLiveAutocompletion: false,
+      tabSize: 4,
+      fontSize: 14,
+      showGutter: true
+    }}
+    value={defaultValue2}
+  />,
+  document.getElementById('example3')
+);
+
+global.reloadProps2 = function() {
+  render(
+    <AceEditor
+      mode="javascript"
+      theme="monokai"
+      name="blah3"
+      onLoad={onLoad}
+      height="6em"
+      setOptions={{
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true,
+        tabSize: 2,
+        fontSize: 16,
+        showGutter: false
+      }}
+      value={defaultValue2}
+    />,
+    document.getElementById('example3')
   );
 };
