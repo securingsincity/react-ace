@@ -25,7 +25,6 @@ render(
   <AceEditor
     mode="java"
     theme="github"
-    name="blah1"
     height="6em"
     onChange={onChange}
   />,
@@ -42,7 +41,6 @@ render(
   <AceEditor
     mode="javascript"
     theme="monokai"
-    name="blah2"
     onLoad={onLoad}
     fontSize={14}
     height="6em"

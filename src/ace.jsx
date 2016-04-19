@@ -30,9 +30,15 @@ export default class ReactAce extends Component {
   }
 
   componentDidMount() {
+    const { onBeforeLoad } = this.props;
+
+    if (onBeforeLoad) {
+      onBeforeLoad(ace);
+    }
+  }
+
+  initEditor(element) {
     const {
-      name,
-      onBeforeLoad,
       mode,
       theme,
       fontSize,
@@ -46,11 +52,7 @@ export default class ReactAce extends Component {
       commands,
     } = this.props;
 
-    this.editor = ace.edit(name);
-
-    if (onBeforeLoad) {
-      onBeforeLoad(ace);
-    }
+    this.editor = ace.edit(element);
 
     const editorProps = Object.keys(this.props.editorProps);
     for (let i = 0; i < editorProps.length; i++) {
@@ -181,6 +183,7 @@ export default class ReactAce extends Component {
         id={name}
         className={className}
         style={divStyle}
+        ref={ (element) => this.initEditor(element) }
       >
       </div>
     );
