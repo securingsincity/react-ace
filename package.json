@@ -1,11 +1,11 @@
 {
   "name": "react-ace",
-  "version": "2.8.0",
+  "version": "3.4.1",
   "description": "A react component for Ace Editor",
   "main": "lib/ace.js",
   "scripts": {
     "clean": "rimraf lib dist",
-    "lint": "echo \"Temporarily remove\"",
+    "lint": "node_modules/.bin/eslint src/ace.jsx",
     "build:lib": "babel src --out-dir lib",
     "build:umd": "webpack src/ace.jsx dist/react-ace.js --config webpack.config.development.js",
     "build:umd:min": "webpack src/ace.jsx dist/react-ace.min.js --config webpack.config.production.js",
@@ -18,15 +18,24 @@
     "prepublish": "npm run clean && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "babel": {
+    "presets": ["es2015", "react"]
+  },
   "author": "James Hrisho",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-core": "^5.8.25",
-    "babel-loader": "^5.3.2",
+    "babel": "^6.5.2",
+    "babel-cli": "^6.6.5",
+    "babel-core": "^6.7.5",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^2.1.1",
+    "eslint-plugin-react": "^3.13.1",
     "jest": "^0.1.37",
-    "rimraf": "^2.4.3",
-    "webpack": "^1.12.2"
+    "rimraf": "^2.5.2",
+    "webpack": "^1.12.14"
   },
   "keywords": [
     "ace",
@@ -36,10 +45,11 @@
     "brace"
   ],
   "dependencies": {
-    "brace": "^0.5.1"
+    "brace": "^0.8.0",
+    "lodash.isequal": "^4.1.1"
   },
   "peerDependencies": {
-    "react": ">=0.11.2 <1.0.0 || ^0.14.0-rc"
+    "react": "^0.13.0 || ^0.14.0 || ^15.0.1"
   },
   "repository": {
     "type": "git",

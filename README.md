@@ -1,4 +1,4 @@
-#React-Ace
+# React-Ace
 
 [![npm version](https://badge.fury.io/js/react-ace.svg)](http://badge.fury.io/js/react-ace)
 
@@ -6,26 +6,27 @@
 
 A react component for Ace / Brace
 
-##Install
+## Install
 
 `npm install react-ace`
 
-##Usage
+## Usage
 
 ```javascript
-var React = require('react');
-var brace  = require('brace');
-var AceEditor  = require('react-ace');
+import React from 'react';
+import { render } from 'react-dom';
+import brace from 'brace';
+import AceEditor from 'react-ace';
 
-require('brace/mode/java')
-require('brace/theme/github')
+import 'brace/mode/java';
+import 'brace/theme/github';
 
 function onChange(newValue) {
-  console.log('change',newValue)
+  console.log('change',newValue);
 }
 
-// render a first
-React.render(
+// Render editor
+render(
   <AceEditor
     mode="java"
     theme="github"
@@ -35,17 +36,12 @@ React.render(
   />,
   document.getElementById('example')
 );
-
-
 ```
 
-
-Looking for a way to set it up using webpack? Checkout this example :
-
-[React-Ace Webpack Example](https://github.com/securingsincity/react-ace-webpack-example) a working example using webpack
+Looking for a way to set it up using webpack? Checkout `example` directory for a working example using webpack.
 
 
-Available Props
+#### Available Props
 
 |Prop|Description|
 |-----|----------|
@@ -60,7 +56,11 @@ Available Props
 |showPrintMargin| boolean|
 |highlightActiveLine| boolean|
 |readOnly| boolean|
+|minLines| Minimum number of lines to be displayed|
 |maxLines| Maximum number of lines to be displayed|
+|enableBasicAutocompletion| Enable basic autocompletion|
+|enableSnippets| Enable snippets|
+|enableLiveAutocompletion| Enable live autocompletion|
 |tabSize| tabSize number|
 |value | String value you want to populate in the code highlighter|
 |onLoad| Function onLoad|
@@ -71,7 +71,9 @@ Available Props
 |onFocus| function that trigger by editor `focus` event|
 |onBlur| function that trigger by editor `blur` event|
 |editorProps| Object of properties to apply directly to the Ace editor instance|
+|setOptions| Object of [options](https://github.com/ajaxorg/ace/wiki/Configuring-Ace) to apply directly to the Ace editor instance|
 |keyboardHandler| String corresponding to the keybinding mode to set (such as vim)|
+|commands| Array of new commands to add to the editor
 
 
 ## Modes, Themes, and Keyboard Handlers

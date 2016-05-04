@@ -1,13 +1,15 @@
-var React = require('react');
-var AceEditor  = require('react-ace');
-var brace = require('brace');
+import React from 'react';
+import { render } from 'react-dom';
+import AceEditor from 'react-ace';
+import brace from 'brace';
 
-require('brace/mode/java');
-require('brace/mode/javascript');
+import 'brace/mode/java';
+import 'brace/mode/javascript';
 
-require('brace/theme/github');
-require('brace/theme/monokai');
-require('brace/theme/solarized_light');
+import 'brace/theme/github';
+import 'brace/theme/monokai';
+import 'brace/theme/solarized_light';
+import 'brace/ext/language_tools';
 
 
 function onLoad(editor) {
@@ -18,8 +20,8 @@ function onChange(newValue) {
   console.log('change', newValue);
 }
 
-// render a first
-React.render(
+// Render first editor
+render(
   <AceEditor
     mode="java"
     theme="github"
@@ -30,12 +32,13 @@ React.render(
   document.getElementById('example')
 );
 
+const defaultValue =
+`function onLoad(editor) {
+  console.log(\"i\'ve loaded\");
+}`;
 
-
-var defaultValue = 'function onLoad(editor) { \n  console.log(\"i\'ve loaded\");\n}';
-
-//render a second
-React.render(
+// Render second editor
+render(
   <AceEditor
     mode="javascript"
     theme="monokai"
@@ -49,8 +52,63 @@ React.render(
 );
 
 global.reloadProps = function() {
-  React.render(
-    <AceEditor mode="javascript" theme="solarized_light" name="blah2" fontSize={40} height="8em"/>,
+  render(
+    <AceEditor
+      mode="javascript"
+      theme="solarized_light"
+      name="blah2"
+      fontSize={40}
+      height="8em"
+    />,
     document.getElementById('example2')
+  );
+};
+
+// Render the third editor using setOptions prop
+
+const defaultValue2 =
+`function onLoad(editor) {
+  if (true) {
+    console.log(\"i\'ve loaded\");
+  }
+}`;
+
+render(
+  <AceEditor
+    mode="javascript"
+    theme="monokai"
+    name="blah3"
+    onLoad={onLoad}
+    height="6em"
+    setOptions={{
+      enableBasicAutocompletion: false,
+      enableLiveAutocompletion: false,
+      tabSize: 4,
+      fontSize: 14,
+      showGutter: true
+    }}
+    value={defaultValue2}
+  />,
+  document.getElementById('example3')
+);
+
+global.reloadProps2 = function() {
+  render(
+    <AceEditor
+      mode="javascript"
+      theme="monokai"
+      name="blah3"
+      onLoad={onLoad}
+      height="6em"
+      setOptions={{
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true,
+        tabSize: 2,
+        fontSize: 16,
+        showGutter: false
+      }}
+      value={defaultValue2}
+    />,
+    document.getElementById('example3')
   );
 };
