@@ -122,7 +122,7 @@ export default class ReactAce extends Component {
     if (!isEqual(nextProps.setOptions, oldProps.setOptions)) {
       this.handleOptions(nextProps);
     }
-    if (this.editor.getValue() !== nextProps.value) {
+    if (this.editor && this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
       this.editor.setValue(nextProps.value, nextProps.cursorStart);
