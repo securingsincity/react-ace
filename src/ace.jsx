@@ -22,6 +22,7 @@ export default class ReactAce extends Component {
       'onBlur',
       'onCopy',
       'onPaste',
+      'onScroll',
       'handleOptions',
     ]
     .forEach(method => {
@@ -69,6 +70,7 @@ export default class ReactAce extends Component {
     this.editor.on('copy', this.onCopy);
     this.editor.on('paste', this.onPaste);
     this.editor.on('change', this.onChange);
+    this.editor.session.on('changeScrollTop', this.onScroll);
     this.handleOptions(this.props);
 
     for (let i = 0; i < editorOptions.length; i++) {
@@ -166,6 +168,12 @@ export default class ReactAce extends Component {
     }
   }
 
+  onScroll() {
+    if (this.props.onScroll) {
+      this.props.onScroll(this.editor);
+    }
+  }
+
   handleOptions(props) {
     const setOptions = Object.keys(props.setOptions);
     for (let y = 0; y < setOptions.length; y++) {
@@ -201,6 +209,7 @@ ReactAce.propTypes = {
   onPaste: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  onScroll: PropTypes.func,
   value: PropTypes.string,
   onLoad: PropTypes.func,
   onBeforeLoad: PropTypes.func,
@@ -238,6 +247,7 @@ ReactAce.defaultProps = {
   onChange: null,
   onPaste: null,
   onLoad: null,
+  onScroll: null,
   minLines: null,
   maxLines: null,
   readOnly: false,
