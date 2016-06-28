@@ -45,6 +45,7 @@ export default class ReactAce extends Component {
       keyboardHandler,
       onLoad,
       commands,
+      annotations,
     } = this.props;
 
     this.editor = ace.edit(name);
@@ -72,6 +73,7 @@ export default class ReactAce extends Component {
     this.editor.on('change', this.onChange);
     this.editor.session.on('changeScrollTop', this.onScroll);
     this.handleOptions(this.props);
+    this.editor.getSession().setAnnotations(annotations || []);
 
     for (let i = 0; i < editorOptions.length; i++) {
       const option = editorOptions[i];
@@ -123,6 +125,9 @@ export default class ReactAce extends Component {
     }
     if (!isEqual(nextProps.setOptions, oldProps.setOptions)) {
       this.handleOptions(nextProps);
+    }
+    if (!isEqual(nextProps.annotations, oldProps.annotations)) {
+      this.editor.getSession().setAnnotations(nextProps.annotations || []);
     }
     if (this.editor && this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
@@ -222,6 +227,7 @@ ReactAce.propTypes = {
   cursorStart: PropTypes.number,
   editorProps: PropTypes.object,
   setOptions: PropTypes.object,
+  annotations: PropTypes.array,
   keyboardHandler: PropTypes.string,
   wrapEnabled: PropTypes.bool,
   enableBasicAutocompletion: PropTypes.oneOfType([
