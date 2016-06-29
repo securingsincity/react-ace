@@ -2,6 +2,8 @@ import ace from 'brace';
 import React, { Component, PropTypes } from 'react';
 import isEqual from 'lodash.isequal';
 
+const { Range } = ace.acequire('ace/range');
+
 const editorOptions = [
   'minLines',
   'maxLines',
@@ -10,7 +12,7 @@ const editorOptions = [
   'tabSize',
   'enableBasicAutocompletion',
   'enableLiveAutocompletion',
-  'enableSnippets '
+  'enableSnippets ',
 ];
 
 export default class ReactAce extends Component {
@@ -46,6 +48,7 @@ export default class ReactAce extends Component {
       onLoad,
       commands,
       annotations,
+      markers,
     } = this.props;
 
     this.editor = ace.edit(name);
@@ -74,6 +77,7 @@ export default class ReactAce extends Component {
     this.editor.session.on('changeScrollTop', this.onScroll);
     this.handleOptions(this.props);
     this.editor.getSession().setAnnotations(annotations || []);
+    this.handleMarkers(markers || []);
 
     for (let i = 0; i < editorOptions.length; i++) {
       const option = editorOptions[i];
@@ -128,6 +132,9 @@ export default class ReactAce extends Component {
     }
     if (!isEqual(nextProps.annotations, oldProps.annotations)) {
       this.editor.getSession().setAnnotations(nextProps.annotations || []);
+    }
+    if (!isEqual(nextProps.markers, oldProps.markers)) {
+      this.handleMarkers(nextProps.markers || []);
     }
     if (this.editor && this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
@@ -186,6 +193,28 @@ export default class ReactAce extends Component {
     }
   }
 
+  handleMarkers(markers) {
+    // remove foreground markers
+    let currentMarkers = this.editor.getSession().getMarkers(true);
+    for (const i in currentMarkers) {
+      if (currentMarkers.hasOwnProperty(i)) {
+        this.editor.getSession().removeMarker(currentMarkers[i].id);
+      }
+    }
+    // remove background markers
+    currentMarkers = this.editor.getSession().getMarkers(false);
+    for (const i in currentMarkers) {
+      if (currentMarkers.hasOwnProperty(i)) {
+        this.editor.getSession().removeMarker(currentMarkers[i].id);
+      }
+    }
+    // add new markers
+    markers.forEach(({ startRow, startCol, endRow, endCol, className, type, inFront = false }) => {
+      const range = new Range(startRow, startCol, endRow, endCol);
+      this.editor.getSession().addMarker(range, className, type, inFront);
+    });
+  }
+
   render() {
     const { name, className, width, height } = this.props;
     const divStyle = { width, height };
@@ -228,6 +257,7 @@ ReactAce.propTypes = {
   editorProps: PropTypes.object,
   setOptions: PropTypes.object,
   annotations: PropTypes.array,
+  markers: PropTypes.array,
   keyboardHandler: PropTypes.string,
   wrapEnabled: PropTypes.bool,
   enableBasicAutocompletion: PropTypes.oneOfType([
