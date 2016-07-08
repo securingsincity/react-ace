@@ -80,9 +80,13 @@ export default class ReactAce extends Component {
     this.editor.getSession().setAnnotations(annotations || []);
     this.handleMarkers(markers || []);
 
+    // get a list of possible options to avoid 'misspelled option errors'
+    const availableOptions = this.editor.$options;
     for (let i = 0; i < editorOptions.length; i++) {
       const option = editorOptions[i];
-      this.editor.setOption(option, this.props[option]);
+      if (availableOptions.hasOwnProperty(option)) {
+        this.editor.setOption(option, this.props[option]);
+      }
     }
 
     if (Array.isArray(commands)) {
