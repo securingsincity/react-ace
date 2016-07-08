@@ -143,7 +143,9 @@ export default class ReactAce extends Component {
     if (this.editor && this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
+      const pos = this.editor.session.selection.toJSON();
       this.editor.setValue(nextProps.value, nextProps.cursorStart);
+      this.editor.session.selection.fromJSON(pos);
       this.silent = false;
     }
   }
