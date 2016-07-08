@@ -33,6 +33,7 @@ export default class ReactAce extends Component {
   componentDidMount() {
     const {
       name,
+      className,
       onBeforeLoad,
       mode,
       theme,
@@ -88,6 +89,10 @@ export default class ReactAce extends Component {
       this.editor.setKeyboardHandler('ace/keyboard/' + keyboardHandler);
     }
 
+    if (className) {
+      this.refs.editor.className += ' ' + className;
+    }
+
     if (onLoad) {
       onLoad(this.editor);
     }
@@ -101,6 +106,17 @@ export default class ReactAce extends Component {
       if (nextProps[option] !== oldProps[option]) {
         this.editor.setOption(option, nextProps[option]);
       }
+    }
+
+    if (nextProps.className !== oldProps.className) {
+      let appliedClasses = this.refs.editor.className;
+      let appliedClassesArray = appliedClasses.trim().split(' ');
+      let oldClassesArray = oldProps.className.trim().split(' ');
+      oldClassesArray.forEach((oldClass) => {
+        let index = appliedClassesArray.indexOf(oldClass);
+        appliedClassesArray.splice(index, 1);
+      });
+      this.refs.editor.className = ' ' + nextProps.className + ' ' + appliedClassesArray.join(' ');
     }
 
     if (nextProps.mode !== oldProps.mode) {
@@ -182,12 +198,11 @@ export default class ReactAce extends Component {
   }
 
   render() {
-    const { name, className, width, height } = this.props;
+    const { name, width, height } = this.props;
     const divStyle = { width, height };
     return (
-      <div
+      <div ref="editor"
         id={name}
-        className={className}
         style={divStyle}
       >
       </div>
