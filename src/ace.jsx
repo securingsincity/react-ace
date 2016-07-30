@@ -135,6 +135,13 @@ export default class ReactAce extends Component {
     if (nextProps.theme !== oldProps.theme) {
       this.editor.setTheme('ace/theme/' + nextProps.theme);
     }
+    if (nextProps.keyboardHandler !== oldProps.keyboardHandler) {
+      if (nextProps.keyboardHandler) {
+        this.editor.setKeyboardHandler('ace/keyboard/' + nextProps.keyboardHandler);
+      } else {
+        this.editor.setKeyboardHandler(null);
+      }
+    }
     if (nextProps.fontSize !== oldProps.fontSize) {
       this.editor.setFontSize(nextProps.fontSize);
     }
