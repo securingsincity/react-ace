@@ -24,7 +24,6 @@
   "author": "James Hrisho",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^6.5.2",
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.5",
     "babel-loader": "^6.2.4",
