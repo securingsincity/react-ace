@@ -38,6 +38,7 @@ export default class ReactAce extends Component {
       className,
       onBeforeLoad,
       mode,
+      focus,
       theme,
       fontSize,
       value,
@@ -103,6 +104,10 @@ export default class ReactAce extends Component {
       this.refs.editor.className += ' ' + className;
     }
 
+    if (focus) {
+      this.editor.focus();
+    }
+
     if (onLoad) {
       onLoad(this.editor);
     }
@@ -163,6 +168,10 @@ export default class ReactAce extends Component {
       this.editor.setValue(nextProps.value, nextProps.cursorStart);
       this.editor.session.selection.fromJSON(pos);
       this.silent = false;
+    }
+
+    if (nextProps.focus && !oldProps.focus) {
+      this.editor.focus();
     }
   }
 
@@ -252,6 +261,7 @@ export default class ReactAce extends Component {
 
 ReactAce.propTypes = {
   mode: PropTypes.string,
+  focus: PropTypes.bool,
   theme: PropTypes.string,
   name: PropTypes.string,
   className: PropTypes.string,
@@ -294,6 +304,7 @@ ReactAce.propTypes = {
 
 ReactAce.defaultProps = {
   name: 'brace-editor',
+  focus: false,
   mode: '',
   theme: '',
   height: '500px',
