@@ -247,8 +247,8 @@ export default class ReactAce extends Component {
   }
 
   render() {
-    const { name, width, height } = this.props;
-    const divStyle = { width, height };
+    const { name, width, height, style } = this.props;
+    const divStyle = { width, height, ...style };
     return (
       <div ref="editor"
         id={name}
