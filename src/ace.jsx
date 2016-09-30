@@ -171,6 +171,9 @@ export default class ReactAce extends PureComponent {
     if (!isEqual(nextProps.markers, oldProps.markers)) {
       this.handleMarkers(nextProps.markers || []);
     }
+    if (!isEqual(nextProps.scrollMargins, oldProps.scrollMargins)) {
+      this.handleScrollMargins(nextProps.scrollMargins)
+    }
     if (this.editor && this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
@@ -186,6 +189,10 @@ export default class ReactAce extends PureComponent {
     if(nextProps.height !== this.props.height){
       this.editor.resize();
     }
+  }
+
+  handleScrollMargins(margins = [0, 0, 0, 0]) {
+    this.editor.renderer.setScrollMargins(margins[0], margins[1], margins[2], margins[3])
   }
 
   componentWillUnmount() {
