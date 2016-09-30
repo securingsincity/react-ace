@@ -47,6 +47,7 @@ export default class ReactAce extends PureComponent {
       showGutter,
       wrapEnabled,
       showPrintMargin,
+      scrollMargin = [ 0, 0, 0, 0],
       keyboardHandler,
       onLoad,
       commands,
@@ -65,6 +66,7 @@ export default class ReactAce extends PureComponent {
       this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
     }
 
+    this.editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3])
     this.editor.getSession().setMode(`ace/mode/${mode}`);
     this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(fontSize);
