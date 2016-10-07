@@ -180,7 +180,11 @@ export default class ReactAce extends Component {
     if (nextProps.focus && !oldProps.focus) {
       this.editor.focus();
     }
+    if(nextProps.height !== this.props.height){
+      this.editor.resize();
+    }
   }
+
 
   componentWillUnmount() {
     this.editor.destroy();
