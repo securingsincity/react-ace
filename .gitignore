@@ -27,6 +27,9 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
+# JetBrains IDE
+.idea
+
 # Babel Build
 lib
 
