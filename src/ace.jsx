@@ -53,7 +53,7 @@ export default class ReactAce extends Component {
       markers,
     } = this.props;
 
-    this.editor = ace.edit(name);
+    this.editor = ace.edit(this.refs.editor);
 
     if (onBeforeLoad) {
       onBeforeLoad(ace);
