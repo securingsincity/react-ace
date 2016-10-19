@@ -43,7 +43,7 @@
     "eslint-config-airbnb": "^2.1.1",
     "eslint-plugin-react": "^3.13.1",
     "jest": "^0.1.37",
-    "jsdom": "^9.6.0",
+    "jsdom": "3.1.2",
     "mocha": "^3.1.2",
     "nyc": "^8.3.1",
     "react-addons-test-utils": "^15.3.2",
