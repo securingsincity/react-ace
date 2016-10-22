@@ -1,17 +1,13 @@
 language: node_js
 node_js:
-- '5.1'
-- '4.2'
-- '4.1'
-- '4.0'
-- '0.12'
-- '0.11'
-- '0.10'
+- '6'
 install:
 - npm install
 - npm install react
+- npm install react-dom
 script:
 - npm run build
+- npm test
 deploy:
   - provider: releases
     api_key:
