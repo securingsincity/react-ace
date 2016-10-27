@@ -1,5 +1,5 @@
 {
-  "name": "react-ace",
+  "name": "react-brace",
   "version": "3.6.1",
   "description": "A react component for Ace Editor",
   "main": "lib/ace.js",
@@ -28,7 +28,7 @@
       "transform-object-rest-spread"
     ]
   },
-  "author": "James Hrisho",
+  "author": "Andy",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.6.5",
@@ -59,7 +59,7 @@
     "brace"
   ],
   "dependencies": {
-    "brace": "^0.8.0",
+    "brace-ace": "^0.8.0",
     "lodash.isequal": "^4.1.1"
   },
   "peerDependencies": {
@@ -83,6 +83,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/securingsincity/react-ace.git"
+    "url": "https://github.com/andyforever/react-ace.git"
   }
 }
