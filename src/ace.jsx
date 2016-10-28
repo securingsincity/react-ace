@@ -1,6 +1,7 @@
 import ace from 'brace-ace';
 import React, { Component, PropTypes } from 'react';
 import isEqual from 'lodash.isequal';
+import 'brace/ext/language_tools.js'
 
 const { Range } = ace.acequire('ace/range');
 ace.acequire('ace/ext/language_tools');
