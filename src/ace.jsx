@@ -1,10 +1,8 @@
-import ace from 'brace-ace';
+import ace from 'brace';
 import React, { Component, PropTypes } from 'react';
 import isEqual from 'lodash.isequal';
-import 'brace/ext/language_tools.js'
 
 const { Range } = ace.acequire('ace/range');
-ace.acequire('ace/ext/language_tools');
 
 const editorOptions = [
   'minLines',
@@ -14,7 +12,7 @@ const editorOptions = [
   'tabSize',
   'enableBasicAutocompletion',
   'enableLiveAutocompletion',
-  'enableSnippets ',
+  'enableSnippets',
 ];
 
 export default class ReactAce extends Component {
