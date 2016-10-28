@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import isEqual from 'lodash.isequal';
 
 const { Range } = ace.acequire('ace/range');
+ace.acequire('ace/ext/language_tools');
 
 const editorOptions = [
   'minLines',
@@ -337,6 +338,7 @@ ReactAce.defaultProps = {
   editorProps: {},
   setOptions: {},
   wrapEnabled: false,
-  enableBasicAutocompletion: false,
-  enableLiveAutocompletion: false,
+  enableSnippets: true,
+  enableBasicAutocompletion: true,
+  enableLiveAutocompletion: true,
 };

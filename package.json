@@ -1,6 +1,6 @@
 {
   "name": "react-brace",
-  "version": "3.6.1",
+  "version": "3.6.2",
   "description": "A react component for Ace Editor",
   "main": "lib/ace.js",
   "scripts": {
@@ -59,7 +59,7 @@
     "brace"
   ],
   "dependencies": {
-    "brace-ace": "^0.8.0",
+    "brace-ace": "^0.9.0",
     "lodash.isequal": "^4.1.1"
   },
   "peerDependencies": {
