@@ -337,7 +337,6 @@ ReactAce.defaultProps = {
   editorProps: {},
   setOptions: {},
   wrapEnabled: false,
-  enableSnippets: true,
-  enableBasicAutocompletion: true,
-  enableLiveAutocompletion: true,
+  enableBasicAutocompletion: false,
+  enableLiveAutocompletion: false,
 };
