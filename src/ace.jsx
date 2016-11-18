@@ -42,6 +42,7 @@ export default class ReactAce extends PureComponent {
       theme,
       fontSize,
       value,
+      defaultValue,
       cursorStart,
       showGutter,
       wrapEnabled,
@@ -67,7 +68,7 @@ export default class ReactAce extends PureComponent {
     this.editor.getSession().setMode(`ace/mode/${mode}`);
     this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(fontSize);
-    this.editor.setValue(value, cursorStart);
+    this.editor.setValue(defaultValue === undefined ? value : defaultValue, cursorStart);
     this.editor.renderer.setShowGutter(showGutter);
     this.editor.getSession().setUseWrapMode(wrapEnabled);
     this.editor.setShowPrintMargin(showPrintMargin);
@@ -286,6 +287,7 @@ ReactAce.propTypes = {
   onBlur: PropTypes.func,
   onScroll: PropTypes.func,
   value: PropTypes.string,
+  defaultValue: PropTypes.string,
   onLoad: PropTypes.func,
   onBeforeLoad: PropTypes.func,
   minLines: PropTypes.number,

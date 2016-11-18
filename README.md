@@ -63,6 +63,7 @@ Looking for a way to set it up using webpack? Checkout `example` directory for a
 |enableLiveAutocompletion| Enable live autocompletion|
 |tabSize| tabSize number|
 |value | String value you want to populate in the code highlighter|
+|defaultValue | Default value of the editor|
 |onLoad| Function onLoad|
 |onBeforeLoad| function that trigger before editor setup|
 |onChange| function that occurs on document change it has 1 argument value. see the example above|
