@@ -278,7 +278,10 @@ ReactAce.propTypes = {
   className: PropTypes.string,
   height: PropTypes.string,
   width: PropTypes.string,
-  fontSize: PropTypes.number,
+  fontSize: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   showGutter: PropTypes.bool,
   onChange: PropTypes.func,
   onCopy: PropTypes.func,
