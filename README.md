@@ -43,40 +43,43 @@ Looking for a way to set it up using webpack? Checkout `example` directory for a
 
 #### Available Props
 
-|Prop|Description|
-|-----|----------|
-|name| Unique Id to be used for the editor|
-|mode| Language for parsing and code highlighting|
-|theme| theme to use|
-|height| CSS value for height|
-|width| CSS value for width|
-|className|custom className|
-|fontSize| pixel value for font-size|
-|showGutter| boolean|
-|showPrintMargin| boolean|
-|highlightActiveLine| boolean|
-|readOnly| boolean|
-|minLines| Minimum number of lines to be displayed|
-|maxLines| Maximum number of lines to be displayed|
-|enableBasicAutocompletion| Enable basic autocompletion|
-|enableSnippets| Enable snippets|
-|enableLiveAutocompletion| Enable live autocompletion|
-|tabSize| tabSize number|
-|value | String value you want to populate in the code highlighter|
-|defaultValue | Default value of the editor|
-|onLoad| Function onLoad|
-|onBeforeLoad| function that trigger before editor setup|
-|onChange| function that occurs on document change it has 1 argument value. see the example above|
-|onCopy| function that trigger by editor `copy` event, and pass text as argument|
-|onPaste| function that trigger by editor `paste` event, and pass text as argument|
-|onFocus| function that trigger by editor `focus` event|
-|onBlur| function that trigger by editor `blur` event|
-|editorProps| Object of properties to apply directly to the Ace editor instance|
-|setOptions| Object of [options](https://github.com/ajaxorg/ace/wiki/Configuring-Ace) to apply directly to the Ace editor instance|
-|keyboardHandler| String corresponding to the keybinding mode to set (such as vim)|
-|commands| Array of new commands to add to the editor
-|annotations| Array of annotations to show in the editor i.e. `[{ row: 0, column: 2, type: 'error', text: 'Some error.'}]`, displayed in the gutter|
-|markers| Array of [markers](https://ace.c9.io/api/edit_session.html#EditSession.addMarker) to show in the editor, i.e. `[{ startRow: 0, startCol: 2, endRow: 1, endCol: 20, className: 'error-marker', type: 'background' }]`|
+|Prop|Default|Description|
+|-----|------|----------|
+|name| 'brace-editor'| Unique Id to be used for the editor|
+|mode| ''| Language for parsing and code highlighting|
+|theme| ''| theme to use|
+|height| '500px'| CSS value for height|
+|width| '500px'| CSS value for width|
+|className| | custom className|
+|fontSize| 12| pixel value for font-size|
+|showGutter| true| boolean|
+|showPrintMargin| true| boolean|
+|highlightActiveLine| true| boolean|
+|focus| false| boolean|
+|cursorStart| 1| number|
+|wrapEnabled| false| Wrapping lines|
+|readOnly| false| boolean|
+|minLines| | Minimum number of lines to be displayed|
+|maxLines| | Maximum number of lines to be displayed|
+|enableBasicAutocompletion| false| Enable basic autocompletion|
+|enableLiveAutocompletion| false| Enable live autocompletion|
+|tabSize| 4| tabSize number|
+|value | ''| String value you want to populate in the code highlighter|
+|defaultValue | ''| Default value of the editor|
+|onLoad| | Function onLoad|
+|onBeforeLoad| | function that trigger before editor setup|
+|onChange| | function that occurs on document change it has 1 argument value. see the example above|
+|onCopy| | function that trigger by editor `copy` event, and pass text as argument|
+|onPaste| | function that trigger by editor `paste` event, and pass text as argument|
+|onFocus| | function that trigger by editor `focus` event|
+|onBlur| | function that trigger by editor `blur` event|
+|onScroll| | function that trigger by editor `scroll` event|
+|editorProps| | Object of properties to apply directly to the Ace editor instance|
+|setOptions| | Object of [options](https://github.com/ajaxorg/ace/wiki/Configuring-Ace) to apply directly to the Ace editor instance|
+|keyboardHandler| | String corresponding to the keybinding mode to set (such as vim)|
+|commands| | Array of new commands to add to the editor
+|annotations| | Array of annotations to show in the editor i.e. `[{ row: 0, column: 2, type: 'error', text: 'Some error.'}]`, displayed in the gutter|
+|markers| | Array of [markers](https://ace.c9.io/api/edit_session.html#EditSession.addMarker) to show in the editor, i.e. `[{ startRow: 0, startCol: 2, endRow: 1, endCol: 20, className: 'error-marker', type: 'background' }]`|
 
 
 ## Modes, Themes, and Keyboard Handlers
