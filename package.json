@@ -60,7 +60,9 @@
   ],
   "dependencies": {
     "brace": "^0.8.0",
-    "lodash.isequal": "^4.1.1"
+    "lodash.isequal": "^4.1.1",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
   },
   "peerDependencies": {
     "react": "^0.13.0 || ^0.14.0 || ^15.0.1",
