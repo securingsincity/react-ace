@@ -59,7 +59,7 @@
     "brace"
   ],
   "dependencies": {
-    "brace": "^0.8.0",
+    "brace": "^0.9.1",
     "lodash.isequal": "^4.1.1"
   },
   "peerDependencies": {
