@@ -1,4 +1,4 @@
-// Type definitions for react-ace 4.1.2
+// Type definitions for react-ace 4.1.3
 // Project: https://github.com/securingsincity/react-ace
 // Definitions by: Alberto Nicoletti <https://github.com/illbexyz>
 
@@ -28,7 +28,7 @@ export interface CommandBindKey {
 export interface Command {
     name: string
     bindKey: CommandBindKey
-    exec()
+    exec(): any
 }
 
 /**
@@ -100,26 +100,26 @@ export interface EditorProps {
     $enableMultiselect?: boolean
     $highlightPending?: boolean
     $highlightTagPending?: boolean
-    $multiselectOnSessionChange?()
-    $onAddRange?()
-    $onChangeAnnotation?()
-    $onChangeBackMarker?()
-    $onChangeBreakpoint?()
-    $onChangeFold?()
-    $onChangeFrontMarker?()
-    $onChangeMode?()
-    $onChangeTabSize?()
-    $onChangeWrapLimit?()
-    $onChangeWrapMode?()
-    $onCursorChange?()
-    $onDocumentChange?()
-    $onMultiSelect?()
-    $onRemoveRange?()
-    $onScrollLeftChange?()
-    $onScrollTopChange?()
-    $onSelectionChange?()
-    $onSingleSelect?()
-    $onTokenizerUpdate?()
+    $multiselectOnSessionChange?(): any
+    $onAddRange?(): any
+    $onChangeAnnotation?(): any
+    $onChangeBackMarker?(): any
+    $onChangeBreakpoint?(): any
+    $onChangeFold?(): any
+    $onChangeFrontMarker?(): any
+    $onChangeMode?(): any
+    $onChangeTabSize?(): any
+    $onChangeWrapLimit?(): any
+    $onChangeWrapMode?(): any
+    $onCursorChange?(): any
+    $onDocumentChange?(): any
+    $onMultiSelect?(): any
+    $onRemoveRange?(): any
+    $onScrollLeftChange?(): any
+    $onScrollTopChange?(): any
+    $onSelectionChange?(): any
+    $onSingleSelect?(): any
+    $onTokenizerUpdate?(): any
 }
 
 export interface AceEditorProps {
@@ -146,14 +146,14 @@ export interface AceEditorProps {
     tabSize?: number
     value?: string
     defaultValue?: string
-    onLoad?()
-    onBeforeLoad?()
-    onChange?(value: string)
-    onCopy?(value: string)
-    onPaste?(value: string)
-    onFocus?()
-    onBlur?()
-    onScroll?()
+    onLoad?(): any
+    onBeforeLoad?(): any
+    onChange?(value: string): any
+    onCopy?(value: string): any
+    onPaste?(value: string): any
+    onFocus?(): any
+    onBlur?(): any
+    onScroll?(): any
     editorProps?: EditorProps
     setOptions?: AceOptions
     keyboardHandler?: string
