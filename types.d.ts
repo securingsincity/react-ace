@@ -100,26 +100,26 @@ export interface EditorProps {
     $enableMultiselect?: boolean
     $highlightPending?: boolean
     $highlightTagPending?: boolean
-    $multiselectOnSessionChange?(): any
-    $onAddRange?(): any
-    $onChangeAnnotation?(): any
-    $onChangeBackMarker?(): any
-    $onChangeBreakpoint?(): any
-    $onChangeFold?(): any
-    $onChangeFrontMarker?(): any
-    $onChangeMode?(): any
-    $onChangeTabSize?(): any
-    $onChangeWrapLimit?(): any
-    $onChangeWrapMode?(): any
-    $onCursorChange?(): any
-    $onDocumentChange?(): any
-    $onMultiSelect?(): any
-    $onRemoveRange?(): any
-    $onScrollLeftChange?(): any
-    $onScrollTopChange?(): any
-    $onSelectionChange?(): any
-    $onSingleSelect?(): any
-    $onTokenizerUpdate?(): any
+    $multiselectOnSessionChange?: (...args: any[]) => any
+    $onAddRange?: (...args: any[]) => any
+    $onChangeAnnotation?: (...args: any[]) => any
+    $onChangeBackMarker?: (...args: any[]) => any
+    $onChangeBreakpoint?: (...args: any[]) => any
+    $onChangeFold?: (...args: any[]) => any
+    $onChangeFrontMarker?: (...args: any[]) => any
+    $onChangeMode?: (...args: any[]) => any
+    $onChangeTabSize?: (...args: any[]) => any
+    $onChangeWrapLimit?: (...args: any[]) => any
+    $onChangeWrapMode?: (...args: any[]) => any
+    $onCursorChange?: (...args: any[]) => any
+    $onDocumentChange?: (...args: any[]) => any
+    $onMultiSelect?: (...args: any[]) => any
+    $onRemoveRange?: (...args: any[]) => any
+    $onScrollLeftChange?: (...args: any[]) => any
+    $onScrollTopChange?: (...args: any[]) => any
+    $onSelectionChange?: (...args: any[]) => any
+    $onSingleSelect?: (...args: any[]) => any
+    $onTokenizerUpdate?: (...args: any[]) => any
 }
 
 export interface AceEditorProps {
