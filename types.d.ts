@@ -146,14 +146,14 @@ export interface AceEditorProps {
     tabSize?: number
     value?: string
     defaultValue?: string
-    onLoad?(): any
-    onBeforeLoad?(): any
-    onChange?(value: string): any
-    onCopy?(value: string): any
-    onPaste?(value: string): any
-    onFocus?(): any
-    onBlur?(): any
-    onScroll?(): any
+    onLoad?: (editor: EditorProps) => void
+    onBeforeLoad?: (ace: any) => void
+    onChange?: (value: string) => void
+    onCopy?: (value: string) => void
+    onPaste?: (value: string) => void
+    onFocus?: () => void
+    onBlur?: () => void
+    onScroll?: (editor: EditorProps) => void
     editorProps?: EditorProps
     setOptions?: AceOptions
     keyboardHandler?: string
