@@ -47,7 +47,9 @@
     "jsdom": "^9.6.0",
     "mocha": "^3.1.2",
     "nyc": "^8.3.1",
+    "react": "^15.4.2",
     "react-addons-test-utils": "^15.3.2",
+    "react-dom": "^15.4.2",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.6",
     "webpack": "^1.12.14"
