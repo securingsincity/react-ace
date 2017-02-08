@@ -30,9 +30,3 @@ node_modules
 
 # JetBrains IDE
 .idea
-
-# Babel Build
-lib
-
-# UMD Build
-dist
