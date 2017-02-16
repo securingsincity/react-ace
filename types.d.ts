@@ -146,6 +146,7 @@ export interface AceEditorProps {
     tabSize?: number
     value?: string
     defaultValue?: string
+    scrollMargin?: number[]
     onLoad?: (editor: EditorProps) => void
     onBeforeLoad?: (ace: any) => void
     onChange?: (value: string) => void
