@@ -1,5 +1,5 @@
 import ace from 'brace';
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import isEqual from 'lodash.isequal';
 
 const { Range } = ace.acequire('ace/range');
@@ -15,7 +15,7 @@ const editorOptions = [
   'enableSnippets',
 ];
 
-export default class ReactAce extends PureComponent {
+export default class ReactAce extends Component {
   constructor(props) {
     super(props);
     [
