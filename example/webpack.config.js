@@ -12,11 +12,6 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/static/'
   },
-  resolve: {
-    alias: {
-      'react-ace':  path.join(__dirname, '..', 'src', 'ace.jsx')
-    }
-  },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
