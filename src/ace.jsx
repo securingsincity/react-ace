@@ -26,6 +26,7 @@ export default class ReactAce extends Component {
       'onPaste',
       'onScroll',
       'handleOptions',
+      'onChangeSelection',
     ]
     .forEach(method => {
       this[method] = this[method].bind(this);
@@ -79,6 +80,7 @@ export default class ReactAce extends Component {
     this.editor.on('copy', this.onCopy);
     this.editor.on('paste', this.onPaste);
     this.editor.on('change', this.onChange);
+    this.editor.selection.on('changeSelection', this.onChangeSelection);
     this.editor.session.on('changeScrollTop', this.onScroll);
     this.handleOptions(this.props);
     this.editor.getSession().setAnnotations(annotations || []);
@@ -237,6 +239,12 @@ export default class ReactAce extends Component {
     }
   }
 
+  onChangeSelection() {
+    if (this.props.onChangeSelection) {
+      this.props.onChangeSelection(this.editor);
+    }
+  }
+
   handleOptions(props) {
     const setOptions = Object.keys(props.setOptions);
     for (let y = 0; y < setOptions.length; y++) {
@@ -298,6 +306,7 @@ ReactAce.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   onScroll: PropTypes.func,
+  onChangeSelection: PropTypes.func,
   value: PropTypes.string,
   defaultValue: PropTypes.string,
   onLoad: PropTypes.func,
@@ -340,6 +349,7 @@ ReactAce.defaultProps = {
   onPaste: null,
   onLoad: null,
   onScroll: null,
+  onChangeSelection: null,
   minLines: null,
   maxLines: null,
   readOnly: false,
