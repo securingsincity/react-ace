@@ -104,7 +104,7 @@ export default class ReactAce extends Component {
     }
 
     if (className) {
-      this.refs.editor.className += ' ' + className;
+      this.refEditor.className += ' ' + className;
     }
 
     if (focus) {
@@ -127,14 +127,14 @@ export default class ReactAce extends Component {
     }
 
     if (nextProps.className !== oldProps.className) {
-      let appliedClasses = this.refs.editor.className;
+      let appliedClasses = this.refEditor.className;
       let appliedClassesArray = appliedClasses.trim().split(' ');
       let oldClassesArray = oldProps.className.trim().split(' ');
       oldClassesArray.forEach((oldClass) => {
         let index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
-      this.refs.editor.className = ' ' + nextProps.className + ' ' + appliedClassesArray.join(' ');
+      this.refEditor.className = ' ' + nextProps.className + ' ' + appliedClassesArray.join(' ');
     }
 
     if (nextProps.mode !== oldProps.mode) {
@@ -266,11 +266,13 @@ export default class ReactAce extends Component {
     });
   }
 
+  updateRef = item => this.refEditor = item;
+
   render() {
     const { name, width, height, style } = this.props;
     const divStyle = { width, height, ...style };
     return (
-      <div ref={item => this.refEditor = item}
+      <div ref={this.updateRef}
         id={name}
         style={divStyle}
       >
