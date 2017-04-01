@@ -26,6 +26,7 @@ export default class ReactAce extends Component {
       'onPaste',
       'onScroll',
       'handleOptions',
+      'updateRef',
     ]
     .forEach(method => {
       this[method] = this[method].bind(this);
@@ -266,7 +267,9 @@ export default class ReactAce extends Component {
     });
   }
 
-  updateRef = item => this.refEditor = item;
+  updateRef(item) {
+    this.refEditor = item;
+  }
 
   render() {
     const { name, width, height, style } = this.props;
