@@ -55,7 +55,7 @@ export default class ReactAce extends Component {
       markers,
     } = this.props;
 
-    this.editor = ace.edit(this.refs.editor);
+    this.editor = ace.edit(this.refEditor);
 
     if (onBeforeLoad) {
       onBeforeLoad(ace);
@@ -270,7 +270,7 @@ export default class ReactAce extends Component {
     const { name, width, height, style } = this.props;
     const divStyle = { width, height, ...style };
     return (
-      <div ref="editor"
+      <div ref={item => this.refEditor = item}
         id={name}
         style={divStyle}
       >
