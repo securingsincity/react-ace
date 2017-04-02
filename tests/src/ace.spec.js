@@ -224,13 +224,13 @@ describe('Ace Component', () => {
       const wrapper = mount(<AceEditor className={className}/>, mountOptions);
 
       // Read set value
-      let editor = wrapper.node.refs.editor;
+      let editor = wrapper.node.refEditor;
       expect(editor.className).to.equal(' ace_editor ace-tm old-class');
 
       // Now trigger the componentWillReceiveProps
       const newClassName = 'new-class';
       wrapper.setProps({className: newClassName});
-      editor = wrapper.node.refs.editor;
+      editor = wrapper.node.refEditor;
       expect(editor.className).to.equal(' new-class ace_editor ace-tm');
     });
 
