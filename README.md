@@ -80,7 +80,7 @@ Looking for a way to set it up using webpack? Checkout `example` directory for a
 |commands| | Array of new commands to add to the editor
 |annotations| | Array of annotations to show in the editor i.e. `[{ row: 0, column: 2, type: 'error', text: 'Some error.'}]`, displayed in the gutter|
 |markers| | Array of [markers](https://ace.c9.io/api/edit_session.html#EditSession.addMarker) to show in the editor, i.e. `[{ startRow: 0, startCol: 2, endRow: 1, endCol: 20, className: 'error-marker', type: 'background' }]`|
-
+|style| | Object with camelCased properties |
 
 ## Modes, Themes, and Keyboard Handlers
 
