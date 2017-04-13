@@ -1,5 +1,6 @@
 import ace from 'brace';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal';
 
 const { Range } = ace.acequire('ace/range');
