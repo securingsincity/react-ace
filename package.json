@@ -48,6 +48,7 @@
     "mocha": "^3.1.2",
     "nyc": "^8.3.1",
     "react-addons-test-utils": "^15.3.2",
+    "react-test-renderer": "^15.5.4",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.6",
     "webpack": "^1.12.14"
@@ -61,7 +62,8 @@
   ],
   "dependencies": {
     "brace": "^0.9.1",
-    "lodash.isequal": "^4.1.1"
+    "lodash.isequal": "^4.1.1",
+    "prop-types": "^15.5.8"
   },
   "peerDependencies": {
     "react": "^0.13.0 || ^0.14.0 || ^15.0.1",
