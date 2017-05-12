@@ -84,7 +84,9 @@ export default class ReactAce extends Component {
     this.editor.session.on('changeScrollTop', this.onScroll);
     this.handleOptions(this.props);
     this.editor.getSession().setAnnotations(annotations || []);
-    this.handleMarkers(markers || []);
+    if(markers && markers.length > 0){
+      this.handleMarkers(markers);  
+    }
 
     // get a list of possible options to avoid 'misspelled option errors'
     const availableOptions = this.editor.$options;
