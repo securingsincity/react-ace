@@ -85,7 +85,7 @@ export default class ReactAce extends Component {
     this.handleOptions(this.props);
     this.editor.getSession().setAnnotations(annotations || []);
     if(markers && markers.length > 0){
-      this.handleMarkers(markers);  
+      this.handleMarkers(markers);
     }
 
     // get a list of possible options to avoid 'misspelled option errors'
@@ -172,8 +172,8 @@ export default class ReactAce extends Component {
     if (!isEqual(nextProps.annotations, oldProps.annotations)) {
       this.editor.getSession().setAnnotations(nextProps.annotations || []);
     }
-    if (!isEqual(nextProps.markers, oldProps.markers)) {
-      this.handleMarkers(nextProps.markers || []);
+    if (!isEqual(nextProps.markers, oldProps.markers) && (nextProps.markers && nextProps.markers.length > 0)) {
+      this.handleMarkers(markers);
     }
     if (!isEqual(nextProps.scrollMargins, oldProps.scrollMargins)) {
       this.handleScrollMargins(nextProps.scrollMargins)

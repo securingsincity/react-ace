@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import AceEditor from 'react-ace';
+import AceEditor from '../src/ace.jsx';
 import brace from 'brace';
 
 import 'brace/mode/java';
