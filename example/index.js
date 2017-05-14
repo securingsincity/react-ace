@@ -4,10 +4,8 @@ import AceEditor from '../src/ace.jsx';
 import brace from 'brace';
 
 
-import 'brace/mode/javascript';
-import 'brace/mode/python';
-import 'brace/mode/mysql';
-import 'brace/mode/markdown';
+import 'brace/mode/jsx';
+
 
 const languages = [
   'javascript',
@@ -206,27 +204,57 @@ class App extends Component {
 
 
       </div>
-         <div className="examples column">
-           <AceEditor
-            mode={this.state.mode}
-            theme={this.state.theme}
-            name="blah2"
-            onLoad={this.onLoad}
-            onChange={this.onChange}
-            fontSize={this.state.fontSize}
-            height="100%"
-            showPrintMargin={this.state.showPrintMargin}
-            showGutter={this.state.showGutter}
-            highlightActiveLine={this.state.highlightActiveLine}
-            value={this.state.value}
-            setOptions={{
-              enableBasicAutocompletion: this.state.enableBasicAutocompletion,
-              enableLiveAutocompletion: this.state.enableLiveAutocompletion,
-              enableSnippets: this.state.enableSnippets,
-              showLineNumbers: this.state.showLineNumbers,
-              tabSize: 2,
-            }}/>
-        </div>
+        <div className="examples column">
+          <h2>Editor</h2>
+          <AceEditor
+          mode={this.state.mode}
+          theme={this.state.theme}
+          name="blah2"
+          onLoad={this.onLoad}
+          onChange={this.onChange}
+          fontSize={this.state.fontSize}
+          height="100%"
+          showPrintMargin={this.state.showPrintMargin}
+          showGutter={this.state.showGutter}
+          highlightActiveLine={this.state.highlightActiveLine}
+          value={this.state.value}
+          setOptions={{
+            enableBasicAutocompletion: this.state.enableBasicAutocompletion,
+            enableLiveAutocompletion: this.state.enableLiveAutocompletion,
+            enableSnippets: this.state.enableSnippets,
+            showLineNumbers: this.state.showLineNumbers,
+            tabSize: 2,
+          }}/>
+      </div>
+      <div className="column">
+          <h2>Code</h2>
+          <AceEditor
+           mode="jsx"
+           theme="monokai"
+           readOnly={true}
+           value={
+            `<AceEditor
+  mode="${this.state.mode}"
+  theme="${this.state.theme}"
+  name="blah2"
+  onLoad={this.onLoad}
+  onChange={this.onChange}
+  fontSize={${this.state.fontSize}}
+  height="100%"
+  showPrintMargin={${this.state.showPrintMargin}}
+  showGutter={${this.state.showGutter}}
+  highlightActiveLine={${this.state.highlightActiveLine}}
+  value={\`${this.state.value}\`}
+  setOptions={{
+  enableBasicAutocompletion: ${this.state.enableBasicAutocompletion},
+  enableLiveAutocompletion: ${this.state.enableLiveAutocompletion},
+  enableSnippets: ${this.state.enableSnippets},
+  showLineNumbers: ${this.state.showLineNumbers},
+  tabSize: 2,
+  }}/>
+            `
+          } />
+      </div>
     </div>
     );
   }
