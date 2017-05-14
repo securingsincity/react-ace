@@ -9,6 +9,7 @@ script:
 - npm run build
 - npm run lint
 - npm test
+- npm run build:example
 deploy:
   - provider: releases
     api_key:
