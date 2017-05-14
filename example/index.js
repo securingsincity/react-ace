@@ -1,114 +1,239 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 import AceEditor from '../src/ace.jsx';
 import brace from 'brace';
 
-import 'brace/mode/java';
-import 'brace/mode/javascript';
 
-import 'brace/theme/github';
-import 'brace/theme/monokai';
-import 'brace/theme/solarized_light';
+import 'brace/mode/javascript';
+import 'brace/mode/python';
+import 'brace/mode/mysql';
+import 'brace/mode/markdown';
+
+const languages = [
+  'javascript',
+  'java',
+  'python',
+  'xml',
+  'ruby',
+  'sass',
+  'markdown',
+  'mysql',
+  'json',
+  'html',
+  'handlebars',
+  'golang',
+  'csharp',
+  'elixir',
+  'typescript',
+  'css'
+]
+
+const themes = [
+  'monokai',
+  'github',
+  'tomorrow',
+  'kuroir',
+  'twilight',
+  'xcode',
+  'textmate',
+  'solarized_dark',
+  'solarized_light',
+  'terminal',
+]
+
+languages.forEach((lang) => {
+  require(`brace/mode/${lang}`)
+})
+
+themes.forEach((theme) => {
+  require(`brace/theme/${theme}`)
+})
+/*eslint-disable no-alert, no-console */
 import 'brace/ext/language_tools';
 
-
-function onLoad(editor) {
-  console.log('i\'ve loaded');
-}
-
-function onChange(newValue) {
-  console.log('change', newValue);
-}
-
-// Render first editor
-render(
-  <AceEditor
-    mode="java"
-    theme="github"
-    name="blah1"
-    height="6em"
-    onChange={onChange}
-  />,
-  document.getElementById('example')
-);
 
 const defaultValue =
 `function onLoad(editor) {
   console.log(\"i\'ve loaded\");
 }`;
-
-// Render second editor
-render(
-  <AceEditor
-    mode="javascript"
-    theme="monokai"
-    name="blah2"
-    onLoad={onLoad}
-    fontSize={14}
-    height="6em"
-    value={defaultValue}
-  />,
-  document.getElementById('example2')
-);
-
-global.reloadProps = function() {
-  render(
-    <AceEditor
-      mode="javascript"
-      theme="solarized_light"
-      name="blah2"
-      fontSize={40}
-      height="8em"
-    />,
-    document.getElementById('example2')
-  );
-};
-
-// Render the third editor using setOptions prop
-
-const defaultValue2 =
-`function onLoad(editor) {
-  if (true) {
-    console.log(\"i\'ve loaded\");
+class App extends Component {
+  onLoad() {
+    console.log('i\'ve loaded');
   }
-}`;
-
-render(
-  <AceEditor
-    mode="javascript"
-    theme="monokai"
-    name="blah3"
-    onLoad={onLoad}
-    height="6em"
-    setOptions={{
+  onChange(newValue) {
+    console.log('change', newValue);
+    this.setState({
+      value: newValue
+    })
+  }
+  setTheme(e) {
+    this.setState({
+      theme: e.target.value
+    })
+  }
+  setMode(e) {
+    this.setState({
+      mode: e.target.value
+    })
+  }
+  setBoolean(name, value) {
+    this.setState({
+      [name]: value
+    })
+  }
+  setFontSize(e) {
+    this.setState({
+      fontSize: parseInt(e.target.value,10)
+    })
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: defaultValue,
+      theme: 'monokai',
+      mode: 'javascript',
       enableBasicAutocompletion: false,
       enableLiveAutocompletion: false,
-      tabSize: 4,
       fontSize: 14,
-      showGutter: true
-    }}
-    value={defaultValue2}
-  />,
-  document.getElementById('example3')
-);
+      showGutter: true,
+      showPrintMargin: true,
+      highlightActiveLine: true,
+      enableSnippets: false,
+      showLineNumbers: true,
+    };
+    this.setTheme = this.setTheme.bind(this);
+    this.setMode = this.setMode.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.setFontSize = this.setFontSize.bind(this);
+    this.setBoolean = this.setBoolean.bind(this);
+  }
+  render() {
+    return (
+      <div className="columns">
+        <div className="column">
+           <div className="field">
+             <label>
+               Mode:
+             </label>
+               <p className="control">
+                 <span className="select">
+                   <select name="mode" onChange={this.setMode} value={this.state.mode}>
+                     {languages.map((lang) => <option  key={lang} value={lang}>{lang}</option>)}
+                   </select>
+                  </span>
+               </p>
+           </div>
 
-global.reloadProps2 = function() {
-  render(
-    <AceEditor
-      mode="javascript"
-      theme="monokai"
-      name="blah3"
-      onLoad={onLoad}
-      height="6em"
-      setOptions={{
-        enableBasicAutocompletion: true,
-        enableLiveAutocompletion: true,
-        tabSize: 2,
-        fontSize: 16,
-        showGutter: false
-      }}
-      value={defaultValue2}
-    />,
-    document.getElementById('example3')
-  );
-};
+           <div className="field">
+             <label>
+               Theme:
+             </label>
+               <p className="control">
+                 <span  className="select">
+                   <select name="Theme" onChange={this.setTheme} value={this.state.theme}>
+                    {themes.map((lang) => <option key={lang} value={lang}>{lang}</option>)}
+                   </select></span>
+               </p>
+           </div>
+
+           <div className="field">
+             <label>
+               Font Size:
+             </label>
+               <p className="control">
+                 <span  className="select">
+                   <select name="Font Size" onChange={this.setFontSize} value={this.state.fontSize}>
+                    {[14,16,18,20,24,28,32,40].map((lang) => <option  key={lang} value={lang}>{lang}</option>)}
+                   </select></span>
+               </p>
+           </div>
+          <div className="field">
+            <p className="control">
+              <label className="checkbox">
+                <input type="checkbox" checked={this.state.enableBasicAutocompletion} onChange={(e) => this.setBoolean('enableBasicAutocompletion', e.target.checked)} />
+                 Enable Basic Autocomplete
+              </label>
+            </p>
+          </div>
+           <div className="field">
+            <p className="control">
+              <label className="checkbox">
+                <input type="checkbox" checked={this.state.enableLiveAutocompletion} onChange={(e) => this.setBoolean('enableLiveAutocompletion', e.target.checked)} />
+                 Enable Live Autocomplete
+              </label>
+            </p>
+          </div>
+           <div className="field">
+            <p className="control">
+              <label className="checkbox">
+                <input type="checkbox" checked={this.state.showGutter} onChange={(e) => this.setBoolean('showGutter', e.target.checked)} />
+                 Show Gutter
+              </label>
+            </p>
+          </div>
+           <div className="field">
+            <p className="control">
+              <label className="checkbox">
+                <input type="checkbox" checked={this.state.showPrintMargin} onChange={(e) => this.setBoolean('showPrintMargin', e.target.checked)} />
+                 Show Print Margin
+              </label>
+            </p>
+          </div>
+           <div className="field">
+            <p className="control">
+              <label className="checkbox">
+                <input type="checkbox" checked={this.state.highlightActiveLine} onChange={(e) => this.setBoolean('highlightActiveLine', e.target.checked)} />
+                 Highlight Active Line
+              </label>
+            </p>
+          </div>
+          <div className="field">
+            <p className="control">
+              <label className="checkbox">
+                <input type="checkbox" checked={this.state.enableSnippets} onChange={(e) => this.setBoolean('enableSnippets', e.target.checked)} />
+                 Enable Snippets
+              </label>
+            </p>
+          </div>
+          <div className="field">
+            <p className="control">
+              <label className="checkbox">
+                <input type="checkbox" checked={this.state.showLineNumbers} onChange={(e) => this.setBoolean('showLineNumbers', e.target.checked)} />
+                 Show Line Numbers
+              </label>
+            </p>
+          </div>
+
+
+      </div>
+         <div className="examples column">
+           <AceEditor
+            mode={this.state.mode}
+            theme={this.state.theme}
+            name="blah2"
+            onLoad={this.onLoad}
+            onChange={this.onChange}
+            fontSize={this.state.fontSize}
+            height="100%"
+            showPrintMargin={this.state.showPrintMargin}
+            showGutter={this.state.showGutter}
+            highlightActiveLine={this.state.highlightActiveLine}
+            value={this.state.value}
+            setOptions={{
+              enableBasicAutocompletion: this.state.enableBasicAutocompletion,
+              enableLiveAutocompletion: this.state.enableLiveAutocompletion,
+              enableSnippets: this.state.enableSnippets,
+              showLineNumbers: this.state.showLineNumbers,
+              tabSize: 2,
+            }}/>
+        </div>
+    </div>
+    );
+  }
+}
+
+
+render(
+ <App />,
+  document.getElementById('example')
+);

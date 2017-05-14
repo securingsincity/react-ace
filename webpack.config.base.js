@@ -1,18 +1,14 @@
-'use strict';
-
-var webpack = require('webpack');
-
 module.exports = {
   module: {
     loaders: [
-      { test: /\.jsx?$/, loaders: ['babel-loader'], exclude: /node_modules/ }
-    ]
+      { test: /\.jsx?$/, loaders: ['babel-loader'], exclude: /node_modules/ },
+    ],
   },
   output: {
     library: 'ReactAce',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   resolve: {
-    extensions: ['', '.js']
-  }
+    extensions: ['.jsx', '.js', '.tsx'],
+  },
 };

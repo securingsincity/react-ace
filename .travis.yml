@@ -1,12 +1,13 @@
 language: node_js
 node_js:
-- '6'
+- '7'
 install:
 - npm install
 - npm install react
 - npm install react-dom
 script:
 - npm run build
+- npm run lint
 - npm test
 deploy:
   - provider: releases
@@ -25,3 +26,9 @@ deploy:
     on:
       tags: true
       repo: securingsincity/react-ace
+  - provider: pages
+    skip_cleanup: true
+    github_token: R4xxz1QwZlkXP3jFKqCnIW/IdGCBpaKJ9dPm53PM1cHcovvIJtY/ZJXS+e1Vs1zwCODhj6AN7BjyysS/YLVs2SV7G9YgjZECKnINXVIGnNGefutWuKho2uXFBBU25pXe10/GjvadlJDA7lbAKJoL0mDi0RituksIx6K+rDheOSI=
+    on:
+      branch: master
+    local_dir: example

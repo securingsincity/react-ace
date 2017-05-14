@@ -4,8 +4,7 @@ import sinon from 'sinon';
 import ace from 'brace';
 import { mount } from 'enzyme';
 import AceEditor from '../../src/ace.jsx';
-import brace from 'brace';
-import TestUtils from 'react-addons-test-utils';
+import brace from 'brace'; // eslint-disable-line no-unused-vars
 
 describe('Ace Component', () => {
 
@@ -24,7 +23,7 @@ describe('Ace Component', () => {
 
     it('should get the ace library from the onBeforeLoad callback', () => {
       const beforeLoadCallback = sinon.spy();
-      const wrapper = mount(<AceEditor onBeforeLoad={beforeLoadCallback}/>, mountOptions);
+      mount(<AceEditor onBeforeLoad={beforeLoadCallback}/>, mountOptions);
 
       expect(beforeLoadCallback.callCount).to.equal(1);
       expect(beforeLoadCallback.getCall(0).args[0]).to.deep.equal(ace);
@@ -80,7 +79,7 @@ describe('Ace Component', () => {
 
     it('should trigger the focus on mount', () => {
       const onFocusCallback = sinon.spy();
-      const wrapper = mount(<AceEditor focus={true} onFocus={onFocusCallback}/>, mountOptions);
+      mount(<AceEditor focus={true} onFocus={onFocusCallback}/>, mountOptions);
 
       // Read the focus
       expect(onFocusCallback.callCount).to.equal(1);

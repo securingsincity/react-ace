@@ -1,7 +1,7 @@
-import ace from 'brace';
-import React, { Component } from 'react';
+import ace from 'brace'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import isEqual from 'lodash.isequal';
+import isEqual from 'lodash.isequal'
 
 const { Range } = ace.acequire('ace/range');
 
@@ -36,7 +36,6 @@ export default class ReactAce extends Component {
 
   componentDidMount() {
     const {
-      name,
       className,
       onBeforeLoad,
       mode,
@@ -173,10 +172,10 @@ export default class ReactAce extends Component {
       this.editor.getSession().setAnnotations(nextProps.annotations || []);
     }
     if (!isEqual(nextProps.markers, oldProps.markers) && (nextProps.markers && nextProps.markers.length > 0)) {
-      this.handleMarkers(markers);
+      this.handleMarkers(nextProps.markers);
     }
-    if (!isEqual(nextProps.scrollMargins, oldProps.scrollMargins)) {
-      this.handleScrollMargins(nextProps.scrollMargins)
+    if (!isEqual(nextProps.scrollMargin, oldProps.scrollMargin)) {
+      this.handleScrollMargins(nextProps.scrollMargin)
     }
     if (this.editor && this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
@@ -319,6 +318,8 @@ ReactAce.propTypes = {
   cursorStart: PropTypes.number,
   editorProps: PropTypes.object,
   setOptions: PropTypes.object,
+  style: PropTypes.object,
+  scrollMargin: PropTypes.array,
   annotations: PropTypes.array,
   markers: PropTypes.array,
   keyboardHandler: PropTypes.string,
@@ -356,6 +357,8 @@ ReactAce.defaultProps = {
   tabSize: 4,
   cursorStart: 1,
   editorProps: {},
+  style: {},
+  scrollMargin: [ 0, 0, 0, 0],
   setOptions: {},
   wrapEnabled: false,
   enableBasicAutocompletion: false,
