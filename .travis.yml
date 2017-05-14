@@ -32,5 +32,5 @@ deploy:
     github_token: $GITHUB_TOKEN
     on:
       branch: master
+      repo: securingsincity/react-ace
     local_dir: example
-    repo: securingsincity/react-ace
