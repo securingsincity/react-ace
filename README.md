@@ -6,6 +6,8 @@
 
 A react component for Ace / Brace
 
+[DEMO](http://securingsincity.github.io/react-ace/)
+
 ## Install
 
 `npm install react-ace`
