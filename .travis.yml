@@ -28,7 +28,7 @@ deploy:
       repo: securingsincity/react-ace
   - provider: pages
     skip_cleanup: true
-    github_token: R4xxz1QwZlkXP3jFKqCnIW/IdGCBpaKJ9dPm53PM1cHcovvIJtY/ZJXS+e1Vs1zwCODhj6AN7BjyysS/YLVs2SV7G9YgjZECKnINXVIGnNGefutWuKho2uXFBBU25pXe10/GjvadlJDA7lbAKJoL0mDi0RituksIx6K+rDheOSI=
+    github_token: T3Yao9Aj7CSi4R/9AiervmB7LCBLNH2tqSPWizKyzHFBJKuFk88QbMAIxv4ImxO75WjlW3xtCO/ft3KJmQVQd+YTb/Z651wvCd6MHG1dGjSW7bb9QhKQ5RJP17aw1y9jHmaQzZtoDXoc+RFI1I7h2+dVAn55XYlOOcLHH9JodiQ=
     on:
       branch: master
     local_dir: example
