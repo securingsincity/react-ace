@@ -125,6 +125,7 @@ describe('Ace Component', () => {
 
       expect(onChangeCallback.callCount).to.equal(1);
       expect(onChangeCallback.getCall(0).args[0]).to.equal(expectText);
+      expect(onChangeCallback.getCall(0).args[1].action).to.eq('insert')
     });
 
     it('should call the onCopy method', () => {
