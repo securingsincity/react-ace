@@ -125,6 +125,7 @@ describe('Ace Component', () => {
 
       expect(onChangeCallback.callCount).to.equal(1);
       expect(onChangeCallback.getCall(0).args[0]).to.equal(expectText);
+      expect(onChangeCallback.getCall(0).args[1].action).to.eq('insert')
     });
 
     it('should call the onCopy method', () => {
@@ -168,6 +169,19 @@ describe('Ace Component', () => {
       wrapper.instance().editor.focus();
 
       expect(onFocusCallback.callCount).to.equal(1);
+    });
+
+    it('should call the onSelectionChange method callback', () => {
+      const onSelectionChangeCallback = sinon.spy();
+      const wrapper = mount(<AceEditor onSelectionChange={onSelectionChangeCallback}/>, mountOptions);
+
+      // Check is not previously called
+      expect(onSelectionChangeCallback.callCount).to.equal(0);
+
+      // Trigger the focus event
+      wrapper.instance().editor.getSession().selection.selectAll()
+
+      expect(onSelectionChangeCallback.callCount).to.equal(1);
     });
 
     it('should call the onBlur method callback', () => {
