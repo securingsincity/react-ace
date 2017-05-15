@@ -25,6 +25,7 @@ export default class ReactAce extends Component {
       'onBlur',
       'onCopy',
       'onPaste',
+      'onSelectionChange',
       'onScroll',
       'handleOptions',
       'updateRef',
@@ -80,6 +81,7 @@ export default class ReactAce extends Component {
     this.editor.on('copy', this.onCopy);
     this.editor.on('paste', this.onPaste);
     this.editor.on('change', this.onChange);
+    this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
     this.editor.session.on('changeScrollTop', this.onScroll);
     this.handleOptions(this.props);
     this.editor.getSession().setAnnotations(annotations || []);
@@ -203,10 +205,17 @@ export default class ReactAce extends Component {
     this.editor = null;
   }
 
-  onChange() {
+  onChange(event) {
     if (this.props.onChange && !this.silent) {
       const value = this.editor.getValue();
-      this.props.onChange(value);
+      this.props.onChange(value, event);
+    }
+  }
+
+  onSelectionChange(event) {
+    if (this.props.onSelectionChange) {
+      const value = this.editor.getSelection();
+      this.props.onSelectionChange(value, event);
     }
   }
 
@@ -308,6 +317,7 @@ ReactAce.propTypes = {
   value: PropTypes.string,
   defaultValue: PropTypes.string,
   onLoad: PropTypes.func,
+  onSelectionChange: PropTypes.func,
   onBeforeLoad: PropTypes.func,
   minLines: PropTypes.number,
   maxLines: PropTypes.number,

@@ -70,9 +70,10 @@ Looking for a way to set it up using webpack? Checkout `example` directory for a
 |defaultValue | ''| Default value of the editor|
 |onLoad| | Function onLoad|
 |onBeforeLoad| | function that trigger before editor setup|
-|onChange| | function that occurs on document change it has 1 argument value. see the example above|
+|onChange| | function that occurs on document change it has 2 arguments the value and the event. see the example above|
 |onCopy| | function that trigger by editor `copy` event, and pass text as argument|
 |onPaste| | function that trigger by editor `paste` event, and pass text as argument|
+|onSelectionChange| | function that trigger by editor `selectionChange` event, and passes a [Selection](https://ace.c9.io/#nav=api&api=selection) as it's first argument and the event as the second|
 |onFocus| | function that trigger by editor `focus` event|
 |onBlur| | function that trigger by editor `blur` event|
 |onScroll| | function that trigger by editor `scroll` event|

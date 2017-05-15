@@ -64,6 +64,11 @@ class App extends Component {
       value: newValue
     })
   }
+
+  onSelectionChange(newValue, event) {
+    console.log('select-change', newValue);
+    console.log('select-change-event', event);
+  }
   setTheme(e) {
     this.setState({
       theme: e.target.value
@@ -212,6 +217,7 @@ class App extends Component {
           name="blah2"
           onLoad={this.onLoad}
           onChange={this.onChange}
+          onSelectionChange={this.onSelectionChange}
           fontSize={this.state.fontSize}
           height="100%"
           showPrintMargin={this.state.showPrintMargin}
