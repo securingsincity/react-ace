@@ -171,6 +171,19 @@ describe('Ace Component', () => {
       expect(onFocusCallback.callCount).to.equal(1);
     });
 
+    it('should call the onSelectionChange method callback', () => {
+      const onSelectionChangeCallback = sinon.spy();
+      const wrapper = mount(<AceEditor onSelectionChange={onSelectionChangeCallback}/>, mountOptions);
+
+      // Check is not previously called
+      expect(onSelectionChangeCallback.callCount).to.equal(0);
+
+      // Trigger the focus event
+      wrapper.instance().editor.getSession().selection.selectAll()
+
+      expect(onSelectionChangeCallback.callCount).to.equal(1);
+    });
+
     it('should call the onBlur method callback', () => {
       const onBlurCallback = sinon.spy();
       const wrapper = mount(<AceEditor onBlur={onBlurCallback}/>, mountOptions);
