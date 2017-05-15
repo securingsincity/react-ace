@@ -149,7 +149,7 @@ export interface AceEditorProps {
     scrollMargin?: number[]
     onLoad?: (editor: EditorProps) => void
     onBeforeLoad?: (ace: any) => void
-    onChange?: (value: string) => void
+    onChange?: (value: string, event?: any) => void
     onCopy?: (value: string) => void
     onPaste?: (value: string) => void
     onFocus?: () => void
