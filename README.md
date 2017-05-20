@@ -48,7 +48,7 @@ render(
 * [webpack](https://github.com/securingsincity/react-ace-webpack-example)
 
 
-#### Available Props
+## Available Props
 
 |Prop|Default|Description|
 |-----|------|----------|
