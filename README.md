@@ -40,7 +40,12 @@ render(
 );
 ```
 
-Looking for a way to set it up using webpack? Checkout `example` directory for a working example using webpack.
+## Examples
+
+* Checkout `example` directory for a working example using webpack.
+* [create-react-app](https://github.com/securingsincity/react-ace-create-react-app-example)
+* [preact](https://github.com/securingsincity/react-ace-preact-example)
+* [webpack](https://github.com/securingsincity/react-ace-webpack-example)
 
 
 #### Available Props
