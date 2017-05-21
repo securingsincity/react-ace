@@ -75,6 +75,7 @@
   "nyc": {
     "exclude": [
       "**/*.spec.js",
+      "**/setup.js",
       "node_modules"
     ],
     "extension": [
@@ -83,6 +84,7 @@
     ],
     "reporter": [
       "lcov",
+      "text-lcov",
       "text",
       "html"
     ]
