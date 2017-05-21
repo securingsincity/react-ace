@@ -11,7 +11,7 @@ script:
 - npm run coverage
 - npm run build:example
 after_success:
-  - cat ./coverage/**/*.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./coverage/*.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   - provider: releases
     api_key:
