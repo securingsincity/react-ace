@@ -5,6 +5,7 @@
 [![npm version](https://badge.fury.io/js/react-ace.svg)](http://badge.fury.io/js/react-ace)
 [![Build Status](https://travis-ci.org/securingsincity/react-ace.svg)](https://travis-ci.org/securingsincity/react-ace)
 [![CDNJS](https://img.shields.io/cdnjs/v/react-ace.svg)](https://cdnjs.com/libraries/react-ace)
+[![Coverage Status](https://coveralls.io/repos/github/securingsincity/react-ace/badge.svg?branch=master)](https://coveralls.io/github/securingsincity/react-ace?branch=master)
 
 A react component for Ace / Brace
 
