@@ -8,7 +8,7 @@ install:
 script:
 - npm run build
 - npm run lint
-- npm test
+- npm run coverage
 - npm run build:example
 deploy:
   - provider: releases
