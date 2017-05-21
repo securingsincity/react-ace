@@ -109,6 +109,58 @@ describe('Ace Component', () => {
       expect(editor.getSession().getMarkers()['3'].type).to.equal('text');
     });
 
+    it('should update the markers', () => {
+      const oldMarkers = [
+        {
+          startRow: 4,
+          type: 'text',
+          className: 'test-marker-old'
+        },
+        {
+          startRow: 7,
+          type: 'foo',
+          className: 'test-marker-old',
+          inFront: true
+        }
+      ];
+      const markers = [{
+        startRow: 3,
+        type: 'text',
+        className: 'test-marker-new',
+        inFront: true,
+      },{
+        startRow: 5,
+        type: 'text',
+        className: 'test-marker-new'
+      }];
+      const wrapper = mount(<AceEditor markers={oldMarkers}/>, mountOptions);
+
+      // Read the markers
+      const editor = wrapper.instance().editor;
+      expect(editor.getSession().getMarkers()['3'].clazz).to.equal('test-marker-old');
+      expect(editor.getSession().getMarkers()['3'].type).to.equal('text');
+      wrapper.setProps({markers});
+      const editorB = wrapper.instance().editor;
+
+      expect(editorB.getSession().getMarkers()['6'].clazz).to.equal('test-marker-new');
+      expect(editorB.getSession().getMarkers()['6'].type).to.equal('text');
+    });
+
+    it('should add annotations', () => {
+      const annotations = [{
+        row: 3, // must be 0 based
+        column: 4,  // must be 0 based
+        text: 'error.message',  // text to show in tooltip
+        type: 'error'
+      }]
+      const wrapper = mount(<AceEditor/>, mountOptions);
+      const editor = wrapper.instance().editor;
+      wrapper.setProps({annotations});
+      expect(editor.getSession().getAnnotations()).to.deep.equal(annotations);
+      wrapper.setProps({annotations: null});
+      expect(editor.getSession().getAnnotations()).to.deep.equal([]);
+    })
+
     it('should set editor to null on componentWillUnmount', () => {
       const wrapper = mount(<AceEditor />, mountOptions);
       expect(wrapper.node.editor).to.not.equal(null);
@@ -271,14 +323,31 @@ describe('Ace Component', () => {
 
 
 
-    it('should update the theme on componentWillReceiveProps', () => {
+    it('should update many props on componentWillReceiveProps', () => {
 
-      const wrapper = mount(<AceEditor theme="github" />, mountOptions);
+      const wrapper = mount((
+        <AceEditor
+          theme="github"
+          keyboardHandler="vim"
+          fontSize={14}
+          wrapEnabled={true}
+          showPrintMargin={true}
+          showGutter={false}
+          height="100px"
+        />), mountOptions);
 
       // Read set value
       const oldMode =  wrapper.first('AceEditor').props()
 
-      wrapper.setProps({theme: 'solarized'});
+      wrapper.setProps({
+        theme: 'solarized',
+        keyboardHandler: 'emacs',
+        fontSize: 18,
+        wrapEnabled: false,
+        showPrintMargin: false,
+        showGutter: true,
+        height: '120px',
+      });
       const newMode =  wrapper.first('AceEditor').props()
       expect(oldMode).to.not.deep.equal(newMode);
     });
