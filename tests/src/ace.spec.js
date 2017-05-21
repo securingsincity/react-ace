@@ -21,6 +21,16 @@ describe('Ace Component', () => {
       expect(wrapper).to.exist;
     });
 
+    it('should render without problems with defaults properties, defaultValue and keyboardHandler', () => {
+      const wrapper = mount(<AceEditor
+        keyboardHandler="vim"
+        defaultValue={`hi james`}
+       />, mountOptions);
+      expect(wrapper).to.exist;
+      let editor = wrapper.instance().editor;
+      expect(editor.getValue()).to.equal('hi james');
+    });
+
     it('should get the ace library from the onBeforeLoad callback', () => {
       const beforeLoadCallback = sinon.spy();
       mount(<AceEditor onBeforeLoad={beforeLoadCallback}/>, mountOptions);
@@ -231,6 +241,49 @@ describe('Ace Component', () => {
       expect(editor.getOption('printMargin')).to.equal(newOptions.printMargin);
       expect(editor.getOption('animatedScroll')).to.equal(newOptions.animatedScroll);
     });
+
+    it('should update the editorOptions on componentWillReceiveProps', () => {
+
+      const wrapper = mount(<AceEditor minLines={1} />, mountOptions);
+
+      // Read set value
+      const editor = wrapper.instance().editor;
+      expect(editor.getOption('minLines')).to.equal(1);
+
+
+      wrapper.setProps({minLines: 2});
+      expect(editor.getOption('minLines')).to.equal(2);
+    });
+
+
+    it('should update the mode on componentWillReceiveProps', () => {
+
+      const wrapper = mount(<AceEditor mode="javascript" />, mountOptions);
+
+      // Read set value
+      const oldMode =  wrapper.first('AceEditor').props()
+
+      wrapper.setProps({mode: 'elixir'});
+      const newMode =  wrapper.first('AceEditor').props()
+      expect(oldMode).to.not.deep.equal(newMode);
+    });
+
+
+
+
+    it('should update the theme on componentWillReceiveProps', () => {
+
+      const wrapper = mount(<AceEditor theme="github" />, mountOptions);
+
+      // Read set value
+      const oldMode =  wrapper.first('AceEditor').props()
+
+      wrapper.setProps({theme: 'solarized'});
+      const newMode =  wrapper.first('AceEditor').props()
+      expect(oldMode).to.not.deep.equal(newMode);
+    });
+
+
 
     it('should update the className on componentWillReceiveProps', () => {
       const className = 'old-class';
