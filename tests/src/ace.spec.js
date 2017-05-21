@@ -21,6 +21,16 @@ describe('Ace Component', () => {
       expect(wrapper).to.exist;
     });
 
+    it('should render without problems with defaults properties, defaultValue and keyboardHandler', () => {
+      const wrapper = mount(<AceEditor
+        keyboardHandler="vim"
+        defaultValue={`hi james`}
+       />, mountOptions);
+      expect(wrapper).to.exist;
+      let editor = wrapper.instance().editor;
+      expect(editor.getValue()).to.equal('hi james');
+    });
+
     it('should get the ace library from the onBeforeLoad callback', () => {
       const beforeLoadCallback = sinon.spy();
       mount(<AceEditor onBeforeLoad={beforeLoadCallback}/>, mountOptions);
@@ -98,6 +108,58 @@ describe('Ace Component', () => {
       expect(editor.getSession().getMarkers()['3'].clazz).to.equal('test-marker');
       expect(editor.getSession().getMarkers()['3'].type).to.equal('text');
     });
+
+    it('should update the markers', () => {
+      const oldMarkers = [
+        {
+          startRow: 4,
+          type: 'text',
+          className: 'test-marker-old'
+        },
+        {
+          startRow: 7,
+          type: 'foo',
+          className: 'test-marker-old',
+          inFront: true
+        }
+      ];
+      const markers = [{
+        startRow: 3,
+        type: 'text',
+        className: 'test-marker-new',
+        inFront: true,
+      },{
+        startRow: 5,
+        type: 'text',
+        className: 'test-marker-new'
+      }];
+      const wrapper = mount(<AceEditor markers={oldMarkers}/>, mountOptions);
+
+      // Read the markers
+      const editor = wrapper.instance().editor;
+      expect(editor.getSession().getMarkers()['3'].clazz).to.equal('test-marker-old');
+      expect(editor.getSession().getMarkers()['3'].type).to.equal('text');
+      wrapper.setProps({markers});
+      const editorB = wrapper.instance().editor;
+
+      expect(editorB.getSession().getMarkers()['6'].clazz).to.equal('test-marker-new');
+      expect(editorB.getSession().getMarkers()['6'].type).to.equal('text');
+    });
+
+    it('should add annotations', () => {
+      const annotations = [{
+        row: 3, // must be 0 based
+        column: 4,  // must be 0 based
+        text: 'error.message',  // text to show in tooltip
+        type: 'error'
+      }]
+      const wrapper = mount(<AceEditor/>, mountOptions);
+      const editor = wrapper.instance().editor;
+      wrapper.setProps({annotations});
+      expect(editor.getSession().getAnnotations()).to.deep.equal(annotations);
+      wrapper.setProps({annotations: null});
+      expect(editor.getSession().getAnnotations()).to.deep.equal([]);
+    })
 
     it('should set editor to null on componentWillUnmount', () => {
       const wrapper = mount(<AceEditor />, mountOptions);
@@ -231,6 +293,66 @@ describe('Ace Component', () => {
       expect(editor.getOption('printMargin')).to.equal(newOptions.printMargin);
       expect(editor.getOption('animatedScroll')).to.equal(newOptions.animatedScroll);
     });
+
+    it('should update the editorOptions on componentWillReceiveProps', () => {
+
+      const wrapper = mount(<AceEditor minLines={1} />, mountOptions);
+
+      // Read set value
+      const editor = wrapper.instance().editor;
+      expect(editor.getOption('minLines')).to.equal(1);
+
+
+      wrapper.setProps({minLines: 2});
+      expect(editor.getOption('minLines')).to.equal(2);
+    });
+
+
+    it('should update the mode on componentWillReceiveProps', () => {
+
+      const wrapper = mount(<AceEditor mode="javascript" />, mountOptions);
+
+      // Read set value
+      const oldMode =  wrapper.first('AceEditor').props()
+
+      wrapper.setProps({mode: 'elixir'});
+      const newMode =  wrapper.first('AceEditor').props()
+      expect(oldMode).to.not.deep.equal(newMode);
+    });
+
+
+
+
+    it('should update many props on componentWillReceiveProps', () => {
+
+      const wrapper = mount((
+        <AceEditor
+          theme="github"
+          keyboardHandler="vim"
+          fontSize={14}
+          wrapEnabled={true}
+          showPrintMargin={true}
+          showGutter={false}
+          height="100px"
+        />), mountOptions);
+
+      // Read set value
+      const oldMode =  wrapper.first('AceEditor').props()
+
+      wrapper.setProps({
+        theme: 'solarized',
+        keyboardHandler: 'emacs',
+        fontSize: 18,
+        wrapEnabled: false,
+        showPrintMargin: false,
+        showGutter: true,
+        height: '120px',
+      });
+      const newMode =  wrapper.first('AceEditor').props()
+      expect(oldMode).to.not.deep.equal(newMode);
+    });
+
+
 
     it('should update the className on componentWillReceiveProps', () => {
       const className = 'old-class';

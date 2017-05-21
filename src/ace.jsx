@@ -176,6 +176,8 @@ export default class ReactAce extends Component {
     if (!isEqual(nextProps.markers, oldProps.markers) && (nextProps.markers && nextProps.markers.length > 0)) {
       this.handleMarkers(nextProps.markers);
     }
+
+    // this doesn't look like it works at all....
     if (!isEqual(nextProps.scrollMargin, oldProps.scrollMargin)) {
       this.handleScrollMargins(nextProps.scrollMargin)
     }
