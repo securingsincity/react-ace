@@ -1,5 +1,7 @@
 # React-Ace
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/securingsincity/react-ace.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/react-ace.svg)](http://badge.fury.io/js/react-ace)
 [![Build Status](https://travis-ci.org/securingsincity/react-ace.svg)](https://travis-ci.org/securingsincity/react-ace)
 [![CDNJS](https://img.shields.io/cdnjs/v/react-ace.svg)](https://cdnjs.com/libraries/react-ace)
