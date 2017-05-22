@@ -4,33 +4,12 @@ import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
 
 const { Range } = ace.acequire('ace/range');
-
-const editorOptions = [
-  'minLines',
-  'maxLines',
-  'readOnly',
-  'highlightActiveLine',
-  'tabSize',
-  'enableBasicAutocompletion',
-  'enableLiveAutocompletion',
-  'enableSnippets',
-];
+import { editorOptions, editorEvents } from './editorOptions.js'
 
 export default class ReactAce extends Component {
   constructor(props) {
     super(props);
-    [
-      'onChange',
-      'onFocus',
-      'onBlur',
-      'onCopy',
-      'onPaste',
-      'onSelectionChange',
-      'onScroll',
-      'handleOptions',
-      'updateRef',
-    ]
-    .forEach(method => {
+    editorEvents.forEach(method => {
       this[method] = this[method].bind(this);
     });
   }
