@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import AceEditor from '../src/ace.jsx';
+import SplitAceEditor from '../src/split.jsx';
+
 import 'brace/mode/jsx';
+
 
 const languages = [
   'javascript',
@@ -46,10 +48,12 @@ themes.forEach((theme) => {
 import 'brace/ext/language_tools';
 
 
-const defaultValue =
-`function onLoad(editor) {
-  console.log(\"i\'ve loaded\");
-}`;
+const defaultValue = [
+  `function onLoad(editor) {
+    console.log(\"i\'ve loaded\");
+  }`,
+  'const secondInput = "me i am the second input";'
+];
 class App extends Component {
   onLoad() {
     console.log('i\'ve loaded');
@@ -85,11 +89,23 @@ class App extends Component {
       fontSize: parseInt(e.target.value,10)
     })
   }
+  setSplits(e) {
+    this.setState({
+      splits: parseInt(e.target.value,10)
+    })
+  }
+  setOrientation(e) {
+    this.setState({
+      orientation: e.target.value
+    })
+  }
   constructor(props) {
     super(props);
     this.state = {
+      splits: 2,
+      orientation: 'beside',
       value: defaultValue,
-      theme: 'monokai',
+      theme: 'github',
       mode: 'javascript',
       enableBasicAutocompletion: false,
       enableLiveAutocompletion: false,
@@ -105,6 +121,8 @@ class App extends Component {
     this.onChange = this.onChange.bind(this);
     this.setFontSize = this.setFontSize.bind(this);
     this.setBoolean = this.setBoolean.bind(this);
+    this.setSplits = this.setSplits.bind(this);
+    this.setOrientation = this.setOrientation.bind(this);
   }
   render() {
     return (
@@ -142,7 +160,31 @@ class App extends Component {
                <p className="control">
                  <span  className="select">
                    <select name="Font Size" onChange={this.setFontSize} value={this.state.fontSize}>
-                    {[14,16,18,20,24,28,32,40].map((lang) => <option  key={lang} value={lang}>{lang}</option>)}
+                    {[10,12,14,16,18,20,24,28,32,40].map((lang) => <option  key={lang} value={lang}>{lang}</option>)}
+                   </select></span>
+               </p>
+           </div>
+
+           <div className="field">
+             <label>
+               Number of Splits:
+             </label>
+               <p className="control">
+                 <span  className="select">
+                   <select name="splits" onChange={this.setSplits} value={this.state.splits}>
+                    {[1,2,3,4].map((lang) => <option  key={lang} value={lang}>{lang}</option>)}
+                   </select></span>
+               </p>
+           </div>
+
+           <div className="field">
+             <label>
+               Orientation:
+             </label>
+               <p className="control">
+                 <span  className="select">
+                   <select name="orientation" onChange={this.setOrientation} value={this.state.orientation}>
+                    {['beside', 'below'].map((lang) => <option  key={lang} value={lang}>{lang}</option>)}
                    </select></span>
                </p>
            </div>
@@ -207,73 +249,30 @@ class App extends Component {
       </div>
         <div className="examples column">
           <h2>Editor</h2>
-          <AceEditor
+          <SplitAceEditor
           mode={this.state.mode}
+          orientation={this.state.orientation}
+          splits={this.state.splits}
           theme={this.state.theme}
           name="blah2"
           onLoad={this.onLoad}
           onChange={this.onChange}
           onSelectionChange={this.onSelectionChange}
           fontSize={this.state.fontSize}
-          height="100%"
+          height="1000px"
+          width="1000px"
           showPrintMargin={this.state.showPrintMargin}
           showGutter={this.state.showGutter}
           highlightActiveLine={this.state.highlightActiveLine}
-          commands={[
-            {
-              name: 'myReactAceTest',
-              bindKey: {win: 'Ctrl-M', mac: 'Command-M'},
-              exec: () => {
-                console.log("this coammdb or whatever")
-              },
-              readOnly: true
-            },
-            {
-              name: 'myTestCommand',
-              bindKey: {win: 'Ctrl-W', mac: 'Command-W'},
-              exec: () => {
-                console.log("this coammdb or whatever")
-              },
-              readOnly: true
-            }
-          ]}
           value={this.state.value}
           setOptions={{
+            displayIndentGuides: false,
             enableBasicAutocompletion: this.state.enableBasicAutocompletion,
             enableLiveAutocompletion: this.state.enableLiveAutocompletion,
             enableSnippets: this.state.enableSnippets,
             showLineNumbers: this.state.showLineNumbers,
             tabSize: 2,
           }}/>
-      </div>
-      <div className="column">
-          <h2>Code</h2>
-          <AceEditor
-           mode="jsx"
-           theme="monokai"
-           readOnly={true}
-           value={
-            `<AceEditor
-  mode="${this.state.mode}"
-  theme="${this.state.theme}"
-  name="blah2"
-  onLoad={this.onLoad}
-  onChange={this.onChange}
-  fontSize={${this.state.fontSize}}
-  height="100%"
-  showPrintMargin={${this.state.showPrintMargin}}
-  showGutter={${this.state.showGutter}}
-  highlightActiveLine={${this.state.highlightActiveLine}}
-  value={\`${this.state.value}\`}
-  setOptions={{
-  enableBasicAutocompletion: ${this.state.enableBasicAutocompletion},
-  enableLiveAutocompletion: ${this.state.enableLiveAutocompletion},
-  enableSnippets: ${this.state.enableSnippets},
-  showLineNumbers: ${this.state.showLineNumbers},
-  tabSize: 2,
-  }}/>
-            `
-          } />
       </div>
     </div>
     );
