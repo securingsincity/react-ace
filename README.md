@@ -1,6 +1,6 @@
 # React-Ace
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/securingsincity/react-ace.svg)](https://greenkeeper.io/)
+[![Backers on Open Collective](https://opencollective.com/react-ace/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/react-ace/sponsors/badge.svg)](#sponsors) [![Greenkeeper badge](https://badges.greenkeeper.io/securingsincity/react-ace.svg)](https://greenkeeper.io/)
 
 [![npm version](https://badge.fury.io/js/react-ace.svg)](http://badge.fury.io/js/react-ace)
 [![Build Status](https://travis-ci.org/securingsincity/react-ace.svg)](https://travis-ci.org/securingsincity/react-ace)
@@ -132,3 +132,57 @@ All modes, themes, and keyboard handlers should be required through ```brace``` 
 
 * vim
 * emacs
+
+
+## Backers
+
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/react-ace#backer)]
+
+<a href="https://opencollective.com/react-ace/backer/0/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/1/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/2/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/3/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/4/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/5/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/6/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/7/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/8/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/9/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/10/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/11/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/12/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/13/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/14/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/15/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/16/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/17/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/18/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/19/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/20/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/21/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/22/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/23/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/24/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/25/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/25/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/26/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/26/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/27/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/27/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/28/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/28/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/backer/29/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/29/avatar.svg"></a>
+
+
+## Sponsors
+
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/react-ace#sponsor)]
+
+<a href="https://opencollective.com/react-ace/sponsor/0/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/sponsor/1/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/sponsor/2/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/sponsor/3/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/sponsor/4/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/sponsor/5/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/sponsor/6/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/sponsor/7/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/react-ace/sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/9/avatar.svg"></a>
+
+

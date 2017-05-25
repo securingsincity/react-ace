@@ -19,7 +19,8 @@
     "postversion": "git push && git push --tags && npm run clean",
     "prepublish": "npm run clean && npm run build",
     "test": "mocha --compilers js:babel-core/register --require tests/setup.js --recursive tests/**/*.spec.js",
-    "coverage": "nyc npm run test"
+    "coverage": "nyc npm run test",
+    "postinstall": "opencollective postinstall"
   },
   "babel": {
     "presets": [
@@ -66,6 +67,7 @@
   "dependencies": {
     "brace": "^0.10.0",
     "lodash.isequal": "^4.1.1",
+    "opencollective": "^1.0.3",
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {
@@ -92,5 +94,10 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/securingsincity/react-ace.git"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/react-ace",
+    "logo": "https://opencollective.com/opencollective/logo.txt"
   }
 }
