@@ -1,0 +1,1 @@
+<!-- Love react-ace? Please consider supporting our collective: 👉  https://opencollective.com/react-ace/donate -->
