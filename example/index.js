@@ -219,24 +219,6 @@ class App extends Component {
           showPrintMargin={this.state.showPrintMargin}
           showGutter={this.state.showGutter}
           highlightActiveLine={this.state.highlightActiveLine}
-          commands={[
-            {
-              name: 'myReactAceTest',
-              bindKey: {win: 'Ctrl-M', mac: 'Command-M'},
-              exec: () => {
-                console.log("this coammdb or whatever")
-              },
-              readOnly: true
-            },
-            {
-              name: 'myTestCommand',
-              bindKey: {win: 'Ctrl-W', mac: 'Command-W'},
-              exec: () => {
-                console.log("this coammdb or whatever")
-              },
-              readOnly: true
-            }
-          ]}
           value={this.state.value}
           setOptions={{
             enableBasicAutocompletion: this.state.enableBasicAutocompletion,
