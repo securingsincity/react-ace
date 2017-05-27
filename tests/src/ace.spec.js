@@ -334,6 +334,7 @@ describe('Ace Component', () => {
           showPrintMargin={true}
           showGutter={false}
           height="100px"
+          width="200px"
         />), mountOptions);
 
       // Read set value
@@ -347,6 +348,7 @@ describe('Ace Component', () => {
         showPrintMargin: false,
         showGutter: true,
         height: '120px',
+        width: "220px"
       });
       const newMode =  wrapper.first('AceEditor').props()
       expect(oldMode).to.not.deep.equal(newMode);
