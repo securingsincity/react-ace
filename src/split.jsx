@@ -209,7 +209,7 @@ export default class SplitComponent extends Component {
     if (nextProps.focus && !oldProps.focus) {
       this.splitEditor.focus();
     }
-    if(nextProps.height !== this.props.height){
+    if(nextProps.height !== this.props.height || nextProps.width !== this.props.width){
       this.editor.resize();
     }
   }

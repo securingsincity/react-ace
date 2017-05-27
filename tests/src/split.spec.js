@@ -286,6 +286,7 @@ describe('Split Component', () => {
           showPrintMargin={true}
           showGutter={false}
           height="100px"
+          width="200px"
         />), mountOptions);
 
       // Read set value
@@ -299,6 +300,7 @@ describe('Split Component', () => {
         showPrintMargin: false,
         showGutter: true,
         height: '120px',
+        width: '220px',
       });
       const newMode =  wrapper.first('SplitEditor').props()
       expect(oldMode).to.not.deep.equal(newMode);
