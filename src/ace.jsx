@@ -74,6 +74,8 @@ export default class ReactAce extends Component {
       const option = editorOptions[i];
       if (availableOptions.hasOwnProperty(option)) {
         this.editor.setOption(option, this.props[option]);
+      } else if (this.props[option]) {
+        console.warn(`ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`)
       }
     }
 

@@ -37,6 +37,7 @@ const themes = [
 
 languages.forEach((lang) => {
   require(`brace/mode/${lang}`)
+  require(`brace/snippets/${lang}`)
 })
 
 themes.forEach((theme) => {

@@ -55,7 +55,7 @@
     "nyc": "^10.3.2",
     "react-addons-test-utils": "^15.5.1",
     "rimraf": "^2.5.2",
-    "sinon": "^2.2.0",
+    "sinon": "^2.3.2",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5"
   },

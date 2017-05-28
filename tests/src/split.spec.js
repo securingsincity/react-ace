@@ -15,7 +15,7 @@ describe('Split Component', () => {
   };
 
   describe('General', () => {
-
+    sinon.restore()
     it('should render without problems with defaults properties', () => {
       const wrapper = mount(<SplitEditor />, mountOptions);
       expect(wrapper).to.exist;
@@ -26,6 +26,14 @@ describe('Split Component', () => {
 
       expect(beforeLoadCallback.callCount).to.equal(1);
       expect(beforeLoadCallback.getCall(0).args[0]).to.deep.equal(ace);
+    });
+
+    it('should trigger console warn if editorOption is called', () => {
+      const stub = sinon.stub(console, 'warn');
+      const wrapper = mount(<SplitEditor enableBasicAutocompletion={true} />, mountOptions);
+      expect(wrapper).to.exist;
+      expect(console.warn.calledWith('ReaceAce: editor option enableBasicAutocompletion was activated but not found. Did you need to import a related tool or did you possibly mispell the option?') ).to.be.true;
+      stub.restore();
     });
 
     it('should set the editor props to the Ace element', () => {
