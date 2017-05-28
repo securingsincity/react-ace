@@ -1,5 +1,5 @@
-import ace from './ace.jsx'
-import split from './split.jsx';
+import ace from './ace.js'
+import split from './split.js';
 export {
   split
 }

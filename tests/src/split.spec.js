@@ -3,7 +3,7 @@ import React from 'react';
 import sinon from 'sinon';
 import ace from 'brace';
 import { mount } from 'enzyme';
-import SplitEditor from '../../src/split.jsx';
+import SplitEditor from '../../src/split.js';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 
 describe('Split Component', () => {

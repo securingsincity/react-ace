@@ -3,7 +3,7 @@ import React from 'react';
 import sinon from 'sinon';
 import ace from 'brace';
 import { mount } from 'enzyme';
-import AceEditor from '../../src/ace.jsx';
+import AceEditor from '../../src/ace.js';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 describe('Ace Component', () => {
 
