@@ -10,6 +10,7 @@
 A set of react components for Ace / Brace
 
 [DEMO of React Ace](http://securingsincity.github.io/react-ace/)
+
 [DEMO of React Ace Split Editor](http://securingsincity.github.io/react-ace/split.html)
 
 ## Install
@@ -51,8 +52,11 @@ Checkout the `example` directory for a working example using webpack.
 ## Documentation
 
 [Ace Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Ace.md)
+
 [Split View Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Split.md)
+
 [How to add modes, themes and keyboard handlers](https://github.com/securingsincity/react-ace/blob/master/docs/Modes.md)
+
 [Frequently Asked Questions](https://github.com/securingsincity/react-ace/blob/master/docs/FAQ.md)
 
 ## Backers
