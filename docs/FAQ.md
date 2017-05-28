@@ -78,7 +78,18 @@ render(
 );
 ```
 
-## How do I add custom completers?
+## How do I get selected text `onSelectionChange`?
+
+How you extract the text from the editor is based on how to call methods on the editor.
+
+Your `onSelectionChange` should look like this:
+
+```javascript
+onSelectionChange(selection) {
+  const content = this.refs.aceEditor.editor.session.getTextRange(selection.getRange());
+  // use content
+}
+```
 
 ## How do I add markers?
 ```javascript
