@@ -119,7 +119,7 @@ export default class SplitComponent extends Component {
     sp.setOrientation( this.props.orientation === 'below' ? sp.BELOW : sp.BESIDE);
     sp.resize(true)
     if (onLoad) {
-      onLoad(this.editor);
+      onLoad(sp);
     }
   }
 
