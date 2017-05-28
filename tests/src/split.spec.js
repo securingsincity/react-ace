@@ -106,7 +106,7 @@ describe('Split Component', () => {
       const wrapper = mount(<SplitEditor onLoad={loadCallback}/>, mountOptions);
 
       // Get the editor
-      const editor = wrapper.instance().editor;
+      const editor = wrapper.instance().split;
 
       expect(loadCallback.callCount).to.equal(1);
       expect(loadCallback.getCall(0).args[0]).to.deep.equal(editor);

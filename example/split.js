@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import SplitAceEditor from '../src/split.jsx';
 
 import 'brace/mode/jsx';
-
+import 'brace/ext/searchbox';
 
 const languages = [
   'javascript',

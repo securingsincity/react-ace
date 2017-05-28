@@ -1,0 +1,113 @@
+# Frequently Asked Questions
+
+## How do I use it with `preact`? `webpack`? `create-react-app`?
+
+Check out the example applications
+
+* [create-react-app](https://github.com/securingsincity/react-ace-create-react-app-example)
+* [preact](https://github.com/securingsincity/react-ace-preact-example)
+* [webpack](https://github.com/securingsincity/react-ace-webpack-example)
+
+
+## How do call methods on the editor? How do I call Undo or Redo?
+
+`ReactAce` has an editor property, which is the wrapped editor. You can use refs to get to the component, and then you should be able to use the editor on the component to run the function you need:
+
+```javascript
+const reactAceComponent = parent.refs.reactAceComponent;
+const editor = reactAceComponent.editor
+editor.find(searchRegex, {
+   backwards: false,
+   wrap: true,
+   caseSensitive: false,
+   wholeWord: false,
+   regExp: true,
+});
+```
+
+Similarly, if you want to redo or undo, you can reference the editor from the refs
+
+```jsx
+<button onClick={()=> {this.refs.editor.editor.undo()}}>Undo</button>
+<button onClick={()=> {this.refs.editor.editor.redo()}}>Redo</button>
+```
+
+## How do I set editor options like setting block scrolling to infinity?
+
+```javascript
+<ReactAce
+  editorProps={{
+    $blockScrolling: Infinity
+  }}
+/>
+```
+
+## How do I add language snippets?
+
+You can import the snippets and mode directly through `brace` along with the language_tools. Here is an example below
+
+
+```javascript
+import React from 'react';
+import { render } from 'react-dom';
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/python';
+import 'brace/snippets/python';
+import 'brace/ext/language_tools';
+import 'brace/theme/github';
+
+function onChange(newValue) {
+  console.log('change',newValue);
+}
+
+// Render editor
+render(
+  <AceEditor
+    mode="python"
+    theme="github"
+    onChange={onChange}
+    name="UNIQUE_ID_OF_DIV"
+    editorProps={{$blockScrolling: true}}
+    enableBasicAutocompletion={true}
+    enableLiveAutocompletion={true}
+    enableSnippets={true}
+    />,
+  document.getElementById('example')
+);
+```
+
+## How do I add custom completers?
+
+## How do I add markers?
+```javascript
+      const markers = [{
+        startRow: 3,
+        type: 'text',
+        className: 'test-marker'
+      }];
+      const wrapper = (<AceEditor markers={markers}/>);
+```
+
+## How do I add annotations?
+```javascript
+  const annotations = [{
+    row: 3, // must be 0 based
+    column: 4,  // must be 0 based
+    text: 'error.message',  // text to show in tooltip
+    type: 'error'
+  }]
+  const editor = (
+    <AceEditor
+      annotations={annotations}
+    />
+  )
+```
+
+## How do I add the search box?
+Add the following line
+
+`import 'brace/ext/searchbox';`
+
+before introducing the component and it will add the search box.

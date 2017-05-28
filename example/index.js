@@ -45,6 +45,7 @@ themes.forEach((theme) => {
 })
 /*eslint-disable no-alert, no-console */
 import 'brace/ext/language_tools';
+import 'brace/ext/searchbox';
 
 
 const defaultValue =
