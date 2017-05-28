@@ -122,3 +122,38 @@ Add the following line
 `import 'brace/ext/searchbox';`
 
 before introducing the component and it will add the search box.
+
+## How do I add a custom mode?
+
+1. Create my custom mode class (pure ES6 code)
+2. Initialize the component with an existing mode name (such as "sql")
+3. Use the `componentDidMount` function and call `session.setMode` with an instance of my custom mode.
+
+My custom mode is:
+```javascript
+export default class CustomSqlMode extends ace.acequire('ace/mode/text').Mode {
+	constructor(){
+		super();
+		// Your code goes here
+	}
+}
+```
+
+And my react-ace code looks like:
+```javascript
+render() {
+  return <div>
+    <AceEditor
+      ref="aceEditor"
+      mode="sql"     // Default value since this props must be set.
+      theme="chrome" // Default value since this props must be set.
+    />
+  </div>;
+}
+
+componentDidMount() {
+  const customMode = new CustomSqlMode();
+  this.refs.aceEditor.editor.getSession().setMode(customMode);
+}
+```
+
