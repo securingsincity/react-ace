@@ -4,33 +4,12 @@ import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
 
 const { Range } = ace.acequire('ace/range');
-
-const editorOptions = [
-  'minLines',
-  'maxLines',
-  'readOnly',
-  'highlightActiveLine',
-  'tabSize',
-  'enableBasicAutocompletion',
-  'enableLiveAutocompletion',
-  'enableSnippets',
-];
+import { editorOptions, editorEvents } from './editorOptions.js'
 
 export default class ReactAce extends Component {
   constructor(props) {
     super(props);
-    [
-      'onChange',
-      'onFocus',
-      'onBlur',
-      'onCopy',
-      'onPaste',
-      'onSelectionChange',
-      'onScroll',
-      'handleOptions',
-      'updateRef',
-    ]
-    .forEach(method => {
+    editorEvents.forEach(method => {
       this[method] = this[method].bind(this);
     });
   }
@@ -95,6 +74,8 @@ export default class ReactAce extends Component {
       const option = editorOptions[i];
       if (availableOptions.hasOwnProperty(option)) {
         this.editor.setOption(option, this.props[option]);
+      } else if (this.props[option]) {
+        console.warn(`ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`)
       }
     }
 

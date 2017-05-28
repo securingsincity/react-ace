@@ -5,7 +5,6 @@ import ace from 'brace';
 import { mount } from 'enzyme';
 import AceEditor from '../../src/ace.jsx';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
-
 describe('Ace Component', () => {
 
   // Required for the document.getElementById used by Ace can work in the test environment
@@ -19,6 +18,14 @@ describe('Ace Component', () => {
     it('should render without problems with defaults properties', () => {
       const wrapper = mount(<AceEditor />, mountOptions);
       expect(wrapper).to.exist;
+    });
+
+    it('should trigger console warn if editorOption is called', () => {
+      const stub = sinon.stub(console, 'warn');
+      const wrapper = mount(<AceEditor enableBasicAutocompletion={true} />, mountOptions);
+      expect(wrapper).to.exist;
+      expect(console.warn.calledWith('ReaceAce: editor option enableBasicAutocompletion was activated but not found. Did you need to import a related tool or did you possibly mispell the option?') ).to.be.true;
+      stub.restore();
     });
 
     it('should render without problems with defaults properties, defaultValue and keyboardHandler', () => {
@@ -233,17 +240,23 @@ describe('Ace Component', () => {
       expect(onFocusCallback.callCount).to.equal(1);
     });
 
-    it('should call the onSelectionChange method callback', () => {
-      const onSelectionChangeCallback = sinon.spy();
-      const wrapper = mount(<AceEditor onSelectionChange={onSelectionChangeCallback}/>, mountOptions);
+    it('should call the onSelectionChange method callback', (done) => {
+      let onSelectionChange = function(){}
+      const value = `
+        function main(value) {
+          console.log('hi james')
+          return value;
+        }
+      `;
+      const wrapper = mount(<AceEditor value={value} />, mountOptions);
 
-      // Check is not previously called
-      expect(onSelectionChangeCallback.callCount).to.equal(0);
-
-      // Trigger the focus event
+      onSelectionChange = function(selection) {
+        const content = wrapper.instance().editor.session.getTextRange(selection.getRange());
+        expect(content).to.equal(value)
+        done()
+      }
+      wrapper.setProps({onSelectionChange})
       wrapper.instance().editor.getSession().selection.selectAll()
-
-      expect(onSelectionChangeCallback.callCount).to.equal(1);
     });
 
     it('should call the onBlur method callback', () => {
@@ -398,6 +411,7 @@ describe('Ace Component', () => {
       wrapper.setProps({focus: true});
       expect(onFocusCallback.callCount).to.equal(1);
     });
+
 
   });
 

@@ -1,15 +1,15 @@
 {
   "name": "react-ace",
-  "version": "4.4.0",
+  "version": "5.0.0",
   "description": "A react component for Ace Editor",
-  "main": "lib/ace.js",
+  "main": "lib/index.js",
   "types": "types.d.ts",
   "scripts": {
     "clean": "rimraf lib dist",
-    "lint": "node_modules/.bin/eslint src/ace.jsx",
+    "lint": "node_modules/.bin/eslint src/*",
     "build:lib": "babel src --out-dir lib",
-    "build:umd": "webpack src/ace.jsx dist/react-ace.js --config webpack.config.development.js",
-    "build:umd:min": "webpack src/ace.jsx dist/react-ace.min.js --config webpack.config.production.js",
+    "build:umd": "webpack src/index.js dist/react-ace.js --config webpack.config.development.js",
+    "build:umd:min": "webpack src/index.js dist/react-ace.min.js --config webpack.config.production.js",
     "example": "webpack-dev-server --config webpack.config.example.js",
     "build:example": "webpack --config webpack.config.example.js",
     "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
@@ -25,7 +25,8 @@
   "babel": {
     "presets": [
       "es2015",
-      "react"
+      "react",
+      "stage-2"
     ],
     "plugins": [
       "transform-object-rest-spread"
@@ -41,6 +42,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "chai": "^3.5.0",
     "coveralls": "^2.13.1",
     "enzyme": "^2.4.1",
@@ -53,7 +55,7 @@
     "nyc": "^10.3.2",
     "react-addons-test-utils": "^15.5.1",
     "rimraf": "^2.5.2",
-    "sinon": "^2.2.0",
+    "sinon": "^2.3.2",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5"
   },
@@ -66,6 +68,7 @@
   ],
   "dependencies": {
     "brace": "^0.10.0",
+    "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.1.1",
     "opencollective": "^1.0.3",
     "prop-types": "^15.5.8"
