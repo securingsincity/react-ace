@@ -2,6 +2,36 @@
 
 This allows for a split editor which can create multiple linked instances of the Ace editor. Each instance shares a theme and other properties while having their own value.
 
+## Demo 
+
+http://securingsincity.github.io/react-ace/split.html
+
+## Example Code 
+
+```javascript
+import React from 'react';
+import { render } from 'react-dom';
+import brace from 'brace';
+import { split } from 'react-ace';
+
+import 'brace/mode/java';
+import 'brace/theme/github';
+
+// Render editor
+render(
+  <AceEditor
+    mode="java"
+    theme="github"
+    splits={2}
+    orientation="below"
+    value={['hi', 'hello']}
+    name="UNIQUE_ID_OF_DIV"
+    editorProps={{$blockScrolling: true}}
+  />,
+  document.getElementById('example')
+);
+```
+
 ## Available Props
 
 |Prop|Default|Type|Description|
