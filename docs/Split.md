@@ -8,6 +8,8 @@ This allows for a split editor which can create multiple linked instances of the
 |-----|------|-----|-----|
 |name| 'brace-editor'| String |Unique Id to be used for the editor|
 |mode| ''| String |Language for parsing and code highlighting|
+|splits| 2 | Number | Number of views to have |
+|orientation| 'beside' | String | The orientation of the splits either `beside` or `below` | 
 |theme| ''| String |theme to use|
 |value | ''| Array of Strings | value you want to populate in each code editor|
 |defaultValue | ''| Array of Strings |Default value for each editor|
