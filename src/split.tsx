@@ -5,7 +5,7 @@ const PropTypes = require('prop-types')
 const isEqual = require( 'lodash.isequal')
 const get = require( 'lodash.get')
 
-import { editorOptions, editorEvents } from './editorOptions.js'
+import { editorOptions, editorEvents } from './editorOptions'
 const { Range } = ace.acequire('ace/range');
 import { EditorProps, Marker, Command, AceOptions} from './types'
 import 'brace/ext/split'
@@ -230,9 +230,9 @@ export default class SplitComponent extends Component<SplitEditorProps, undefine
       if (editor.getValue() !== nextValue) {
         // editor.setValue is a synchronous function call, change event is emitted before setValue return.
         this.silent = true;
-        const pos = editor.session.selection.toJSON();
+        const pos = editor.session.selection
         editor.setValue(nextValue, nextProps.cursorStart);
-        editor.session.selection.fromJSON(pos);
+        editor.session.selection = pos
         this.silent = false;
       }
       const newAnnotations = get(nextProps.annotations, index, [])

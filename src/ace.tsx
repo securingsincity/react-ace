@@ -5,7 +5,7 @@ const PropTypes = require('prop-types')
 const isEqual = require( 'lodash.isequal')
 
 const { Range } = ace.acequire('ace/range');
-import { editorOptions, editorEvents } from './editorOptions.js'
+import { editorOptions, editorEvents } from './editorOptions'
 import { EditorProps, Marker, Command, AceOptions} from './types'
 /**
  * See https://github.com/ajaxorg/ace/wiki/Configuring-Ace
@@ -224,9 +224,9 @@ export default class ReactAce extends Component<AceEditorProps, undefined> {
     if (this.editor && this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
-      const pos = this.editor.session.selection.toJSON();
+      const pos = this.editor.session.selection
       this.editor.setValue(nextProps.value, nextProps.cursorStart);
-      this.editor.session.selection.fromJSON(pos);
+      this.editor.session.selection = pos
       this.silent = false;
     }
 
@@ -239,7 +239,7 @@ export default class ReactAce extends Component<AceEditorProps, undefined> {
   }
 
   handleScrollMargins(margins = [0, 0, 0, 0]) {
-    this.editor.renderer.setScrollMargins(margins[0], margins[1], margins[2], margins[3])
+    this.editor.renderer.setScrollMargin(margins[0], margins[1], margins[2], margins[3])
   }
 
   componentWillUnmount() {
