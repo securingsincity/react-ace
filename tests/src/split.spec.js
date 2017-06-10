@@ -228,14 +228,14 @@ describe('Split Component', () => {
     it('should call the onCursorChange method callback', () => {
       const onCursorChangeCallback = sinon.spy();
 
-      const wrapper = mount(<SplitEditor value="a" onCursorChange={onCursorChangeCallback}/>, mountOptions) 
+      const wrapper = mount(<SplitEditor value="a" onCursorChange={onCursorChangeCallback}/>, mountOptions)
 
       // The changeCursor event is called when the initial value is set
       expect(onCursorChangeCallback.callCount).to.equal(1);
 
       // Trigger the changeCursor event
       wrapper.instance().splitEditor.getSession().selection.moveCursorTo(0, 0);
-      
+
       expect(onCursorChangeCallback.callCount).to.equal(2);
     });
 
