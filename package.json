@@ -18,7 +18,7 @@
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm run clean",
     "prepublish": "npm run clean && npm run build",
-    "test": "mocha --compilers js:babel-core/register --require tests/setup.js --recursive tests/**/*.spec.js",
+    "test": "mocha --compilers ts:ts-node/register --require tests/setup.js --recursive tests/**/*.spec.js",
     "coverage": "nyc npm run test",
     "postinstall": "opencollective postinstall"
   },
@@ -98,6 +98,8 @@
     ],
     "extension": [
       ".js",
+      ".ts",
+      ".tsx",
       ".jsx"
     ],
     "reporter": [
