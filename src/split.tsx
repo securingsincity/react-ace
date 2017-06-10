@@ -1,6 +1,6 @@
 import {Selection, Annotation, Editor} from 'brace'
 const ace = require('brace')
-import React, { Component } from 'react'
+import * as React from 'react'
 const PropTypes = require('prop-types')
 const isEqual = require( 'lodash.isequal')
 const get = require( 'lodash.get')
@@ -11,9 +11,8 @@ import { EditorProps, Marker, Command, AceOptions} from './types'
 import 'brace/ext/split'
 const { Split } = ace.acequire('ace/split');
 
-class AceEditorClass extends Editor {
+class AceEditorClass {
   [index:string] : any
-  $options: any
 }
 
 
@@ -62,7 +61,7 @@ export interface SplitEditorProps {
 }
 
 
-export default class SplitComponent extends Component<SplitEditorProps, undefined> {
+export default class SplitComponent extends React.Component<SplitEditorProps, undefined> {
   editor: AceEditorClass
   refEditor: HTMLElement
   [index:string]:any
@@ -253,7 +252,7 @@ export default class SplitComponent extends Component<SplitEditorProps, undefine
       let appliedClasses = this.refEditor.className;
       let appliedClassesArray = appliedClasses.trim().split(' ');
       let oldClassesArray = oldProps.className.trim().split(' ');
-      oldClassesArray.forEach((oldClass) => {
+      oldClassesArray.forEach((oldClass: string) => {
         let index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
@@ -327,14 +326,14 @@ export default class SplitComponent extends Component<SplitEditorProps, undefine
     }
   }
 
-  handleOptions(props: SplitEditorProps, editor: Editor) {
+  handleOptions(props: SplitEditorProps, editor: AceEditorClass) {
     const setOptions = Object.keys(props.setOptions);
     for (let y = 0; y < setOptions.length; y++) {
       editor.setOption(setOptions[y], props.setOptions[setOptions[y]]);
     }
   }
 
-  handleMarkers(markers: Marker[], editor: Editor) {
+  handleMarkers(markers: Marker[], editor: AceEditorClass) {
     // remove foreground markers
     let currentMarkers = editor.getSession().getMarkers(true);
     for (const i in currentMarkers) {
