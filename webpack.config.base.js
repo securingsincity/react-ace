@@ -1,10 +1,15 @@
 module.exports = {
   mode: 'development',
   module: {
-    rules: [
+    loaders: [
+       {
+        test: /\.(js|jsx)$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/
+      },
       {
-        test: /(\.js|\.jsx)$/,
-        use: {loader: 'babel-loader'},
+        test: /\.ts(x?)$/,
+        use: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/
       },
     ],
@@ -14,6 +19,6 @@ module.exports = {
     libraryTarget: 'umd',
   },
   resolve: {
-    extensions: ['.jsx', '.js', '.tsx'],
+    extensions: ['.jsx', '.js', '.tsx', '.ts'],
   },
 };

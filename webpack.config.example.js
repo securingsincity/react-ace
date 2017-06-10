@@ -15,18 +15,24 @@ module.exports = {
     filename: '[name].js',
     publicPath: '/static/',
   },
+  resolve: {
+    extensions: ['.jsx', '.js', '.tsx', '.ts'],
+  },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
-    rules: [{
-      test: /(\.js|\.jsx)$/,
-      use: {
-        loader: 'babel-loader'
-      },
-      exclude: /node_modules/,
-    }],
+    loaders: [{
+      test: /\.(js|jsx)$/,
+      use: ['babel-loader'],
+      exclude: /node_modules/
+    },
+    {
+      test: /\.ts(x?)$/,
+      use: ['babel-loader', 'ts-loader'],
+      exclude: /node_modules/
+    },],
   },
   devServer: {
     hot: true,

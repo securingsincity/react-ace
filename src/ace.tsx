@@ -46,7 +46,7 @@ export interface AceEditorProps {
     onCopy?: (value: string) => void
     onPaste?: (value: string) => void
     onFocus?: (event: any) => void
-    onBlur?: (event: any, editor?: Editor) => void
+    onBlur?: (event: any, editor?: AceEditorClass) => void
     onScroll?: (editor: EditorProps) => void
     editorProps?: EditorProps
     setOptions?: AceOptions
@@ -56,9 +56,8 @@ export interface AceEditorProps {
     markers?: Array<Marker>
 }
 
-class AceEditorClass extends Editor {
+class AceEditorClass {
   [index:string] : any
-  $options: any
 }
 
 export default class ReactAce extends React.Component<AceEditorProps, undefined> {
@@ -199,7 +198,7 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
       let appliedClasses = this.refEditor.className;
       let appliedClassesArray = appliedClasses.trim().split(' ');
       let oldClassesArray = oldProps.className.trim().split(' ');
-      oldClassesArray.forEach(oldClass => {
+      oldClassesArray.forEach((oldClass: string) => {
         let index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
@@ -357,7 +356,7 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
     });
   }
 
-  updateRef(item: HTMLElement) {
+  updateRef(item: HTMLDivElement) {
     this.refEditor = item;
   }
 

@@ -228,7 +228,7 @@ export default class SplitComponent extends React.Component<
       );
     }
 
-    split.forEach((editor: Editor, index: number) => {
+    split.forEach((editor: AceEditorClass, index: number) => {
       if (nextProps.mode !== oldProps.mode) {
         editor.getSession().setMode("ace/mode/" + nextProps.mode);
       }
@@ -288,9 +288,9 @@ export default class SplitComponent extends React.Component<
 
     if (nextProps.className !== oldProps.className) {
       let appliedClasses = this.refEditor.className;
-      let appliedClassesArray = appliedClasses.trim().split(" ");
-      let oldClassesArray = oldProps.className.trim().split(" ");
-      oldClassesArray.forEach(oldClass => {
+      let appliedClassesArray = appliedClasses.trim().split(' ');
+      let oldClassesArray = oldProps.className.trim().split(' ');
+      oldClassesArray.forEach((oldClass: string) => {
         let index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
@@ -382,14 +382,14 @@ export default class SplitComponent extends React.Component<
     }
   }
 
-  handleOptions(props: SplitEditorProps, editor: Editor) {
+  handleOptions(props: SplitEditorProps, editor: AceEditorClass) {
     const setOptions = Object.keys(props.setOptions);
     for (let y = 0; y < setOptions.length; y++) {
       editor.setOption(setOptions[y], props.setOptions[setOptions[y]]);
     }
   }
 
-  handleMarkers(markers: Marker[], editor: Editor) {
+  handleMarkers(markers: Marker[], editor: AceEditorClass) {
     // remove foreground markers
     let currentMarkers = editor.getSession().getMarkers(true);
     for (const i in currentMarkers) {

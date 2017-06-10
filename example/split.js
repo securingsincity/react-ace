@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import SplitAceEditor from '../src/split.js';
+import SplitAceEditor from '../src/split';
 
 import 'brace/mode/jsx';
 import 'brace/ext/searchbox';
