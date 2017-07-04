@@ -165,7 +165,35 @@ describe('Ace Component', () => {
       expect(editorB.getSession().getMarkers()['6'].type).to.equal('text');
     });
 
-    it('should add annotations', () => {
+
+    it('should clear the markers', () => {
+      const oldMarkers = [
+        {
+          startRow: 4,
+          type: 'text',
+          className: 'test-marker-old'
+        },
+        {
+          startRow: 7,
+          type: 'foo',
+          className: 'test-marker-old',
+          inFront: true
+        }
+      ];
+      const markers = [];
+      const wrapper = mount(<AceEditor markers={oldMarkers}/>, mountOptions);
+
+      // Read the markers
+      const editor = wrapper.instance().editor;
+      expect(editor.getSession().getMarkers()['3'].clazz).to.equal('test-marker-old');
+      expect(editor.getSession().getMarkers()['3'].type).to.equal('text');
+      wrapper.setProps({markers});
+      const editorB = wrapper.instance().editor;
+
+      expect(editorB.getSession().getMarkers()).to.deep.equal({})
+    });
+
+    it('should add annotations and clear them', () => {
       const annotations = [{
         row: 3, // must be 0 based
         column: 4,  // must be 0 based

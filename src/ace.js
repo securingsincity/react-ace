@@ -154,7 +154,7 @@ export default class ReactAce extends Component {
     if (!isEqual(nextProps.annotations, oldProps.annotations)) {
       this.editor.getSession().setAnnotations(nextProps.annotations || []);
     }
-    if (!isEqual(nextProps.markers, oldProps.markers) && (nextProps.markers && nextProps.markers.length > 0)) {
+    if (!isEqual(nextProps.markers, oldProps.markers) && (Array.isArray(nextProps.markers))) {
       this.handleMarkers(nextProps.markers);
     }
 

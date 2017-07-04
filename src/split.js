@@ -187,7 +187,7 @@ export default class SplitComponent extends Component {
 
       const newMarkers = get(nextProps.markers, index, [])
       const oldMarkers = get(oldProps.markers, index, [])
-      if (!isEqual(newMarkers, oldMarkers) && (newMarkers && newMarkers.length > 0)) {
+      if (!isEqual(newMarkers, oldMarkers) && Array.isArray(newMarkers)) {
         this.handleMarkers(newMarkers, editor);
       }
 

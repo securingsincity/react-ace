@@ -402,6 +402,32 @@ describe('Split Component', () => {
       expect(editorB.getSession().getMarkers()['6'].type).to.equal('text');
     });
 
+  it('should update the markers', () => {
+      const oldMarkers = [[
+        {
+          startRow: 4,
+          type: 'text',
+          className: 'test-marker-old'
+        },
+        {
+          startRow: 7,
+          type: 'foo',
+          className: 'test-marker-old',
+          inFront: true
+        }
+      ]];
+      const markers = [[]];
+      const wrapper = mount(<SplitEditor markers={oldMarkers}/>, mountOptions);
+
+      // Read the markers
+      const editor = wrapper.instance().splitEditor;
+      expect(editor.getSession().getMarkers()['3'].clazz).to.equal('test-marker-old');
+      expect(editor.getSession().getMarkers()['3'].type).to.equal('text');
+      wrapper.setProps({markers: markers});
+      const editorB = wrapper.instance().splitEditor;
+      expect(editorB.getSession().getMarkers()).to.deep.equal({});
+    });
+
     it('should add annotations', () => {
       const annotations = [{
         row: 3, // must be 0 based
