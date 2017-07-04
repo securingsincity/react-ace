@@ -5,6 +5,12 @@
 * Fully move to TypeScript interally
 * Publish typings for the split editor
 
+## 5.1.0
+
+* Editor options do not get reverted due to default props #226
+* Markers can be unset to an empty value #229
+* Typescript update to set state to empty object instead of undefined
+
 
 ## 5.0.1
 
