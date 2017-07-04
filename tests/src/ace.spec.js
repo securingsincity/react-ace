@@ -38,6 +38,18 @@ describe('Ace Component', () => {
       expect(editor.getValue()).to.equal('hi james');
     });
 
+    it('should render editor options not default values', () => {
+      const wrapper = mount(<AceEditor
+        keyboardHandler="vim"
+        setOptions={{
+          tabSize: 2
+        }}
+       />, mountOptions);
+      expect(wrapper).to.exist;
+      let editor = wrapper.instance().editor;
+      expect(editor.getOption('tabSize')).to.equal(2);
+    });
+
     it('should get the ace library from the onBeforeLoad callback', () => {
       const beforeLoadCallback = sinon.spy();
       mount(<AceEditor onBeforeLoad={beforeLoadCallback}/>, mountOptions);
