@@ -1,7 +1,16 @@
 module.exports = {
   module: {
     loaders: [
-      { test: /\.js?$/, loaders: ['babel-loader'], exclude: /node_modules/ },
+       {
+        test: /\.(js|jsx)$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.ts(x?)$/,
+        use: ['babel-loader', 'ts-loader'],
+        exclude: /node_modules/
+      },
     ],
   },
   output: {
@@ -9,6 +18,6 @@ module.exports = {
     libraryTarget: 'umd',
   },
   resolve: {
-    extensions: ['.jsx', '.js', '.tsx'],
+    extensions: ['.jsx', '.js', '.tsx', '.ts'],
   },
 };

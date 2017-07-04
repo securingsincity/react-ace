@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import React from 'react';
-import sinon from 'sinon';
-import ace from 'brace';
+import * as React from 'react';
+import * as sinon from 'sinon';
+import * as ace from 'brace';
 import { mount } from 'enzyme';
-import SplitEditor from '../../src/split.js';
+import SplitEditor from '../../src/split.tsx';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 
 describe('Split Component', () => {
