@@ -62,7 +62,6 @@ export default class ReactAce extends Component {
     this.editor.on('change', this.onChange);
     this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
     this.editor.session.on('changeScrollTop', this.onScroll);
-    this.handleOptions(this.props);
     this.editor.getSession().setAnnotations(annotations || []);
     if(markers && markers.length > 0){
       this.handleMarkers(markers);
@@ -78,6 +77,7 @@ export default class ReactAce extends Component {
         console.warn(`ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`)
       }
     }
+    this.handleOptions(this.props);
 
     if (Array.isArray(commands)) {
       commands.forEach((command) => {
