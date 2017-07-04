@@ -164,4 +164,4 @@ export interface AceEditorProps {
     markers?: Array<Marker>
 }
 
-export default class AceEditor extends Component<AceEditorProps, undefined> {}
+export default class AceEditor extends Component<AceEditorProps, {}> {}
