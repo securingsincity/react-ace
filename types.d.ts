@@ -94,7 +94,7 @@ export interface AceOptions {
 }
 
 export interface EditorProps {
-    $blockScrolling?: number
+    $blockScrolling?: number | boolean
     $blockSelectEnabled?: boolean
     $enableBlockSelect?: boolean
     $enableMultiselect?: boolean
