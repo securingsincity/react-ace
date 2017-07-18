@@ -56,7 +56,7 @@
     "react-addons-test-utils": "^15.5.1",
     "rimraf": "^2.5.2",
     "sinon": "^2.3.2",
-    "webpack": "^2.5.1",
+    "webpack": "^3.3.0",
     "webpack-dev-server": "^2.4.5"
   },
   "keywords": [
