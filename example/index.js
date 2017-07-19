@@ -216,12 +216,11 @@ class App extends Component {
           onLoad={this.onLoad}
           onChange={this.onChange}
           onSelectionChange={this.onSelectionChange}
+          value={this.state.value}
           fontSize={this.state.fontSize}
-          height="100%"
           showPrintMargin={this.state.showPrintMargin}
           showGutter={this.state.showGutter}
           highlightActiveLine={this.state.highlightActiveLine}
-          value={this.state.value}
           setOptions={{
             enableBasicAutocompletion: this.state.enableBasicAutocompletion,
             enableLiveAutocompletion: this.state.enableLiveAutocompletion,
@@ -244,7 +243,6 @@ class App extends Component {
   onLoad={this.onLoad}
   onChange={this.onChange}
   fontSize={${this.state.fontSize}}
-  height="100%"
   showPrintMargin={${this.state.showPrintMargin}}
   showGutter={${this.state.showGutter}}
   highlightActiveLine={${this.state.highlightActiveLine}}
