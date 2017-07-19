@@ -5,6 +5,10 @@
 * Fully move to TypeScript interally
 * Publish typings for the split editor
 
+## 5.1.1
+
+* Fix TypeScript definitions for EditorProps
+
 ## 5.1.0
 
 * Editor options do not get reverted due to default props #226
