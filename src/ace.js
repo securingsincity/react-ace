@@ -100,6 +100,8 @@ export default class ReactAce extends Component {
     if (onLoad) {
       onLoad(this.editor);
     }
+
+    this.editor.resize();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -174,7 +176,10 @@ export default class ReactAce extends Component {
     if (nextProps.focus && !oldProps.focus) {
       this.editor.focus();
     }
-    if(nextProps.height !== this.props.height || nextProps.width !== this.props.width){
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.height !== this.props.height || prevProps.width !== this.props.width){
       this.editor.resize();
     }
   }
