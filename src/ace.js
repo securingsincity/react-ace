@@ -179,9 +179,9 @@ export default class ReactAce extends Component {
   }
 
   componentDidUpdate(prevProps) {
-      if(prevProps.height !== this.props.height || prevProps.width !== this.props.width){
-          this.editor.resize();
-      }
+    if(prevProps.height !== this.props.height || prevProps.width !== this.props.width){
+      this.editor.resize();
+    }
   }
 
   handleScrollMargins(margins = [0, 0, 0, 0]) {
