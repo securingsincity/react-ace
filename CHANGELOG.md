@@ -1,9 +1,12 @@
 # Changelog
 
-## Next Release - TBD
+## Next Minor Release - TBD
 
 * Fully move to TypeScript interally
 * Publish typings for the split editor
+## 5.1.2
+
+* Resize on component did mount and component did update. Fixes #207 and #212. 
 
 ## 5.1.1
 
