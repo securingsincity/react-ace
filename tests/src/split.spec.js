@@ -15,7 +15,6 @@ describe('Split Component', () => {
   };
 
   describe('General', () => {
-    sinon.restore()
     it('should render without problems with defaults properties', () => {
       const wrapper = mount(<SplitEditor />, mountOptions);
       expect(wrapper).to.exist;
