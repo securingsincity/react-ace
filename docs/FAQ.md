@@ -115,6 +115,24 @@ onSelectionChange(selection) {
     />
   )
 ```
+## How do I add key-bindings?
+```javascript
+
+render() {
+  return <div>
+    <AceEditor
+      ref="aceEditor"
+      mode="sql"     // Default value since this props must be set.
+      theme="chrome" // Default value since this props must be set.
+      commands={[{   // commands is array of key bindings.
+        name: 'commandName', //name for the key binding.
+        bindKey: {win: 'Ctrl-Alt-h', mac: 'Command-Alt-h'}, //key combination used for the command.
+        exec: () => { console.log('key-binding used')}  //function to execute when keys are pressed.
+      }]}
+    />
+  </div>;
+}
+```
 
 ## How do I add the search box?
 Add the following line
