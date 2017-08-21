@@ -70,6 +70,7 @@ render(
 |onFocus| | Function | triggered by editor `focus` event|
 |onBlur| | Function | triggered by editor `blur` event|
 |onScroll| | Function | triggered by editor `scroll` event|
+|onValidate| | Function | triggered, when annotations are changed|
 |editorProps| | Object | properties to apply directly to the Ace editor instance|
 |setOptions| | Object | [options](https://github.com/ajaxorg/ace/wiki/Configuring-Ace) to apply directly to the Ace editor instance|
 |keyboardHandler| | String | corresponding to the keybinding mode to set (such as vim or emacs)|
