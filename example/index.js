@@ -67,6 +67,11 @@ class App extends Component {
     console.log('select-change', newValue);
     console.log('select-change-event', event);
   }
+
+  onValidate(annotations) {
+    console.log('onValidate', annotations);
+  }
+
   setTheme(e) {
     this.setState({
       theme: e.target.value
@@ -216,6 +221,7 @@ class App extends Component {
           onLoad={this.onLoad}
           onChange={this.onChange}
           onSelectionChange={this.onSelectionChange}
+          onValidate={this.onValidate}
           value={this.state.value}
           fontSize={this.state.fontSize}
           showPrintMargin={this.state.showPrintMargin}

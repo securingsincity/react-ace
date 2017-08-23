@@ -18,6 +18,7 @@ export default class ReactAce extends Component {
     const {
       className,
       onBeforeLoad,
+      onValidate,
       mode,
       focus,
       theme,
@@ -61,6 +62,12 @@ export default class ReactAce extends Component {
     this.editor.on('paste', this.onPaste);
     this.editor.on('change', this.onChange);
     this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
+    if (onValidate) {
+      this.editor.getSession().on('changeAnnotation', () => {
+        const annotations = this.editor.getSession().getAnnotations();
+        this.props.onValidate(annotations);
+      });
+    }
     this.editor.session.on('changeScrollTop', this.onScroll);
     this.editor.getSession().setAnnotations(annotations || []);
     if(markers && markers.length > 0){
@@ -307,6 +314,7 @@ ReactAce.propTypes = {
   onLoad: PropTypes.func,
   onSelectionChange: PropTypes.func,
   onBeforeLoad: PropTypes.func,
+  onValidate: PropTypes.func,
   minLines: PropTypes.number,
   maxLines: PropTypes.number,
   readOnly: PropTypes.bool,
