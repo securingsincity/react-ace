@@ -207,15 +207,15 @@ export default class ReactAce extends Component {
     }
   }
 
-  onFocus() {
+  onFocus(event) {
     if (this.props.onFocus) {
-      this.props.onFocus();
+      this.props.onFocus(event);
     }
   }
 
-  onBlur() {
+  onBlur(event) {
     if (this.props.onBlur) {
-      this.props.onBlur();
+      this.props.onBlur(event);
     }
   }
 
