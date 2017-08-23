@@ -153,8 +153,9 @@ export interface AceEditorProps {
     onSelection?: (selectedText: string, event?: any) => void
     onCopy?: (value: string) => void
     onPaste?: (value: string) => void
-    onFocus?: () => void
-    onBlur?: () => void
+    onFocus?: (event: any) => void
+    onBlur?: (event: any) => void
+    onValidate?: (annotations: Array<Annotation>) => void
     onScroll?: (editor: EditorProps) => void
     editorProps?: EditorProps
     setOptions?: AceOptions

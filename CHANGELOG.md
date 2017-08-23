@@ -4,9 +4,15 @@
 
 * Fully move to TypeScript interally
 * Publish typings for the split editor
+
+## 5.2.0
+
+* Add support for events in onBlur and onFocus callbacks
+* Adds onValidate callback
+
 ## 5.1.2
 
-* Resize on component did mount and component did update. Fixes #207 and #212. 
+* Resize on component did mount and component did update. Fixes #207 and #212.
 
 ## 5.1.1
 
