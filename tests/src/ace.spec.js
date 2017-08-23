@@ -278,6 +278,7 @@ describe('Ace Component', () => {
       wrapper.instance().editor.focus();
 
       expect(onFocusCallback.callCount).to.equal(1);
+      expect(onFocusCallback.args.length).to.equal(1)
     });
 
     it('should call the onSelectionChange method callback', (done) => {
@@ -310,6 +311,7 @@ describe('Ace Component', () => {
       wrapper.instance().onBlur();
 
       expect(onBlurCallback.callCount).to.equal(1);
+      expect(onBlurCallback.args.length).to.equal(1)
     });
 
     it('should not trigger a component error to call the events without setting the props', () => {
