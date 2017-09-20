@@ -17,7 +17,7 @@
     "preversion": "npm run clean && npm run check",
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm run clean",
-    "prepublish": "npm run clean && npm run build",
+    "prepublishOnly": "npm run clean && npm run build",
     "test": "mocha --compilers js:babel-core/register --require tests/setup.js --recursive tests/**/*.spec.js",
     "coverage": "nyc npm run test",
     "postinstall": "opencollective postinstall"
