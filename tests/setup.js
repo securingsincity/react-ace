@@ -12,6 +12,7 @@ function copyProps(src, target) {
 
 global.window = window;
 global.document = window.document;
+global.HTMLElement = window.HTMLElement;
 copyProps(window, global);
 
 global.navigator = {
