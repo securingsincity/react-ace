@@ -44,7 +44,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "chai": "^4.1.2",
     "coveralls": "^2.13.1",
-    "enzyme": "^2.4.1",
+    "enzyme": "^3.0.0",
     "eslint": "4.7.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.0",
