@@ -2,9 +2,12 @@ import { expect } from 'chai';
 import React from 'react';
 import sinon from 'sinon';
 import ace from 'brace';
-import { mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import AceEditor from '../../src/ace.js';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
+import Adapter from 'enzyme-adapter-react-15';
+
+Enzyme.configure({ adapter: new Adapter() });
 describe('Ace Component', () => {
 
   // Required for the document.getElementById used by Ace can work in the test environment
@@ -210,11 +213,11 @@ describe('Ace Component', () => {
 
     it('should set editor to null on componentWillUnmount', () => {
       const wrapper = mount(<AceEditor />, mountOptions);
-      expect(wrapper.node.editor).to.not.equal(null);
+      expect(wrapper.getElement().editor).to.not.equal(null);
 
       // Check the editor is null after the Unmount
       wrapper.unmount();
-      expect(wrapper.node.editor).to.equal(null);
+      expect(wrapper.getElement()).to.equal(null);
     });
 
   });
@@ -416,13 +419,13 @@ describe('Ace Component', () => {
       const wrapper = mount(<AceEditor className={className}/>, mountOptions);
 
       // Read set value
-      let editor = wrapper.node.refEditor;
+      let editor = wrapper.instance().refEditor;
       expect(editor.className).to.equal(' ace_editor ace-tm old-class');
 
       // Now trigger the componentWillReceiveProps
       const newClassName = 'new-class';
       wrapper.setProps({className: newClassName});
-      editor = wrapper.node.refEditor;
+      editor = wrapper.instance().refEditor;
       expect(editor.className).to.equal(' new-class ace_editor ace-tm');
     });
 
