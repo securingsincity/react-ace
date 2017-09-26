@@ -74,7 +74,7 @@
     "opencollective": "^1.0.3",
     "prop-types": "^15.5.8",
     "react": "^15.6.2",
-    "react-dom": "^15.6.2"
+    "react-dom": "^16.0.0"
   },
   "peerDependencies": {
     "react": "^0.13.0 || ^0.14.0 || ^15.0.1",
