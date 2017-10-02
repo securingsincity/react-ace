@@ -1,6 +1,6 @@
 {
   "name": "react-ace",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "description": "A react component for Ace Editor",
   "main": "lib/index.js",
   "types": "types.d.ts",
@@ -71,7 +71,6 @@
     "brace": "^0.10.0",
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.1.1",
-    "opencollective": "^1.0.3",
     "prop-types": "^15.5.8",
     "react": "^15.6.2",
     "react-dom": "^15.6.2"
@@ -100,10 +99,5 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/securingsincity/react-ace.git"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/react-ace",
-    "logo": "https://opencollective.com/opencollective/logo.txt"
   }
 }
