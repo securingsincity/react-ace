@@ -71,9 +71,7 @@
     "brace": "^0.10.0",
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.1.1",
-    "prop-types": "^15.5.8",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2"
+    "prop-types": "^15.5.8"
   },
   "peerDependencies": {
     "react": "^0.13.0 || ^0.14.0 || ^15.0.1",
