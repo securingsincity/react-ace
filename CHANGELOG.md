@@ -5,6 +5,10 @@
 * Fully move to TypeScript interally
 * Publish typings for the split editor
 
+## 5.2.1 and 5.2.2
+
+* Remove Open Collective from build
+
 ## 5.2.0
 
 * Add support for events in onBlur and onFocus callbacks
