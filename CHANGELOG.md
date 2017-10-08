@@ -5,6 +5,11 @@
 * Fully move to TypeScript interally
 * Publish typings for the split editor
 
+## 5.3.0
+
+* Adds support for React 16 thanks to @layershifter
+* Removes react and react-dom from build. thanks to @M-ZubairAhmed
+
 ## 5.2.1 and 5.2.2
 
 * Remove Open Collective from build
