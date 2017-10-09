@@ -109,6 +109,21 @@ describe('Ace Component', () => {
       expect(editor.commands.commands.myTestCommand).to.deep.equal(commandsMock[1]);
     });
 
+    it('should change the command binding for the Ace element', () => {
+      const commandsMock = [
+        {
+          bindKey: {win: 'ctrl-d', mac: 'command-d'},
+          name: 'selectMoreAfter',
+          exec: 'selectMoreAfter'
+        }
+      ];
+      const wrapper = mount(<AceEditor commands={commandsMock}/>, mountOptions);
+
+      const editor = wrapper.instance().editor;
+      const expected = [editor.commands.commands.removeline, "selectMoreAfter"]
+      expect(editor.commands.commandKeyBinding['ctrl-d']).to.deep.equal(expected);
+    });
+
     it('should trigger the focus on mount', () => {
       const onFocusCallback = sinon.spy();
       mount(<AceEditor focus={true} onFocus={onFocusCallback}/>, mountOptions);
