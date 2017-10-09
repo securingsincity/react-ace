@@ -88,7 +88,7 @@ export default class ReactAce extends Component {
 
     if (Array.isArray(commands)) {
       commands.forEach((command) => {
-        if(typeof command.exec == "string") {
+        if(typeof command.exec == 'string') {
           this.editor.commands.bindKey(command.bindKey, command.exec);
         }
         else {

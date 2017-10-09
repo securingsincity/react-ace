@@ -99,7 +99,7 @@ export default class SplitComponent extends Component {
 
       if (Array.isArray(commands)) {
         commands.forEach((command) => {
-          if(typeof command.exec == "string") {
+          if(typeof command.exec == 'string') {
             editor.commands.bindKey(command.bindKey, command.exec);
           }
           else {
