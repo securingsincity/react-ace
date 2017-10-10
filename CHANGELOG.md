@@ -5,6 +5,10 @@
 * Fully move to TypeScript interally
 * Publish typings for the split editor
 
+## 5.4.0
+
+* #285: Added the possibility to change key bindings of existing commands. thanks to @FurcyPin
+
 ## 5.3.0
 
 * Adds support for React 16 thanks to @layershifter
