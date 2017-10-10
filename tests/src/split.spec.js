@@ -103,6 +103,21 @@ describe('Split Component', () => {
       expect(editor.commands.commands.myTestCommand).to.deep.equal(commandsMock[1]);
     });
 
+    it('should change the command binding for the Ace element', () => {
+      const commandsMock = [
+        {
+          bindKey: {win: 'ctrl-d', mac: 'command-d'},
+          name: 'selectMoreAfter',
+          exec: 'selectMoreAfter'
+        }
+      ];
+      const wrapper = mount(<SplitEditor commands={commandsMock}/>, mountOptions);
+
+      const editor = wrapper.instance().splitEditor;
+      const expected = [editor.commands.commands.removeline, "selectMoreAfter"]
+      expect(editor.commands.commandKeyBinding['ctrl-d']).to.deep.equal(expected);
+    });
+
     it('should get the editor from the onLoad callback', () => {
       const loadCallback = sinon.spy();
       const wrapper = mount(<SplitEditor onLoad={loadCallback}/>, mountOptions);

@@ -133,6 +133,25 @@ render() {
   </div>;
 }
 ```
+## How do I change key-bindings for an existing command?
+Same syntax as above, where `exec` is given the name of the command to rebind.
+```javascript
+
+render() {
+  return <div>
+    <AceEditor
+      ref="aceEditor"
+      mode="sql"     // Default value since this props must be set.
+      theme="chrome" // Default value since this props must be set.
+      commands={[{   // commands is array of key bindings.
+        name: 'removeline', //name for the key binding.
+        bindKey: {win: 'Ctrl-X', mac: 'Command-X'}, //key combination used for the command.
+        exec: () => 'removeline'  // name of the command to rebind
+      }]}
+    />
+  </div>;
+}
+```
 
 ## How do I add the search box?
 Add the following line

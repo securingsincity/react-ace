@@ -96,9 +96,15 @@ export default class SplitComponent extends Component {
         }
       }
       this.handleOptions(this.props, editor);
+
       if (Array.isArray(commands)) {
         commands.forEach((command) => {
-          editor.commands.addCommand(command);
+          if(typeof command.exec == 'string') {
+            editor.commands.bindKey(command.bindKey, command.exec);
+          }
+          else {
+            editor.commands.addCommand(command);
+          }
         });
       }
 
