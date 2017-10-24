@@ -91,6 +91,13 @@ onSelectionChange(selection) {
 }
 ```
 
+## How do I get selected text ?
+```javascript
+  const selectedText = this.refs.aceEditor.editor.getSelectedText();
+  // selectedText contains the selected text.
+}
+```
+
 ## How do I add markers?
 ```javascript
       const markers = [{
