@@ -68,6 +68,11 @@ class App extends Component {
     console.log('select-change-event', event);
   }
 
+  onCursorChange(newValue, event) {
+    console.log('cursor-change', newValue);
+    console.log('cursor-change-event', event);
+  }
+
   onValidate(annotations) {
     console.log('onValidate', annotations);
   }
@@ -221,6 +226,7 @@ class App extends Component {
           onLoad={this.onLoad}
           onChange={this.onChange}
           onSelectionChange={this.onSelectionChange}
+          onCursorChange={this.onCursorChange}
           onValidate={this.onValidate}
           value={this.state.value}
           fontSize={this.state.fontSize}

@@ -17,6 +17,7 @@ const editorEvents = [
   'onCopy',
   'onPaste',
   'onSelectionChange',
+  'onCursorChange',
   'onScroll',
   'handleOptions',
   'updateRef',
