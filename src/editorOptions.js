@@ -12,6 +12,7 @@ const editorOptions = [
 const editorEvents = [
   'onChange',
   'onFocus',
+  'onInput',
   'onBlur',
   'onCopy',
   'onPaste',

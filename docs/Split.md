@@ -2,11 +2,11 @@
 
 This allows for a split editor which can create multiple linked instances of the Ace editor. Each instance shares a theme and other properties while having their own value.
 
-## Demo 
+## Demo
 
 http://securingsincity.github.io/react-ace/split.html
 
-## Example Code 
+## Example Code
 
 ```javascript
 import React from 'react';
@@ -39,7 +39,7 @@ render(
 |name| 'brace-editor'| String |Unique Id to be used for the editor|
 |mode| ''| String |Language for parsing and code highlighting|
 |splits| 2 | Number | Number of views to have |
-|orientation| 'beside' | String | The orientation of the splits either `beside` or `below` | 
+|orientation| 'beside' | String | The orientation of the splits either `beside` or `below` |
 |theme| ''| String |theme to use|
 |value | ''| Array of Strings | value you want to populate in each code editor|
 |defaultValue | ''| Array of Strings |Default value for each editor|
@@ -67,6 +67,7 @@ render(
 |onSelectionChange| | Function | triggered by editor `selectionChange` event, and passes a [Selection](https://ace.c9.io/#nav=api&api=selection) as it's first argument and the event as the second|
 |onFocus| | Function | triggered by editor `focus` event|
 |onBlur| | Function | triggered by editor `blur` event|
+|onInput| | Function | triggered by editor `input` event|
 |onScroll| | Function | triggered by editor `scroll` event|
 |editorProps| | Object | properties to apply directly to the Ace editor instance|
 |setOptions| | Object | [options](https://github.com/ajaxorg/ace/wiki/Configuring-Ace) to apply directly to the Ace editor instance|

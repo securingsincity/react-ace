@@ -74,6 +74,7 @@ export default class SplitComponent extends Component {
       editor.setShowPrintMargin(showPrintMargin);
       editor.on('focus', this.onFocus);
       editor.on('blur', this.onBlur);
+      editor.on('input', this.onInput);
       editor.on('copy', this.onCopy);
       editor.on('paste', this.onPaste);
       editor.on('change', this.onChange);
@@ -247,15 +248,21 @@ export default class SplitComponent extends Component {
     }
   }
 
-  onFocus() {
+  onFocus(event) {
     if (this.props.onFocus) {
-      this.props.onFocus();
+      this.props.onFocus(event);
     }
   }
 
-  onBlur() {
+  onInput(event) {
+    if (this.props.onInput) {
+      this.props.onInput(event);
+    }
+  }
+
+  onBlur(event) {
     if (this.props.onBlur) {
-      this.props.onBlur();
+      this.props.onBlur(event);
     }
   }
 
@@ -342,6 +349,7 @@ SplitComponent.propTypes = {
   onCopy: PropTypes.func,
   onPaste: PropTypes.func,
   onFocus: PropTypes.func,
+  onInput: PropTypes.func,
   onBlur: PropTypes.func,
   onScroll: PropTypes.func,
   value: PropTypes.arrayOf(PropTypes.string),
