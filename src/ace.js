@@ -63,6 +63,7 @@ export default class ReactAce extends Component {
     this.editor.on('change', this.onChange);
     this.editor.on('input', this.onInput);
     this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
+    this.editor.getSession().selection.on('changeCursor', this.onCursorChange);
     if (onValidate) {
       this.editor.getSession().on('changeAnnotation', () => {
         const annotations = this.editor.getSession().getAnnotations();
@@ -219,6 +220,12 @@ export default class ReactAce extends Component {
       this.props.onSelectionChange(value, event);
     }
   }
+  onCursorChange(event) {
+    if(this.props.onCursorChange) {
+      const value = this.editor.getSelection();
+      this.props.onCursorChange(value, event)
+    }
+  }
   onInput(event) {
     if (this.props.onInput) {
       this.props.onInput(event)
@@ -324,6 +331,7 @@ ReactAce.propTypes = {
   defaultValue: PropTypes.string,
   onLoad: PropTypes.func,
   onSelectionChange: PropTypes.func,
+  onCursorChange: PropTypes.func,
   onBeforeLoad: PropTypes.func,
   onValidate: PropTypes.func,
   minLines: PropTypes.number,

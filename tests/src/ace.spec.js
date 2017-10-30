@@ -318,6 +318,25 @@ describe('Ace Component', () => {
       wrapper.instance().editor.getSession().selection.selectAll()
     });
 
+    it('should call the onCursorChange method callback', (done) => {
+      let onCursorChange = function(){}
+      const value =`
+        function main(value) {
+          console.log('hi james')
+          return value;
+        }
+      `
+
+      const wrapper = mount(<AceEditor value={value} />, mountOptions);
+      onCursorChange = function (selection) {
+        expect(selection.getCursor()).to.deep.equal({ row: 0, column: 0 })
+        done()
+      }
+      wrapper.setProps({onCursorChange}) 
+      expect(wrapper.instance().editor.getSession().selection.getCursor()).to.deep.equal({row: 5, column: 6})
+      wrapper.instance().editor.getSession().selection.moveCursorTo(0, 0)
+    });
+
     it('should call the onBlur method callback', () => {
       const onBlurCallback = sinon.spy();
       const wrapper = mount(<AceEditor onBlur={onBlurCallback}/>, mountOptions);

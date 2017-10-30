@@ -70,6 +70,12 @@ class App extends Component {
     console.log('select-change', newValue);
     console.log('select-change-event', event);
   }
+  
+  onCursorChange(newValue, event) {
+    console.log('cursor-change', newValue);
+    console.log('cursor-change-event', event);
+  }
+
   setTheme(e) {
     this.setState({
       theme: e.target.value

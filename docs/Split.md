@@ -65,6 +65,7 @@ render(
 |onCopy| | Function | triggered  by editor `copy` event, and passes text as argument|
 |onPaste| | Function | Triggered by editor `paste` event, and passes text as argument|
 |onSelectionChange| | Function | triggered by editor `selectionChange` event, and passes a [Selection](https://ace.c9.io/#nav=api&api=selection) as it's first argument and the event as the second|
+|onCursorChange| | Function | triggered by editor `changeCursor` event, and passes a [Selection](https://ace.c9.io/#nav=api&api=selection) as it's first argument and the event as the second|
 |onFocus| | Function | triggered by editor `focus` event|
 |onBlur| | Function | triggered by editor `blur` event|
 |onInput| | Function | triggered by editor `input` event|

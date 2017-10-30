@@ -79,6 +79,7 @@ export default class SplitComponent extends Component {
       editor.on('paste', this.onPaste);
       editor.on('change', this.onChange);
       editor.getSession().selection.on('changeSelection', this.onSelectionChange);
+      editor.getSession().selection.on('changeCursor', this.onCursorChange);
       editor.session.on('changeScrollTop', this.onScroll);
       editor.setValue(defaultValueForEditor === undefined ? valueForEditor : defaultValueForEditor, cursorStart);
       const newAnnotations = get(annotations, index, [])
@@ -247,7 +248,15 @@ export default class SplitComponent extends Component {
       this.props.onSelectionChange(value, event);
     }
   }
-
+  onCursorChange(event) {
+    if(this.props.onCursorChange) {
+      let value = []
+      this.editor.env.split.forEach((editor) => {
+        value.push(editor.getSelection())
+      })
+      this.props.onCursorChange(value, event)
+    }
+  }
   onFocus(event) {
     if (this.props.onFocus) {
       this.props.onFocus(event);
@@ -356,6 +365,7 @@ SplitComponent.propTypes = {
   defaultValue: PropTypes.arrayOf(PropTypes.string),
   onLoad: PropTypes.func,
   onSelectionChange: PropTypes.func,
+  onCursorChange: PropTypes.func,
   onBeforeLoad: PropTypes.func,
   minLines: PropTypes.number,
   maxLines: PropTypes.number,
