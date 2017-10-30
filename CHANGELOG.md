@@ -1,9 +1,13 @@
 # Changelog
 
-## Next Minor Release - TBD
+## Future Release - TBD
 
 * Fully move to TypeScript interally
 * Publish typings for the split editor
+
+## 5.5.0
+
+* Adds the onInput event
 
 ## 5.4.0
 

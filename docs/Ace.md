@@ -69,6 +69,7 @@ render(
 |onSelectionChange| | Function | triggered by editor `selectionChange` event, and passes a [Selection](https://ace.c9.io/#nav=api&api=selection) as it's first argument and the event as the second|
 |onFocus| | Function | triggered by editor `focus` event|
 |onBlur| | Function | triggered by editor `blur` event|
+|onInput| | Function | triggered by editor `input` event|
 |onScroll| | Function | triggered by editor `scroll` event|
 |onValidate| | Function | triggered, when annotations are changed|
 |editorProps| | Object | properties to apply directly to the Ace editor instance|

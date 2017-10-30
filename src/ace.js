@@ -61,6 +61,7 @@ export default class ReactAce extends Component {
     this.editor.on('copy', this.onCopy);
     this.editor.on('paste', this.onPaste);
     this.editor.on('change', this.onChange);
+    this.editor.on('input', this.onInput);
     this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
     if (onValidate) {
       this.editor.getSession().on('changeAnnotation', () => {
@@ -218,7 +219,11 @@ export default class ReactAce extends Component {
       this.props.onSelectionChange(value, event);
     }
   }
-
+  onInput(event) {
+    if (this.props.onInput) {
+      this.props.onInput(event)
+    }
+  }
   onFocus(event) {
     if (this.props.onFocus) {
       this.props.onFocus(event);
@@ -312,6 +317,7 @@ ReactAce.propTypes = {
   onCopy: PropTypes.func,
   onPaste: PropTypes.func,
   onFocus: PropTypes.func,
+  onInput: PropTypes.func,
   onBlur: PropTypes.func,
   onScroll: PropTypes.func,
   value: PropTypes.string,
