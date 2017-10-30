@@ -18,7 +18,7 @@
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm run clean",
     "prepublishOnly": "npm run clean && npm run build",
-    "test": "mocha --compilers js:babel-core/register --require tests/setup.js --recursive tests/**/*.spec.js",
+    "test": "mocha --require babel-register --require tests/setup.js tests/**/*.spec.js --exit",
     "coverage": "nyc npm run test"
   },
   "babel": {
@@ -51,7 +51,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.0",
     "eslint-plugin-react": "7.4.0",
     "jsdom": "^11.0.0",
-    "mocha": "3.5.3",
+    "mocha": "4.0.1",
     "nyc": "11.2.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
