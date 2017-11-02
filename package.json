@@ -59,7 +59,7 @@
     "rimraf": "2.6.2",
     "sinon": "4.0.2",
     "webpack": "3.8.1",
-    "webpack-dev-server": "2.9.3"
+    "webpack-dev-server": "2.9.4"
   },
   "keywords": [
     "ace",
