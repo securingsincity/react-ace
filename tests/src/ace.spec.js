@@ -237,6 +237,79 @@ describe('Ace Component', () => {
 
   });
 
+  //inspired from https://github.com/goodtimeaj/debounce-function/blob/master/test/unit/debounce-function.js
+  describe('Debounce function', () => {
+
+    it('function arg should be called when after timeout', (done) => {
+
+      const wrapper = mount(<AceEditor/>, mountOptions);
+      var flag = false;
+      var func = wrapper.instance().debounce(function() {
+        flag = true
+      }, 100);
+      func();
+      expect(flag).to.be.false;
+      setTimeout(function() {
+        expect(flag).to.be.true;
+        done();
+      }, 150);
+    });
+
+    it('timer should be reset on successive call', (done) => {
+      const wrapper = mount(<AceEditor/>, mountOptions);
+
+      var flag = false;
+      var func = wrapper.instance().debounce(function() {
+        flag = true
+      }, 100);
+      func();
+      expect(flag).to.be.false;
+      setTimeout(function() {
+        expect(flag).to.be.false;
+        func();
+      }, 50);
+      setTimeout(function() {
+        expect(flag).to.be.false;
+      }, 120);
+      setTimeout(function() {
+        expect(flag).to.be.true;
+        done();
+      }, 160);
+    });
+
+    it('function should be called only once per period', (done) => {
+      const wrapper = mount(<AceEditor/>, mountOptions);
+
+      var flag1 = false;
+      var flag2 = false;
+      var func = wrapper.instance().debounce(function() {
+        if (flag1) {
+          flag2 = true;
+        }
+        flag1 = true
+      }, 100);
+
+      func();
+      expect(flag1).to.be.false;
+      expect(flag2).to.be.false;
+      setTimeout(function() {
+        expect(flag1).to.be.false;
+        expect(flag2).to.be.false;
+        func();
+        setTimeout(function() {
+          expect(flag1).to.be.true;
+          expect(flag2).to.be.false;
+          func();
+          setTimeout(function() {
+            expect(flag1).to.be.true;
+            expect(flag2).to.be.false;
+            done();
+          }, 90);
+        }, 110);
+      }, 50);
+    });
+  });
+
   describe('Events', () => {
 
     it('should call the onChange method callback', () => {
@@ -253,6 +326,39 @@ describe('Ace Component', () => {
       expect(onChangeCallback.callCount).to.equal(1);
       expect(onChangeCallback.getCall(0).args[0]).to.equal(expectText);
       expect(onChangeCallback.getCall(0).args[1].action).to.eq('insert')
+    });
+
+    it('should limit call to onChange (debounce)', (done) => {
+      const period = 100;
+      const onChangeCallback = sinon.spy();
+      const wrapper = mount(<AceEditor onChange={onChangeCallback} debounceChangePeriod={period}/>, mountOptions);
+
+      // Check is not previously called
+      expect(onChangeCallback.callCount).to.equal(0);
+
+      // Trigger the change event
+      const expectText = 'React Ace Test';
+      const expectText2 = 'React Ace Test2';
+      wrapper.instance().editor.setValue(expectText, 1);
+      wrapper.instance().editor.setValue(expectText2, 1);
+
+      expect(onChangeCallback.callCount).to.equal(0);
+
+      setTimeout(function(){
+        expect(onChangeCallback.callCount).to.equal(1);
+        expect(onChangeCallback.getCall(0).args[0]).to.equal(expectText2);
+        expect(onChangeCallback.getCall(0).args[1].action).to.eq('insert');
+        onChangeCallback.reset();
+        wrapper.instance().editor.setValue(expectText2, 1);
+        wrapper.instance().editor.setValue(expectText, 1);
+        expect(onChangeCallback.callCount).to.equal(0);
+        setTimeout(function(){
+          expect(onChangeCallback.callCount).to.equal(1);
+          expect(onChangeCallback.getCall(0).args[0]).to.equal(expectText);
+          expect(onChangeCallback.getCall(0).args[1].action).to.eq('insert');
+          done();
+        },100);
+      },100);
     });
 
     it('should call the onCopy method', () => {
