@@ -47,7 +47,9 @@ export default class ReactAce extends Component {
     for (let i = 0; i < editorProps.length; i++) {
       this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
     }
-
+    if (this.props.debounceChangePeriod) {
+      this.onChange = this.debounce(this.onChange, this.props.debounceChangePeriod);
+    }
     this.editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3])
     this.editor.getSession().setMode(`ace/mode/${mode}`);
     this.editor.setTheme(`ace/theme/${theme}`);
@@ -116,6 +118,17 @@ export default class ReactAce extends Component {
     }
 
     this.editor.resize();
+  }
+
+  debounce(fn, delay) {
+    var timer = null;
+    return function () {
+      var context = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        fn.apply(context, args);
+      }, delay);
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -341,6 +354,7 @@ ReactAce.propTypes = {
   tabSize: PropTypes.number,
   showPrintMargin: PropTypes.bool,
   cursorStart: PropTypes.number,
+  debounceChangePeriod: PropTypes.number,
   editorProps: PropTypes.object,
   setOptions: PropTypes.object,
   style: PropTypes.object,
