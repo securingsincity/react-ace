@@ -61,6 +61,7 @@ render(
 |enableBasicAutocompletion| false| Boolean | Enable basic autocompletion|
 |enableLiveAutocompletion| false| Boolean | Enable live autocompletion|
 |tabSize| 4|  Number| tabSize|
+|debounceChangePeriod| null|  Number| A debounce delay period for the onChange event|
 |onLoad| | Function | called on editor load. The first argument is the instance of the editor |
 |onBeforeLoad| | Function | called before editor load. the first argument is an instance of `ace`|
 |onChange| | Function |  occurs on document change it has 2 arguments the value and the event.|
