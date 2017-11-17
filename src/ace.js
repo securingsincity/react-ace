@@ -252,7 +252,8 @@ export default class ReactAce extends Component {
 
   onBlur(event) {
     if (this.props.onBlur) {
-      this.props.onBlur(event);
+      const value=this.editor.getValue();
+      this.props.onBlur(event,value);
     }
   }
 
