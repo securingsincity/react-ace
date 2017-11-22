@@ -5,10 +5,11 @@
 * Fully move to TypeScript interally
 * Publish typings for the split editor
 
-## 5.6.0 
+## 5.7.0
 
 * Adds debounce option for onChange event
 * Add support onCursorChange event
+* Adds editor as second argument to the onBlur
 
 ## 5.5.0
 
