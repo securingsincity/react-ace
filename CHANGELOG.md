@@ -5,6 +5,11 @@
 * Fully move to TypeScript interally
 * Publish typings for the split editor
 
+## 5.8.0
+
+* Upgrade brace to 0.11
+* More loose comparison for componentDidMount for default value. Closes #317
+
 ## 5.7.0
 
 * Adds debounce option for onChange event
