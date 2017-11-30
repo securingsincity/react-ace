@@ -8,7 +8,7 @@
 ## 5.8.0
 
 * Upgrade brace to 0.11
-* More loose comparison for componentDidMount for default value. Closes #317
+* More loose comparison for componentDidMount for default value. Closes #317. Thanks @VijayKrish93
 
 ## 5.7.0
 
