@@ -69,7 +69,7 @@
     "brace"
   ],
   "dependencies": {
-    "brace": "^0.10.0",
+    "brace": "^0.11.0",
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.1.1",
     "prop-types": "^15.5.8"
