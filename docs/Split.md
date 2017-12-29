@@ -12,14 +12,15 @@ http://securingsincity.github.io/react-ace/split.html
 import React from 'react';
 import { render } from 'react-dom';
 import brace from 'brace';
-import { split } from 'react-ace';
+import { split as SplitEditor} from 'react-ace';
+
 
 import 'brace/mode/java';
 import 'brace/theme/github';
 
 // Render editor
 render(
-  <AceEditor
+  <SplitEditor
     mode="java"
     theme="github"
     splits={2}
