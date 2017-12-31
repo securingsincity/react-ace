@@ -4,6 +4,10 @@
 
 * Fully move to TypeScript interally
 * Publish typings for the split editor
+## 5.9.0
+
+* First value resets undo manager. Closes #339 and #223
+* Updated split editor documentation
 
 ## 5.8.0
 
