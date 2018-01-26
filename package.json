@@ -49,7 +49,7 @@
     "eslint": "4.16.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.0",
-    "eslint-plugin-react": "7.5.0",
+    "eslint-plugin-react": "7.6.0",
     "jsdom": "^11.0.0",
     "mocha": "5.0.0",
     "nyc": "11.4.1",
