@@ -21,16 +21,6 @@
     "test": "mocha --require babel-register --require tests/setup.js tests/**/*.spec.js --exit",
     "coverage": "nyc npm run test"
   },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react",
-      "stage-2"
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
-  },
   "author": "James Hrisho",
   "license": "MIT",
   "devDependencies": {
@@ -59,6 +49,7 @@
     "rimraf": "2.6.2",
     "sinon": "4.4.1",
     "webpack": "4.0.0",
+    "webpack-cli": "^2.0.9",
     "webpack-dev-server": "3.0.0"
   },
   "keywords": [

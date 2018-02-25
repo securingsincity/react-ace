@@ -3,6 +3,7 @@ const path = require('path');
 
 
 module.exports = {
+  mode: 'development',
   devtool: 'source-map',
   entry: {
     'index': './example/index',
@@ -18,9 +19,11 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['babel-loader'],
+    rules: [{
+      test: /(\.js|\.jsx)$/,
+      use: {
+        loader: 'babel-loader'
+      },
       exclude: /node_modules/,
     }],
   },
