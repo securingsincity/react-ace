@@ -8,8 +8,8 @@
     "clean": "rimraf lib dist",
     "lint": "node_modules/.bin/eslint src/*",
     "build:lib": "babel src --out-dir lib",
-    "build:umd": "webpack src/index.js dist/react-ace.js --config webpack.config.development.js",
-    "build:umd:min": "webpack src/index.js dist/react-ace.min.js --config webpack.config.production.js",
+    "build:umd": "webpack src/index.js -o dist/react-ace.js --config webpack.config.development.js",
+    "build:umd:min": "webpack src/index.js -o dist/react-ace.min.js --config webpack.config.production.js",
     "example": "webpack-dev-server --config webpack.config.example.js",
     "build:example": "webpack --config webpack.config.example.js",
     "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
@@ -20,16 +20,6 @@
     "prepublishOnly": "npm run clean && npm run build",
     "test": "mocha --require babel-register --require tests/setup.js tests/**/*.spec.js --exit",
     "coverage": "nyc npm run test"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react",
-      "stage-2"
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
   },
   "author": "James Hrisho",
   "license": "MIT",
@@ -58,7 +48,8 @@
     "react-test-renderer": "^16.0.0",
     "rimraf": "2.6.2",
     "sinon": "4.4.1",
-    "webpack": "3.11.0",
+    "webpack": "4.0.0",
+    "webpack-cli": "^2.0.9",
     "webpack-dev-server": "3.0.0"
   },
   "keywords": [
