@@ -47,7 +47,7 @@
     "react-dom": "^16.0.0",
     "react-test-renderer": "^16.0.0",
     "rimraf": "2.6.2",
-    "sinon": "4.4.5",
+    "sinon": "4.4.6",
     "webpack": "4.1.0",
     "webpack-cli": "^2.0.9",
     "webpack-dev-server": "3.1.1"
