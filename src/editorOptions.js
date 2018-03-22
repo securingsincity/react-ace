@@ -22,8 +22,18 @@ const editorEvents = [
   'handleOptions',
   'updateRef',
 ]
-
+const debounce=(fn, delay)=>{
+  var timer = null;
+  return function () {
+    var context = this, args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+}
 export {
   editorOptions,
-  editorEvents
+  editorEvents,
+  debounce,
 }

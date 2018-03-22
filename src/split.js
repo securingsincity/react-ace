@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
 import get from 'lodash.get'
 
-import { editorOptions, editorEvents } from './editorOptions.js'
+import { editorOptions, editorEvents,debounce } from './editorOptions.js'
 const { Range } = ace.acequire('ace/range');
 
 import 'brace/ext/split'
@@ -16,6 +16,7 @@ export default class SplitComponent extends Component {
     editorEvents.forEach(method => {
       this[method] = this[method].bind(this);
     });
+    this.debounce=debounce;
   }
 
   componentDidMount() {
@@ -59,6 +60,9 @@ export default class SplitComponent extends Component {
     this.editor.renderer.setShowGutter(false);
     // get a list of possible options to avoid 'misspelled option errors'
     const availableOptions = this.splitEditor.$options;
+    if (this.props.debounceChangePeriod) {
+      this.onChange = this.debounce(this.onChange, this.props.debounceChangePeriod);
+    }
     split.forEach((editor, index) => {
       for (let i = 0; i < editorProps.length; i++) {
         editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
@@ -363,6 +367,7 @@ SplitComponent.propTypes = {
   onScroll: PropTypes.func,
   value: PropTypes.arrayOf(PropTypes.string),
   defaultValue: PropTypes.arrayOf(PropTypes.string),
+  debounceChangePeriod:PropTypes.number,
   onLoad: PropTypes.func,
   onSelectionChange: PropTypes.func,
   onCursorChange: PropTypes.func,
