@@ -28,14 +28,14 @@ export default class DiffComponent extends Component {
 
 
     const dmp = new DiffMatchPatch();
-    const lhstring = this.state.value[0];
-    const rhstring = this.state.value[1];
+    const lhString = this.state.value[0];
+    const rhString = this.state.value[1];
 
-    if (lhstring.length === 0 && rhstring.length === 0) {
+    if (lhString.length === 0 && rhString.length === 0) {
       return [];
     }
 
-    const diff = dmp.diff_main(lhstring, rhstring);
+    const diff = dmp.diff_main(lhString, rhString);
     dmp.diff_cleanupSemantic(diff);
 
     const diffedLines = {
@@ -51,7 +51,7 @@ export default class DiffComponent extends Component {
     diff.forEach((chunk) => {
       const chunkType = chunk[0];
       const text = chunk[1];
-      const lines = text.split('\n').length - 1;
+      let lines = text.split('\n').length - 1;
 
       // diff-match-patch sometimes returns empty strings at random
       if (text.length === 0) {
@@ -68,25 +68,15 @@ export default class DiffComponent extends Component {
         cursor.right += lines;
 
         break;
-
       case C.DIFF_DELETE:
-        linesToHighlight = lines;
-
-        // If the last character is a newline, we don't want to highlight that line
-        if (lastChar === '\n') {
-          linesToHighlight -= 1;
-        }
 
         // If the deletion starts with a newline, push the cursor down to that line
         if (firstChar === '\n') {
           cursor.left++;
+          lines--;
         }
 
-        // console.log('Diff Delete:', chunk);
-        diffedLines.left.push({
-          startLine: cursor.left,
-          endLine: cursor.left + linesToHighlight,
-        });
+        linesToHighlight = lines;
 
         // If the deletion does not include a newline, highlight the same line on the right
         if (linesToHighlight === 0) {
@@ -96,26 +86,27 @@ export default class DiffComponent extends Component {
           });
         }
 
-        cursor.left += lines;
-        break;
-
-      case C.DIFF_INSERT:
-        linesToHighlight = lines;
-
         // If the last character is a newline, we don't want to highlight that line
         if (lastChar === '\n') {
           linesToHighlight -= 1;
         }
 
-        // If the insertion starts with a newline, push the cursor down to the next line
+        diffedLines.left.push({
+          startLine: cursor.left,
+          endLine: cursor.left + linesToHighlight,
+        });
+
+        cursor.left += lines;
+        break;
+      case C.DIFF_INSERT:
+
+        // If the insertion starts with a newline, push the cursor down to that line
         if (firstChar === '\n') {
           cursor.right++;
+          lines--;
         }
 
-        diffedLines.right.push({
-          startLine: cursor.right,
-          endLine: cursor.right + linesToHighlight,
-        });
+        linesToHighlight = lines;
 
         // If the insertion does not include a newline, highlight the same line on the left
         if (linesToHighlight === 0) {
@@ -124,6 +115,16 @@ export default class DiffComponent extends Component {
             endLine: cursor.left,
           });
         }
+
+        // If the last character is a newline, we don't want to highlight that line
+        if (lastChar === '\n') {
+          linesToHighlight -= 1;
+        }
+
+        diffedLines.right.push({
+          startLine: cursor.right,
+          endLine: cursor.right + linesToHighlight,
+        });
 
         cursor.right += lines;
         break;
