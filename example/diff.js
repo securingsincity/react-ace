@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import SplitAceEditor from '../src/split.js';
 import DiffEditor from '../src/diff.js';
 
 import 'brace/mode/jsx';
