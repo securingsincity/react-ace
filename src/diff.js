@@ -20,13 +20,6 @@ export default class DiffComponent extends Component {
   }
 
   diff() {
-    const C = {
-      DIFF_EQUAL: 0,
-      DIFF_DELETE: -1,
-      DIFF_INSERT: 1,
-    };
-
-
     const dmp = new DiffMatchPatch();
     const lhString = this.state.value[0];
     const rhString = this.state.value[1];
@@ -37,6 +30,18 @@ export default class DiffComponent extends Component {
 
     const diff = dmp.diff_main(lhString, rhString);
     dmp.diff_cleanupSemantic(diff);
+
+    const diffedLines = this.generateDiffedLines(diff);
+    const codeEditorSettings = this.setCodeMarkers(diffedLines);
+    return codeEditorSettings;
+  }
+
+  generateDiffedLines(diff) {
+    const C = {
+      DIFF_EQUAL: 0,
+      DIFF_DELETE: -1,
+      DIFF_INSERT: 1,
+    };
 
     const diffedLines = {
       left: [],
@@ -132,9 +137,7 @@ export default class DiffComponent extends Component {
         throw new Error('Diff type was not defined.');
       }
     });
-
-    const codeEditorSettings = this.setCodeMarkers(diffedLines);
-    return codeEditorSettings;
+    return diffedLines;
   }
 
   // Receives a collection of line numbers and iterates through them to highlight appropriately
@@ -208,16 +211,6 @@ export default class DiffComponent extends Component {
         value={this.state.value}
         markers={markers}
       />
-      // <SplitEditor
-      //   onChange={this.onChange}
-      //   defaultValue={this.props.defaultValue}
-      //   value={this.state.value}
-      //   height={this.props.height}
-      //   width={this.props.width}
-      //   mode={this.props.mode}
-      //   wrapEnabled={true}
-      //   markers={markers}
-      // />
     );
   }
 }
