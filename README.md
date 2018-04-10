@@ -57,6 +57,8 @@ Checkout the `example` directory for a working example using webpack.
 
 [Split View Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Split.md)
 
+[Diff Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Diff.md)
+
 [How to add modes, themes and keyboard handlers](https://github.com/securingsincity/react-ace/blob/master/docs/Modes.md)
 
 [Frequently Asked Questions](https://github.com/securingsincity/react-ace/blob/master/docs/FAQ.md)
