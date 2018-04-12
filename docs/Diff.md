@@ -48,7 +48,7 @@ The diff editor is contained in a Split editor and will highlight differences be
    |showGutter| true| Boolean | show gutter |
    |showPrintMargin| true| Boolean| show print margin |
    |style| | Object  | camelCased properties |
-    |tabSize|4|Number|Number of spaces to include as tab|
+   |tabSize|4|Number|Number of spaces to include as tab|
    |theme|'github'|String|Theme to use|
    |value|['','']|Array of Strings|Index 0: Value of first editor. Index 1: Value of second editor|
    |width| '500px'| String |CSS value for width|
