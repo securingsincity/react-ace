@@ -51,7 +51,7 @@ import 'brace/ext/language_tools';
 
 const defaultValue = [
   `function onLoad(editor) {
-    console.log(\"i\'ve loaded\");
+    console.log("i've loaded");
   }`,
   'const secondInput = "me i am the second input";'
 ];
@@ -70,7 +70,7 @@ class App extends Component {
     console.log('select-change', newValue);
     console.log('select-change-event', event);
   }
-  
+
   onCursorChange(newValue, event) {
     console.log('cursor-change', newValue);
     console.log('cursor-change-event', event);

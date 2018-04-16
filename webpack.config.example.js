@@ -3,10 +3,12 @@ const path = require('path');
 
 
 module.exports = {
+  mode: 'development',
   devtool: 'source-map',
   entry: {
     'index': './example/index',
     'split': './example/split',
+    'diff': './example/diff',
   },
   output: {
     path: path.join(__dirname, 'example/static'),
@@ -18,9 +20,11 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['babel-loader'],
+    rules: [{
+      test: /(\.js|\.jsx)$/,
+      use: {
+        loader: 'babel-loader'
+      },
       exclude: /node_modules/,
     }],
   },

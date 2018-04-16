@@ -34,20 +34,20 @@ describe('Ace Component', () => {
     it('should render without problems with defaults properties, defaultValue and keyboardHandler', () => {
       const wrapper = mount(<AceEditor
         keyboardHandler="vim"
-        defaultValue={`hi james`}
-       />, mountOptions);
+        defaultValue={'hi james'}
+      />, mountOptions);
       expect(wrapper).to.exist;
       let editor = wrapper.instance().editor;
       expect(editor.getValue()).to.equal('hi james');
     });
 
     it('should render editor options not default values', () => {
-      const wrapper = mount(<AceEditor
+      const wrapper = mount((<AceEditor
         keyboardHandler="vim"
         setOptions={{
           tabSize: 2
         }}
-       />, mountOptions);
+      />), mountOptions);
       expect(wrapper).to.exist;
       let editor = wrapper.instance().editor;
       expect(editor.getOption('tabSize')).to.equal(2);
@@ -120,7 +120,7 @@ describe('Ace Component', () => {
       const wrapper = mount(<AceEditor commands={commandsMock}/>, mountOptions);
 
       const editor = wrapper.instance().editor;
-      const expected = [editor.commands.commands.removeline, "selectMoreAfter"]
+      const expected = [editor.commands.commands.removeline, 'selectMoreAfter']
       expect(editor.commands.commandKeyBinding['ctrl-d']).to.deep.equal(expected);
     });
 
@@ -308,6 +308,15 @@ describe('Ace Component', () => {
         }, 110);
       }, 50);
     });
+    it('should keep initial value after undo event', () => {
+      const onInput = () => {
+        const editor = wrapper.instance().editor;
+        editor.undo();
+        expect(editor.getValue()).to.equal('foobar');
+      };
+
+      const wrapper = mount(<AceEditor value="foobar" onInput={onInput} />, mountOptions);
+    });
   });
 
   describe('Events', () => {
@@ -438,7 +447,7 @@ describe('Ace Component', () => {
         expect(selection.getCursor()).to.deep.equal({ row: 0, column: 0 })
         done()
       }
-      wrapper.setProps({onCursorChange}) 
+      wrapper.setProps({onCursorChange})
       expect(wrapper.instance().editor.getSession().selection.getCursor()).to.deep.equal({row: 5, column: 6})
       wrapper.instance().editor.getSession().selection.moveCursorTo(0, 0)
     });
@@ -546,7 +555,7 @@ describe('Ace Component', () => {
         showPrintMargin: false,
         showGutter: true,
         height: '120px',
-        width: "220px"
+        width: '220px'
       });
       const newMode =  wrapper.first('AceEditor').props()
       expect(oldMode).to.not.deep.equal(newMode);

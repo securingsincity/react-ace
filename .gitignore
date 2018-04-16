@@ -31,6 +31,9 @@ node_modules
 # JetBrains IDE
 .idea
 
+# Visual Studios Code
+.vscode
+
 # Babel Build
 lib
 

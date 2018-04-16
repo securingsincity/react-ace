@@ -50,7 +50,7 @@ import 'brace/ext/searchbox';
 
 const defaultValue =
 `function onLoad(editor) {
-  console.log(\"i\'ve loaded\");
+  console.log("i've loaded");
 }`;
 class App extends Component {
   onLoad() {
@@ -230,7 +230,6 @@ class App extends Component {
             onValidate={this.onValidate}
             value={this.state.value}
             fontSize={this.state.fontSize}
-            debounceChangePeriod={1000}
             showPrintMargin={this.state.showPrintMargin}
             showGutter={this.state.showGutter}
             highlightActiveLine={this.state.highlightActiveLine}

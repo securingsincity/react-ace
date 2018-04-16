@@ -7,6 +7,8 @@
 [![CDNJS](https://img.shields.io/cdnjs/v/react-ace.svg)](https://cdnjs.com/libraries/react-ace)
 [![Coverage Status](https://coveralls.io/repos/github/securingsincity/react-ace/badge.svg?branch=master)](https://coveralls.io/github/securingsincity/react-ace?branch=master)
 
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/j)
+
 A set of react components for Ace / Brace
 
 [DEMO of React Ace](http://securingsincity.github.io/react-ace/)
@@ -54,6 +56,8 @@ Checkout the `example` directory for a working example using webpack.
 [Ace Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Ace.md)
 
 [Split View Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Split.md)
+
+[Diff Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Diff.md)
 
 [How to add modes, themes and keyboard handlers](https://github.com/securingsincity/react-ace/blob/master/docs/Modes.md)
 

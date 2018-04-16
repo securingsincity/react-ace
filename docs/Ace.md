@@ -70,7 +70,7 @@ render(
 |onSelectionChange| | Function | triggered by editor `selectionChange` event, and passes a [Selection](https://ace.c9.io/#nav=api&api=selection) as it's first argument and the event as the second|
 |onCursorChange| | Function | triggered by editor `changeCursor` event, and passes a [Selection](https://ace.c9.io/#nav=api&api=selection) as it's first argument and the event as the second|
 |onFocus| | Function | triggered by editor `focus` event|
-|onBlur| | Function | triggered by editor `blur` event|
+|onBlur| | Function | triggered by editor `blur` event.It has two arguments event and editor|
 |onInput| | Function | triggered by editor `input` event|
 |onScroll| | Function | triggered by editor `scroll` event|
 |onValidate| | Function | triggered, when annotations are changed|
@@ -79,5 +79,5 @@ render(
 |keyboardHandler| | String | corresponding to the keybinding mode to set (such as vim or emacs)|
 |commands| | Array | new commands to add to the editor
 |annotations| | Array | annotations to show in the editor i.e. `[{ row: 0, column: 2, type: 'error', text: 'Some error.'}]`, displayed in the gutter|
-|markers| | Array | [markers](https://ace.c9.io/api/edit_session.html#EditSession.addMarker) to show in the editor, i.e. `[{ startRow: 0, startCol: 2, endRow: 1, endCol: 20, className: 'error-marker', type: 'background' }]`|
+|markers| | Array | [markers](https://ace.c9.io/#nav=api&api=edit_session) to show in the editor, i.e. `[{ startRow: 0, startCol: 2, endRow: 1, endCol: 20, className: 'error-marker', type: 'background' }]`. Make sure to define the class (eg. ".error-marker") and set `position: absolute` for it.|
 |style| | Object  | camelCased properties |
