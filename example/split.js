@@ -263,6 +263,7 @@ class App extends Component {
             theme={this.state.theme}
             name="blah2"
             onLoad={this.onLoad}
+            debounceChangePeriod={1000}
             onChange={this.onChange}
             onSelectionChange={this.onSelectionChange}
             fontSize={this.state.fontSize}
