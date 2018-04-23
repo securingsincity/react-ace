@@ -94,6 +94,7 @@ class App extends Component {
             height="1000px"
             width="1000px"
             mode={this.state.mode}
+            onChange={this.onChange}
           />
         </div>
       </div>
