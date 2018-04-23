@@ -40,6 +40,7 @@ The diff editor is contained in a Split editor and will highlight differences be
    |name|'brace-editor'|string|Unique ID to be used for the split editor|
    |onLoad| | Function | called on editor load. The first argument is the instance of the editor |
    |onScroll| | Function | triggered by editor `scroll` event|
+   |onChange| | Function | occurs on document change it has one argument the values array|
    |onPaste| | Function | Triggered by editor `paste` event, and passes text as argument|
    |orientation|'beside'|String|The orientation of splits either 'beside' or 'below'|
    |readOnly| false| Boolean| make the editor read only |
