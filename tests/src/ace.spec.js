@@ -357,7 +357,7 @@ describe('Ace Component', () => {
         expect(onChangeCallback.callCount).to.equal(1);
         expect(onChangeCallback.getCall(0).args[0]).to.equal(expectText2);
         expect(onChangeCallback.getCall(0).args[1].action).to.eq('insert');
-        onChangeCallback.reset();
+        onChangeCallback.resetHistory();
         wrapper.instance().editor.setValue(expectText2, 1);
         wrapper.instance().editor.setValue(expectText, 1);
         expect(onChangeCallback.callCount).to.equal(0);
