@@ -2,7 +2,7 @@
 // Project: https://github.com/securingsincity/react-ace
 // Definitions by: Alberto Nicoletti <https://github.com/illbexyz>
 
-import { Component } from 'react'
+import { Component, CSSProperties } from 'react'
 
 export interface Annotation {
     row: number
@@ -163,6 +163,7 @@ export interface AceEditorProps {
     commands?: Array<Command>
     annotations?: Array<Annotation>
     markers?: Array<Marker>
+    style?: CSSProperties
 }
 
 export default class AceEditor extends Component<AceEditorProps, {}> {}
