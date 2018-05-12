@@ -45,6 +45,7 @@
               "error"
             ]
           }
-        ]
+        ],
+        "react/no-deprecated": "warn"
     }
 }
