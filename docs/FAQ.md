@@ -14,7 +14,7 @@ Check out the example applications
 `ReactAce` has an editor property, which is the wrapped editor. You can use refs to get to the component, and then you should be able to use the editor on the component to run the function you need:
 
 ```javascript
-const reactAceComponent = parent.refs.reactAceComponent;
+const reactAceComponent = this.refs.reactAceComponent;
 const editor = reactAceComponent.editor
 editor.find(searchRegex, {
    backwards: false,
