@@ -1,4 +1,5 @@
-# React-Ace
+#  React-Ace
+![logo](https://github.com/securingsincity/react-ace/raw/master/logo.png)
 
 [![Backers on Open Collective](https://opencollective.com/react-ace/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/react-ace/sponsors/badge.svg)](#sponsors) [![Greenkeeper badge](https://badges.greenkeeper.io/securingsincity/react-ace.svg)](https://greenkeeper.io/)
 
