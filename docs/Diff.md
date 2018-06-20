@@ -40,6 +40,7 @@ The diff editor is contained in a Split editor and will highlight differences be
    |name|'brace-editor'|string|Unique ID to be used for the split editor|
    |onLoad| | Function | called on editor load. The first argument is the instance of the editor |
    |onScroll| | Function | triggered by editor `scroll` event|
+   |onChange| | Function | occurs on document change it has one argument the values array|
    |onPaste| | Function | Triggered by editor `paste` event, and passes text as argument|
    |orientation|'beside'|String|The orientation of splits either 'beside' or 'below'|
    |readOnly| false| Boolean| make the editor read only |
@@ -48,7 +49,7 @@ The diff editor is contained in a Split editor and will highlight differences be
    |showGutter| true| Boolean | show gutter |
    |showPrintMargin| true| Boolean| show print margin |
    |style| | Object  | camelCased properties |
-    |tabSize|4|Number|Number of spaces to include as tab|
+   |tabSize|4|Number|Number of spaces to include as tab|
    |theme|'github'|String|Theme to use|
    |value|['','']|Array of Strings|Index 0: Value of first editor. Index 1: Value of second editor|
    |width| '500px'| String |CSS value for width|

@@ -3,7 +3,27 @@
 ## Future Release - TBD
 
 * Fully move to TypeScript interally
-* Publish typings for the split editor
+* Publish typings for the split and diff editor
+
+## 6.1.1
+
+* Fixes typo in `console.warn`
+* Adds style property to typings
+
+## 6.1.0
+
+* Onchange support in diff editor
+* Debounce Prop support in split editor
+
+## 6.0.0
+
+* Adds Diff editor
+
+## 5.10.0
+
+* Upgraded many build dependencies
+* Split editor adds UndoManager
+
 ## 5.9.0
 
 * First value resets undo manager. Closes #339 and #223

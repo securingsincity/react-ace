@@ -27,7 +27,7 @@ describe('Ace Component', () => {
       const stub = sinon.stub(console, 'warn');
       const wrapper = mount(<AceEditor enableBasicAutocompletion={true} />, mountOptions);
       expect(wrapper).to.exist;
-      expect(console.warn.calledWith('ReaceAce: editor option enableBasicAutocompletion was activated but not found. Did you need to import a related tool or did you possibly mispell the option?') ).to.be.true;
+      expect(console.warn.calledWith('ReactAce: editor option enableBasicAutocompletion was activated but not found. Did you need to import a related tool or did you possibly mispell the option?') ).to.be.true;
       stub.restore();
     });
 
@@ -357,7 +357,7 @@ describe('Ace Component', () => {
         expect(onChangeCallback.callCount).to.equal(1);
         expect(onChangeCallback.getCall(0).args[0]).to.equal(expectText2);
         expect(onChangeCallback.getCall(0).args[1].action).to.eq('insert');
-        onChangeCallback.reset();
+        onChangeCallback.resetHistory();
         wrapper.instance().editor.setValue(expectText2, 1);
         wrapper.instance().editor.setValue(expectText, 1);
         expect(onChangeCallback.callCount).to.equal(0);

@@ -1,9 +1,7 @@
 language: node_js
 node_js:
-- '8'
+- '10'
 install:
-- npm install react
-- npm install react-dom
 - npm install
 script:
 - npm run build
@@ -12,6 +10,9 @@ script:
 - npm run build:example
 after_success:
   - cat ./coverage/*.info | ./node_modules/coveralls/bin/coveralls.js
+cache:
+  directories:
+    - node_modules # NPM packages
 deploy:
   - provider: releases
     api_key:

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import DiffEditor from '../src/diff.js';
+import {diff as DiffEditor} from '../src/index.js';
 
 import 'brace/mode/jsx';
 import 'brace/ext/searchbox';
@@ -94,6 +94,7 @@ class App extends Component {
             height="1000px"
             width="1000px"
             mode={this.state.mode}
+            onChange={this.onChange}
           />
         </div>
       </div>

@@ -17,6 +17,9 @@ export default class DiffComponent extends Component {
     this.setState({
       value: value
     });
+    if(this.props.onChange){
+      this.props.onChange(value);
+    }
   }
 
   diff() {
@@ -231,6 +234,7 @@ DiffComponent.propTypes = {
   onLoad: PropTypes.func,
   onPaste: PropTypes.func,
   onScroll: PropTypes.func,
+  onChange:PropTypes.func,
   orientation: PropTypes.string,
   readOnly: PropTypes.bool,
   scrollMargin: PropTypes.array,
@@ -262,6 +266,7 @@ DiffComponent.defaultProps = {
   onLoad: null,
   onScroll: null,
   onPaste: null,
+  onChange:null,
   orientation: 'beside',
   readOnly: false,
   scrollMargin: [ 0, 0, 0, 0],

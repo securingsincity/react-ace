@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
 
 const { Range } = ace.acequire('ace/range');
-import { editorOptions, editorEvents } from './editorOptions.js'
+import { editorOptions, editorEvents,debounce } from './editorOptions.js'
 
 export default class ReactAce extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ export default class ReactAce extends Component {
     editorEvents.forEach(method => {
       this[method] = this[method].bind(this);
     });
+    this.debounce=debounce;
   }
 
   componentDidMount() {
@@ -86,7 +87,7 @@ export default class ReactAce extends Component {
       if (availableOptions.hasOwnProperty(option)) {
         this.editor.setOption(option, this.props[option]);
       } else if (this.props[option]) {
-        console.warn(`ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`)
+        console.warn(`ReactAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`)
       }
     }
     this.handleOptions(this.props);
@@ -121,16 +122,7 @@ export default class ReactAce extends Component {
     this.editor.resize();
   }
 
-  debounce(fn, delay) {
-    var timer = null;
-    return function () {
-      var context = this, args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        fn.apply(context, args);
-      }, delay);
-    };
-  }
+  
 
   componentWillReceiveProps(nextProps) {
     const oldProps = this.props;
