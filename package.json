@@ -39,7 +39,7 @@
     "eslint": "5.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.0",
-    "eslint-plugin-react": "7.9.1",
+    "eslint-plugin-react": "7.10.0",
     "jsdom": "^11.0.0",
     "mocha": "5.2.0",
     "nyc": "12.0.2",
