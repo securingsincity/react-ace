@@ -22,6 +22,8 @@ The diff editor is contained in a Split editor and will highlight differences be
    );
    ```
 
+Also see the [diff](../example/diff.js) [example](../example/diff.html) in the example folder for more robust sample code (seen in the [demo](http://securingsincity.github.io/react-ace/diff.html)).
+
    ## Available Props
 
    |Prop|Default|Type|Description|
