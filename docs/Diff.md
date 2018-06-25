@@ -8,16 +8,16 @@ The diff editor is contained in a Split editor and will highlight differences be
 
 ```import React, { Component } from 'react';
    import { render } from 'react-dom';
-   import DiffEditor from '../src/diff.js';
+   import { diff as DiffEditor } from 'react-ace';
 
-   import 'brace/mode/jsx';
+   import 'brace/theme/github'; // this is needed as the default theme
 
    render(
        <DiffEditor
-       value=['Test code differences', 'Test code difference']
+       value={['Test code differences', 'Test code difference']}
        height="1000px"
        width="1000px"
-       mode="javascript"
+       mode="text"
      />
    );
    ```
