@@ -16,6 +16,8 @@ A set of react components for Ace / Brace
 
 [DEMO of React Ace Split Editor](http://securingsincity.github.io/react-ace/split.html)
 
+[DEMO of React Ace Diff Editor](http://securingsincity.github.io/react-ace/diff.html)
+
 ## Install
 
 `npm install react-ace`

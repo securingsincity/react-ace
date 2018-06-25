@@ -184,6 +184,7 @@ export default class DiffComponent extends Component {
     return (
       <SplitEditor
         name={this.props.name}
+        className={this.props.className}
         focus={this.props.focus}
         orientation={this.props.orientation}
         splits={this.props.splits}
@@ -231,6 +232,7 @@ DiffComponent.propTypes = {
   minLines: PropTypes.func,
   mode: PropTypes.string,
   name: PropTypes.string,
+  className: PropTypes.string,
   onLoad: PropTypes.func,
   onPaste: PropTypes.func,
   onScroll: PropTypes.func,

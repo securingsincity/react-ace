@@ -36,7 +36,7 @@
     "coveralls": "^3.0.0",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.1",
-    "eslint": "4.19.1",
+    "eslint": "5.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.0",
     "eslint-plugin-react": "7.9.1",
@@ -48,7 +48,7 @@
     "react-test-renderer": "^16.0.0",
     "rimraf": "2.6.2",
     "sinon": "6.0.1",
-    "webpack": "4.11.0",
+    "webpack": "4.11.1",
     "webpack-cli": "^3.0.2",
     "webpack-dev-server": "^3.1.3"
   },
