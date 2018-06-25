@@ -8,19 +8,21 @@ The diff editor is contained in a Split editor and will highlight differences be
 
 ```import React, { Component } from 'react';
    import { render } from 'react-dom';
-   import DiffEditor from '../src/diff.js';
+   import { diff as DiffEditor } from 'react-ace';
 
-   import 'brace/mode/jsx';
+   import 'brace/theme/github'; // this is needed as the default theme
 
    render(
        <DiffEditor
-       value=['Test code differences', 'Test code difference']
+       value={['Test code differences', 'Test code difference']}
        height="1000px"
        width="1000px"
-       mode="javascript"
+       mode="text"
      />
    );
    ```
+
+Also see the [diff](../example/diff.js) [example](../example/diff.html) in the example folder for more robust sample code (seen in the [demo](http://securingsincity.github.io/react-ace/diff.html)).
 
    ## Available Props
 
