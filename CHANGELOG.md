@@ -5,6 +5,13 @@
 * Fully move to TypeScript interally
 * Publish typings for the split and diff editor
 
+## 6.1.2
+
+* Additional Diff documentation
+* Add className to diff
+* Add Logo to docs
+* upgrade dev dependencies
+
 ## 6.1.1
 
 * Fixes typo in `console.warn`
