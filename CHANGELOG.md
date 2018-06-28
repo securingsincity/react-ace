@@ -5,6 +5,10 @@
 * Fully move to TypeScript interally
 * Publish typings for the split and diff editor
 
+## 6.1.3
+
+* Fixes #300 where users were not able to set annotations for multiline text that is changed
+
 ## 6.1.2
 
 * Additional Diff documentation
