@@ -122,8 +122,6 @@ export default class ReactAce extends Component {
     this.editor.resize();
   }
 
-  
-
   componentWillReceiveProps(nextProps) {
     const oldProps = this.props;
 
@@ -143,6 +141,16 @@ export default class ReactAce extends Component {
         appliedClassesArray.splice(index, 1);
       });
       this.refEditor.className = ' ' + nextProps.className + ' ' + appliedClassesArray.join(' ');
+    }
+
+    // First process editor value, as it may create a new session (see issue #300)
+    if (this.editor && this.editor.getValue() !== nextProps.value) {
+      // editor.setValue is a synchronous function call, change event is emitted before setValue return.
+      this.silent = true;
+      const pos = this.editor.session.selection.toJSON();
+      this.editor.setValue(nextProps.value, nextProps.cursorStart);
+      this.editor.session.selection.fromJSON(pos);
+      this.silent = false;
     }
 
     if (nextProps.mode !== oldProps.mode) {
@@ -183,14 +191,6 @@ export default class ReactAce extends Component {
     // this doesn't look like it works at all....
     if (!isEqual(nextProps.scrollMargin, oldProps.scrollMargin)) {
       this.handleScrollMargins(nextProps.scrollMargin)
-    }
-    if (this.editor && this.editor.getValue() !== nextProps.value) {
-      // editor.setValue is a synchronous function call, change event is emitted before setValue return.
-      this.silent = true;
-      const pos = this.editor.session.selection.toJSON();
-      this.editor.setValue(nextProps.value, nextProps.cursorStart);
-      this.editor.session.selection.fromJSON(pos);
-      this.silent = false;
     }
 
     if (nextProps.focus && !oldProps.focus) {
