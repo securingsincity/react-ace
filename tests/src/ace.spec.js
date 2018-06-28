@@ -226,6 +226,23 @@ describe('Ace Component', () => {
       expect(editor.getSession().getAnnotations()).to.deep.equal([]);
     })
 
+    it('should add annotations with changing editor value', () => {
+      // See https://github.com/securingsincity/react-ace/issues/300
+      const annotations = [{ row: 0, column: 0, text: 'error.message', type: 'error' }];
+      const initialText = `Initial
+      text`;
+      const modifiedText = `Modified
+      text`;
+      const wrapper = mount(<AceEditor annotations={[]} value={initialText}/>, mountOptions);
+      const editor = wrapper.instance().editor;
+      wrapper.setProps({
+        annotations: annotations,
+        value: modifiedText
+      });
+      expect(editor.renderer.$gutterLayer.$annotations).to.have.length(1);
+      expect(editor.renderer.$gutterLayer.$annotations[0]).to.have.property('className');
+    })
+
     it('should set editor to null on componentWillUnmount', () => {
       const wrapper = mount(<AceEditor />, mountOptions);
       expect(wrapper.getElement().editor).to.not.equal(null);
