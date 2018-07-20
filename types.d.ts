@@ -91,6 +91,7 @@ export interface AceOptions {
     enableSnippets?: boolean
     spellcheck?: boolean
     useElasticTabstops?: boolean
+    debounceChangePeriod?: number
 }
 
 export interface EditorProps {
