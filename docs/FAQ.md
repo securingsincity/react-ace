@@ -153,7 +153,7 @@ render() {
       commands={[{   // commands is array of key bindings.
         name: 'removeline', //name for the key binding.
         bindKey: {win: 'Ctrl-X', mac: 'Command-X'}, //key combination used for the command.
-        exec: () => 'removeline'  // name of the command to rebind
+        exec: 'removeline'  // name of the command to rebind
       }]}
     />
   </div>;
