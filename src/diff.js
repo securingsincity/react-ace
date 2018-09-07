@@ -13,8 +13,8 @@ export default class DiffComponent extends Component {
     this.diff = this.diff.bind(this);
   }
 
-  componentWillReceiveProps(props) {
-    const {value} = props;
+  componentDidUpdate() {
+    const {value} = this.props;
 
     if (value !== this.state.value) {
       this.setState({value});
