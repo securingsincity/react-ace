@@ -585,13 +585,13 @@ describe('Ace Component', () => {
 
       // Read set value
       let editor = wrapper.instance().refEditor;
-      expect(editor.className).to.equal(' ace_editor ace-tm old-class');
+      expect(editor.className).to.equal(' ace_editor ace_hidpi ace-tm old-class');
 
       // Now trigger the componentDidUpdate
       const newClassName = 'new-class';
       wrapper.setProps({className: newClassName});
       editor = wrapper.instance().refEditor;
-      expect(editor.className).to.equal(' new-class ace_editor ace-tm');
+      expect(editor.className).to.equal(' new-class ace_editor ace_hidpi ace-tm');
     });
 
 
