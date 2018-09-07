@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import SplitAceEditor from '../src/split.js';
 
-import 'brace/mode/jsx';
-import 'brace/ext/searchbox';
+import 'ace/mode/jsx';
+import 'ace/ext/searchbox';
 
 const languages = [
   'javascript',
@@ -38,15 +38,15 @@ const themes = [
 ]
 
 languages.forEach((lang) => {
-  require(`brace/mode/${lang}`)
-  require(`brace/snippets/${lang}`)
+  require(`ace/mode/${lang}`)
+  require(`ace/snippets/${lang}`)
 })
 
 themes.forEach((theme) => {
-  require(`brace/theme/${theme}`)
+  require(`ace/theme/${theme}`)
 })
 /*eslint-disable no-alert, no-console */
-import 'brace/ext/language_tools';
+import 'ace/ext/language_tools';
 
 
 const defaultValue = [
