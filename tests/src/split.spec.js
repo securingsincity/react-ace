@@ -383,7 +383,7 @@ describe('Split Component', () => {
       expect(editor.getValue()).to.equal(newValue);
       expect(editor2.getValue()).to.equal(anotherNewValue);
     });
-   it('should set up the markers', () => {
+    it('should set up the markers', () => {
       const markers = [[{
         startRow: 3,
         type: 'text',
@@ -433,7 +433,7 @@ describe('Split Component', () => {
       expect(editorB.getSession().getMarkers()['6'].type).to.equal('text');
     });
 
-  it('should update the markers', () => {
+   it('should update the markers', () => {
       const oldMarkers = [[
         {
           startRow: 4,
