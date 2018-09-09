@@ -26,7 +26,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
-    "babel-eslint": "^8.0.0",
+    "babel-eslint": "^9.0.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
@@ -40,7 +40,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.0",
     "eslint-plugin-react": "7.11.1",
-    "jsdom": "^11.0.0",
+    "jsdom": "^12.0.0",
     "mocha": "5.2.0",
     "nyc": "12.0.2",
     "react": "^16.0.0",
