@@ -249,7 +249,7 @@ describe('Ace Component', () => {
 
       // Check the editor is null after the Unmount
       wrapper.unmount();
-      expect(wrapper.get(0)).to.equal(undefined);
+      expect(wrapper.get(0)).to.not.exist;
     });
 
   });
