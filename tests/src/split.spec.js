@@ -213,7 +213,7 @@ describe('Split Component', () => {
 
     it('should call the onSelectionChange method callback', () => {
       const onSelectionChangeCallback = sinon.spy();
-      const wrapper = mount(<SplitEditor onSelectionChange={onSelectionChangeCallback} value="some value"/>, mountOptions);
+      const wrapper = mount(<SplitEditor onSelectionChange={onSelectionChangeCallback} value="some value" />, mountOptions);
 
       // Check is not previously called
       expect(onSelectionChangeCallback.callCount).to.equal(0);
