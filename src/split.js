@@ -137,8 +137,9 @@ export default class SplitComponent extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const oldProps = this.props;
+  componentDidUpdate(prevProps) {
+    const oldProps = prevProps;
+    const nextProps = this.props;
 
     const split = this.editor.env.split
 

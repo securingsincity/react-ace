@@ -122,8 +122,9 @@ export default class ReactAce extends Component {
     this.editor.resize();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const oldProps = this.props;
+  componentDidUpdate(prevProps) {
+    const oldProps = prevProps;
+    const nextProps = this.props;
 
     for (let i = 0; i < editorOptions.length; i++) {
       const option = editorOptions[i];
@@ -193,14 +194,11 @@ export default class ReactAce extends Component {
       this.handleScrollMargins(nextProps.scrollMargin)
     }
 
-    if (nextProps.focus && !oldProps.focus) {
-      this.editor.focus();
-    }
-  }
-
-  componentDidUpdate(prevProps) {
     if(prevProps.height !== this.props.height || prevProps.width !== this.props.width){
       this.editor.resize();
+    }
+    if (this.props.focus && !prevProps.focus) {
+      this.editor.focus();
     }
   }
 

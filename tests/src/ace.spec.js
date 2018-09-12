@@ -249,7 +249,7 @@ describe('Ace Component', () => {
 
       // Check the editor is null after the Unmount
       wrapper.unmount();
-      expect(wrapper.getElement()).to.equal(null);
+      expect(wrapper.get(0)).to.not.exist;
     });
 
   });
@@ -496,9 +496,9 @@ describe('Ace Component', () => {
 
   });
 
-  describe('ComponentWillReceiveProps', () => {
+  describe('ComponentDidUpdate', () => {
 
-    it('should update the editorOptions on componentWillReceiveProps', () => {
+    it('should update the editorOptions on componentDidUpdate', () => {
       const options = {
         printMargin: 80
       };
@@ -508,7 +508,7 @@ describe('Ace Component', () => {
       const editor = wrapper.instance().editor;
       expect(editor.getOption('printMargin')).to.equal(options.printMargin);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       const newOptions = {
         printMargin: 200,
         animatedScroll: true,
@@ -518,7 +518,7 @@ describe('Ace Component', () => {
       expect(editor.getOption('animatedScroll')).to.equal(newOptions.animatedScroll);
     });
 
-    it('should update the editorOptions on componentWillReceiveProps', () => {
+    it('should update the editorOptions on componentDidUpdate', () => {
 
       const wrapper = mount(<AceEditor minLines={1} />, mountOptions);
 
@@ -532,7 +532,7 @@ describe('Ace Component', () => {
     });
 
 
-    it('should update the mode on componentWillReceiveProps', () => {
+    it('should update the mode on componentDidUpdate', () => {
 
       const wrapper = mount(<AceEditor mode="javascript" />, mountOptions);
 
@@ -547,7 +547,7 @@ describe('Ace Component', () => {
 
 
 
-    it('should update many props on componentWillReceiveProps', () => {
+    it('should update many props on componentDidUpdate', () => {
 
       const wrapper = mount((
         <AceEditor
@@ -580,7 +580,7 @@ describe('Ace Component', () => {
 
 
 
-    it('should update the className on componentWillReceiveProps', () => {
+    it('should update the className on componentDidUpdate', () => {
       const className = 'old-class';
       const wrapper = mount(<AceEditor className={className}/>, mountOptions);
 
@@ -588,7 +588,7 @@ describe('Ace Component', () => {
       let editor = wrapper.instance().refEditor;
       expect(editor.className).to.equal(' ace_editor ace-tm old-class');
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       const newClassName = 'new-class';
       wrapper.setProps({className: newClassName});
       editor = wrapper.instance().refEditor;
@@ -596,7 +596,7 @@ describe('Ace Component', () => {
     });
 
 
-    it('should update the value on componentWillReceiveProps', () => {
+    it('should update the value on componentDidUpdate', () => {
       const startValue = 'start value';
       const wrapper = mount(<AceEditor value={startValue}/>, mountOptions);
 
@@ -604,21 +604,21 @@ describe('Ace Component', () => {
       let editor = wrapper.instance().editor;
       expect(editor.getValue()).to.equal(startValue);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       const newValue = 'updated value';
       wrapper.setProps({value: newValue});
       editor = wrapper.instance().editor;
       expect(editor.getValue()).to.equal(newValue);
     });
 
-    it('should trigger the focus on componentWillReceiveProps', () => {
+    it('should trigger the focus on componentDidUpdate', () => {
       const onFocusCallback = sinon.spy();
       const wrapper = mount(<AceEditor onFocus={onFocusCallback}/>, mountOptions);
 
       // Read the focus
       expect(onFocusCallback.callCount).to.equal(0);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       wrapper.setProps({focus: true});
       expect(onFocusCallback.callCount).to.equal(1);
     });
