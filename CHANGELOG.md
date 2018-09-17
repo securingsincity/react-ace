@@ -5,6 +5,13 @@
 * Fully move to TypeScript interally
 * Publish typings for the split and diff editor
 
+## 6.2.0
+
+* Support for React 17
+* Upgraded dependencies
+* AceOptions interface adds debounceChangePeriod
+* update types
+
 ## 6.1.4
 
 * Fixes #479 Diff component does not refresh when value prop changes
