@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import {diff as DiffEditor} from '../src/index.js';
 
-import 'ace/mode/jsx';
-import 'ace/ext/searchbox';
+import ace from 'ace-builds';
+
+ace.require('ace/mode/jsx');
+ace.require('ace/ext/searchbox');
 
 const defaultValue = [
   `// Use this tool to display differences in code.
@@ -34,8 +36,8 @@ const languages = [
 ];
 
 languages.forEach((lang) => {
-  require(`ace/mode/${lang}`)
-  require(`ace/snippets/${lang}`)
+  ace.require(`ace/mode/${lang}`)
+  ace.require(`ace/snippets/${lang}`)
 })
 
 class App extends Component {
