@@ -1,4 +1,5 @@
 import ace, { Range } from 'ace-builds'
+import 'ace-builds/webpack-resolver';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'

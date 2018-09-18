@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import SplitAceEditor from '../src/split.js';
+import ace from 'ace-builds';
 
-import 'ace/mode/jsx';
-import 'ace/ext/searchbox';
+ace.require('ace/mode/jsx');
+ace.require('ace/ext/searchbox');
 
 const languages = [
   'javascript',
@@ -38,14 +39,14 @@ const themes = [
 ];
 
 languages.forEach((lang) => {
-  require(`ace/mode/${lang}`)
-  require(`ace/snippets/${lang}`)
+  ace.require(`ace/mode/${lang}`)
+  ace.require(`ace/snippets/${lang}`)
 });
 
-themes.forEach(theme => require(`ace/theme/${theme}`));
+themes.forEach(theme => ace.require(`ace/theme/${theme}`));
 
 /*eslint-disable no-alert, no-console */
-import 'ace/ext/language_tools';
+ace.require('ace/ext/language_tools');
 
 const defaultValue = [
   `function onLoad(editor) {
