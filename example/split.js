@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import SplitAceEditor from '../src/split.js';
 import ace from 'ace-builds';
+import 'ace-builds/webpack-resolver';
 
 ace.require('ace/mode/jsx');
 ace.require('ace/ext/searchbox');
