@@ -324,14 +324,15 @@ describe('Ace Component', () => {
         }, 110);
       }, 50);
     });
-    it('should keep initial value after undo event', () => {
+    it('should keep initial value after undo event', (done) => {
       const onInput = () => {
         const editor = wrapper.instance().editor;
         editor.undo();
         expect(editor.getValue()).to.equal('foobar');
+        done();
       };
 
-      const wrapper = mount(<AceEditor value="foobar" onInput={onInput} />);
+      const wrapper = mount(<AceEditor value="foobar" onInput={onInput} />, mountOptions);
     });
   });
 
@@ -356,7 +357,7 @@ describe('Ace Component', () => {
     it('should limit call to onChange (debounce)', (done) => {
       const period = 100;
       const onChangeCallback = sinon.spy();
-      const wrapper = mount(<AceEditor onChange={onChangeCallback} debounceChangePeriod={period}/>);
+      const wrapper = mount(<AceEditor onChange={onChangeCallback} debounceChangePeriod={period}/>, mountOptions);
 
       // Check is not previously called
       expect(onChangeCallback.callCount).to.equal(0);
