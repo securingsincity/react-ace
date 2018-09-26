@@ -28,7 +28,7 @@ export interface CommandBindKey {
 export interface Command {
     name: string
     bindKey: CommandBindKey
-    exec(): any
+    exec(editor: any): void
 }
 
 /**
