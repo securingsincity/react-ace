@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import {diff as DiffEditor} from '../src/index.js';
 
 import ace from 'ace-builds';
+import 'ace-builds/webpack-resolver';
 
 ace.require('ace/mode/jsx');
 ace.require('ace/ext/searchbox');
