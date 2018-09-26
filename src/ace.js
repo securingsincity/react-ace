@@ -110,15 +110,15 @@ export default class ReactAce extends Component {
       this.refEditor.className += ' ' + className;
     }
 
-    if (focus) {
-      this.editor.focus();
-    }
-
     if (onLoad) {
       onLoad(this.editor);
     }
 
     this.editor.resize();
+
+    if (focus) {
+      this.editor.focus();
+    }
   }
 
   componentDidUpdate(prevProps) {
