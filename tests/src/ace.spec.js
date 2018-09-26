@@ -331,7 +331,7 @@ describe('Ace Component', () => {
         expect(editor.getValue()).to.equal('foobar');
       };
 
-      const wrapper = mount(<AceEditor value="foobar" onInput={onInput} />, mountOptions);
+      const wrapper = mount(<AceEditor value="foobar" onInput={onInput} />);
     });
   });
 
@@ -356,7 +356,7 @@ describe('Ace Component', () => {
     it('should limit call to onChange (debounce)', (done) => {
       const period = 100;
       const onChangeCallback = sinon.spy();
-      const wrapper = mount(<AceEditor onChange={onChangeCallback} debounceChangePeriod={period}/>, mountOptions);
+      const wrapper = mount(<AceEditor onChange={onChangeCallback} debounceChangePeriod={period}/>);
 
       // Check is not previously called
       expect(onChangeCallback.callCount).to.equal(0);
