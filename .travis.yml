@@ -18,6 +18,6 @@ deploy:
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
     on:
-      branch: master
+      branch: local
       repo: manubb/react-ace
     local_dir: example
