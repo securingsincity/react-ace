@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'example/static'),
     filename: '[name].js',
-    publicPath: '/static/',
+    publicPath: 'static/',
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -33,5 +33,5 @@ module.exports = {
     contentBase:  [path.join(__dirname, 'example'), path.join(__dirname, 'dist')],
     compress: true,
     port: 9000,
-  },
+  }
 };
