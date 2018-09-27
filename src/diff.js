@@ -270,7 +270,7 @@ DiffComponent.defaultProps = {
   maxLines: null,
   minLines: null,
   mode: '',
-  name: 'brace-editor',
+  name: 'ace-editor',
   onLoad: null,
   onScroll: null,
   onPaste: null,

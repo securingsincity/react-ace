@@ -1,10 +1,9 @@
 import { expect } from 'chai';
 import React from 'react';
 import sinon from 'sinon';
-import ace from 'brace';
+import ace from 'ace-builds';
 import Enzyme, { mount } from 'enzyme';
 import AceEditor from '../../src/ace.js';
-import brace from 'brace'; // eslint-disable-line no-unused-vars
 import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -325,11 +324,12 @@ describe('Ace Component', () => {
         }, 110);
       }, 50);
     });
-    it('should keep initial value after undo event', () => {
+    it('should keep initial value after undo event', (done) => {
       const onInput = () => {
         const editor = wrapper.instance().editor;
         editor.undo();
         expect(editor.getValue()).to.equal('foobar');
+        done();
       };
 
       const wrapper = mount(<AceEditor value="foobar" onInput={onInput} />, mountOptions);
@@ -586,13 +586,13 @@ describe('Ace Component', () => {
 
       // Read set value
       let editor = wrapper.instance().refEditor;
-      expect(editor.className).to.equal(' ace_editor ace-tm old-class');
+      expect(editor.className).to.equal(' ace_editor ace_hidpi ace-tm old-class');
 
       // Now trigger the componentDidUpdate
       const newClassName = 'new-class';
       wrapper.setProps({className: newClassName});
       editor = wrapper.instance().refEditor;
-      expect(editor.className).to.equal(' new-class ace_editor ace-tm');
+      expect(editor.className).to.equal(' new-class ace_editor ace_hidpi ace-tm');
     });
 
 

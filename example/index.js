@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import AceEditor from '../src/ace.js';
-import 'brace/mode/jsx';
+import ace from 'ace-builds';
+import 'ace-builds/webpack-resolver';
+
+ace.require('ace/mode/jsx');
 
 const languages = [
   'javascript',
@@ -35,17 +38,17 @@ const themes = [
   'terminal',
 ];
 
-languages.forEach(lang => {
-  require(`brace/mode/${lang}`);
-  require(`brace/snippets/${lang}`);
-});
+languages.forEach((lang) => {
+  ace.require(`ace/mode/${lang}`);
+  ace.require(`ace/snippets/${lang}`);
+})
 
-themes.forEach(theme => {
-  require(`brace/theme/${theme}`);
-});
+themes.forEach((theme) => {
+  ace.require(`ace/theme/${theme}`);
+})
 /*eslint-disable no-alert, no-console */
-import 'brace/ext/language_tools';
-import 'brace/ext/searchbox';
+ace.require('ace/ext/language_tools');
+ace.require('ace/ext/searchbox');
 
 const defaultValue = `function onLoad(editor) {
   console.log("i've loaded");
