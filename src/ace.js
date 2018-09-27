@@ -1,8 +1,9 @@
-import ace, { Range } from 'ace-builds'
+import ace from 'brace'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
 
+const { Range } = ace.acequire('ace/range');
 import { editorOptions, editorEvents,debounce } from './editorOptions.js'
 
 export default class ReactAce extends Component {
@@ -365,7 +366,7 @@ ReactAce.propTypes = {
 };
 
 ReactAce.defaultProps = {
-  name: 'ace-editor',
+  name: 'brace-editor',
   focus: false,
   mode: '',
   theme: '',
