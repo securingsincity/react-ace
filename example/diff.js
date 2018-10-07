@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import {diff as DiffEditor} from '../src/index.js';
+import { diff as DiffEditor } from '../src/index.js';
 
 import 'brace/mode/jsx';
 import 'brace/ext/searchbox';
@@ -11,7 +11,7 @@ const defaultValue = [
   `// Use this too to show difference in code.
 // Deletions will be highlighted on the left, insertions highlighted on the right.
 // The diff highlighting style can be altered in CSS.
-`
+`,
 ];
 
 const languages = [
@@ -30,16 +30,15 @@ const languages = [
   'csharp',
   'elixir',
   'typescript',
-  'css'
+  'css',
 ];
 
-languages.forEach((lang) => {
-  require(`brace/mode/${lang}`)
-  require(`brace/snippets/${lang}`)
-})
+languages.forEach(lang => {
+  require(`brace/mode/${lang}`);
+  require(`brace/snippets/${lang}`);
+});
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -54,13 +53,13 @@ class App extends Component {
 
   onChange(newValue) {
     this.setState({
-      value: newValue
+      value: newValue,
     });
   }
 
   setMode(e) {
     this.setState({
-      mode: e.target.value
+      mode: e.target.value,
     });
   }
 
@@ -69,23 +68,21 @@ class App extends Component {
       <div className="columns">
         <div className="column">
           <div className="field">
-            <label>
-                Mode:
-            </label>
+            <label>Mode:</label>
             <p className="control">
               <span className="select">
                 <select name="mode" onChange={this.setMode} value={this.state.mode}>
-                  {languages.map((lang) => <option  key={lang} value={lang}>{lang}</option>)}
+                  {languages.map(lang => (
+                    <option key={lang} value={lang}>
+                      {lang}
+                    </option>
+                  ))}
                 </select>
               </span>
             </p>
           </div>
 
-          <div className="field">
-
-          </div>
-
-
+          <div className="field" />
         </div>
         <div className="examples column">
           <h2>Editor</h2>
@@ -102,7 +99,4 @@ class App extends Component {
   }
 }
 
-render(
-  <App />,
-  document.getElementById('example')
-);
+render(<App />, document.getElementById('example'));

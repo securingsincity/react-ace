@@ -1,12 +1,12 @@
 import SplitEditor from './split.js';
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DiffMatchPatch from 'diff-match-patch';
 
 export default class DiffComponent extends Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       value: this.props.value,
     };
     this.onChange = this.onChange.bind(this);
@@ -14,18 +14,18 @@ export default class DiffComponent extends Component {
   }
 
   componentDidUpdate() {
-    const {value} = this.props;
+    const { value } = this.props;
 
     if (value !== this.state.value) {
-      this.setState({value});
+      this.setState({ value });
     }
   }
 
   onChange(value) {
     this.setState({
-      value: value
+      value: value,
     });
-    if(this.props.onChange){
+    if (this.props.onChange) {
       this.props.onChange(value);
     }
   }
@@ -64,7 +64,7 @@ export default class DiffComponent extends Component {
       right: 1,
     };
 
-    diff.forEach((chunk) => {
+    diff.forEach(chunk => {
       const chunkType = chunk[0];
       const text = chunk[1];
       let lines = text.split('\n').length - 1;
@@ -79,73 +79,71 @@ export default class DiffComponent extends Component {
       let linesToHighlight = 0;
 
       switch (chunkType) {
-      case C.DIFF_EQUAL:
-        cursor.left += lines;
-        cursor.right += lines;
+        case C.DIFF_EQUAL:
+          cursor.left += lines;
+          cursor.right += lines;
 
-        break;
-      case C.DIFF_DELETE:
+          break;
+        case C.DIFF_DELETE:
+          // If the deletion starts with a newline, push the cursor down to that line
+          if (firstChar === '\n') {
+            cursor.left++;
+            lines--;
+          }
 
-        // If the deletion starts with a newline, push the cursor down to that line
-        if (firstChar === '\n') {
-          cursor.left++;
-          lines--;
-        }
+          linesToHighlight = lines;
 
-        linesToHighlight = lines;
+          // If the deletion does not include a newline, highlight the same line on the right
+          if (linesToHighlight === 0) {
+            diffedLines.right.push({
+              startLine: cursor.right,
+              endLine: cursor.right,
+            });
+          }
 
-        // If the deletion does not include a newline, highlight the same line on the right
-        if (linesToHighlight === 0) {
-          diffedLines.right.push({
-            startLine: cursor.right,
-            endLine: cursor.right,
-          });
-        }
+          // If the last character is a newline, we don't want to highlight that line
+          if (lastChar === '\n') {
+            linesToHighlight -= 1;
+          }
 
-        // If the last character is a newline, we don't want to highlight that line
-        if (lastChar === '\n') {
-          linesToHighlight -= 1;
-        }
-
-        diffedLines.left.push({
-          startLine: cursor.left,
-          endLine: cursor.left + linesToHighlight,
-        });
-
-        cursor.left += lines;
-        break;
-      case C.DIFF_INSERT:
-
-        // If the insertion starts with a newline, push the cursor down to that line
-        if (firstChar === '\n') {
-          cursor.right++;
-          lines--;
-        }
-
-        linesToHighlight = lines;
-
-        // If the insertion does not include a newline, highlight the same line on the left
-        if (linesToHighlight === 0) {
           diffedLines.left.push({
             startLine: cursor.left,
-            endLine: cursor.left,
+            endLine: cursor.left + linesToHighlight,
           });
-        }
 
-        // If the last character is a newline, we don't want to highlight that line
-        if (lastChar === '\n') {
-          linesToHighlight -= 1;
-        }
+          cursor.left += lines;
+          break;
+        case C.DIFF_INSERT:
+          // If the insertion starts with a newline, push the cursor down to that line
+          if (firstChar === '\n') {
+            cursor.right++;
+            lines--;
+          }
 
-        diffedLines.right.push({
-          startLine: cursor.right,
-          endLine: cursor.right + linesToHighlight,
-        });
+          linesToHighlight = lines;
 
-        cursor.right += lines;
-        break;
-      default:
-        throw new Error('Diff type was not defined.');
+          // If the insertion does not include a newline, highlight the same line on the left
+          if (linesToHighlight === 0) {
+            diffedLines.left.push({
+              startLine: cursor.left,
+              endLine: cursor.left,
+            });
+          }
+
+          // If the last character is a newline, we don't want to highlight that line
+          if (lastChar === '\n') {
+            linesToHighlight -= 1;
+          }
+
+          diffedLines.right.push({
+            startLine: cursor.right,
+            endLine: cursor.right + linesToHighlight,
+          });
+
+          cursor.right += lines;
+          break;
+        default:
+          throw new Error('Diff type was not defined.');
       }
     });
     return diffedLines;
@@ -244,7 +242,7 @@ DiffComponent.propTypes = {
   onLoad: PropTypes.func,
   onPaste: PropTypes.func,
   onScroll: PropTypes.func,
-  onChange:PropTypes.func,
+  onChange: PropTypes.func,
   orientation: PropTypes.string,
   readOnly: PropTypes.bool,
   scrollMargin: PropTypes.array,
@@ -258,7 +256,7 @@ DiffComponent.propTypes = {
   value: PropTypes.array,
   width: PropTypes.string,
   wrapEnabled: PropTypes.bool,
-}
+};
 
 DiffComponent.defaultProps = {
   cursorStart: 1,
@@ -276,10 +274,10 @@ DiffComponent.defaultProps = {
   onLoad: null,
   onScroll: null,
   onPaste: null,
-  onChange:null,
+  onChange: null,
   orientation: 'beside',
   readOnly: false,
-  scrollMargin: [ 0, 0, 0, 0],
+  scrollMargin: [0, 0, 0, 0],
   setOptions: {},
   showGutter: true,
   showPrintMargin: true,
@@ -287,7 +285,7 @@ DiffComponent.defaultProps = {
   style: {},
   tabSize: 4,
   theme: 'github',
-  value: ['',''],
+  value: ['', ''],
   width: '500px',
   wrapEnabled: true,
-}
+};
