@@ -7,7 +7,7 @@ const editorOptions = [
   'enableBasicAutocompletion',
   'enableLiveAutocompletion',
   'enableSnippets',
-]
+];
 
 const editorEvents = [
   'onChange',
@@ -21,19 +21,16 @@ const editorEvents = [
   'onScroll',
   'handleOptions',
   'updateRef',
-]
-const debounce=(fn, delay)=>{
+];
+const debounce = (fn, delay) => {
   var timer = null;
-  return function () {
-    var context = this, args = arguments;
+  return function() {
+    var context = this,
+      args = arguments;
     clearTimeout(timer);
-    timer = setTimeout(function () {
+    timer = setTimeout(function() {
       fn.apply(context, args);
     }, delay);
   };
-}
-export {
-  editorOptions,
-  editorEvents,
-  debounce,
-}
+};
+export { editorOptions, editorEvents, debounce };
