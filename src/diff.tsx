@@ -1,10 +1,57 @@
 import SplitEditor from "./split";
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import DiffMatchPatch from "diff-match-patch";
+import * as React from "react";
+import * as PropTypes from "prop-types";
+const DiffMatchPatch = require("diff-match-patch");
+import { EditorProps } from "./types";
 
-export default class DiffComponent extends Component {
-  constructor(props) {
+interface DiffObject {
+  left: any[];
+  right: any[];
+}
+
+export interface DiffEditorProps {
+  [index: string]: any;
+  cursorStart?: number;
+  editorProps?: object;
+  enableBasicAutocompletion?: boolean | string[];
+  enableLiveAutocompletion?: boolean | string[];
+  focus?: boolean;
+  fontSize?: number;
+  height?: string;
+  highlightActiveLine?: boolean;
+  maxLines?: number;
+  minLines?: number;
+  mode?: string;
+  name?: string;
+  className?: string;
+  onLoad?: (editor: EditorProps) => void;
+  onChange?: (value: string[], event?: any) => void;
+  onPaste?: (value: string) => void;
+  onScroll?: (editor: EditorProps) => void;
+  orientation?: string;
+  readOnly?: boolean;
+  scrollMargin?: number[];
+  setOptions?: object;
+  showGutter?: boolean;
+  showPrintMargin?: boolean;
+  splits?: number;
+  style?: object;
+  tabSize?: number;
+  theme?: string;
+  value?: string[];
+  width?: string;
+  wrapEnabled?: boolean;
+}
+
+export interface DiffEditorState {
+  value: string[];
+}
+
+export default class DiffComponent extends React.Component<
+  DiffEditorProps,
+  DiffEditorState
+> {
+  constructor(props: DiffEditorProps) {
     super(props);
     this.state = {
       value: this.props.value
@@ -21,7 +68,7 @@ export default class DiffComponent extends Component {
     }
   }
 
-  onChange(value) {
+  onChange(value: any) {
     this.setState({
       value: value
     });
@@ -47,14 +94,14 @@ export default class DiffComponent extends Component {
     return codeEditorSettings;
   }
 
-  generateDiffedLines(diff) {
+  generateDiffedLines(diff: any) {
     const C = {
       DIFF_EQUAL: 0,
       DIFF_DELETE: -1,
       DIFF_INSERT: 1
     };
 
-    const diffedLines = {
+    const diffedLines: DiffObject = {
       left: [],
       right: []
     };
@@ -64,7 +111,7 @@ export default class DiffComponent extends Component {
       right: 1
     };
 
-    diff.forEach(chunk => {
+    diff.forEach((chunk: any) => {
       const chunkType = chunk[0];
       const text = chunk[1];
       let lines = text.split("\n").length - 1;
@@ -151,10 +198,10 @@ export default class DiffComponent extends Component {
 
   // Receives a collection of line numbers and iterates through them to highlight appropriately
   // Returns an object that tells the render() method how to display the code editors
-  setCodeMarkers(diffedLines = { left: [], right: [] }) {
+  setCodeMarkers(diffedLines: DiffObject = { left: [], right: [] }) {
     const codeEditorSettings = [];
 
-    const newMarkerSet = {
+    const newMarkerSet: DiffObject = {
       left: [],
       right: []
     };
@@ -223,69 +270,69 @@ export default class DiffComponent extends Component {
       />
     );
   }
+
+  public static propTypes: PropTypes.ValidationMap<DiffEditorProps> = {
+    cursorStart: PropTypes.number,
+    editorProps: PropTypes.object,
+    enableBasicAutocompletion: PropTypes.bool,
+    enableLiveAutocompletion: PropTypes.bool,
+    focus: PropTypes.bool,
+    fontSize: PropTypes.number,
+    height: PropTypes.string,
+    highlightActiveLine: PropTypes.bool,
+    maxLines: PropTypes.number,
+    minLines: PropTypes.number,
+    mode: PropTypes.string,
+    name: PropTypes.string,
+    className: PropTypes.string,
+    onLoad: PropTypes.func,
+    onPaste: PropTypes.func,
+    onScroll: PropTypes.func,
+    onChange: PropTypes.func,
+    orientation: PropTypes.string,
+    readOnly: PropTypes.bool,
+    scrollMargin: PropTypes.array,
+    setOptions: PropTypes.object,
+    showGutter: PropTypes.bool,
+    showPrintMargin: PropTypes.bool,
+    splits: PropTypes.number,
+    style: PropTypes.object,
+    tabSize: PropTypes.number,
+    theme: PropTypes.string,
+    value: PropTypes.array,
+    width: PropTypes.string,
+    wrapEnabled: PropTypes.bool
+  };
+
+  public static defaultProps: Partial<DiffEditorProps> = {
+    cursorStart: 1,
+    editorProps: {},
+    enableBasicAutocompletion: false,
+    enableLiveAutocompletion: false,
+    focus: false,
+    fontSize: 12,
+    height: "500px",
+    highlightActiveLine: true,
+    maxLines: null,
+    minLines: null,
+    mode: "",
+    name: "brace-editor",
+    onLoad: null,
+    onScroll: null,
+    onPaste: null,
+    onChange: null,
+    orientation: "beside",
+    readOnly: false,
+    scrollMargin: [0, 0, 0, 0],
+    setOptions: {},
+    showGutter: true,
+    showPrintMargin: true,
+    splits: 2,
+    style: {},
+    tabSize: 4,
+    theme: "github",
+    value: ["", ""],
+    width: "500px",
+    wrapEnabled: true
+  };
 }
-
-DiffComponent.propTypes = {
-  cursorStart: PropTypes.number,
-  editorProps: PropTypes.object,
-  enableBasicAutocompletion: PropTypes.bool,
-  enableLiveAutocompletion: PropTypes.bool,
-  focus: PropTypes.bool,
-  fontSize: PropTypes.number,
-  height: PropTypes.string,
-  highlightActiveLine: PropTypes.bool,
-  maxLines: PropTypes.func,
-  minLines: PropTypes.func,
-  mode: PropTypes.string,
-  name: PropTypes.string,
-  className: PropTypes.string,
-  onLoad: PropTypes.func,
-  onPaste: PropTypes.func,
-  onScroll: PropTypes.func,
-  onChange: PropTypes.func,
-  orientation: PropTypes.string,
-  readOnly: PropTypes.bool,
-  scrollMargin: PropTypes.array,
-  setOptions: PropTypes.object,
-  showGutter: PropTypes.bool,
-  showPrintMargin: PropTypes.bool,
-  splits: PropTypes.number,
-  style: PropTypes.object,
-  tabSize: PropTypes.number,
-  theme: PropTypes.string,
-  value: PropTypes.array,
-  width: PropTypes.string,
-  wrapEnabled: PropTypes.bool
-};
-
-DiffComponent.defaultProps = {
-  cursorStart: 1,
-  editorProps: {},
-  enableBasicAutocompletion: false,
-  enableLiveAutocompletion: false,
-  focus: false,
-  fontSize: 12,
-  height: "500px",
-  highlightActiveLine: true,
-  maxLines: null,
-  minLines: null,
-  mode: "",
-  name: "brace-editor",
-  onLoad: null,
-  onScroll: null,
-  onPaste: null,
-  onChange: null,
-  orientation: "beside",
-  readOnly: false,
-  scrollMargin: [0, 0, 0, 0],
-  setOptions: {},
-  showGutter: true,
-  showPrintMargin: true,
-  splits: 2,
-  style: {},
-  tabSize: 4,
-  theme: "github",
-  value: ["", ""],
-  width: "500px",
-  wrapEnabled: true
-};
