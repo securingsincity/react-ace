@@ -1,19 +1,24 @@
-import { Selection, Annotation, Editor, UndoManager } from "brace";
 const ace = require("brace");
 import * as React from "react";
 import * as PropTypes from "prop-types";
-const isEqual = require('lodash.isequal');
-const get = require('lodash.get');
-
-import { editorOptions, editorEvents, debounce } from "./editorOptions.js";
+const isEqual = require("lodash.isequal");
+const get = require("lodash.get");
+require("brace/ext/split");
+const Split = ace.acequire("ace/split").Split;
 const { Range } = ace.acequire("ace/range");
-import { EditorProps, Marker, Command, AceOptions, CommandManager } from "./types";
-import "brace/ext/split";
-const { Split } = ace.acequire("ace/split");
+import { editorOptions, editorEvents, debounce } from "./editorOptions";
+import { Selection, Annotation, Editor, UndoManager } from "brace";
+import {
+  EditorProps,
+  Marker,
+  Command,
+  AceOptions,
+  CommandManager
+} from "./types";
 
-class AceEditorClass extends Editor {
+interface AceEditorClass extends Editor {
   [index: string]: any;
-  $options: any;
+  $options?: any;
 }
 
 export interface SplitEditorProps {
@@ -70,7 +75,7 @@ export default class SplitComponent extends React.Component<
   silent: boolean;
   constructor(props: SplitEditorProps) {
     super(props);
-    editorEvents.forEach(method => {
+    editorEvents.forEach((method: any) => {
       this[method] = this[method].bind(this);
     });
     this.debounce = debounce;
@@ -179,7 +184,7 @@ export default class SplitComponent extends React.Component<
       this.handleOptions(this.props, editor);
 
       if (Array.isArray(commands)) {
-        const editorCommands: CommandManager = editor.commands
+        const editorCommands: CommandManager = editor.commands;
         commands.forEach(command => {
           if (typeof command.exec == "string") {
             editorCommands.bindKey(command.bindKey, command.exec);
@@ -267,7 +272,7 @@ export default class SplitComponent extends React.Component<
       if (editor.getValue() !== nextValue) {
         // editor.setValue is a synchronous function call, change event is emitted before setValue return.
         this.silent = true;
-        const editorSelection: any = editor.session.selection
+        const editorSelection: any = editor.session.selection;
         const pos = editorSelection.toJSON();
         editor.setValue(nextValue, nextProps.cursorStart);
         editorSelection.fromJSON(pos);
@@ -288,8 +293,8 @@ export default class SplitComponent extends React.Component<
 
     if (nextProps.className !== oldProps.className) {
       let appliedClasses = this.refEditor.className;
-      let appliedClassesArray = appliedClasses.trim().split(' ');
-      let oldClassesArray = oldProps.className.trim().split(' ');
+      let appliedClassesArray = appliedClasses.trim().split(" ");
+      let oldClassesArray = oldProps.className.trim().split(" ");
       oldClassesArray.forEach((oldClass: string) => {
         let index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
@@ -430,7 +435,7 @@ export default class SplitComponent extends React.Component<
     const divStyle = { width, height, ...style };
     return <div ref={this.updateRef} id={name} style={divStyle} />;
   }
-  public static propTypes:  PropTypes.ValidationMap<SplitEditorProps> = {
+  public static propTypes: PropTypes.ValidationMap<SplitEditorProps> = {
     mode: PropTypes.string,
     splits: PropTypes.number,
     orientation: PropTypes.string,

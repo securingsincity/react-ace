@@ -1,70 +1,78 @@
-import { Annotation, Editor} from 'brace'
-const ace = require('brace');
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-const isEqual = require('lodash.isequal');
+import { Annotation, Editor } from "brace";
+const ace = require("brace");
+import * as React from "react";
+import * as PropTypes from "prop-types";
+const isEqual = require("lodash.isequal");
 
-const { Range } = ace.acequire('ace/range');
-import { editorOptions, editorEvents, debounce } from './editorOptions.js';
-import { EditorProps, Marker, Command, AceOptions, CommandManager} from './types'
+const { Range } = ace.acequire("ace/range");
+import { editorOptions, editorEvents, debounce } from "./editorOptions";
+import {
+  EditorProps,
+  Marker,
+  Command,
+  AceOptions,
+  CommandManager
+} from "./types";
 /**
  * See https://github.com/ajaxorg/ace/wiki/Configuring-Ace
  */
 
-
 export interface AceEditorProps {
-    [index:string] : any
-    name?: string
-    style: any
-    /** For available modes see https://github.com/thlorenz/brace/tree/master/mode */
-    mode?: string
-    /** For available themes see https://github.com/thlorenz/brace/tree/master/theme */
-    theme?: string
-    height?: string
-    width?: string
-    className?: string
-    fontSize?: number | string
-    showGutter?: boolean
-    showPrintMargin?: boolean
-    highlightActiveLine?: boolean
-    focus?: boolean
-    cursorStart?: number
-    wrapEnabled?: boolean
-    readOnly?: boolean
-    minLines?: number
-    maxLines?: number
-    enableBasicAutocompletion?: boolean | string[]
-    enableLiveAutocompletion?: boolean | string[]
-    tabSize?: number
-    value?: string
-    defaultValue?: string
-    scrollMargin?: number[]
-    onLoad?: (editor: EditorProps) => void
-    onBeforeLoad?: (ace: any) => void
-    onChange?: (value: string, event?: any) => void
-    onSelection?: (selectedText: string, event?: any) => void
-    onCopy?: (value: string) => void
-    onPaste?: (value: string) => void
-    onFocus?: (event: any) => void
-    onBlur?: (event: any, editor?: AceEditorClass) => void
-    onScroll?: (editor: EditorProps) => void
-    editorProps?: EditorProps
-    setOptions?: AceOptions
-    keyboardHandler?: string
-    commands?: Array<Command>
-    annotations?: Array<Annotation>
-    markers?: Array<Marker>
+  [index: string]: any;
+  name?: string;
+  style: any;
+  /** For available modes see https://github.com/thlorenz/brace/tree/master/mode */
+  mode?: string;
+  /** For available themes see https://github.com/thlorenz/brace/tree/master/theme */
+  theme?: string;
+  height?: string;
+  width?: string;
+  className?: string;
+  fontSize?: number | string;
+  showGutter?: boolean;
+  showPrintMargin?: boolean;
+  highlightActiveLine?: boolean;
+  focus?: boolean;
+  cursorStart?: number;
+  wrapEnabled?: boolean;
+  readOnly?: boolean;
+  minLines?: number;
+  maxLines?: number;
+  enableBasicAutocompletion?: boolean | string[];
+  enableLiveAutocompletion?: boolean | string[];
+  tabSize?: number;
+  value?: string;
+  defaultValue?: string;
+  scrollMargin?: number[];
+  onLoad?: (editor: EditorProps) => void;
+  onBeforeLoad?: (ace: any) => void;
+  onChange?: (value: string, event?: any) => void;
+  onSelection?: (selectedText: string, event?: any) => void;
+  onCopy?: (value: string) => void;
+  onPaste?: (value: string) => void;
+  onFocus?: (event: any) => void;
+  onBlur?: (event: any, editor?: AceEditorClass) => void;
+  onScroll?: (editor: EditorProps) => void;
+  editorProps?: EditorProps;
+  setOptions?: AceOptions;
+  keyboardHandler?: string;
+  commands?: Array<Command>;
+  annotations?: Array<Annotation>;
+  markers?: Array<Marker>;
 }
 
 class AceEditorClass {
-  [index:string] : any
+  [index: string]: any;
 }
 
-export default class ReactAce extends React.Component<AceEditorProps, undefined> {
-  editor: AceEditorClass
-  refEditor: HTMLElement
-  [index:string]:any
-  silent: boolean
+export default class ReactAce extends React.Component<
+  AceEditorProps,
+  undefined
+> {
+  editor: AceEditorClass;
+  refEditor: HTMLElement;
+  [index: string]: any;
+  silent: boolean;
   constructor(props: AceEditorProps) {
     super(props);
     editorEvents.forEach(method => {
@@ -93,10 +101,10 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
       onLoad,
       commands,
       annotations,
-      markers,
+      markers
     } = this.props;
-    const aceEditor : AceEditorClass = ace.edit(this.refEditor)
-    this.editor = aceEditor
+    const aceEditor: AceEditorClass = ace.edit(this.refEditor);
+    this.editor = aceEditor;
 
     if (onBeforeLoad) {
       onBeforeLoad(ace);
@@ -107,9 +115,17 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
       this.editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
     }
     if (this.props.debounceChangePeriod) {
-      this.onChange = this.debounce(this.onChange, this.props.debounceChangePeriod);
+      this.onChange = this.debounce(
+        this.onChange,
+        this.props.debounceChangePeriod
+      );
     }
-    this.editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3]);
+    this.editor.renderer.setScrollMargin(
+      scrollMargin[0],
+      scrollMargin[1],
+      scrollMargin[2],
+      scrollMargin[3]
+    );
     this.editor.getSession().setMode(`ace/mode/${mode}`);
     this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(fontSize.toString());
@@ -119,21 +135,23 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
     this.editor.renderer.setShowGutter(showGutter);
     this.editor.getSession().setUseWrapMode(wrapEnabled);
     this.editor.setShowPrintMargin(showPrintMargin);
-    this.editor.on('focus', this.onFocus);
-    this.editor.on('blur', this.onBlur);
-    this.editor.on('copy', this.onCopy);
-    this.editor.on('paste', this.onPaste);
-    this.editor.on('change', this.onChange);
-    this.editor.on('input', this.onInput);
-    this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
-    this.editor.getSession().selection.on('changeCursor', this.onCursorChange);
+    this.editor.on("focus", this.onFocus);
+    this.editor.on("blur", this.onBlur);
+    this.editor.on("copy", this.onCopy);
+    this.editor.on("paste", this.onPaste);
+    this.editor.on("change", this.onChange);
+    this.editor.on("input", this.onInput);
+    this.editor
+      .getSession()
+      .selection.on("changeSelection", this.onSelectionChange);
+    this.editor.getSession().selection.on("changeCursor", this.onCursorChange);
     if (onValidate) {
-      this.editor.getSession().on('changeAnnotation', () => {
+      this.editor.getSession().on("changeAnnotation", () => {
         const annotations = this.editor.getSession().getAnnotations();
         this.props.onValidate(annotations);
       });
     }
-    this.editor.session.on('changeScrollTop', this.onScroll);
+    this.editor.session.on("changeScrollTop", this.onScroll);
     this.editor.getSession().setAnnotations(annotations || []);
     if (markers && markers.length > 0) {
       this.handleMarkers(markers);
@@ -147,14 +165,14 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
         this.editor.setOption(option, this.props[option]);
       } else if (this.props[option]) {
         console.warn(
-          `ReactAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`,
+          `ReactAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`
         );
       }
     }
     this.handleOptions(this.props);
 
     if (Array.isArray(commands)) {
-      const editorCommands: CommandManager = this.editor.commands
+      const editorCommands: CommandManager = this.editor.commands;
       commands.forEach(command => {
         if (typeof command.exec == "string") {
           editorCommands.bindKey(command.bindKey, command.exec);
@@ -165,11 +183,11 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
     }
 
     if (keyboardHandler) {
-      this.editor.setKeyboardHandler('ace/keyboard/' + keyboardHandler);
+      this.editor.setKeyboardHandler("ace/keyboard/" + keyboardHandler);
     }
 
     if (className) {
-      this.refEditor.className += ' ' + className;
+      this.refEditor.className += " " + className;
     }
 
     if (onLoad) {
@@ -196,20 +214,21 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
 
     if (nextProps.className !== oldProps.className) {
       let appliedClasses = this.refEditor.className;
-      let appliedClassesArray = appliedClasses.trim().split(' ');
-      let oldClassesArray = oldProps.className.trim().split(' ');
+      let appliedClassesArray = appliedClasses.trim().split(" ");
+      let oldClassesArray = oldProps.className.trim().split(" ");
       oldClassesArray.forEach((oldClass: string) => {
         let index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
-      this.refEditor.className = ' ' + nextProps.className + ' ' + appliedClassesArray.join(' ');
+      this.refEditor.className =
+        " " + nextProps.className + " " + appliedClassesArray.join(" ");
     }
 
     // First process editor value, as it may create a new session (see issue #300)
     if (this.editor && this.editor.getValue() !== nextProps.value) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
-      const editorSelection: any = this.editor.session.selection
+      const editorSelection: any = this.editor.session.selection;
       const pos = editorSelection.toJSON();
       this.editor.setValue(nextProps.value, nextProps.cursorStart);
       editorSelection.fromJSON(pos);
@@ -217,14 +236,16 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
     }
 
     if (nextProps.mode !== oldProps.mode) {
-      this.editor.getSession().setMode('ace/mode/' + nextProps.mode);
+      this.editor.getSession().setMode("ace/mode/" + nextProps.mode);
     }
     if (nextProps.theme !== oldProps.theme) {
-      this.editor.setTheme('ace/theme/' + nextProps.theme);
+      this.editor.setTheme("ace/theme/" + nextProps.theme);
     }
     if (nextProps.keyboardHandler !== oldProps.keyboardHandler) {
       if (nextProps.keyboardHandler) {
-        this.editor.setKeyboardHandler('ace/keyboard/' + nextProps.keyboardHandler);
+        this.editor.setKeyboardHandler(
+          "ace/keyboard/" + nextProps.keyboardHandler
+        );
       } else {
         this.editor.setKeyboardHandler(null);
       }
@@ -247,7 +268,10 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
     if (!isEqual(nextProps.annotations, oldProps.annotations)) {
       this.editor.getSession().setAnnotations(nextProps.annotations || []);
     }
-    if (!isEqual(nextProps.markers, oldProps.markers) && Array.isArray(nextProps.markers)) {
+    if (
+      !isEqual(nextProps.markers, oldProps.markers) &&
+      Array.isArray(nextProps.markers)
+    ) {
       this.handleMarkers(nextProps.markers);
     }
 
@@ -256,7 +280,10 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
       this.handleScrollMargins(nextProps.scrollMargin);
     }
 
-    if (prevProps.height !== this.props.height || prevProps.width !== this.props.width) {
+    if (
+      prevProps.height !== this.props.height ||
+      prevProps.width !== this.props.width
+    ) {
       this.editor.resize();
     }
     if (this.props.focus && !prevProps.focus) {
@@ -265,7 +292,12 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
   }
 
   handleScrollMargins(margins = [0, 0, 0, 0]) {
-    this.editor.renderer.setScrollMargin(margins[0], margins[1], margins[2], margins[3]);
+    this.editor.renderer.setScrollMargin(
+      margins[0],
+      margins[1],
+      margins[2],
+      margins[3]
+    );
   }
 
   componentWillUnmount() {
@@ -350,10 +382,20 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
       }
     }
     // add new markers
-    markers.forEach(({ startRow, startCol, endRow, endCol, className, type, inFront = false }) => {
-      const range = new Range(startRow, startCol, endRow, endCol);
-      this.editor.getSession().addMarker(range, className, type, inFront);
-    });
+    markers.forEach(
+      ({
+        startRow,
+        startCol,
+        endRow,
+        endCol,
+        className,
+        type,
+        inFront = false
+      }) => {
+        const range = new Range(startRow, startCol, endRow, endCol);
+        this.editor.getSession().addMarker(range, className, type, inFront);
+      }
+    );
   }
 
   updateRef(item: HTMLDivElement) {
@@ -366,13 +408,13 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
     return <div ref={this.updateRef} id={name} style={divStyle} />;
   }
   public static defaultProps: Partial<AceEditorProps> = {
-    name: 'brace-editor',
+    name: "brace-editor",
     focus: false,
-    mode: '',
-    theme: '',
-    height: '500px',
-    width: '500px',
-    value: '',
+    mode: "",
+    theme: "",
+    height: "500px",
+    width: "500px",
+    value: "",
     fontSize: 12,
     showGutter: true,
     onChange: null,
@@ -392,7 +434,7 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
     setOptions: {},
     wrapEnabled: false,
     enableBasicAutocompletion: false,
-    enableLiveAutocompletion: false,
+    enableLiveAutocompletion: false
   };
 
   public static propTypes: PropTypes.ValidationMap<AceEditorProps> = {
@@ -403,10 +445,7 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
     className: PropTypes.string,
     height: PropTypes.string,
     width: PropTypes.string,
-    fontSize: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     showGutter: PropTypes.bool,
     onChange: PropTypes.func,
     onCopy: PropTypes.func,
@@ -437,13 +476,12 @@ export default class ReactAce extends React.Component<AceEditorProps, undefined>
     wrapEnabled: PropTypes.bool,
     enableBasicAutocompletion: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.array,
+      PropTypes.array
     ]),
     enableLiveAutocompletion: PropTypes.oneOfType([
       PropTypes.bool,
-      PropTypes.array,
+      PropTypes.array
     ]),
-    commands: PropTypes.array,
-  }
-
+    commands: PropTypes.array
+  };
 }

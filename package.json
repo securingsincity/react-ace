@@ -19,7 +19,7 @@
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm run clean",
     "prepublishOnly": "npm run clean && npm run build",
-    "test": "mocha --compilers ts:ts-node/register --require tests/setup.js --recursive tests/**/*.spec.js",
+    "test": "mocha --compilers ts:ts-node/register --require tests/setup.js --recursive tests/src/*.spec.js --exit",
     "coverage": "nyc npm run test"
   },
   "author": "James Hrisho",
