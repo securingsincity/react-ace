@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import {diff as DiffEditor} from '../src/index.js';
+import { diff as DiffEditor } from '../src/index.js';
 
 import ace from 'ace-builds';
 import 'ace-builds/webpack-resolver';
@@ -37,8 +37,8 @@ const languages = [
 ];
 
 languages.forEach(lang => {
-  require(`brace/mode/${lang}`);
-  require(`brace/snippets/${lang}`);
+  ace.require(`ace/mode/${lang}`);
+  ace.require(`ace/snippets/${lang}`);
 });
 
 class App extends Component {

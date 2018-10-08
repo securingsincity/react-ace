@@ -73,7 +73,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --print-width 120 --single-quote --trailing-comma all --staged"
     }
   },
   "peerDependencies": {

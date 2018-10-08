@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 import get from 'lodash.get';
 
-import { editorOptions, editorEvents,debounce } from './editorOptions.js';
+import { editorOptions, editorEvents, debounce } from './editorOptions.js';
 
 export default class SplitComponent extends Component {
   constructor(props) {

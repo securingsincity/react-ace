@@ -38,14 +38,14 @@ const themes = [
   'terminal',
 ];
 
-languages.forEach((lang) => {
+languages.forEach(lang => {
   ace.require(`ace/mode/${lang}`);
   ace.require(`ace/snippets/${lang}`);
-})
+});
 
-themes.forEach((theme) => {
+themes.forEach(theme => {
   ace.require(`ace/theme/${theme}`);
-})
+});
 /*eslint-disable no-alert, no-console */
 ace.require('ace/ext/language_tools');
 ace.require('ace/ext/searchbox');
