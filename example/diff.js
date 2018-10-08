@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import { diff as DiffEditor } from '../src/index.js';
+import React, { Component } from "react";
+import { render } from "react-dom";
+import { diff as DiffEditor } from "../src/index";
 
-import 'brace/mode/jsx';
-import 'brace/ext/searchbox';
+import "brace/mode/jsx";
+import "brace/ext/searchbox";
 
 const defaultValue = [
   `// Use this tool to display differences in code.
@@ -11,26 +11,26 @@ const defaultValue = [
   `// Use this too to show difference in code.
 // Deletions will be highlighted on the left, insertions highlighted on the right.
 // The diff highlighting style can be altered in CSS.
-`,
+`
 ];
 
 const languages = [
-  'javascript',
-  'java',
-  'python',
-  'xml',
-  'ruby',
-  'sass',
-  'markdown',
-  'mysql',
-  'json',
-  'html',
-  'handlebars',
-  'golang',
-  'csharp',
-  'elixir',
-  'typescript',
-  'css',
+  "javascript",
+  "java",
+  "python",
+  "xml",
+  "ruby",
+  "sass",
+  "markdown",
+  "mysql",
+  "json",
+  "html",
+  "handlebars",
+  "golang",
+  "csharp",
+  "elixir",
+  "typescript",
+  "css"
 ];
 
 languages.forEach(lang => {
@@ -45,7 +45,7 @@ class App extends Component {
       value: defaultValue,
       fontSize: 14,
       markers: {},
-      mode: 'javascript',
+      mode: "javascript"
     };
     this.onChange = this.onChange.bind(this);
     this.setMode = this.setMode.bind(this);
@@ -53,13 +53,13 @@ class App extends Component {
 
   onChange(newValue) {
     this.setState({
-      value: newValue,
+      value: newValue
     });
   }
 
   setMode(e) {
     this.setState({
-      mode: e.target.value,
+      mode: e.target.value
     });
   }
 
@@ -71,7 +71,11 @@ class App extends Component {
             <label>Mode:</label>
             <p className="control">
               <span className="select">
-                <select name="mode" onChange={this.setMode} value={this.state.mode}>
+                <select
+                  name="mode"
+                  onChange={this.setMode}
+                  value={this.state.mode}
+                >
                   {languages.map(lang => (
                     <option key={lang} value={lang}>
                       {lang}
@@ -99,4 +103,4 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('example'));
+render(<App />, document.getElementById("example"));
