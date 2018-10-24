@@ -1,10 +1,11 @@
-import ace from 'brace'
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
 
+import { editorOptions, editorEvents, getAceInstance } from './editorOptions.js'
+const ace = getAceInstance();
 const { Range } = ace.acequire('ace/range');
-import { editorOptions, editorEvents } from './editorOptions.js'
 
 export default class ReactAce extends Component {
   constructor(props) {

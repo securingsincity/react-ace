@@ -1,11 +1,11 @@
-import ace from 'brace'
+import { editorOptions, editorEvents, getAceInstance } from './editorOptions.js'
+const ace = getAceInstance();
 import {UndoManager} from 'brace';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
 import get from 'lodash.get'
 
-import { editorOptions, editorEvents } from './editorOptions.js'
 const { Range } = ace.acequire('ace/range');
 
 import 'brace/ext/split'
