@@ -27,7 +27,7 @@ describe('Ace Component', () => {
       const stub = sinon.stub(console, 'warn');
       const wrapper = mount(<AceEditor enableBasicAutocompletion={true} />, mountOptions);
       expect(wrapper).to.exist;
-      expect(console.warn.calledWith('ReaceAce: editor option enableBasicAutocompletion was activated but not found. Did you need to import a related tool or did you possibly mispell the option?') ).to.be.true;
+      expect(console.warn.calledWith('ReactAce: editor option enableBasicAutocompletion was activated but not found. Did you need to import a related tool or did you possibly mispell the option?') ).to.be.true;
       stub.restore();
     });
 
@@ -226,13 +226,30 @@ describe('Ace Component', () => {
       expect(editor.getSession().getAnnotations()).to.deep.equal([]);
     })
 
+    it('should add annotations with changing editor value', () => {
+      // See https://github.com/securingsincity/react-ace/issues/300
+      const annotations = [{ row: 0, column: 0, text: 'error.message', type: 'error' }];
+      const initialText = `Initial
+      text`;
+      const modifiedText = `Modified
+      text`;
+      const wrapper = mount(<AceEditor annotations={[]} value={initialText}/>, mountOptions);
+      const editor = wrapper.instance().editor;
+      wrapper.setProps({
+        annotations: annotations,
+        value: modifiedText
+      });
+      expect(editor.renderer.$gutterLayer.$annotations).to.have.length(1);
+      expect(editor.renderer.$gutterLayer.$annotations[0]).to.have.property('className');
+    })
+
     it('should set editor to null on componentWillUnmount', () => {
       const wrapper = mount(<AceEditor />, mountOptions);
       expect(wrapper.getElement().editor).to.not.equal(null);
 
       // Check the editor is null after the Unmount
       wrapper.unmount();
-      expect(wrapper.getElement()).to.equal(null);
+      expect(wrapper.get(0)).to.not.exist;
     });
 
   });
@@ -357,7 +374,7 @@ describe('Ace Component', () => {
         expect(onChangeCallback.callCount).to.equal(1);
         expect(onChangeCallback.getCall(0).args[0]).to.equal(expectText2);
         expect(onChangeCallback.getCall(0).args[1].action).to.eq('insert');
-        onChangeCallback.reset();
+        onChangeCallback.resetHistory();
         wrapper.instance().editor.setValue(expectText2, 1);
         wrapper.instance().editor.setValue(expectText, 1);
         expect(onChangeCallback.callCount).to.equal(0);
@@ -479,9 +496,9 @@ describe('Ace Component', () => {
 
   });
 
-  describe('ComponentWillReceiveProps', () => {
+  describe('ComponentDidUpdate', () => {
 
-    it('should update the editorOptions on componentWillReceiveProps', () => {
+    it('should update the editorOptions on componentDidUpdate', () => {
       const options = {
         printMargin: 80
       };
@@ -491,7 +508,7 @@ describe('Ace Component', () => {
       const editor = wrapper.instance().editor;
       expect(editor.getOption('printMargin')).to.equal(options.printMargin);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       const newOptions = {
         printMargin: 200,
         animatedScroll: true,
@@ -501,7 +518,7 @@ describe('Ace Component', () => {
       expect(editor.getOption('animatedScroll')).to.equal(newOptions.animatedScroll);
     });
 
-    it('should update the editorOptions on componentWillReceiveProps', () => {
+    it('should update the editorOptions on componentDidUpdate', () => {
 
       const wrapper = mount(<AceEditor minLines={1} />, mountOptions);
 
@@ -515,7 +532,7 @@ describe('Ace Component', () => {
     });
 
 
-    it('should update the mode on componentWillReceiveProps', () => {
+    it('should update the mode on componentDidUpdate', () => {
 
       const wrapper = mount(<AceEditor mode="javascript" />, mountOptions);
 
@@ -530,7 +547,7 @@ describe('Ace Component', () => {
 
 
 
-    it('should update many props on componentWillReceiveProps', () => {
+    it('should update many props on componentDidUpdate', () => {
 
       const wrapper = mount((
         <AceEditor
@@ -563,7 +580,7 @@ describe('Ace Component', () => {
 
 
 
-    it('should update the className on componentWillReceiveProps', () => {
+    it('should update the className on componentDidUpdate', () => {
       const className = 'old-class';
       const wrapper = mount(<AceEditor className={className}/>, mountOptions);
 
@@ -571,7 +588,7 @@ describe('Ace Component', () => {
       let editor = wrapper.instance().refEditor;
       expect(editor.className).to.equal(' ace_editor ace-tm old-class');
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       const newClassName = 'new-class';
       wrapper.setProps({className: newClassName});
       editor = wrapper.instance().refEditor;
@@ -579,7 +596,7 @@ describe('Ace Component', () => {
     });
 
 
-    it('should update the value on componentWillReceiveProps', () => {
+    it('should update the value on componentDidUpdate', () => {
       const startValue = 'start value';
       const wrapper = mount(<AceEditor value={startValue}/>, mountOptions);
 
@@ -587,21 +604,21 @@ describe('Ace Component', () => {
       let editor = wrapper.instance().editor;
       expect(editor.getValue()).to.equal(startValue);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       const newValue = 'updated value';
       wrapper.setProps({value: newValue});
       editor = wrapper.instance().editor;
       expect(editor.getValue()).to.equal(newValue);
     });
 
-    it('should trigger the focus on componentWillReceiveProps', () => {
+    it('should trigger the focus on componentDidUpdate', () => {
       const onFocusCallback = sinon.spy();
       const wrapper = mount(<AceEditor onFocus={onFocusCallback}/>, mountOptions);
 
       // Read the focus
       expect(onFocusCallback.callCount).to.equal(0);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       wrapper.setProps({focus: true});
       expect(onFocusCallback.callCount).to.equal(1);
     });

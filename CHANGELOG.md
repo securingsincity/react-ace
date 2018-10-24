@@ -3,7 +3,49 @@
 ## Future Release - TBD
 
 * Fully move to TypeScript interally
-* Publish typings for the split editor
+* Publish typings for the split and diff editor
+
+## 6.2.0
+
+* Support for React 17
+* Upgraded dependencies
+* AceOptions interface adds debounceChangePeriod
+* update types
+
+## 6.1.4
+
+* Fixes #479 Diff component does not refresh when value prop changes
+
+## 6.1.3
+
+* Fixes #300 where users were not able to set annotations for multiline text that is changed
+
+## 6.1.2
+
+* Additional Diff documentation
+* Add className to diff
+* Add Logo to docs
+* upgrade dev dependencies
+
+## 6.1.1
+
+* Fixes typo in `console.warn`
+* Adds style property to typings
+
+## 6.1.0
+
+* Onchange support in diff editor
+* Debounce Prop support in split editor
+
+## 6.0.0
+
+* Adds Diff editor
+
+## 5.10.0
+
+* Upgraded many build dependencies
+* Split editor adds UndoManager
+
 ## 5.9.0
 
 * First value resets undo manager. Closes #339 and #223

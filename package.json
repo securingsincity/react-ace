@@ -1,10 +1,11 @@
 {
   "name": "react-ace",
-  "version": "5.10.0",
+  "version": "6.2.0",
   "description": "A react component for Ace Editor",
   "main": "lib/index.js",
   "types": "types.d.ts",
   "scripts": {
+    "prettier": "prettier --print-width 120 --single-quote --trailing-comma all   --write \"src/**\" \"example/*.js\"",
     "clean": "rimraf lib dist",
     "lint": "node_modules/.bin/eslint src/*",
     "build:lib": "babel src --out-dir lib",
@@ -24,33 +25,34 @@
   "author": "James Hrisho",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-eslint": "^8.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.0",
     "babel-loader": "^7.0.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
-    "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.0.1",
-    "eslint": "4.19.1",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^6.0.0",
-    "eslint-plugin-react": "7.7.0",
-    "jsdom": "^11.0.0",
-    "mocha": "5.0.5",
-    "nyc": "11.6.0",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-test-renderer": "^16.0.0",
+    "coveralls": "^3.0.2",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "eslint": "5.6.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "7.11.1",
+    "jsdom": "^12.0.0",
+    "mocha": "5.2.0",
+    "nyc": "13.0.1",
+    "prettier": "^1.14.3",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-test-renderer": "^16.5.1",
     "rimraf": "2.6.2",
-    "sinon": "5.0.0",
-    "webpack": "4.3.0",
-    "webpack-cli": "^2.0.9",
-    "webpack-dev-server": "3.1.1"
+    "sinon": "6.0.1",
+    "webpack": "4.20.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
   },
   "keywords": [
     "ace",
@@ -60,10 +62,18 @@
     "brace"
   ],
   "dependencies": {
-    "brace": "^0.11.0",
+    "brace": "^0.11.1",
+    "diff-match-patch": "^1.0.4",
+    "husky": "^1.1.1",
     "lodash.get": "^4.4.2",
-    "lodash.isequal": "^4.1.1",
-    "prop-types": "^15.5.8"
+    "lodash.isequal": "^4.5.0",
+    "pretty-quick": "^1.7.0",
+    "prop-types": "^15.6.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "peerDependencies": {
     "react": "^0.13.0 || ^0.14.0 || ^15.0.1 || ^16.0.0",

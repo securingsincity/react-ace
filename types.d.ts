@@ -2,7 +2,7 @@
 // Project: https://github.com/securingsincity/react-ace
 // Definitions by: Alberto Nicoletti <https://github.com/illbexyz>
 
-import { Component } from 'react'
+import { Component, CSSProperties } from 'react'
 
 export interface Annotation {
     row: number
@@ -28,7 +28,7 @@ export interface CommandBindKey {
 export interface Command {
     name: string
     bindKey: CommandBindKey
-    exec(): any
+    exec(editor: any): void
 }
 
 /**
@@ -91,6 +91,7 @@ export interface AceOptions {
     enableSnippets?: boolean
     spellcheck?: boolean
     useElasticTabstops?: boolean
+    debounceChangePeriod?: number
 }
 
 export interface EditorProps {
@@ -150,6 +151,7 @@ export interface AceEditorProps {
     onLoad?: (editor: EditorProps) => void
     onBeforeLoad?: (ace: any) => void
     onChange?: (value: string, event?: any) => void
+    onInput?: (value: string, event?: any) => void
     onSelection?: (selectedText: string, event?: any) => void
     onCopy?: (value: string) => void
     onPaste?: (value: string) => void
@@ -163,6 +165,7 @@ export interface AceEditorProps {
     commands?: Array<Command>
     annotations?: Array<Annotation>
     markers?: Array<Marker>
+    style?: CSSProperties
 }
 
 export default class AceEditor extends Component<AceEditorProps, {}> {}

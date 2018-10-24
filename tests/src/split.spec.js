@@ -51,7 +51,7 @@ describe('Split Component', () => {
       expect(editor.test).to.equal(editorProperties.test);
     });
 
-    it('should update the orientation on componentWillReceiveProps', () => {
+    it('should update the orientation on componentDidUpdate', () => {
       let orientation = 'below';
       const wrapper = mount(<SplitEditor orientation={orientation} splits={2}/>, mountOptions);
 
@@ -59,21 +59,21 @@ describe('Split Component', () => {
       let editor = wrapper.instance().split;
       expect(editor.getOrientation()).to.equal(editor.BELOW);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       orientation = 'beside';
       wrapper.setProps({orientation});
       editor = wrapper.instance().split;
       expect(editor.getOrientation()).to.equal(editor.BESIDE);
     });
 
-    it('should update the orientation on componentWillReceiveProps', () => {
+    it('should update the orientation on componentDidUpdate', () => {
       const wrapper = mount(<SplitEditor  splits={2}/>, mountOptions);
 
       // Read set value
       let editor = wrapper.instance().split;
       expect(editor.getSplits()).to.equal(2);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       wrapper.setProps({splits: 4});
       editor = wrapper.instance().split;
       expect(editor.getSplits()).to.equal(4);
@@ -144,7 +144,7 @@ describe('Split Component', () => {
 
       // Check the editor is null after the Unmount
       wrapper.unmount();
-      expect(wrapper.getElement()).to.equal(null);
+      expect(wrapper.get(0)).to.not.exist;
     });
 
 
@@ -214,7 +214,7 @@ describe('Split Component', () => {
 
     it('should call the onSelectionChange method callback', () => {
       const onSelectionChangeCallback = sinon.spy();
-      const wrapper = mount(<SplitEditor onSelectionChange={onSelectionChangeCallback}/>, mountOptions);
+      const wrapper = mount(<SplitEditor onSelectionChange={onSelectionChangeCallback} value="some value"/>, mountOptions);
 
       // Check is not previously called
       expect(onSelectionChangeCallback.callCount).to.equal(0);
@@ -264,9 +264,9 @@ describe('Split Component', () => {
     });
 
   });
-  describe('ComponentWillReceiveProps', () => {
+  describe('ComponentDidUpdate', () => {
 
-    it('should update the editorOptions on componentWillReceiveProps', () => {
+    it('should update the editorOptions on componentDidUpdate', () => {
       const options = {
         printMargin: 80
       };
@@ -276,7 +276,7 @@ describe('Split Component', () => {
       const editor = wrapper.instance().splitEditor;
       expect(editor.getOption('printMargin')).to.equal(options.printMargin);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       const newOptions = {
         printMargin: 200,
         animatedScroll: true,
@@ -285,7 +285,7 @@ describe('Split Component', () => {
       expect(editor.getOption('printMargin')).to.equal(newOptions.printMargin);
       expect(editor.getOption('animatedScroll')).to.equal(newOptions.animatedScroll);
     });
-    it('should update the editorOptions on componentWillReceiveProps', () => {
+    it('should update the editorOptions on componentDidUpdate', () => {
 
       const wrapper = mount(<SplitEditor minLines={1} />, mountOptions);
 
@@ -299,7 +299,7 @@ describe('Split Component', () => {
     });
 
 
-    it('should update the mode on componentWillReceiveProps', () => {
+    it('should update the mode on componentDidUpdate', () => {
 
       const wrapper = mount(<SplitEditor mode="javascript" />, mountOptions);
 
@@ -314,7 +314,7 @@ describe('Split Component', () => {
 
 
 
-    it('should update many props on componentWillReceiveProps', () => {
+    it('should update many props on componentDidUpdate', () => {
 
       const wrapper = mount((
         <SplitEditor
@@ -347,7 +347,7 @@ describe('Split Component', () => {
 
 
 
-    it('should update the className on componentWillReceiveProps', () => {
+    it('should update the className on componentDidUpdate', () => {
       const className = 'old-class';
       const wrapper = mount(<SplitEditor className={className}/>, mountOptions);
 
@@ -355,7 +355,7 @@ describe('Split Component', () => {
       let editor = wrapper.instance().refEditor;
       expect(editor.className).to.equal(' ace_editor ace-tm old-class');
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       const newClassName = 'new-class';
       wrapper.setProps({className: newClassName});
       editor = wrapper.instance().refEditor;
@@ -363,7 +363,7 @@ describe('Split Component', () => {
     });
 
 
-    it('should update the value on componentWillReceiveProps', () => {
+    it('should update the value on componentDidUpdate', () => {
       const startValue = 'start value';
       const anotherStartValue = 'another start value';
       const wrapper = mount(<SplitEditor value={[startValue, anotherStartValue]}/>, mountOptions);
@@ -374,7 +374,7 @@ describe('Split Component', () => {
       expect(editor.getValue()).to.equal(startValue);
       expect(editor2.getValue()).to.equal(anotherStartValue);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       const newValue = 'updated value';
       const anotherNewValue = 'another updated value';
       wrapper.setProps({value: [newValue, anotherNewValue]});
@@ -474,14 +474,14 @@ describe('Split Component', () => {
       expect(editor.getSession().getAnnotations()).to.deep.equal([]);
     })
 
-    it('should trigger the focus on componentWillReceiveProps', () => {
+    it('should trigger the focus on componentDidUpdate', () => {
       const onFocusCallback = sinon.spy();
       const wrapper = mount(<SplitEditor onFocus={onFocusCallback}/>, mountOptions);
 
       // Read the focus
       expect(onFocusCallback.callCount).to.equal(0);
 
-      // Now trigger the componentWillReceiveProps
+      // Now trigger the componentDidUpdate
       wrapper.setProps({focus: true});
       expect(onFocusCallback.callCount).to.equal(1);
     });

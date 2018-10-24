@@ -1,4 +1,4 @@
-import { editorOptions, editorEvents, getAceInstance } from './editorOptions.js'
+import { editorOptions, editorEvents, getAceInstance,debounce } from './editorOptions.js'
 const ace = getAceInstance();
 import 'brace';
 import React, { Component } from 'react'
@@ -6,9 +6,10 @@ import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
 import get from 'lodash.get'
 
+
 const { Range } = ace.acequire('ace/range');
 
-import 'brace/ext/split'
+import 'brace/ext/split';
 const { Split } = ace.acequire('ace/split');
 
 export default class SplitComponent extends Component {
@@ -17,6 +18,7 @@ export default class SplitComponent extends Component {
     editorEvents.forEach(method => {
       this[method] = this[method].bind(this);
     });
+    this.debounce = debounce;
   }
 
   componentDidMount() {
@@ -33,7 +35,7 @@ export default class SplitComponent extends Component {
       showGutter,
       wrapEnabled,
       showPrintMargin,
-      scrollMargin = [ 0, 0, 0, 0],
+      scrollMargin = [0, 0, 0, 0],
       keyboardHandler,
       onLoad,
       commands,
@@ -50,16 +52,19 @@ export default class SplitComponent extends Component {
 
     const editorProps = Object.keys(this.props.editorProps);
 
-    var split = new Split(this.editor.container,`ace/theme/${theme}`,splits)
+    var split = new Split(this.editor.container, `ace/theme/${theme}`, splits);
     this.editor.env.split = split;
 
     this.splitEditor = split.getEditor(0);
-    this.split = split
+    this.split = split;
     // in a split scenario we don't want a print margin for the entire application
     this.editor.setShowPrintMargin(false);
     this.editor.renderer.setShowGutter(false);
     // get a list of possible options to avoid 'misspelled option errors'
     const availableOptions = this.splitEditor.$options;
+    if (this.props.debounceChangePeriod) {
+      this.onChange = this.debounce(this.onChange, this.props.debounceChangePeriod);
+    }
     split.forEach((editor, index) => {
       for (let i = 0; i < editorProps.length; i++) {
         editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
@@ -68,7 +73,7 @@ export default class SplitComponent extends Component {
       const valueForEditor = get(value, index, '')
       editor.session.setUndoManager(new ace.UndoManager());
       editor.setTheme(`ace/theme/${theme}`);
-      editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3])
+      editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3]);
       editor.getSession().setMode(`ace/mode/${mode}`);
       editor.setFontSize(fontSize);
       editor.renderer.setShowGutter(showGutter);
@@ -84,11 +89,11 @@ export default class SplitComponent extends Component {
       editor.getSession().selection.on('changeCursor', this.onCursorChange);
       editor.session.on('changeScrollTop', this.onScroll);
       editor.setValue(defaultValueForEditor === undefined ? valueForEditor : defaultValueForEditor, cursorStart);
-      const newAnnotations = get(annotations, index, [])
-      const newMarkers = get(markers, index, [])
+      const newAnnotations = get(annotations, index, []);
+      const newMarkers = get(markers, index, []);
       editor.getSession().setAnnotations(newAnnotations);
-      if(newMarkers && newMarkers.length > 0){
-        this.handleMarkers(newMarkers,editor);
+      if (newMarkers && newMarkers.length > 0) {
+        this.handleMarkers(newMarkers, editor);
       }
 
       for (let i = 0; i < editorOptions.length; i++) {
@@ -96,17 +101,18 @@ export default class SplitComponent extends Component {
         if (availableOptions.hasOwnProperty(option)) {
           editor.setOption(option, this.props[option]);
         } else if (this.props[option]) {
-          console.warn(`ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`)
+          console.warn(
+            `ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`,
+          );
         }
       }
       this.handleOptions(this.props, editor);
 
       if (Array.isArray(commands)) {
-        commands.forEach((command) => {
-          if(typeof command.exec == 'string') {
+        commands.forEach(command => {
+          if (typeof command.exec == 'string') {
             editor.commands.bindKey(command.bindKey, command.exec);
-          }
-          else {
+          } else {
             editor.commands.addCommand(command);
           }
         });
@@ -115,7 +121,7 @@ export default class SplitComponent extends Component {
       if (keyboardHandler) {
         editor.setKeyboardHandler('ace/keyboard/' + keyboardHandler);
       }
-    })
+    });
 
     if (className) {
       this.refEditor.className += ' ' + className;
@@ -126,28 +132,28 @@ export default class SplitComponent extends Component {
     }
 
     const sp = this.editor.env.split;
-    sp.setOrientation( this.props.orientation === 'below' ? sp.BELOW : sp.BESIDE);
-    sp.resize(true)
+    sp.setOrientation(this.props.orientation === 'below' ? sp.BELOW : sp.BESIDE);
+    sp.resize(true);
     if (onLoad) {
       onLoad(sp);
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const oldProps = this.props;
+  componentDidUpdate(prevProps) {
+    const oldProps = prevProps;
+    const nextProps = this.props;
 
-    const split = this.editor.env.split
+    const split = this.editor.env.split;
 
     if (nextProps.splits !== oldProps.splits) {
-      split.setSplits(nextProps.splits)
+      split.setSplits(nextProps.splits);
     }
 
     if (nextProps.orientation !== oldProps.orientation) {
-      split.setOrientation( nextProps.orientation === 'below' ? split.BELOW : split.BESIDE);
+      split.setOrientation(nextProps.orientation === 'below' ? split.BELOW : split.BESIDE);
     }
 
     split.forEach((editor, index) => {
-
       if (nextProps.mode !== oldProps.mode) {
         editor.getSession().setMode('ace/mode/' + nextProps.mode);
       }
@@ -180,7 +186,7 @@ export default class SplitComponent extends Component {
       if (!isEqual(nextProps.setOptions, oldProps.setOptions)) {
         this.handleOptions(nextProps, editor);
       }
-      const nextValue = get(nextProps.value, index, '')
+      const nextValue = get(nextProps.value, index, '');
       if (editor.getValue() !== nextValue) {
         // editor.setValue is a synchronous function call, change event is emitted before setValue return.
         this.silent = true;
@@ -189,25 +195,24 @@ export default class SplitComponent extends Component {
         editor.session.selection.fromJSON(pos);
         this.silent = false;
       }
-      const newAnnotations = get(nextProps.annotations, index, [])
-      const oldAnnotations = get(oldProps.annotations, index, [])
+      const newAnnotations = get(nextProps.annotations, index, []);
+      const oldAnnotations = get(oldProps.annotations, index, []);
       if (!isEqual(newAnnotations, oldAnnotations)) {
         editor.getSession().setAnnotations(newAnnotations);
       }
 
-      const newMarkers = get(nextProps.markers, index, [])
-      const oldMarkers = get(oldProps.markers, index, [])
+      const newMarkers = get(nextProps.markers, index, []);
+      const oldMarkers = get(oldProps.markers, index, []);
       if (!isEqual(newMarkers, oldMarkers) && Array.isArray(newMarkers)) {
         this.handleMarkers(newMarkers, editor);
       }
-
-    })
+    });
 
     if (nextProps.className !== oldProps.className) {
       let appliedClasses = this.refEditor.className;
       let appliedClassesArray = appliedClasses.trim().split(' ');
       let oldClassesArray = oldProps.className.trim().split(' ');
-      oldClassesArray.forEach((oldClass) => {
+      oldClassesArray.forEach(oldClass => {
         let index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
@@ -221,7 +226,7 @@ export default class SplitComponent extends Component {
     if (nextProps.focus && !oldProps.focus) {
       this.splitEditor.focus();
     }
-    if(nextProps.height !== this.props.height || nextProps.width !== this.props.width){
+    if (nextProps.height !== this.props.height || nextProps.width !== this.props.width) {
       this.editor.resize();
     }
   }
@@ -233,30 +238,30 @@ export default class SplitComponent extends Component {
 
   onChange(event) {
     if (this.props.onChange && !this.silent) {
-      let value = []
-      this.editor.env.split.forEach((editor) => {
-        value.push(editor.getValue())
-      })
+      let value = [];
+      this.editor.env.split.forEach(editor => {
+        value.push(editor.getValue());
+      });
       this.props.onChange(value, event);
     }
   }
 
   onSelectionChange(event) {
     if (this.props.onSelectionChange) {
-      let value = []
-      this.editor.env.split.forEach((editor) => {
-        value.push(editor.getSelection())
-      })
+      let value = [];
+      this.editor.env.split.forEach(editor => {
+        value.push(editor.getSelection());
+      });
       this.props.onSelectionChange(value, event);
     }
   }
   onCursorChange(event) {
-    if(this.props.onCursorChange) {
-      let value = []
-      this.editor.env.split.forEach((editor) => {
-        value.push(editor.getSelection())
-      })
-      this.props.onCursorChange(value, event)
+    if (this.props.onCursorChange) {
+      let value = [];
+      this.editor.env.split.forEach(editor => {
+        value.push(editor.getSelection());
+      });
+      this.props.onCursorChange(value, event);
     }
   }
   onFocus(event) {
@@ -331,13 +336,7 @@ export default class SplitComponent extends Component {
   render() {
     const { name, width, height, style } = this.props;
     const divStyle = { width, height, ...style };
-    return (
-      <div ref={this.updateRef}
-        id={name}
-        style={divStyle}
-      >
-      </div>
-    );
+    return <div ref={this.updateRef} id={name} style={divStyle} />;
   }
 }
 
@@ -351,10 +350,7 @@ SplitComponent.propTypes = {
   className: PropTypes.string,
   height: PropTypes.string,
   width: PropTypes.string,
-  fontSize: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   showGutter: PropTypes.bool,
   onChange: PropTypes.func,
   onCopy: PropTypes.func,
@@ -365,6 +361,7 @@ SplitComponent.propTypes = {
   onScroll: PropTypes.func,
   value: PropTypes.arrayOf(PropTypes.string),
   defaultValue: PropTypes.arrayOf(PropTypes.string),
+  debounceChangePeriod: PropTypes.number,
   onLoad: PropTypes.func,
   onSelectionChange: PropTypes.func,
   onCursorChange: PropTypes.func,
@@ -384,14 +381,8 @@ SplitComponent.propTypes = {
   markers: PropTypes.array,
   keyboardHandler: PropTypes.string,
   wrapEnabled: PropTypes.bool,
-  enableBasicAutocompletion: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.array,
-  ]),
-  enableLiveAutocompletion: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.array,
-  ]),
+  enableBasicAutocompletion: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
+  enableLiveAutocompletion: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   commands: PropTypes.array,
 };
 
@@ -420,7 +411,7 @@ SplitComponent.defaultProps = {
   cursorStart: 1,
   editorProps: {},
   style: {},
-  scrollMargin: [ 0, 0, 0, 0],
+  scrollMargin: [0, 0, 0, 0],
   setOptions: {},
   wrapEnabled: false,
   enableBasicAutocompletion: false,

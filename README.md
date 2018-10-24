@@ -1,4 +1,5 @@
-# React-Ace
+#  React-Ace
+![logo](https://github.com/securingsincity/react-ace/raw/master/logo.png)
 
 [![Backers on Open Collective](https://opencollective.com/react-ace/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/react-ace/sponsors/badge.svg)](#sponsors) [![Greenkeeper badge](https://badges.greenkeeper.io/securingsincity/react-ace.svg)](https://greenkeeper.io/)
 
@@ -14,6 +15,8 @@ A set of react components for Ace / Brace
 [DEMO of React Ace](http://securingsincity.github.io/react-ace/)
 
 [DEMO of React Ace Split Editor](http://securingsincity.github.io/react-ace/split.html)
+
+[DEMO of React Ace Diff Editor](http://securingsincity.github.io/react-ace/diff.html)
 
 ## Install
 
@@ -56,6 +59,8 @@ Checkout the `example` directory for a working example using webpack.
 [Ace Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Ace.md)
 
 [Split View Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Split.md)
+
+[Diff Editor](https://github.com/securingsincity/react-ace/blob/master/docs/Diff.md)
 
 [How to add modes, themes and keyboard handlers](https://github.com/securingsincity/react-ace/blob/master/docs/Modes.md)
 
