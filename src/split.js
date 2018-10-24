@@ -1,6 +1,6 @@
 import { editorOptions, editorEvents, getAceInstance } from './editorOptions.js'
 const ace = getAceInstance();
-import {UndoManager} from 'brace';
+import 'brace';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash.isequal'
@@ -66,7 +66,7 @@ export default class SplitComponent extends Component {
       }
       const defaultValueForEditor = get(defaultValue, index)
       const valueForEditor = get(value, index, '')
-      editor.session.setUndoManager(new UndoManager());
+      editor.session.setUndoManager(new ace.UndoManager());
       editor.setTheme(`ace/theme/${theme}`);
       editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3])
       editor.getSession().setMode(`ace/mode/${mode}`);
