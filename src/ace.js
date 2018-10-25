@@ -238,7 +238,7 @@ export default class ReactAce extends Component {
   }
   onFocus(event) {
     if (this.props.onFocus) {
-      this.props.onFocus(event);
+      this.props.onFocus(event, this.editor);
     }
   }
 
