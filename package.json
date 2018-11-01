@@ -1,6 +1,6 @@
 {
-  "name": "react-ace",
-  "version": "6.2.0",
+  "name": "react-ace-builds",
+  "version": "0.0.1",
   "description": "A react component for Ace Editor",
   "main": "lib/index.js",
   "types": "types.d.ts",
@@ -99,6 +99,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/securingsincity/react-ace.git"
+    "url": "http://github.com/manubb/react-ace-builds.git"
   }
 }
