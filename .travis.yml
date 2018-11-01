@@ -9,15 +9,33 @@ script:
 - npm run coverage
 - npm run build:example
 after_success:
-  - cat ./coverage/*.info | ./node_modules/coveralls/bin/coveralls.js
+- cat ./coverage/*.info | ./node_modules/coveralls/bin/coveralls.js
 cache:
   directories:
-    - node_modules # NPM packages
+  - node_modules
 deploy:
+  - provider: releases
+    api_key:
+      secure: 03xGh43El9WF1UNFrP3bWVWl4mkSsGP7fNE7EKiA33maybMT46QwXj+8nOkgeHUHlWE0+jPyg0GRSjTS7/FW52IsknCIZdAKR+bZvUmic/zOQYXcQmRCnIxTzCKaKDPKuRXWmObS1IzUo9BUeFyY+ow8+Sam7EiXHzCHL5fbyoZsLdRt9a/hx1+5RZvH7zvU7JqDRDY4rHa40M1wAh3wPX30IEaaTNfpuRZvebVuvHjYnT6lfPohuJAqmwb9Opl1WPkhVhs8dvpWFWL2Qk+vF+Adaqv0tn6tscQkj0wVBsFQkBqESPK35noY1FruU6Uw8Es89IeueCi06R7+PI8LWaSMYtOVzNKUN0rYL39K+UUCi4MIwVnpow2WSJ5bxdlIfVG7zVz1NuAg/qUVQRjM5RztbkdH4MWwnWdhLbclNdiPIgesY+N2Ta93FxL/2FjTVTrYDcXEW16Xfk6RXM6xa7ZAZNnKT2Twko5qvwBalbvKRj+2S3QDMy3S9z+/Mxq5iQvfXyxCrT2A4f/YJj3gsypUL+e+Ee+KHDIGQ/Ie41ZAzXnC4QmgVcnVLHdgCMxOcV8EQxCm/K6Ngi8ce06USqeKa/+Dk8BR8gCtnvEG2twxqdUWjv4ZQ3pJwSwVG8sEhQ/Tr7g5at8pTs29DTfQoc3lyRNtV4m+NNaUStU+fdg=
+    file: dist/react-ace.min.js
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: manubb/react-ace-builds
+      branch: local
+  - provider: npm
+    email: mbaclet@gmail.com
+    api_key:
+      secure: JVCQb5LSlSCcuz4gcd50Hc2fXYj8wCM6HWrXaXu0sWbkmKoBaU5t0onBy9OEws1vt83aE9OqxXuZZs5mXZHlHrbKJf374F/Yfzp7qA5BiK91oK9zJxvIxWzUAVaQjMGUjsd6VnR4cBHC7cSUHsWP+xnOKcLfEyzq3su5rEict6nVANJbDQ7+KZ/0J2S3Cx722mpawv/XZg42kVp6g5ge+8AlXftNA/J2nXurY1B7iz7WJOAxDYceJnIhWBe2TWel2QpPuZwtaOrLH5DFhl474uOj0UcLi8x3l1p4mK2YXRIHSkG+1h3d93iWhVjJlxcWhmsOR3PxrFL7OP3uj0vNyvu4RrardS3x1fZNvEXIM59kToTu3CPj7bOHLBPEvpE0mEGSnvgkaew4Gutipxb2YBV6nhDHhsG3LTfGWXBVUAblY7j8DX/tT9pbDogfIDcJbzfdUh5uidgPqCdICsb286te0rX9VOdjcOfIoAxCruo5oixce7Fl3mqQ2dziYCQwVmSfzhENNMR+9npkC8RTtIYbDY7Wg0Pog2Ut4zglrzfG77NgfP8LdVx6xHd/dRQKqw13r13TTg7Y6V3yNY+cnhDgFIcClWXy+tod9kLIphohTxNCKH3awaEGtdtbYTkOmfdtVMJtQKnULWpm68vLo/FN9BIXZp/CZ0ZFPE512eo=
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: manubb/react-ace-builds
+      branch: local
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
     on:
       branch: local
-      repo: manubb/react-ace
+      repo: manubb/react-ace-builds
     local_dir: example
