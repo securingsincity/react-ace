@@ -1,4 +1,4 @@
-# React-Ace
+# React-Ace-Builds
 
 ![logo](https://github.com/manubb/react-ace-builds/raw/local/logo.png)
 
@@ -18,18 +18,19 @@ A set of react components for Ace / Brace
 
 ## Install
 
-`npm install react-ace`
+`npm install react-ace-builds`
 
 ## Basic Usage
 
 ```javascript
 import React from "react";
 import { render } from "react-dom";
-import brace from "brace";
-import AceEditor from "react-ace";
+import ace from "ace-builds";
+import "ace-builds/webpack-resolver";
+import AceEditor from "react-ace-builds";
 
-import "brace/mode/java";
-import "brace/theme/github";
+ace.require("ace/mode/jsx");
+ace.require("ace/theme/github");
 
 function onChange(newValue) {
   console.log("change", newValue);
