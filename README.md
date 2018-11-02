@@ -3,10 +3,9 @@
 ![logo](https://github.com/manubb/react-ace-builds/raw/local/logo.png)
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/manubb/react-ace-builds.svg)](https://greenkeeper.io/)
-
 [![npm version](https://badge.fury.io/js/react-ace-builds.svg)](http://badge.fury.io/js/react-ace-builds)
-[![Build Status](https://travis-ci.org/manubb/react-ace-builds.svg)](https://travis-ci.org/manubb/react-ace-builds)
-[![CDNJS](https://img.shields.io/cdnjs/v/react-ace-builds.svg)](https://cdnjs.com/libraries/react-ace-builds)
+[![Build Status](https://travis-ci.com/manubb/react-ace-builds.svg)](https://travis-ci.com/manubb/react-ace-builds)
+[![jsdeliver](https://data.jsdelivr.com/v1/package/npm/react-ace-builds/badge)](https://www.jsdelivr.com/package/npm/react-ace-builds)
 [![Coverage Status](https://coveralls.io/repos/github/manubb/react-ace-builds/badge.svg?branch=local)](https://coveralls.io/github/manubb/react-ace-builds?branch=local)
 
 A set of react components for Ace / Brace
