@@ -6,7 +6,7 @@
 [![npm version](https://badge.fury.io/js/react-ace-builds.svg)](http://badge.fury.io/js/react-ace-builds)
 [![Build Status](https://travis-ci.com/manubb/react-ace-builds.svg)](https://travis-ci.com/manubb/react-ace-builds)
 [![jsdeliver](https://data.jsdelivr.com/v1/package/npm/react-ace-builds/badge)](https://www.jsdelivr.com/package/npm/react-ace-builds)
-[![Coverage Status](https://coveralls.io/repos/github/manubb/react-ace-builds/badge.svg?branch=local)](https://coveralls.io/github/manubb/react-ace-builds?branch=local)
+[![Coverage Status](https://coveralls.io/repos/github/manubb/react-ace-builds/badge.svg)](https://coveralls.io/github/manubb/react-ace-builds)
 
 A set of react components for Ace / Brace
 
