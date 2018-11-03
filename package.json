@@ -50,7 +50,7 @@
     "react-test-renderer": "^16.5.1",
     "rimraf": "2.6.2",
     "sinon": "6.0.1",
-    "webpack": "4.20.2",
+    "webpack": "4.23.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.8"
   },
@@ -73,7 +73,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --print-width 120 --single-quote --trailing-comma all --staged"
+      "pre-commit": "pretty-quick --staged"
     }
   },
   "peerDependencies": {
