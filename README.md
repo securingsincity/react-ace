@@ -16,6 +16,10 @@ A set of react components for Ace
 
 [DEMO of React Ace Diff Editor](http://manubb.github.io/react-ace-builds/diff.html)
 
+## Notice
+
+This repository contains a fork of [securingsincity/react-ace](https://github.com/securingsincity/react-ace) which basically replace unmaintained [brace](https://github.com/thlorenz/brace) with [ace-builds](https://github.com/ajaxorg/ace-builds). This was motivated by a [pull request](https://github.com/securingsincity/react-ace/pull/540) created by [@dennisoelkers](https://github.com/dennisoelkers).
+
 ## Install
 
 `npm install react-ace-builds`
