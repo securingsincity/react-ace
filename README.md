@@ -25,12 +25,8 @@ A set of react components for Ace / Brace
 ```javascript
 import React from "react";
 import { render } from "react-dom";
-import ace from "ace-builds";
-import "ace-builds/webpack-resolver";
 import AceEditor from "react-ace-builds";
-
-ace.require("ace/mode/jsx");
-ace.require("ace/theme/github");
+import "ace-builds/webpack-resolver";
 
 function onChange(newValue) {
   console.log("change", newValue);

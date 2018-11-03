@@ -1,39 +1,13 @@
-import SplitEditor from './split.js';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import DiffMatchPatch from 'diff-match-patch';
+import SplitEditor from "./split.js";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import DiffMatchPatch from "diff-match-patch";
 
 export default class DiffComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.props.value,
-    };
-    this.onChange = this.onChange.bind(this);
-    this.diff = this.diff.bind(this);
-  }
-
-  componentDidUpdate() {
-    const { value } = this.props;
-
-    if (value !== this.state.value) {
-      this.setState({ value });
-    }
-  }
-
-  onChange(value) {
-    this.setState({
-      value: value,
-    });
-    if (this.props.onChange) {
-      this.props.onChange(value);
-    }
-  }
-
   diff() {
     const dmp = new DiffMatchPatch();
-    const lhString = this.state.value[0];
-    const rhString = this.state.value[1];
+    const lhString = this.props.value[0];
+    const rhString = this.props.value[1];
 
     if (lhString.length === 0 && rhString.length === 0) {
       return [];
@@ -51,23 +25,23 @@ export default class DiffComponent extends Component {
     const C = {
       DIFF_EQUAL: 0,
       DIFF_DELETE: -1,
-      DIFF_INSERT: 1,
+      DIFF_INSERT: 1
     };
 
     const diffedLines = {
       left: [],
-      right: [],
+      right: []
     };
 
     const cursor = {
       left: 1,
-      right: 1,
+      right: 1
     };
 
     diff.forEach(chunk => {
       const chunkType = chunk[0];
       const text = chunk[1];
-      let lines = text.split('\n').length - 1;
+      let lines = text.split("\n").length - 1;
 
       // diff-match-patch sometimes returns empty strings at random
       if (text.length === 0) {
@@ -86,7 +60,7 @@ export default class DiffComponent extends Component {
           break;
         case C.DIFF_DELETE:
           // If the deletion starts with a newline, push the cursor down to that line
-          if (firstChar === '\n') {
+          if (firstChar === "\n") {
             cursor.left++;
             lines--;
           }
@@ -97,25 +71,25 @@ export default class DiffComponent extends Component {
           if (linesToHighlight === 0) {
             diffedLines.right.push({
               startLine: cursor.right,
-              endLine: cursor.right,
+              endLine: cursor.right
             });
           }
 
           // If the last character is a newline, we don't want to highlight that line
-          if (lastChar === '\n') {
+          if (lastChar === "\n") {
             linesToHighlight -= 1;
           }
 
           diffedLines.left.push({
             startLine: cursor.left,
-            endLine: cursor.left + linesToHighlight,
+            endLine: cursor.left + linesToHighlight
           });
 
           cursor.left += lines;
           break;
         case C.DIFF_INSERT:
           // If the insertion starts with a newline, push the cursor down to that line
-          if (firstChar === '\n') {
+          if (firstChar === "\n") {
             cursor.right++;
             lines--;
           }
@@ -126,24 +100,24 @@ export default class DiffComponent extends Component {
           if (linesToHighlight === 0) {
             diffedLines.left.push({
               startLine: cursor.left,
-              endLine: cursor.left,
+              endLine: cursor.left
             });
           }
 
           // If the last character is a newline, we don't want to highlight that line
-          if (lastChar === '\n') {
+          if (lastChar === "\n") {
             linesToHighlight -= 1;
           }
 
           diffedLines.right.push({
             startLine: cursor.right,
-            endLine: cursor.right + linesToHighlight,
+            endLine: cursor.right + linesToHighlight
           });
 
           cursor.right += lines;
           break;
         default:
-          throw new Error('Diff type was not defined.');
+          throw new Error("Diff type was not defined.");
       }
     });
     return diffedLines;
@@ -156,15 +130,15 @@ export default class DiffComponent extends Component {
 
     const newMarkerSet = {
       left: [],
-      right: [],
+      right: []
     };
 
     for (let i = 0; i < diffedLines.left.length; i++) {
       let markerObj = {
         startRow: diffedLines.left[i].startLine - 1,
         endRow: diffedLines.left[i].endLine,
-        type: 'text',
-        className: 'codeMarker',
+        type: "text",
+        className: "codeMarker"
       };
       newMarkerSet.left.push(markerObj);
     }
@@ -173,8 +147,8 @@ export default class DiffComponent extends Component {
       let markerObj = {
         startRow: diffedLines.right[i].startLine - 1,
         endRow: diffedLines.right[i].endLine,
-        type: 'text',
-        className: 'codeMarker',
+        type: "text",
+        className: "codeMarker"
       };
       newMarkerSet.right.push(markerObj);
     }
@@ -200,7 +174,7 @@ export default class DiffComponent extends Component {
         width={this.props.width}
         fontSize={this.props.fontSize}
         showGutter={this.props.showGutter}
-        onChange={this.onChange}
+        onChange={this.props.onChange}
         onPaste={this.props.onPaste}
         onLoad={this.props.onLoad}
         onScroll={this.props.onScroll}
@@ -218,7 +192,7 @@ export default class DiffComponent extends Component {
         wrapEnabled={this.props.wrapEnabled}
         enableBasicAutocompletion={this.props.enableBasicAutocompletion}
         enableLiveAutocompletion={this.props.enableLiveAutocompletion}
-        value={this.state.value}
+        value={this.props.value}
         markers={markers}
       />
     );
@@ -255,7 +229,7 @@ DiffComponent.propTypes = {
   theme: PropTypes.string,
   value: PropTypes.array,
   width: PropTypes.string,
-  wrapEnabled: PropTypes.bool,
+  wrapEnabled: PropTypes.bool
 };
 
 DiffComponent.defaultProps = {
@@ -265,17 +239,17 @@ DiffComponent.defaultProps = {
   enableLiveAutocompletion: false,
   focus: false,
   fontSize: 12,
-  height: '500px',
+  height: "500px",
   highlightActiveLine: true,
   maxLines: null,
   minLines: null,
-  mode: '',
-  name: 'ace-editor',
+  mode: "",
+  name: "ace-editor",
   onLoad: null,
   onScroll: null,
   onPaste: null,
   onChange: null,
-  orientation: 'beside',
+  orientation: "beside",
   readOnly: false,
   scrollMargin: [0, 0, 0, 0],
   setOptions: {},
@@ -284,8 +258,8 @@ DiffComponent.defaultProps = {
   splits: 2,
   style: {},
   tabSize: 4,
-  theme: 'github',
-  value: ['', ''],
-  width: '500px',
-  wrapEnabled: true,
+  theme: "github",
+  value: ["", ""],
+  width: "500px",
+  wrapEnabled: true
 };
