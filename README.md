@@ -8,7 +8,7 @@
 [![jsdeliver](https://data.jsdelivr.com/v1/package/npm/react-ace-builds/badge)](https://www.jsdelivr.com/package/npm/react-ace-builds)
 [![Coverage Status](https://coveralls.io/repos/github/manubb/react-ace-builds/badge.svg)](https://coveralls.io/github/manubb/react-ace-builds)
 
-A set of react components for Ace / Brace
+A set of react components for Ace
 
 [DEMO of React Ace](http://manubb.github.io/react-ace-builds/)
 

@@ -59,7 +59,7 @@
     "ace editor",
     "react-component",
     "react",
-    "brace"
+    "ace-builds"
   ],
   "dependencies": {
     "ace-builds": "^1.4.1",
