@@ -23,6 +23,13 @@ const languages = [
   "css"
 ];
 
+languages.forEach(lang => {
+  ace.config.setModuleUrl(
+    `ace/snippets/${lang}`,
+    require(`file-loader!ace-builds/src-noconflict/snippets/${lang}.js`)
+  );
+});
+
 const themes = [
   "monokai",
   "github",
