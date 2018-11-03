@@ -1,39 +1,42 @@
 # Modes, Themes, and Keyboard Handlers
 
-All modes, themes, and keyboard handlers should be required through [`brace`](https://github.com/thlorenz/brace) directly.  Browserify will grab these [modes](https://github.com/thlorenz/brace/tree/master/mode) / [themes](https://github.com/thlorenz/brace/tree/master/theme) / [keyboard handlers](https://github.com/thlorenz/brace/tree/master/keybinding) through ```brace``` and will be available at run time.  See the example above.  This prevents bloating the compiled javascript with extra modes and themes for your application.
+All modes, themes and keyboard handlers will be lazy loaded when needed if you use:
+`import "ace-builds/webpack-resolver";`
+
+Snippets and language_tools should be manually imported to be used. See the [main](../example/index.js) [example](../example/index.html) in the example folder for usage example code (seen in the [demo](https://manubb.github.io/react-ace-builds)).
 
 ### Example Modes
 
-* javascript
-* java
-* python
-* xml
-* ruby
-* sass
-* markdown
-* mysql
-* json
-* html
-* handlebars
-* golang
-* csharp
-* coffee
-* css
+- javascript
+- java
+- python
+- xml
+- ruby
+- sass
+- markdown
+- mysql
+- json
+- html
+- handlebars
+- golang
+- csharp
+- coffee
+- css
 
 ### Example Themes
 
-* monokai
-* github
-* tomorrow
-* kuroir
-* twilight
-* xcode
-* textmate
-* solarized dark
-* solarized light
-* terminal
+- monokai
+- github
+- tomorrow
+- kuroir
+- twilight
+- xcode
+- textmate
+- solarized dark
+- solarized light
+- terminal
 
 ### Example Keyboard Handlers
 
-* vim
-* emacs
+- vim
+- emacs
