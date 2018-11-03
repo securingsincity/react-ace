@@ -5,6 +5,10 @@
 - Fully move to TypeScript interally
 - Publish typings for the split and diff editor
 
+## 7.0.0
+
+- Replace brace with ace-builds
+
 ## 6.2.1
 
 - Add editor to onFocus event as per issue #389
