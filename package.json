@@ -23,6 +23,18 @@
     "coverage": "nyc npm run test"
   },
   "author": "James Hrisho",
+  "contributors": [
+    {
+      "name": "Manuel Baclet",
+      "email": "mbaclet@gmail.com",
+      "url": "https://github.com/manubb"
+    },
+    {
+      "name": "Dennis Oelkers",
+      "email": "dennis@graylog.com",
+      "url": "https://github.com/dennisoelkers"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -100,5 +112,7 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/manubb/react-ace-builds.git"
-  }
+  },
+  "bugs": "https://github.com/manubb/react-ace-builds/issues",
+  "homepage": "https://github.com/manubb/react-ace-builds#readme"
 }
