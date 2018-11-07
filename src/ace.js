@@ -331,7 +331,7 @@ ReactAce.propTypes = {
   onBeforeLoad: PropTypes.func,
   onValidate: PropTypes.func,
   minLines: PropTypes.number,
-  maxLines: PropTypes.number,
+  maxLines: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['Infinity'])]),
   readOnly: PropTypes.bool,
   highlightActiveLine: PropTypes.bool,
   tabSize: PropTypes.number,
