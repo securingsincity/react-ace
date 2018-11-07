@@ -1,6 +1,6 @@
 {
   "name": "react-ace-builds",
-  "version": "7.1.0",
+  "version": "7.2.0",
   "description": "A react component for Ace Editor",
   "main": "lib/index.js",
   "types": "types.d.ts",

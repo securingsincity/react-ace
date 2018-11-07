@@ -5,6 +5,12 @@
 - Fully move to TypeScript interally
 - Publish typings for the split and diff editor
 
+## 7.2.0
+
+- Remove umd build
+- Use babel@7
+- Add webpack-resolver-min.js to use ace minified modules
+
 ## 7.0.0
 
 - Replace brace with ace-builds
