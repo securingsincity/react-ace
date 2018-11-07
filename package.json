@@ -1,6 +1,6 @@
 {
   "name": "react-ace-builds",
-  "version": "7.2.1",
+  "version": "7.2.2",
   "description": "A react component for Ace Editor",
   "main": "lib/index.js",
   "types": "types.d.ts",
@@ -85,7 +85,6 @@
     }
   },
   "peerDependencies": {
-    "prop-types": "^15.6.2",
     "react": "^0.13.0 || ^0.14.0 || ^15.0.1 || ^16.0.0",
     "react-dom": "^0.13.0 || ^0.14.0 || ^15.0.1 || ^16.0.0"
   },
