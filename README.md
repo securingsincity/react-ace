@@ -10,11 +10,11 @@
 
 A set of react components for Ace
 
-[DEMO of React Ace](http://manubb.github.io/react-ace-builds/)
+[DEMO of React Ace-Builds](http://manubb.github.io/react-ace-builds/)
 
-[DEMO of React Ace Split Editor](http://manubb.github.io/react-ace-builds/split.html)
+[DEMO of React Ace-Builds Split Editor](http://manubb.github.io/react-ace-builds/split.html)
 
-[DEMO of React Ace Diff Editor](http://manubb.github.io/react-ace-builds/diff.html)
+[DEMO of React Ace-Builds Diff Editor](http://manubb.github.io/react-ace-builds/diff.html)
 
 ## Notice
 
