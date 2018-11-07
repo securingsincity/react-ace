@@ -12,7 +12,7 @@ https://manubb.github.io/react-ace-builds/
 import React from "react";
 import { render } from "react-dom";
 import AceEditor from "react-ace-builds";
-import "ace-builds/webpack-resolver";
+import "react-ace-builds/webpack-resolver-min";
 
 function onChange(newValue) {
   console.log("change", newValue);
@@ -25,7 +25,6 @@ render(
     theme="github"
     onChange={onChange}
     name="UNIQUE_ID_OF_DIV"
-    editorProps={{ $blockScrolling: true }}
   />,
   document.getElementById("example")
 );

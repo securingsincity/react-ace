@@ -18,7 +18,7 @@ A set of react components for Ace
 
 ## Notice
 
-This repository contains a fork of [securingsincity/react-ace](https://github.com/securingsincity/react-ace) which basically replace unmaintained [brace](https://github.com/thlorenz/brace) with [ace-builds](https://github.com/ajaxorg/ace-builds). This was motivated by a [pull request](https://github.com/securingsincity/react-ace/pull/540) created by [@dennisoelkers](https://github.com/dennisoelkers).
+This repository contains a fork of [securingsincity/react-ace](https://github.com/securingsincity/react-ace) where unmaintained [brace](https://github.com/thlorenz/brace) is replaced with [ace-builds](https://github.com/ajaxorg/ace-builds). This was motivated by a [pull request](https://github.com/securingsincity/react-ace/pull/540) created by [@dennisoelkers](https://github.com/dennisoelkers).
 
 ## Install
 
@@ -30,7 +30,7 @@ This repository contains a fork of [securingsincity/react-ace](https://github.co
 import React from "react";
 import { render } from "react-dom";
 import AceEditor from "react-ace-builds";
-import "ace-builds/webpack-resolver";
+import "react-ace-builds/webpack-resolver-min";
 
 function onChange(newValue) {
   console.log("change", newValue);
@@ -43,7 +43,6 @@ render(
     theme="github"
     onChange={onChange}
     name="UNIQUE_ID_OF_DIV"
-    editorProps={{ $blockScrolling: true }}
   />,
   document.getElementById("example")
 );

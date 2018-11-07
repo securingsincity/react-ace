@@ -9,7 +9,7 @@
     "clean": "rimraf lib",
     "lint": "node_modules/.bin/eslint src/*",
     "example": "webpack-dev-server --config webpack.config.example.js",
-    "build:example": "webpack --config webpack.config.example.js",
+    "build:example": "webpack --config webpack.config.example.js --mode=production",
     "build": "babel src --out-dir lib",
     "check": "npm run lint",
     "preversion": "npm run clean && npm run check",

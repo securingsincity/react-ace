@@ -41,7 +41,7 @@ You can import the snippets through `ace-builds` along with the language_tools. 
 import React from "react";
 import { render } from "react-dom";
 import AceEditor from "react-ace-builds";
-import "ace-builds/webpack-resolver";
+import "react-ace-builds/webpack-resolver-min";
 import "ace-builds/src-noconflict/ext-language_tools.js";
 
 ace.config.setModuleUrl(
@@ -60,7 +60,6 @@ render(
     theme="github"
     onChange={onChange}
     name="UNIQUE_ID_OF_DIV"
-    editorProps={{ $blockScrolling: true }}
     enableBasicAutocompletion={true}
     enableLiveAutocompletion={true}
     enableSnippets={true}
@@ -161,7 +160,7 @@ render() {
 
 The search box is lazy loaded when needed if you use:
 
-`import "ace-builds/webpack-resolver";`
+`import "react-ace-builds/webpack-resolver-min";`
 
 You can also import it directly:
 

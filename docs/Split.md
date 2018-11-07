@@ -12,7 +12,7 @@ https://manubb.github.io/react-ace-builds/split.html
 import React from "react";
 import { render } from "react-dom";
 import { split as SplitEditor } from "react-ace-builds";
-import "ace-builds/webpack-resolver";
+import "react-ace-builds/webpack-resolver-min";
 
 // Render editor
 render(
@@ -23,7 +23,6 @@ render(
     orientation="below"
     value={["hi", "hello"]}
     name="UNIQUE_ID_OF_DIV"
-    editorProps={{ $blockScrolling: true }}
   />,
   document.getElementById("example")
 );

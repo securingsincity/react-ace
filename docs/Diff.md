@@ -12,7 +12,7 @@ https://manubb.github.io/react-ace-builds/diff.html
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { diff as DiffEditor } from "react-ace-builds";
-import "ace-builds/webpack-resolver";
+import "react-ace-builds/webpack-resolver-min";
 
 render(
   <DiffEditor
