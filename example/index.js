@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import AceEditor from "../src/ace.js";
-import "ace-builds/webpack-resolver";
-import "ace-builds/src-noconflict/ext-language_tools.js";
+import AceEditor from "../src/ace";
+import "../webpack-resolver-min";
+import "ace-builds/src-noconflict/ext-language_tools";
 
 const languages = [
   "javascript",
@@ -26,7 +26,7 @@ const languages = [
 languages.forEach(lang => {
   ace.config.setModuleUrl(
     `ace/snippets/${lang}`,
-    require(`file-loader!ace-builds/src-noconflict/snippets/${lang}.js`)
+    require(`file-loader!ace-builds/src-min-noconflict/snippets/${lang}`)
   );
 });
 

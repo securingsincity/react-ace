@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import { diff as DiffEditor } from "../src/index.js";
-import "ace-builds/webpack-resolver";
+import { diff as DiffEditor } from "../src";
+import "../webpack-resolver-min";
 
 const defaultValue = [
   `// Use this tool to display differences in code.
