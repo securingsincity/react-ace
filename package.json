@@ -47,7 +47,7 @@
     "prettier": "^1.14.3",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-test-renderer": "^16.5.1",
+    "react-test-renderer": "^16.6.3",
     "rimraf": "2.6.2",
     "sinon": "6.0.1",
     "webpack": "4.25.1",
