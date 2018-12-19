@@ -91,7 +91,6 @@ export interface AceOptions {
     enableSnippets?: boolean
     spellcheck?: boolean
     useElasticTabstops?: boolean
-    debounceChangePeriod?: number
 }
 
 export interface EditorProps {
@@ -166,6 +165,7 @@ export interface AceEditorProps {
     annotations?: Array<Annotation>
     markers?: Array<Marker>
     style?: CSSProperties
+    debounceChangePeriod?: number
 }
 
 export default class AceEditor extends Component<AceEditorProps, {}> {}
