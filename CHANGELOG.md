@@ -5,6 +5,11 @@
 - Fully move to TypeScript interally
 - Publish typings for the split and diff editor
 
+## 6.2.2
+
+- Upgrade dev dependencies (webpack,jsdom,react)
+- In type definitions, move debounceChangePeriod from AceOptions
+
 ## 6.2.1
 
 - Add editor to onFocus event as per issue #389
