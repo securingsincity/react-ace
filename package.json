@@ -41,10 +41,12 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "7.11.1",
+    "husky": "^1.1.1",
     "jsdom": "^13.0.0",
     "mocha": "5.2.0",
     "nyc": "13.0.1",
     "prettier": "^1.14.3",
+    "pretty-quick": "^1.7.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-test-renderer": "^16.6.3",
@@ -64,10 +66,8 @@
   "dependencies": {
     "brace": "^0.11.1",
     "diff-match-patch": "^1.0.4",
-    "husky": "^1.1.1",
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.5.0",
-    "pretty-quick": "^1.7.0",
     "prop-types": "^15.6.2"
   },
   "husky": {
