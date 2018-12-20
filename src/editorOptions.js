@@ -21,7 +21,19 @@ const editorEvents = [
   'onScroll',
   'handleOptions',
   'updateRef',
-];
+]
+const getAceInstance = ()=>{
+  let ace;
+  // Fallback for ace.require when vanilla ACE is hosted over a CDN
+  if(window.ace) {
+    ace = window.ace;
+    ace.acequire = window.ace.require || window.ace.acequire;
+  } else {
+    ace = require('brace');
+  }
+  return ace;
+}
+
 const debounce = (fn, delay) => {
   var timer = null;
   return function() {
@@ -33,4 +45,4 @@ const debounce = (fn, delay) => {
     }, delay);
   };
 };
-export { editorOptions, editorEvents, debounce };
+export { editorOptions, editorEvents, debounce,getAceInstance };

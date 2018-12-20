@@ -1,11 +1,12 @@
-import ace from 'brace';
-import { UndoManager } from 'brace';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import isEqual from 'lodash.isequal';
-import get from 'lodash.get';
+import { editorOptions, editorEvents, getAceInstance,debounce } from './editorOptions.js'
+const ace = getAceInstance();
+import 'brace';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import isEqual from 'lodash.isequal'
+import get from 'lodash.get'
 
-import { editorOptions, editorEvents, debounce } from './editorOptions.js';
+
 const { Range } = ace.acequire('ace/range');
 
 import 'brace/ext/split';
@@ -68,9 +69,9 @@ export default class SplitComponent extends Component {
       for (let i = 0; i < editorProps.length; i++) {
         editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
       }
-      const defaultValueForEditor = get(defaultValue, index);
-      const valueForEditor = get(value, index, '');
-      editor.session.setUndoManager(new UndoManager());
+      const defaultValueForEditor = get(defaultValue, index)
+      const valueForEditor = get(value, index, '')
+      editor.session.setUndoManager(new ace.UndoManager());
       editor.setTheme(`ace/theme/${theme}`);
       editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3]);
       editor.getSession().setMode(`ace/mode/${mode}`);
