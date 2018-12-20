@@ -5,6 +5,11 @@
 - Fully move to TypeScript interally
 - Publish typings for the split and diff editor
 
+## 6.3.0
+
+- Fix npm deployments
+- Support ace.require to fallback to the CDN version of Ace.
+
 ## 6.2.2
 
 - Upgrade dev dependencies (webpack,jsdom,react)

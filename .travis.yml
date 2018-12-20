@@ -1,13 +1,13 @@
 language: node_js
 node_js:
-- '10'
+  - "10"
 install:
-- npm install
+  - npm install
 script:
-- npm run build
-- npm run lint
-- npm run coverage
-- npm run build:example
+  - npm run build
+  - npm run lint
+  - npm run coverage
+  - npm run build:example
 after_success:
   - cat ./coverage/*.info | ./node_modules/coveralls/bin/coveralls.js
 cache:
@@ -25,7 +25,7 @@ deploy:
   - provider: npm
     email: james.hrisho@gmail.com
     api_key:
-      secure: J5+W0ILDSk70KElNF7jzAOSQc72G+U/gbYml+ULepm4xMxUHwB1b5R0P0UTVDQ5x1H+tfrXruTSTF81ood4DYmQRicrvjAOxdgDDaLQ118sw6dIA67IpIbjUgu5KJeFvM48jU3HcxH73myZv/EaKSVHAFP5ZQhLOi818zCTyeh0=
+      secure: "f170j98sbs+Z+tHFcBhFkqTbhmmYXZ0u1jHa6GV45docgby16vo1aH5bgvoo2cZDqLX5n0ggdisE6v5JNrd2BWWx+qzKiFNZsA2L7dkGhFisqprLXDv0sBQmkxroFFzA2D93Ish4nNcNN5QOJjs7QUTJdSeNcNuDv1XEl8tb9P4="
     skip_cleanup: true
     on:
       tags: true
