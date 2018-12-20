@@ -4,10 +4,9 @@
 
 Check out the example applications
 
-* [create-react-app](https://github.com/securingsincity/react-ace-create-react-app-example)
-* [preact](https://github.com/securingsincity/react-ace-preact-example)
-* [webpack](https://github.com/securingsincity/react-ace-webpack-example)
-
+- [create-react-app](https://github.com/securingsincity/react-ace-create-react-app-example)
+- [preact](https://github.com/securingsincity/react-ace-preact-example)
+- [webpack](https://github.com/securingsincity/react-ace-webpack-example)
 
 ## How do call methods on the editor? How do I call Undo or Redo?
 
@@ -15,13 +14,13 @@ Check out the example applications
 
 ```javascript
 const reactAceComponent = this.refs.reactAceComponent;
-const editor = reactAceComponent.editor
+const editor = reactAceComponent.editor;
 editor.find(searchRegex, {
-   backwards: false,
-   wrap: true,
-   caseSensitive: false,
-   wholeWord: false,
-   regExp: true,
+  backwards: false,
+  wrap: true,
+  caseSensitive: false,
+  wholeWord: false,
+  regExp: true
 });
 ```
 
@@ -46,20 +45,19 @@ Similarly, if you want to redo or undo, you can reference the editor from the re
 
 You can import the snippets and mode directly through `brace` along with the language_tools. Here is an example below
 
-
 ```javascript
-import React from 'react';
-import { render } from 'react-dom';
-import brace from 'brace';
-import AceEditor from 'react-ace';
+import React from "react";
+import { render } from "react-dom";
+import brace from "brace";
+import AceEditor from "react-ace";
 
-import 'brace/mode/python';
-import 'brace/snippets/python';
-import 'brace/ext/language_tools';
-import 'brace/theme/github';
+import "brace/mode/python";
+import "brace/snippets/python";
+import "brace/ext/language_tools";
+import "brace/theme/github";
 
 function onChange(newValue) {
-  console.log('change',newValue);
+  console.log("change", newValue);
 }
 
 // Render editor
@@ -69,12 +67,12 @@ render(
     theme="github"
     onChange={onChange}
     name="UNIQUE_ID_OF_DIV"
-    editorProps={{$blockScrolling: true}}
+    editorProps={{ $blockScrolling: true }}
     enableBasicAutocompletion={true}
     enableLiveAutocompletion={true}
     enableSnippets={true}
-    />,
-  document.getElementById('example')
+  />,
+  document.getElementById("example")
 );
 ```
 
@@ -92,6 +90,7 @@ onSelectionChange(selection) {
 ```
 
 ## How do I get selected text ?
+
 ```javascript
   const selectedText = this.refs.aceEditor.editor.getSelectedText();
   // selectedText contains the selected text.
@@ -99,32 +98,35 @@ onSelectionChange(selection) {
 ```
 
 ## How do I add markers?
+
 ```javascript
-      const markers = [{
-        startRow: 3,
-        type: 'text',
-        className: 'test-marker'
-      }];
-      const wrapper = (<AceEditor markers={markers}/>);
+const markers = [
+  {
+    startRow: 3,
+    type: "text",
+    className: "test-marker"
+  }
+];
+const wrapper = <AceEditor markers={markers} />;
 ```
 
 ## How do I add annotations?
-```javascript
-  const annotations = [{
-    row: 3, // must be 0 based
-    column: 4,  // must be 0 based
-    text: 'error.message',  // text to show in tooltip
-    type: 'error'
-  }]
-  const editor = (
-    <AceEditor
-      annotations={annotations}
-    />
-  )
-```
-## How do I add key-bindings?
-```javascript
 
+```javascript
+const annotations = [
+  {
+    row: 3, // must be 0 based
+    column: 4, // must be 0 based
+    text: "error.message", // text to show in tooltip
+    type: "error"
+  }
+];
+const editor = <AceEditor annotations={annotations} />;
+```
+
+## How do I add key-bindings?
+
+```javascript
 render() {
   return <div>
     <AceEditor
@@ -140,10 +142,12 @@ render() {
   </div>;
 }
 ```
-## How do I change key-bindings for an existing command?
-Same syntax as above, where `exec` is given the name of the command to rebind.
-```javascript
 
+## How do I change key-bindings for an existing command?
+
+Same syntax as above, where `exec` is given the name of the command to rebind.
+
+```javascript
 render() {
   return <div>
     <AceEditor
@@ -161,6 +165,7 @@ render() {
 ```
 
 ## How do I add the search box?
+
 Add the following line
 
 `import 'brace/ext/searchbox';`
@@ -174,30 +179,69 @@ before introducing the component and it will add the search box.
 3. Use the `componentDidMount` function and call `session.setMode` with an instance of my custom mode.
 
 My custom mode is:
+
 ```javascript
-export default class CustomSqlMode extends ace.acequire('ace/mode/text').Mode {
-	constructor(){
-		super();
-		// Your code goes here
-	}
+import "brace/mode/java";
+
+export class CustomHighlightRules extends window.ace.acequire(
+  "ace/mode/text_highlight_rules"
+).TextHighlightRules {
+  constructor() {
+    super();
+    this.$rules = {
+      start: [
+        {
+          token: "comment",
+          regex: "#.*$"
+        },
+        {
+          token: "string",
+          regex: '".*?"'
+        }
+      ]
+    };
+  }
+}
+
+export default class CustomSqlMode extends window.ace.acequire("ace/mode/java")
+  .Mode {
+  constructor() {
+    super();
+    this.HighlightRules = CustomHighlightRules;
+  }
 }
 ```
 
 And my react-ace code looks like:
+
 ```javascript
-render() {
-  return <div>
-    <AceEditor
-      ref="aceEditor"
-      mode="sql"     // Default value since this props must be set.
-      theme="chrome" // Default value since this props must be set.
-    />
-  </div>;
+import React, { Component } from "react";
+import brace from "brace";
+import AceEditor from "react-ace";
+import CustomSqlMode from "./CustomSqlMode.js";
+
+import "brace/theme/github";
+
+class App extends Component {
+  componentDidMount() {
+    const customMode = new CustomSqlMode();
+    this.refs.aceEditor.editor.getSession().setMode(customMode);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <AceEditor
+          ref="aceEditor"
+          mode="text"
+          theme="github"
+          name="UNIQUE_ID_OF_DIV"
+          editorProps={{ $blockScrolling: true }}
+        />
+      </div>
+    );
+  }
 }
 
-componentDidMount() {
-  const customMode = new CustomSqlMode();
-  this.refs.aceEditor.editor.getSession().setMode(customMode);
-}
+export default App;
 ```
-
