@@ -5,7 +5,7 @@
 - Fully move to TypeScript interally
 - Publish typings for the split and diff editor
 
-## 6.3.0
+## 6.3.1
 
 - Fix npm deployments
 - Support ace.require to fallback to the CDN version of Ace.

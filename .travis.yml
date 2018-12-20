@@ -25,7 +25,7 @@ deploy:
   - provider: npm
     email: james.hrisho@gmail.com
     api_key:
-      secure: "f170j98sbs+Z+tHFcBhFkqTbhmmYXZ0u1jHa6GV45docgby16vo1aH5bgvoo2cZDqLX5n0ggdisE6v5JNrd2BWWx+qzKiFNZsA2L7dkGhFisqprLXDv0sBQmkxroFFzA2D93Ish4nNcNN5QOJjs7QUTJdSeNcNuDv1XEl8tb9P4="
+      secure: "imtQDr4elRc6jwmWV7SIzuuFE5BOvrLydEuUZskeHRTQwbvVLZyEU1TRa/74UtNOnrXizf0Od2nCkDaTM7As+GA9r6T5dNoZfzENKXEwwkEk+TNLQp8l75z5jnDFBUq8gFi4Ad25Ys3TNovfvdCa3387h7m4IEKVoSrvaYaZfAA="
     skip_cleanup: true
     on:
       tags: true
