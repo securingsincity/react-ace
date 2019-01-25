@@ -32,7 +32,7 @@ export interface Command {
 }
 
 export interface Selection {
-  getCursor(): Annotation;
+    getCursor(): Annotation;
 }
 
 /**
