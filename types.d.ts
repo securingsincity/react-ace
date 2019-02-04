@@ -31,6 +31,10 @@ export interface Command {
     exec(editor: any): void
 }
 
+export interface Selection {
+    getCursor(): Annotation;
+}
+
 /**
  * See https://github.com/ajaxorg/ace/wiki/Configuring-Ace
  */
@@ -158,6 +162,7 @@ export interface AceEditorProps {
     onBlur?: (event: any) => void
     onValidate?: (annotations: Array<Annotation>) => void
     onScroll?: (editor: EditorProps) => void
+    onCursorChange?: (selection: Selection) => void;
     editorProps?: EditorProps
     setOptions?: AceOptions
     keyboardHandler?: string
