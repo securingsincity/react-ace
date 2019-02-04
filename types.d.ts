@@ -155,7 +155,7 @@ export interface AceEditorProps {
     onBeforeLoad?: (ace: any) => void
     onChange?: (value: string, event?: any) => void
     onInput?: (value: string, event?: any) => void
-    onSelection?: (selectedText: string, event?: any) => void
+    onSelectionChange?: (selectedText: string, event?: any) => void
     onCopy?: (value: string) => void
     onPaste?: (value: string) => void
     onFocus?: (event: any) => void
