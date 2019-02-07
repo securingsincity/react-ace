@@ -5,6 +5,11 @@
 - Fully move to TypeScript interally
 - Publish typings for the split and diff editor
 
+## 6.4.0
+
+- Upgrade types
+- Upgrade webpack, sinon
+
 ## 6.3.2
 
 - Move `husky` and `pretty-quick` to devDependencies
