@@ -176,6 +176,9 @@ export default class ReactAce extends Component {
       this.silent = false;
     }
 
+    if (nextProps.placeholder !== oldProps.placeholder) {
+      this.updatePlaceholder();
+    }
     if (nextProps.mode !== oldProps.mode) {
       this.editor.getSession().setMode("ace/mode/" + nextProps.mode);
     }
@@ -361,6 +364,8 @@ export default class ReactAce extends Component {
       node.style.position = "absolute";
       node.style.zIndex = "3";
       editor.renderer.scroller.appendChild(node);
+    } else if (showPlaceholder && node) {
+      node.textContent = placeholder;
     }
   }
 
