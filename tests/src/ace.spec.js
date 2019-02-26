@@ -203,12 +203,40 @@ describe('Ace Component', () => {
 
       // Read the markers
       const editor = wrapper.instance().editor;
+      expect(Object.keys(editor.getSession().getMarkers())).to.deep.equal(['1', '2', '3']);
       expect(editor.getSession().getMarkers()['3'].clazz).to.equal('test-marker-old');
       expect(editor.getSession().getMarkers()['3'].type).to.equal('text');
       wrapper.setProps({markers});
       const editorB = wrapper.instance().editor;
 
-      expect(editorB.getSession().getMarkers()).to.deep.equal({})
+      expect(Object.keys(editorB.getSession().getMarkers())).to.deep.equal(['1', '2']);
+    });
+
+    it('should not remove active line and selected word highlight when clearing markers', () => {
+      const newMarkers = [
+        {
+          startRow: 4,
+          type: 'text',
+          className: 'test-marker'
+        }
+      ];
+      const wrapper = mount(
+        <AceEditor highlightActiveLine markers={[]} />,
+        mountOptions
+      );
+
+      const editor = wrapper.instance().editor;
+      const bgMarkers = editor.getSession().getMarkers(false);
+      expect(Object.keys(bgMarkers)).to.deep.equal(['1', '2']);
+      expect(bgMarkers['1']).to.have.property('clazz', 'ace_active-line');
+      expect(bgMarkers['2']).to.have.property('clazz', 'ace_selected-word');
+
+      wrapper.setProps({ markers: newMarkers });
+      const bgMarkersNew = editor.getSession().getMarkers(false);
+      expect(Object.keys(bgMarkersNew)).to.deep.equal(['1', '2', '3']);
+      expect(bgMarkersNew['1']).to.have.property('clazz', 'ace_active-line');
+      expect(bgMarkersNew['2']).to.have.property('clazz', 'ace_selected-word');
+      expect(bgMarkersNew['3']).to.have.property('clazz', 'test-marker');
     });
 
     it('should add annotations and clear them', () => {
