@@ -71,7 +71,9 @@ export default class ReactAce extends Component {
     this.editor
       .getSession()
       .setValue(!defaultValue ? value : defaultValue, cursorStart);
-    this.editor.navigateFileEnd();
+    if (this.props.navigateToFileEnd) {
+      this.editor.navigateFileEnd();
+    }
     this.editor.renderer.setShowGutter(showGutter);
     this.editor.getSession().setUseWrapMode(wrapEnabled);
     this.editor.setShowPrintMargin(showPrintMargin);
@@ -321,10 +323,14 @@ export default class ReactAce extends Component {
         this.editor.getSession().removeMarker(currentMarkers[i].id);
       }
     }
-    // remove background markers
+    // remove background markers except active line marker and selected word marker
     currentMarkers = this.editor.getSession().getMarkers(false);
     for (const i in currentMarkers) {
-      if (currentMarkers.hasOwnProperty(i)) {
+      if (
+        currentMarkers.hasOwnProperty(i) &&
+        currentMarkers[i].clazz !== "ace_active-line" &&
+        currentMarkers[i].clazz !== "ace_selected-word"
+      ) {
         this.editor.getSession().removeMarker(currentMarkers[i].id);
       }
     }
@@ -428,6 +434,7 @@ ReactAce.propTypes = {
     PropTypes.bool,
     PropTypes.array
   ]),
+  navigateToFileEnd: PropTypes.bool,
   commands: PropTypes.array,
   placeholder: PropTypes.string
 };
@@ -460,5 +467,6 @@ ReactAce.defaultProps = {
   wrapEnabled: false,
   enableBasicAutocompletion: false,
   enableLiveAutocompletion: false,
-  placeholder: null
+  placeholder: null,
+  navigateToFileEnd: true
 };
