@@ -56,7 +56,9 @@ export default class ReactAce extends Component {
     this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(fontSize);
     this.editor.getSession().setValue(!defaultValue ? value : defaultValue, cursorStart);
-    this.editor.navigateFileEnd();
+    if (this.props.navigateToFileEnd) {
+      this.editor.navigateFileEnd();
+    }
     this.editor.renderer.setShowGutter(showGutter);
     this.editor.getSession().setUseWrapMode(wrapEnabled);
     this.editor.setShowPrintMargin(showPrintMargin);
@@ -352,6 +354,7 @@ ReactAce.propTypes = {
   wrapEnabled: PropTypes.bool,
   enableBasicAutocompletion: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   enableLiveAutocompletion: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
+  navigateToFileEnd: PropTypes.bool,
   commands: PropTypes.array,
 };
 
@@ -383,4 +386,5 @@ ReactAce.defaultProps = {
   wrapEnabled: false,
   enableBasicAutocompletion: false,
   enableLiveAutocompletion: false,
+  navigateToFileEnd: true,
 };
