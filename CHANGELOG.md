@@ -5,6 +5,13 @@
 - Fully move to TypeScript interally
 - Publish typings for the split and diff editor
 
+## 6.5.0
+
+- Upgrade dependencies
+- Do not clear active line and active word markers #604
+- New 'placeholder' prop to specify placeholder text #603
+- Added optional prop to disable navigating to end of file #602
+
 ## 6.4.0
 
 - Upgrade types
