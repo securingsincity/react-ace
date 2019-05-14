@@ -48,8 +48,7 @@ You can import the snippets and mode directly through `brace` along with the lan
 ```javascript
 import React from "react";
 import { render } from "react-dom";
-import brace from "brace";
-import AceEditor from "react-ace";
+import AceEditor, { brace } from "react-ace";
 
 import "brace/mode/python";
 import "brace/snippets/python";
@@ -216,8 +215,7 @@ And my react-ace code looks like:
 
 ```javascript
 import React, { Component } from "react";
-import brace from "brace";
-import AceEditor from "react-ace";
+import AceEditor, { brace } from "react-ace";
 import CustomSqlMode from "./CustomSqlMode.js";
 
 import "brace/theme/github";

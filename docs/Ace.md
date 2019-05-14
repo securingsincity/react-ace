@@ -11,8 +11,7 @@ http://securingsincity.github.io/react-ace/
 ```javascript
 import React from "react";
 import { render } from "react-dom";
-import brace from "brace";
-import AceEditor from "react-ace";
+import AceEditor, { brace } from "react-ace";
 
 import "brace/mode/java";
 import "brace/theme/github";
