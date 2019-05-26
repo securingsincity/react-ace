@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import { diff as DiffEditor } from "../src/index.js";
+import { diff as DiffEditor } from "../src/index";
 
 import "brace/mode/jsx";
 import "brace/ext/searchbox";
