@@ -1,18 +1,94 @@
-import { editorOptions, editorEvents, getAceInstance,debounce } from './editorOptions.js'
+import {
+  editorOptions,
+  editorEvents,
+  getAceInstance,
+  debounce
+} from "./editorOptions";
 const ace = getAceInstance();
-import 'brace';
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import isEqual from 'lodash.isequal'
-import get from 'lodash.get'
+import "brace";
 
+const { Range } = ace.acequire("ace/range");
 
-const { Range } = ace.acequire('ace/range');
+import "brace/ext/split";
+const { Split } = ace.acequire("ace/split");
+import * as React from "react";
+import * as PropTypes from "prop-types";
+const isEqual = require("lodash.isequal");
+const get = require("lodash.get");
 
-import 'brace/ext/split';
-const { Split } = ace.acequire('ace/split');
+import { Selection, Annotation, Editor, UndoManager } from "brace";
+import {
+  EditorProps,
+  Marker,
+  Command,
+  AceOptions,
+  CommandManager
+} from "./types";
 
-export default class SplitComponent extends Component {
+interface AceEditorClass extends Editor {
+  [index: string]: any;
+  $options?: any;
+}
+
+export interface SplitEditorProps {
+  name?: string;
+  style: any;
+  /** For available modes see https://github.com/thlorenz/brace/tree/master/mode */
+  mode?: string;
+  /** For available themes see https://github.com/thlorenz/brace/tree/master/theme */
+  theme?: string;
+  height?: string;
+  width?: string;
+  className?: string;
+  fontSize?: number | string;
+  showGutter?: boolean;
+  showPrintMargin?: boolean;
+  highlightActiveLine?: boolean;
+  focus?: boolean;
+  splits: number;
+  debounceChangePeriod?: number;
+  cursorStart?: number;
+  wrapEnabled?: boolean;
+  readOnly?: boolean;
+  minLines?: number;
+  maxLines?: number;
+  enableBasicAutocompletion?: boolean | string[];
+  enableLiveAutocompletion?: boolean | string[];
+  tabSize?: number;
+  value?: string[];
+  defaultValue?: string[];
+  scrollMargin?: number[];
+  orientation?: string;
+  onSelectionChange?: (value: any, event?: any) => void;
+  onCursorChange?: (value: any, event?: any) => void;
+  onInput?: (event?: any) => void;
+  onLoad?: (editor: EditorProps) => void;
+  onBeforeLoad?: (ace: any) => void;
+  onChange?: (value: string[], event?: any) => void;
+  onSelection?: (selectedText: string, event?: any) => void;
+  onCopy?: (value: string) => void;
+  onPaste?: (value: string) => void;
+  onFocus?: (value: Event) => void;
+  onBlur?: (value: Event) => void;
+  onScroll?: (editor: EditorProps) => void;
+  editorProps?: EditorProps;
+  setOptions?: AceOptions;
+  keyboardHandler?: string;
+  commands?: Array<Command>;
+  annotations?: Array<Array<Annotation>>;
+  markers?: Array<Array<Marker>>;
+}
+
+export default class SplitComponent extends React.Component<
+  SplitEditorProps,
+  undefined
+> {
+  editor: AceEditorClass;
+  refEditor: HTMLElement;
+  silent: boolean;
+  split: AceEditorClass;
+  splitEditor: AceEditorClass;
+  debounce: (fn: any, delay: number) => (...args: any) => void;
   constructor(props) {
     super(props);
     editorEvents.forEach(method => {
@@ -41,7 +117,7 @@ export default class SplitComponent extends Component {
       commands,
       annotations,
       markers,
-      splits,
+      splits
     } = this.props;
 
     this.editor = ace.edit(this.refEditor);
@@ -63,32 +139,47 @@ export default class SplitComponent extends Component {
     // get a list of possible options to avoid 'misspelled option errors'
     const availableOptions = this.splitEditor.$options;
     if (this.props.debounceChangePeriod) {
-      this.onChange = this.debounce(this.onChange, this.props.debounceChangePeriod);
+      this.onChange = this.debounce(
+        this.onChange,
+        this.props.debounceChangePeriod
+      );
     }
     split.forEach((editor, index) => {
       for (let i = 0; i < editorProps.length; i++) {
         editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
       }
-      const defaultValueForEditor = get(defaultValue, index)
-      const valueForEditor = get(value, index, '')
+      const defaultValueForEditor = get(defaultValue, index);
+      const valueForEditor = get(value, index, "");
       editor.session.setUndoManager(new ace.UndoManager());
       editor.setTheme(`ace/theme/${theme}`);
-      editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3]);
+      editor.renderer.setScrollMargin(
+        scrollMargin[0],
+        scrollMargin[1],
+        scrollMargin[2],
+        scrollMargin[3]
+      );
       editor.getSession().setMode(`ace/mode/${mode}`);
       editor.setFontSize(fontSize);
       editor.renderer.setShowGutter(showGutter);
       editor.getSession().setUseWrapMode(wrapEnabled);
       editor.setShowPrintMargin(showPrintMargin);
-      editor.on('focus', this.onFocus);
-      editor.on('blur', this.onBlur);
-      editor.on('input', this.onInput);
-      editor.on('copy', this.onCopy);
-      editor.on('paste', this.onPaste);
-      editor.on('change', this.onChange);
-      editor.getSession().selection.on('changeSelection', this.onSelectionChange);
-      editor.getSession().selection.on('changeCursor', this.onCursorChange);
-      editor.session.on('changeScrollTop', this.onScroll);
-      editor.setValue(defaultValueForEditor === undefined ? valueForEditor : defaultValueForEditor, cursorStart);
+      editor.on("focus", this.onFocus);
+      editor.on("blur", this.onBlur);
+      editor.on("input", this.onInput);
+      editor.on("copy", this.onCopy);
+      editor.on("paste", this.onPaste);
+      editor.on("change", this.onChange);
+      editor
+        .getSession()
+        .selection.on("changeSelection", this.onSelectionChange);
+      editor.getSession().selection.on("changeCursor", this.onCursorChange);
+      editor.session.on("changeScrollTop", this.onScroll);
+      editor.setValue(
+        defaultValueForEditor === undefined
+          ? valueForEditor
+          : defaultValueForEditor,
+        cursorStart
+      );
       const newAnnotations = get(annotations, index, []);
       const newMarkers = get(markers, index, []);
       editor.getSession().setAnnotations(newAnnotations);
@@ -102,7 +193,7 @@ export default class SplitComponent extends Component {
           editor.setOption(option, this.props[option]);
         } else if (this.props[option]) {
           console.warn(
-            `ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`,
+            `ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`
           );
         }
       }
@@ -110,7 +201,7 @@ export default class SplitComponent extends Component {
 
       if (Array.isArray(commands)) {
         commands.forEach(command => {
-          if (typeof command.exec == 'string') {
+          if (typeof command.exec == "string") {
             editor.commands.bindKey(command.bindKey, command.exec);
           } else {
             editor.commands.addCommand(command);
@@ -119,12 +210,12 @@ export default class SplitComponent extends Component {
       }
 
       if (keyboardHandler) {
-        editor.setKeyboardHandler('ace/keyboard/' + keyboardHandler);
+        editor.setKeyboardHandler("ace/keyboard/" + keyboardHandler);
       }
     });
 
     if (className) {
-      this.refEditor.className += ' ' + className;
+      this.refEditor.className += " " + className;
     }
 
     if (focus) {
@@ -132,7 +223,9 @@ export default class SplitComponent extends Component {
     }
 
     const sp = this.editor.env.split;
-    sp.setOrientation(this.props.orientation === 'below' ? sp.BELOW : sp.BESIDE);
+    sp.setOrientation(
+      this.props.orientation === "below" ? sp.BELOW : sp.BESIDE
+    );
     sp.resize(true);
     if (onLoad) {
       onLoad(sp);
@@ -150,16 +243,20 @@ export default class SplitComponent extends Component {
     }
 
     if (nextProps.orientation !== oldProps.orientation) {
-      split.setOrientation(nextProps.orientation === 'below' ? split.BELOW : split.BESIDE);
+      split.setOrientation(
+        nextProps.orientation === "below" ? split.BELOW : split.BESIDE
+      );
     }
 
     split.forEach((editor, index) => {
       if (nextProps.mode !== oldProps.mode) {
-        editor.getSession().setMode('ace/mode/' + nextProps.mode);
+        editor.getSession().setMode("ace/mode/" + nextProps.mode);
       }
       if (nextProps.keyboardHandler !== oldProps.keyboardHandler) {
         if (nextProps.keyboardHandler) {
-          editor.setKeyboardHandler('ace/keyboard/' + nextProps.keyboardHandler);
+          editor.setKeyboardHandler(
+            "ace/keyboard/" + nextProps.keyboardHandler
+          );
         } else {
           editor.setKeyboardHandler(null);
         }
@@ -186,7 +283,7 @@ export default class SplitComponent extends Component {
       if (!isEqual(nextProps.setOptions, oldProps.setOptions)) {
         this.handleOptions(nextProps, editor);
       }
-      const nextValue = get(nextProps.value, index, '');
+      const nextValue = get(nextProps.value, index, "");
       if (editor.getValue() !== nextValue) {
         // editor.setValue is a synchronous function call, change event is emitted before setValue return.
         this.silent = true;
@@ -210,23 +307,27 @@ export default class SplitComponent extends Component {
 
     if (nextProps.className !== oldProps.className) {
       let appliedClasses = this.refEditor.className;
-      let appliedClassesArray = appliedClasses.trim().split(' ');
-      let oldClassesArray = oldProps.className.trim().split(' ');
+      let appliedClassesArray = appliedClasses.trim().split(" ");
+      let oldClassesArray = oldProps.className.trim().split(" ");
       oldClassesArray.forEach(oldClass => {
         let index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
-      this.refEditor.className = ' ' + nextProps.className + ' ' + appliedClassesArray.join(' ');
+      this.refEditor.className =
+        " " + nextProps.className + " " + appliedClassesArray.join(" ");
     }
 
     if (nextProps.theme !== oldProps.theme) {
-      split.setTheme('ace/theme/' + nextProps.theme);
+      split.setTheme("ace/theme/" + nextProps.theme);
     }
 
     if (nextProps.focus && !oldProps.focus) {
       this.splitEditor.focus();
     }
-    if (nextProps.height !== this.props.height || nextProps.width !== this.props.width) {
+    if (
+      nextProps.height !== this.props.height ||
+      nextProps.width !== this.props.width
+    ) {
       this.editor.resize();
     }
   }
@@ -323,10 +424,20 @@ export default class SplitComponent extends Component {
       }
     }
     // add new markers
-    markers.forEach(({ startRow, startCol, endRow, endCol, className, type, inFront = false }) => {
-      const range = new Range(startRow, startCol, endRow, endCol);
-      editor.getSession().addMarker(range, className, type, inFront);
-    });
+    markers.forEach(
+      ({
+        startRow,
+        startCol,
+        endRow,
+        endCol,
+        className,
+        type,
+        inFront = false
+      }) => {
+        const range = new Range(startRow, startCol, endRow, endCol);
+        editor.getSession().addMarker(range, className, type, inFront);
+      }
+    );
   }
 
   updateRef(item) {
@@ -338,82 +449,87 @@ export default class SplitComponent extends Component {
     const divStyle = { width, height, ...style };
     return <div ref={this.updateRef} id={name} style={divStyle} />;
   }
+
+  public static propTypes: PropTypes.ValidationMap<SplitEditorProps> = {
+    mode: PropTypes.string,
+    splits: PropTypes.number,
+    orientation: PropTypes.string,
+    focus: PropTypes.bool,
+    theme: PropTypes.string,
+    name: PropTypes.string,
+    className: PropTypes.string,
+    height: PropTypes.string,
+    width: PropTypes.string,
+    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    showGutter: PropTypes.bool,
+    onChange: PropTypes.func,
+    onCopy: PropTypes.func,
+    onPaste: PropTypes.func,
+    onFocus: PropTypes.func,
+    onInput: PropTypes.func,
+    onBlur: PropTypes.func,
+    onScroll: PropTypes.func,
+    value: PropTypes.arrayOf(PropTypes.string),
+    defaultValue: PropTypes.arrayOf(PropTypes.string),
+    debounceChangePeriod: PropTypes.number,
+    onLoad: PropTypes.func,
+    onSelectionChange: PropTypes.func,
+    onCursorChange: PropTypes.func,
+    onBeforeLoad: PropTypes.func,
+    minLines: PropTypes.number,
+    maxLines: PropTypes.number,
+    readOnly: PropTypes.bool,
+    highlightActiveLine: PropTypes.bool,
+    tabSize: PropTypes.number,
+    showPrintMargin: PropTypes.bool,
+    cursorStart: PropTypes.number,
+    editorProps: PropTypes.object,
+    setOptions: PropTypes.object,
+    style: PropTypes.object,
+    scrollMargin: PropTypes.array,
+    annotations: PropTypes.array,
+    markers: PropTypes.array,
+    keyboardHandler: PropTypes.string,
+    wrapEnabled: PropTypes.bool,
+    enableBasicAutocompletion: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.array
+    ]),
+    enableLiveAutocompletion: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.array
+    ]),
+    commands: PropTypes.array
+  };
+  public static defaultProps: Partial<SplitEditorProps> = {
+    name: "brace-editor",
+    focus: false,
+    orientation: "beside",
+    splits: 2,
+    mode: "",
+    theme: "",
+    height: "500px",
+    width: "500px",
+    value: [],
+    fontSize: 12,
+    showGutter: true,
+    onChange: null,
+    onPaste: null,
+    onLoad: null,
+    onScroll: null,
+    minLines: null,
+    maxLines: null,
+    readOnly: false,
+    highlightActiveLine: true,
+    showPrintMargin: true,
+    tabSize: 4,
+    cursorStart: 1,
+    editorProps: {},
+    style: {},
+    scrollMargin: [0, 0, 0, 0],
+    setOptions: {},
+    wrapEnabled: false,
+    enableBasicAutocompletion: false,
+    enableLiveAutocompletion: false
+  };
 }
-
-SplitComponent.propTypes = {
-  mode: PropTypes.string,
-  splits: PropTypes.number,
-  orientation: PropTypes.string,
-  focus: PropTypes.bool,
-  theme: PropTypes.string,
-  name: PropTypes.string,
-  className: PropTypes.string,
-  height: PropTypes.string,
-  width: PropTypes.string,
-  fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  showGutter: PropTypes.bool,
-  onChange: PropTypes.func,
-  onCopy: PropTypes.func,
-  onPaste: PropTypes.func,
-  onFocus: PropTypes.func,
-  onInput: PropTypes.func,
-  onBlur: PropTypes.func,
-  onScroll: PropTypes.func,
-  value: PropTypes.arrayOf(PropTypes.string),
-  defaultValue: PropTypes.arrayOf(PropTypes.string),
-  debounceChangePeriod: PropTypes.number,
-  onLoad: PropTypes.func,
-  onSelectionChange: PropTypes.func,
-  onCursorChange: PropTypes.func,
-  onBeforeLoad: PropTypes.func,
-  minLines: PropTypes.number,
-  maxLines: PropTypes.number,
-  readOnly: PropTypes.bool,
-  highlightActiveLine: PropTypes.bool,
-  tabSize: PropTypes.number,
-  showPrintMargin: PropTypes.bool,
-  cursorStart: PropTypes.number,
-  editorProps: PropTypes.object,
-  setOptions: PropTypes.object,
-  style: PropTypes.object,
-  scrollMargin: PropTypes.array,
-  annotations: PropTypes.array,
-  markers: PropTypes.array,
-  keyboardHandler: PropTypes.string,
-  wrapEnabled: PropTypes.bool,
-  enableBasicAutocompletion: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
-  enableLiveAutocompletion: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
-  commands: PropTypes.array,
-};
-
-SplitComponent.defaultProps = {
-  name: 'brace-editor',
-  focus: false,
-  orientation: 'beside',
-  splits: 2,
-  mode: '',
-  theme: '',
-  height: '500px',
-  width: '500px',
-  value: [],
-  fontSize: 12,
-  showGutter: true,
-  onChange: null,
-  onPaste: null,
-  onLoad: null,
-  onScroll: null,
-  minLines: null,
-  maxLines: null,
-  readOnly: false,
-  highlightActiveLine: true,
-  showPrintMargin: true,
-  tabSize: 4,
-  cursorStart: 1,
-  editorProps: {},
-  style: {},
-  scrollMargin: [0, 0, 0, 0],
-  setOptions: {},
-  wrapEnabled: false,
-  enableBasicAutocompletion: false,
-  enableLiveAutocompletion: false,
-};

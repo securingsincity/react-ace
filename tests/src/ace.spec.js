@@ -1,11 +1,12 @@
+import * as React from "react";
 import { expect } from "chai";
-import React from "react";
-import sinon from "sinon";
-import ace from "brace";
-import Enzyme, { mount } from "enzyme";
-import AceEditor from "../../src/ace.js";
+import * as sinon from "sinon";
+import * as ace from "brace";
+import * as Enzyme from "enzyme";
+import AceEditor from "../../src/ace";
 import brace from "brace"; // eslint-disable-line no-unused-vars
 import Adapter from "enzyme-adapter-react-16";
+const mount = Enzyme.mount;
 
 Enzyme.configure({ adapter: new Adapter() });
 describe("Ace Component", () => {
@@ -183,7 +184,11 @@ describe("Ace Component", () => {
         {
           startRow: 3,
           type: "text",
-          className: "test-marker"
+          className: "test-marker",
+          endRow: 4,
+          startCol: 0,
+          endCol: 4,
+          inFront: true
         }
       ];
       const wrapper = mount(<AceEditor markers={markers} />, mountOptions);
@@ -200,27 +205,41 @@ describe("Ace Component", () => {
       const oldMarkers = [
         {
           startRow: 4,
+          endRow: 4,
+          startCol: 0,
+          endCol: 4,
           type: "text",
-          className: "test-marker-old"
+          className: "test-marker-old",
+          inFront: true
         },
         {
           startRow: 7,
+          endRow: 4,
+          startCol: 0,
+          endCol: 4,
+          inFront: true,
           type: "foo",
-          className: "test-marker-old",
-          inFront: true
+          className: "test-marker-old"
         }
       ];
       const markers = [
         {
           startRow: 3,
+          endRow: 4,
+          startCol: 0,
+          endCol: 4,
           type: "text",
           className: "test-marker-new",
           inFront: true
         },
         {
           startRow: 5,
+          endRow: 4,
+          startCol: 0,
+          endCol: 4,
           type: "text",
-          className: "test-marker-new"
+          className: "test-marker-new",
+          inFront: true
         }
       ];
       const wrapper = mount(<AceEditor markers={oldMarkers} />, mountOptions);
@@ -245,12 +264,19 @@ describe("Ace Component", () => {
         {
           startRow: 4,
           type: "text",
-          className: "test-marker-old"
+          className: "test-marker-old",
+          endRow: 4,
+          startCol: 0,
+          endCol: 4,
+          inFront: true
         },
         {
           startRow: 7,
           type: "foo",
           className: "test-marker-old",
+          endRow: 4,
+          startCol: 0,
+          endCol: 4,
           inFront: true
         }
       ];
@@ -282,7 +308,11 @@ describe("Ace Component", () => {
         {
           startRow: 4,
           type: "text",
-          className: "test-marker"
+          className: "test-marker",
+          endRow: 4,
+          startCol: 0,
+          endCol: 4,
+          inFront: true
         }
       ];
       const wrapper = mount(
