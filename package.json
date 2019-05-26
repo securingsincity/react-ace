@@ -19,7 +19,7 @@
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm run clean",
     "prepublishOnly": "npm run clean && npm run build",
-    "test": "mocha --require babel-register --require tests/setup.js tests/**/*.spec.js --exit",
+    "test": "mocha  --require @babel/register --require @babel/polyfill --require tests/setup.js tests/**/*.spec.js --exit",
     "coverage": "nyc npm run test"
   },
   "author": "James Hrisho",
@@ -29,9 +29,9 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.4",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
-    "babel-register": "^6.26.0",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
     "enzyme": "^3.9.0",
@@ -63,6 +63,7 @@
     "brace"
   ],
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "brace": "^0.11.1",
     "diff-match-patch": "^1.0.4",
     "lodash.get": "^4.4.2",
