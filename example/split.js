@@ -1,40 +1,40 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import SplitAceEditor from '../src/split.js';
+import React, { Component } from "react";
+import { render } from "react-dom";
+import SplitAceEditor from "../src/split";
 
-import 'brace/mode/jsx';
-import 'brace/ext/searchbox';
+import "brace/mode/jsx";
+import "brace/ext/searchbox";
 
 const languages = [
-  'javascript',
-  'java',
-  'python',
-  'xml',
-  'ruby',
-  'sass',
-  'markdown',
-  'mysql',
-  'json',
-  'html',
-  'handlebars',
-  'golang',
-  'csharp',
-  'elixir',
-  'typescript',
-  'css',
+  "javascript",
+  "java",
+  "python",
+  "xml",
+  "ruby",
+  "sass",
+  "markdown",
+  "mysql",
+  "json",
+  "html",
+  "handlebars",
+  "golang",
+  "csharp",
+  "elixir",
+  "typescript",
+  "css"
 ];
 
 const themes = [
-  'monokai',
-  'github',
-  'tomorrow',
-  'kuroir',
-  'twilight',
-  'xcode',
-  'textmate',
-  'solarized_dark',
-  'solarized_light',
-  'terminal',
+  "monokai",
+  "github",
+  "tomorrow",
+  "kuroir",
+  "twilight",
+  "xcode",
+  "textmate",
+  "solarized_dark",
+  "solarized_light",
+  "terminal"
 ];
 
 languages.forEach(lang => {
@@ -46,73 +46,73 @@ themes.forEach(theme => {
   require(`brace/theme/${theme}`);
 });
 /*eslint-disable no-alert, no-console */
-import 'brace/ext/language_tools';
+import "brace/ext/language_tools";
 
 const defaultValue = [
   `function onLoad(editor) {
     console.log("i've loaded");
   }`,
-  'const secondInput = "me i am the second input";',
+  'const secondInput = "me i am the second input";'
 ];
 class App extends Component {
   onLoad() {
     console.log("i've loaded");
   }
   onChange(newValue) {
-    console.log('change', newValue);
+    console.log("change", newValue);
     this.setState({
-      value: newValue,
+      value: newValue
     });
   }
 
   onSelectionChange(newValue, event) {
-    console.log('select-change', newValue);
-    console.log('select-change-event', event);
+    console.log("select-change", newValue);
+    console.log("select-change-event", event);
   }
 
   onCursorChange(newValue, event) {
-    console.log('cursor-change', newValue);
-    console.log('cursor-change-event', event);
+    console.log("cursor-change", newValue);
+    console.log("cursor-change-event", event);
   }
 
   setTheme(e) {
     this.setState({
-      theme: e.target.value,
+      theme: e.target.value
     });
   }
   setMode(e) {
     this.setState({
-      mode: e.target.value,
+      mode: e.target.value
     });
   }
   setBoolean(name, value) {
     this.setState({
-      [name]: value,
+      [name]: value
     });
   }
   setFontSize(e) {
     this.setState({
-      fontSize: parseInt(e.target.value, 10),
+      fontSize: parseInt(e.target.value, 10)
     });
   }
   setSplits(e) {
     this.setState({
-      splits: parseInt(e.target.value, 10),
+      splits: parseInt(e.target.value, 10)
     });
   }
   setOrientation(e) {
     this.setState({
-      orientation: e.target.value,
+      orientation: e.target.value
     });
   }
   constructor(props) {
     super(props);
     this.state = {
       splits: 2,
-      orientation: 'beside',
+      orientation: "beside",
       value: defaultValue,
-      theme: 'github',
-      mode: 'javascript',
+      theme: "github",
+      mode: "javascript",
       enableBasicAutocompletion: false,
       enableLiveAutocompletion: false,
       fontSize: 14,
@@ -120,7 +120,7 @@ class App extends Component {
       showPrintMargin: true,
       highlightActiveLine: true,
       enableSnippets: false,
-      showLineNumbers: true,
+      showLineNumbers: true
     };
     this.setTheme = this.setTheme.bind(this);
     this.setMode = this.setMode.bind(this);
@@ -138,7 +138,11 @@ class App extends Component {
             <label>Mode:</label>
             <p className="control">
               <span className="select">
-                <select name="mode" onChange={this.setMode} value={this.state.mode}>
+                <select
+                  name="mode"
+                  onChange={this.setMode}
+                  value={this.state.mode}
+                >
                   {languages.map(lang => (
                     <option key={lang} value={lang}>
                       {lang}
@@ -153,7 +157,11 @@ class App extends Component {
             <label>Theme:</label>
             <p className="control">
               <span className="select">
-                <select name="Theme" onChange={this.setTheme} value={this.state.theme}>
+                <select
+                  name="Theme"
+                  onChange={this.setTheme}
+                  value={this.state.theme}
+                >
                   {themes.map(lang => (
                     <option key={lang} value={lang}>
                       {lang}
@@ -168,7 +176,11 @@ class App extends Component {
             <label>Font Size:</label>
             <p className="control">
               <span className="select">
-                <select name="Font Size" onChange={this.setFontSize} value={this.state.fontSize}>
+                <select
+                  name="Font Size"
+                  onChange={this.setFontSize}
+                  value={this.state.fontSize}
+                >
                   {[10, 12, 14, 16, 18, 20, 24, 28, 32, 40].map(lang => (
                     <option key={lang} value={lang}>
                       {lang}
@@ -183,7 +195,11 @@ class App extends Component {
             <label>Number of Splits:</label>
             <p className="control">
               <span className="select">
-                <select name="splits" onChange={this.setSplits} value={this.state.splits}>
+                <select
+                  name="splits"
+                  onChange={this.setSplits}
+                  value={this.state.splits}
+                >
                   {[1, 2, 3, 4].map(lang => (
                     <option key={lang} value={lang}>
                       {lang}
@@ -198,8 +214,12 @@ class App extends Component {
             <label>Orientation:</label>
             <p className="control">
               <span className="select">
-                <select name="orientation" onChange={this.setOrientation} value={this.state.orientation}>
-                  {['beside', 'below'].map(lang => (
+                <select
+                  name="orientation"
+                  onChange={this.setOrientation}
+                  value={this.state.orientation}
+                >
+                  {["beside", "below"].map(lang => (
                     <option key={lang} value={lang}>
                       {lang}
                     </option>
@@ -214,7 +234,12 @@ class App extends Component {
                 <input
                   type="checkbox"
                   checked={this.state.enableBasicAutocompletion}
-                  onChange={e => this.setBoolean('enableBasicAutocompletion', e.target.checked)}
+                  onChange={e =>
+                    this.setBoolean(
+                      "enableBasicAutocompletion",
+                      e.target.checked
+                    )
+                  }
                 />
                 Enable Basic Autocomplete
               </label>
@@ -226,7 +251,12 @@ class App extends Component {
                 <input
                   type="checkbox"
                   checked={this.state.enableLiveAutocompletion}
-                  onChange={e => this.setBoolean('enableLiveAutocompletion', e.target.checked)}
+                  onChange={e =>
+                    this.setBoolean(
+                      "enableLiveAutocompletion",
+                      e.target.checked
+                    )
+                  }
                 />
                 Enable Live Autocomplete
               </label>
@@ -238,7 +268,9 @@ class App extends Component {
                 <input
                   type="checkbox"
                   checked={this.state.showGutter}
-                  onChange={e => this.setBoolean('showGutter', e.target.checked)}
+                  onChange={e =>
+                    this.setBoolean("showGutter", e.target.checked)
+                  }
                 />
                 Show Gutter
               </label>
@@ -250,7 +282,9 @@ class App extends Component {
                 <input
                   type="checkbox"
                   checked={this.state.showPrintMargin}
-                  onChange={e => this.setBoolean('showPrintMargin', e.target.checked)}
+                  onChange={e =>
+                    this.setBoolean("showPrintMargin", e.target.checked)
+                  }
                 />
                 Show Print Margin
               </label>
@@ -262,7 +296,9 @@ class App extends Component {
                 <input
                   type="checkbox"
                   checked={this.state.highlightActiveLine}
-                  onChange={e => this.setBoolean('highlightActiveLine', e.target.checked)}
+                  onChange={e =>
+                    this.setBoolean("highlightActiveLine", e.target.checked)
+                  }
                 />
                 Highlight Active Line
               </label>
@@ -274,7 +310,9 @@ class App extends Component {
                 <input
                   type="checkbox"
                   checked={this.state.enableSnippets}
-                  onChange={e => this.setBoolean('enableSnippets', e.target.checked)}
+                  onChange={e =>
+                    this.setBoolean("enableSnippets", e.target.checked)
+                  }
                 />
                 Enable Snippets
               </label>
@@ -286,7 +324,9 @@ class App extends Component {
                 <input
                   type="checkbox"
                   checked={this.state.showLineNumbers}
-                  onChange={e => this.setBoolean('showLineNumbers', e.target.checked)}
+                  onChange={e =>
+                    this.setBoolean("showLineNumbers", e.target.checked)
+                  }
                 />
                 Show Line Numbers
               </label>
@@ -318,7 +358,7 @@ class App extends Component {
               enableLiveAutocompletion: this.state.enableLiveAutocompletion,
               enableSnippets: this.state.enableSnippets,
               showLineNumbers: this.state.showLineNumbers,
-              tabSize: 2,
+              tabSize: 2
             }}
           />
         </div>
@@ -327,4 +367,4 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('example'));
+render(<App />, document.getElementById("example"));

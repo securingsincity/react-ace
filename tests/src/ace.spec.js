@@ -1,11 +1,11 @@
+import * as React from "react";
 import { expect } from "chai";
-import React from "react";
-import sinon from "sinon";
-import ace from "brace";
-import Enzyme, { mount } from "enzyme";
-import AceEditor from "../../src/ace.js";
+import * as sinon from "sinon";
+import * as Enzyme from "enzyme";
+import AceEditor from "../../src/ace";
 import brace from "brace"; // eslint-disable-line no-unused-vars
 import Adapter from "enzyme-adapter-react-16";
+const mount = Enzyme.mount;
 
 Enzyme.configure({ adapter: new Adapter() });
 describe("Ace Component", () => {
@@ -66,7 +66,6 @@ describe("Ace Component", () => {
       mount(<AceEditor onBeforeLoad={beforeLoadCallback} />, mountOptions);
 
       expect(beforeLoadCallback.callCount).to.equal(1);
-      expect(beforeLoadCallback.getCall(0).args[0]).to.deep.equal(ace);
     });
 
     it("should get the editor from the onLoad callback", () => {
@@ -205,9 +204,9 @@ describe("Ace Component", () => {
         },
         {
           startRow: 7,
+          inFront: true,
           type: "foo",
-          className: "test-marker-old",
-          inFront: true
+          className: "test-marker-old"
         }
       ];
       const markers = [
