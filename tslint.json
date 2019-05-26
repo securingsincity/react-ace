@@ -7,7 +7,9 @@
     "no-console": false,
     "max-line-length": false,
     "object-literal-sort-keys": false,
-    "no-var-requires": false
+    "no-var-requires": false,
+    "trailing-comma": false,
+    "arrow-parens": false
   },
   "rulesDirectory": []
 }
