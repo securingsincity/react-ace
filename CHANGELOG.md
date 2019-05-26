@@ -1,9 +1,13 @@
 # Changelog
 
-## Future Release - TBD
+## 7.0.0 
 
 - Fully move to TypeScript interally
 - Publish typings for the split and diff editor
+
+## 6.6.0
+
+- Upgrade dependencies
 
 ## 6.5.0
 
