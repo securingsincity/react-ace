@@ -1,15 +1,15 @@
-import SplitEditor from "./split";
-import * as React from "react";
 import * as PropTypes from "prop-types";
+import * as React from "react";
+import SplitEditor from "./split";
 const DiffMatchPatch = require("diff-match-patch");
-import { EditorProps } from "./types";
+import { IEditorProps } from "./types";
 
-interface DiffObject {
+interface IDiffObject {
   left: any[];
   right: any[];
 }
 
-export interface DiffEditorProps {
+export interface IDiffEditorProps {
   cursorStart?: number;
   editorProps?: object;
   enableBasicAutocompletion?: boolean | string[];
@@ -23,10 +23,10 @@ export interface DiffEditorProps {
   mode?: string;
   name?: string;
   className?: string;
-  onLoad?: (editor: EditorProps) => void;
+  onLoad?: (editor: IEditorProps) => void;
   onChange?: (value: string[], event?: any) => void;
   onPaste?: (value: string) => void;
-  onScroll?: (editor: EditorProps) => void;
+  onScroll?: (editor: IEditorProps) => void;
   orientation?: string;
   readOnly?: boolean;
   scrollMargin?: number[];
@@ -42,15 +42,79 @@ export interface DiffEditorProps {
   wrapEnabled?: boolean;
 }
 
-export interface DiffEditorState {
+export interface IDiffEditorState {
   value: string[];
 }
 
 export default class DiffComponent extends React.Component<
-  DiffEditorProps,
-  DiffEditorState
+  IDiffEditorProps,
+  IDiffEditorState
 > {
-  constructor(props) {
+  public static propTypes: PropTypes.ValidationMap<IDiffEditorProps> = {
+    cursorStart: PropTypes.number,
+    editorProps: PropTypes.object,
+    enableBasicAutocompletion: PropTypes.bool,
+    enableLiveAutocompletion: PropTypes.bool,
+    focus: PropTypes.bool,
+    fontSize: PropTypes.number,
+    height: PropTypes.string,
+    highlightActiveLine: PropTypes.bool,
+    maxLines: PropTypes.number,
+    minLines: PropTypes.number,
+    mode: PropTypes.string,
+    name: PropTypes.string,
+    className: PropTypes.string,
+    onLoad: PropTypes.func,
+    onPaste: PropTypes.func,
+    onScroll: PropTypes.func,
+    onChange: PropTypes.func,
+    orientation: PropTypes.string,
+    readOnly: PropTypes.bool,
+    scrollMargin: PropTypes.array,
+    setOptions: PropTypes.object,
+    showGutter: PropTypes.bool,
+    showPrintMargin: PropTypes.bool,
+    splits: PropTypes.number,
+    style: PropTypes.object,
+    tabSize: PropTypes.number,
+    theme: PropTypes.string,
+    value: PropTypes.array,
+    width: PropTypes.string,
+    wrapEnabled: PropTypes.bool
+  };
+
+  public static defaultProps: Partial<IDiffEditorProps> = {
+    cursorStart: 1,
+    editorProps: {},
+    enableBasicAutocompletion: false,
+    enableLiveAutocompletion: false,
+    focus: false,
+    fontSize: 12,
+    height: "500px",
+    highlightActiveLine: true,
+    maxLines: null,
+    minLines: null,
+    mode: "",
+    name: "brace-editor",
+    onLoad: null,
+    onScroll: null,
+    onPaste: null,
+    onChange: null,
+    orientation: "beside",
+    readOnly: false,
+    scrollMargin: [0, 0, 0, 0],
+    setOptions: {},
+    showGutter: true,
+    showPrintMargin: true,
+    splits: 2,
+    style: {},
+    tabSize: 4,
+    theme: "github",
+    value: ["", ""],
+    width: "500px",
+    wrapEnabled: true
+  };
+  constructor(props: IDiffEditorProps) {
     super(props);
     this.state = {
       value: this.props.value
@@ -59,7 +123,7 @@ export default class DiffComponent extends React.Component<
     this.diff = this.diff.bind(this);
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
     const { value } = this.props;
 
     if (value !== this.state.value) {
@@ -67,16 +131,16 @@ export default class DiffComponent extends React.Component<
     }
   }
 
-  onChange(value) {
+  public onChange(value: any) {
     this.setState({
-      value: value
+      value
     });
     if (this.props.onChange) {
       this.props.onChange(value);
     }
   }
 
-  diff() {
+  public diff() {
     const dmp = new DiffMatchPatch();
     const lhString = this.state.value[0];
     const rhString = this.state.value[1];
@@ -93,7 +157,7 @@ export default class DiffComponent extends React.Component<
     return codeEditorSettings;
   }
 
-  generateDiffedLines(diff) {
+  public generateDiffedLines(diff: any) {
     const C = {
       DIFF_EQUAL: 0,
       DIFF_DELETE: -1,
@@ -101,8 +165,8 @@ export default class DiffComponent extends React.Component<
     };
 
     const diffedLines = {
-      left: [],
-      right: []
+      left: [] as any[],
+      right: [] as any[]
     };
 
     const cursor = {
@@ -110,7 +174,7 @@ export default class DiffComponent extends React.Component<
       right: 1
     };
 
-    diff.forEach(chunk => {
+    diff.forEach((chunk: any) => {
       const chunkType = chunk[0];
       const text = chunk[1];
       let lines = text.split("\n").length - 1;
@@ -197,16 +261,16 @@ export default class DiffComponent extends React.Component<
 
   // Receives a collection of line numbers and iterates through them to highlight appropriately
   // Returns an object that tells the render() method how to display the code editors
-  setCodeMarkers(diffedLines = { left: [], right: [] }) {
+  public setCodeMarkers(diffedLines: any = { left: [], right: [] }) {
     const codeEditorSettings = [];
 
     const newMarkerSet = {
-      left: [],
-      right: []
+      left: [] as any[],
+      right: [] as any[]
     };
 
     for (let i = 0; i < diffedLines.left.length; i++) {
-      let markerObj = {
+      const markerObj = {
         startRow: diffedLines.left[i].startLine - 1,
         endRow: diffedLines.left[i].endLine,
         type: "text",
@@ -216,7 +280,7 @@ export default class DiffComponent extends React.Component<
     }
 
     for (let i = 0; i < diffedLines.right.length; i++) {
-      let markerObj = {
+      const markerObj = {
         startRow: diffedLines.right[i].startLine - 1,
         endRow: diffedLines.right[i].endLine,
         type: "text",
@@ -231,7 +295,7 @@ export default class DiffComponent extends React.Component<
     return codeEditorSettings;
   }
 
-  render() {
+  public render() {
     const markers = this.diff();
     return (
       <SplitEditor
@@ -269,69 +333,4 @@ export default class DiffComponent extends React.Component<
       />
     );
   }
-
-  public static propTypes: PropTypes.ValidationMap<DiffEditorProps> = {
-    cursorStart: PropTypes.number,
-    editorProps: PropTypes.object,
-    enableBasicAutocompletion: PropTypes.bool,
-    enableLiveAutocompletion: PropTypes.bool,
-    focus: PropTypes.bool,
-    fontSize: PropTypes.number,
-    height: PropTypes.string,
-    highlightActiveLine: PropTypes.bool,
-    maxLines: PropTypes.number,
-    minLines: PropTypes.number,
-    mode: PropTypes.string,
-    name: PropTypes.string,
-    className: PropTypes.string,
-    onLoad: PropTypes.func,
-    onPaste: PropTypes.func,
-    onScroll: PropTypes.func,
-    onChange: PropTypes.func,
-    orientation: PropTypes.string,
-    readOnly: PropTypes.bool,
-    scrollMargin: PropTypes.array,
-    setOptions: PropTypes.object,
-    showGutter: PropTypes.bool,
-    showPrintMargin: PropTypes.bool,
-    splits: PropTypes.number,
-    style: PropTypes.object,
-    tabSize: PropTypes.number,
-    theme: PropTypes.string,
-    value: PropTypes.array,
-    width: PropTypes.string,
-    wrapEnabled: PropTypes.bool
-  };
-
-  public static defaultProps: Partial<DiffEditorProps> = {
-    cursorStart: 1,
-    editorProps: {},
-    enableBasicAutocompletion: false,
-    enableLiveAutocompletion: false,
-    focus: false,
-    fontSize: 12,
-    height: "500px",
-    highlightActiveLine: true,
-    maxLines: null,
-    minLines: null,
-    mode: "",
-    name: "brace-editor",
-    onLoad: null,
-    onScroll: null,
-    onPaste: null,
-    onChange: null,
-    orientation: "beside",
-    readOnly: false,
-    scrollMargin: [0, 0, 0, 0],
-    setOptions: {},
-    showGutter: true,
-    showPrintMargin: true,
-    splits: 2,
-    style: {},
-    tabSize: 4,
-    theme: "github",
-    value: ["", ""],
-    width: "500px",
-    wrapEnabled: true
-  };
 }

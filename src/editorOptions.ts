@@ -35,12 +35,12 @@ const getAceInstance = () => {
 };
 
 const debounce = (fn: (...args: any[]) => void, delay: number) => {
-  var timer: any = null;
+  let timer: any = null;
   return function() {
-    var context = this,
-      args = arguments;
+    const context = this;
+    const args = arguments;
     clearTimeout(timer);
-    timer = setTimeout(function() {
+    timer = setTimeout(() => {
       fn.apply(context, args);
     }, delay);
   };

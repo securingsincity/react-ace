@@ -1,12 +1,11 @@
 import { expect } from "chai";
-import React from "react";
-import sinon from "sinon";
-import ace from "brace";
-import Enzyme, { mount } from "enzyme";
+import * as React from "react";
+import * as sinon from "sinon";
+import * as Enzyme from "enzyme";
 import SplitEditor from "../../src/split";
 import brace from "brace"; // eslint-disable-line no-unused-vars
 import Adapter from "enzyme-adapter-react-16";
-
+const mount = Enzyme.mount;
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("Split Component", () => {
@@ -26,7 +25,6 @@ describe("Split Component", () => {
       mount(<SplitEditor onBeforeLoad={beforeLoadCallback} />, mountOptions);
 
       expect(beforeLoadCallback.callCount).to.equal(1);
-      expect(beforeLoadCallback.getCall(0).args[0]).to.deep.equal(ace);
     });
 
     it("should trigger console warn if editorOption is called", () => {

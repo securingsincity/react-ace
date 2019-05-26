@@ -1,5 +1,5 @@
 // import { EditorCommand, Editor } from "brace";
-export interface CommandManager {
+export interface ICommandManager {
   byName: any;
   commands: any;
   platform: string;
@@ -8,7 +8,7 @@ export interface CommandManager {
   exec(name: string, editor: any, args: any): void;
   bindKey?(bindKey: any, command: any): void;
 }
-export interface EditorProps {
+export interface IEditorProps {
   [index: string]: any;
   $blockScrolling?: number;
   $blockSelectEnabled?: boolean;
@@ -38,7 +38,7 @@ export interface EditorProps {
   $onTokenizerUpdate?: (...args: any[]) => any;
 }
 
-export interface Marker {
+export interface IMarker {
   startRow: number;
   startCol: number;
   endRow: number;
@@ -48,17 +48,17 @@ export interface Marker {
   type: string;
 }
 
-export interface CommandBindKey {
+export interface ICommandBindKey {
   win: string;
   mac: string;
 }
 
-export interface Command {
+export interface ICommand {
   name: string;
-  bindKey: CommandBindKey;
+  bindKey: ICommandBindKey;
   exec(): any;
 }
-export interface AceOptions {
+export interface IAceOptions {
   [index: string]: any;
   selectionStyle?: "line" | "text";
   highlightActiveLine?: boolean;

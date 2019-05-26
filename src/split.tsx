@@ -1,8 +1,8 @@
 import {
-  editorOptions,
+  debounce,
   editorEvents,
-  getAceInstance,
-  debounce
+  editorOptions,
+  getAceInstance
 } from "./editorOptions";
 const ace = getAceInstance();
 import "brace";
@@ -11,26 +11,28 @@ const { Range } = ace.acequire("ace/range");
 
 import "brace/ext/split";
 const { Split } = ace.acequire("ace/split");
-import * as React from "react";
 import * as PropTypes from "prop-types";
+import * as React from "react";
 const isEqual = require("lodash.isequal");
 const get = require("lodash.get");
 
-import { Selection, Annotation, Editor, UndoManager } from "brace";
+import { Annotation, Editor, Selection, UndoManager } from "brace";
+import { IAceEditorProps } from "./ace";
 import {
-  EditorProps,
-  Marker,
-  Command,
-  AceOptions,
-  CommandManager
+  IAceOptions,
+  ICommand,
+  ICommandManager,
+  IEditorProps,
+  IMarker
 } from "./types";
 
-interface AceEditorClass extends Editor {
+interface IAceEditorClass extends Editor {
   [index: string]: any;
   $options?: any;
 }
 
-export interface SplitEditorProps {
+export interface ISplitEditorProps {
+  [index: string]: any;
   name?: string;
   style: any;
   /** For available modes see https://github.com/thlorenz/brace/tree/master/mode */
@@ -62,7 +64,7 @@ export interface SplitEditorProps {
   onSelectionChange?: (value: any, event?: any) => void;
   onCursorChange?: (value: any, event?: any) => void;
   onInput?: (event?: any) => void;
-  onLoad?: (editor: EditorProps) => void;
+  onLoad?: (editor: IEditorProps) => void;
   onBeforeLoad?: (ace: any) => void;
   onChange?: (value: string[], event?: any) => void;
   onSelection?: (selectedText: string, event?: any) => void;
@@ -70,26 +72,110 @@ export interface SplitEditorProps {
   onPaste?: (value: string) => void;
   onFocus?: (value: Event) => void;
   onBlur?: (value: Event) => void;
-  onScroll?: (editor: EditorProps) => void;
-  editorProps?: EditorProps;
-  setOptions?: AceOptions;
+  onScroll?: (editor: IEditorProps) => void;
+  editorProps?: IEditorProps;
+  setOptions?: IAceOptions;
   keyboardHandler?: string;
-  commands?: Array<Command>;
-  annotations?: Array<Array<Annotation>>;
-  markers?: Array<Array<Marker>>;
+  commands?: ICommand[];
+  annotations?: Annotation[][];
+  markers?: IMarker[][];
 }
 
 export default class SplitComponent extends React.Component<
-  SplitEditorProps,
+  ISplitEditorProps,
   undefined
 > {
-  editor: AceEditorClass;
-  refEditor: HTMLElement;
-  silent: boolean;
-  split: AceEditorClass;
-  splitEditor: AceEditorClass;
-  debounce: (fn: any, delay: number) => (...args: any) => void;
-  constructor(props) {
+  [index: string]: any;
+
+  public static propTypes: PropTypes.ValidationMap<ISplitEditorProps> = {
+    className: PropTypes.string,
+    debounceChangePeriod: PropTypes.number,
+    defaultValue: PropTypes.arrayOf(PropTypes.string),
+    focus: PropTypes.bool,
+    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    height: PropTypes.string,
+    mode: PropTypes.string,
+    name: PropTypes.string,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onCopy: PropTypes.func,
+    onFocus: PropTypes.func,
+    onInput: PropTypes.func,
+    onLoad: PropTypes.func,
+    onPaste: PropTypes.func,
+    onScroll: PropTypes.func,
+    orientation: PropTypes.string,
+    showGutter: PropTypes.bool,
+    splits: PropTypes.number,
+    theme: PropTypes.string,
+    value: PropTypes.arrayOf(PropTypes.string),
+    width: PropTypes.string,
+    onSelectionChange: PropTypes.func,
+    onCursorChange: PropTypes.func,
+    onBeforeLoad: PropTypes.func,
+    minLines: PropTypes.number,
+    maxLines: PropTypes.number,
+    readOnly: PropTypes.bool,
+    highlightActiveLine: PropTypes.bool,
+    tabSize: PropTypes.number,
+    showPrintMargin: PropTypes.bool,
+    cursorStart: PropTypes.number,
+    editorProps: PropTypes.object,
+    setOptions: PropTypes.object,
+    style: PropTypes.object,
+    scrollMargin: PropTypes.array,
+    annotations: PropTypes.array,
+    markers: PropTypes.array,
+    keyboardHandler: PropTypes.string,
+    wrapEnabled: PropTypes.bool,
+    enableBasicAutocompletion: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.array
+    ]),
+    enableLiveAutocompletion: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.array
+    ]),
+    commands: PropTypes.array
+  };
+  public static defaultProps: Partial<ISplitEditorProps> = {
+    name: "brace-editor",
+    focus: false,
+    orientation: "beside",
+    splits: 2,
+    mode: "",
+    theme: "",
+    height: "500px",
+    width: "500px",
+    value: [],
+    fontSize: 12,
+    showGutter: true,
+    onChange: null,
+    onPaste: null,
+    onLoad: null,
+    onScroll: null,
+    minLines: null,
+    maxLines: null,
+    readOnly: false,
+    highlightActiveLine: true,
+    showPrintMargin: true,
+    tabSize: 4,
+    cursorStart: 1,
+    editorProps: {},
+    style: {},
+    scrollMargin: [0, 0, 0, 0],
+    setOptions: {},
+    wrapEnabled: false,
+    enableBasicAutocompletion: false,
+    enableLiveAutocompletion: false
+  };
+  public editor: IAceEditorClass;
+  public refEditor: HTMLElement;
+  public silent: boolean;
+  public split: IAceEditorClass;
+  public splitEditor: IAceEditorClass;
+  public debounce: (fn: any, delay: number) => (...args: any) => void;
+  constructor(props: ISplitEditorProps) {
     super(props);
     editorEvents.forEach(method => {
       this[method] = this[method].bind(this);
@@ -97,7 +183,7 @@ export default class SplitComponent extends React.Component<
     this.debounce = debounce;
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     const {
       className,
       onBeforeLoad,
@@ -128,7 +214,11 @@ export default class SplitComponent extends React.Component<
 
     const editorProps = Object.keys(this.props.editorProps);
 
-    var split = new Split(this.editor.container, `ace/theme/${theme}`, splits);
+    const split = new Split(
+      this.editor.container,
+      `ace/theme/${theme}`,
+      splits
+    );
     this.editor.env.split = split;
 
     this.splitEditor = split.getEditor(0);
@@ -144,7 +234,7 @@ export default class SplitComponent extends React.Component<
         this.props.debounceChangePeriod
       );
     }
-    split.forEach((editor, index) => {
+    split.forEach((editor: IAceEditorClass, index: number) => {
       for (let i = 0; i < editorProps.length; i++) {
         editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
       }
@@ -159,7 +249,7 @@ export default class SplitComponent extends React.Component<
         scrollMargin[3]
       );
       editor.getSession().setMode(`ace/mode/${mode}`);
-      editor.setFontSize(fontSize);
+      editor.setFontSize(fontSize as any);
       editor.renderer.setShowGutter(showGutter);
       editor.getSession().setUseWrapMode(wrapEnabled);
       editor.setShowPrintMargin(showPrintMargin);
@@ -201,8 +291,8 @@ export default class SplitComponent extends React.Component<
 
       if (Array.isArray(commands)) {
         commands.forEach(command => {
-          if (typeof command.exec == "string") {
-            editor.commands.bindKey(command.bindKey, command.exec);
+          if (typeof command.exec === "string") {
+            (editor.commands as any).bindKey(command.bindKey, command.exec);
           } else {
             editor.commands.addCommand(command);
           }
@@ -232,7 +322,7 @@ export default class SplitComponent extends React.Component<
     }
   }
 
-  componentDidUpdate(prevProps) {
+  public componentDidUpdate(prevProps: ISplitEditorProps) {
     const oldProps = prevProps;
     const nextProps = this.props;
 
@@ -248,7 +338,7 @@ export default class SplitComponent extends React.Component<
       );
     }
 
-    split.forEach((editor, index) => {
+    split.forEach((editor: IAceEditorClass, index: number) => {
       if (nextProps.mode !== oldProps.mode) {
         editor.getSession().setMode("ace/mode/" + nextProps.mode);
       }
@@ -262,7 +352,7 @@ export default class SplitComponent extends React.Component<
         }
       }
       if (nextProps.fontSize !== oldProps.fontSize) {
-        editor.setFontSize(nextProps.fontSize);
+        editor.setFontSize(nextProps.fontSize as any);
       }
       if (nextProps.wrapEnabled !== oldProps.wrapEnabled) {
         editor.getSession().setUseWrapMode(nextProps.wrapEnabled);
@@ -287,9 +377,9 @@ export default class SplitComponent extends React.Component<
       if (editor.getValue() !== nextValue) {
         // editor.setValue is a synchronous function call, change event is emitted before setValue return.
         this.silent = true;
-        const pos = editor.session.selection.toJSON();
+        const pos = (editor.session.selection as any).toJSON();
         editor.setValue(nextValue, nextProps.cursorStart);
-        editor.session.selection.fromJSON(pos);
+        (editor.session.selection as any).fromJSON(pos);
         this.silent = false;
       }
       const newAnnotations = get(nextProps.annotations, index, []);
@@ -306,11 +396,11 @@ export default class SplitComponent extends React.Component<
     });
 
     if (nextProps.className !== oldProps.className) {
-      let appliedClasses = this.refEditor.className;
-      let appliedClassesArray = appliedClasses.trim().split(" ");
-      let oldClassesArray = oldProps.className.trim().split(" ");
+      const appliedClasses = this.refEditor.className;
+      const appliedClassesArray = appliedClasses.trim().split(" ");
+      const oldClassesArray = oldProps.className.trim().split(" ");
       oldClassesArray.forEach(oldClass => {
-        let index = appliedClassesArray.indexOf(oldClass);
+        const index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
       this.refEditor.className =
@@ -332,83 +422,83 @@ export default class SplitComponent extends React.Component<
     }
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     this.editor.destroy();
     this.editor = null;
   }
 
-  onChange(event) {
+  public onChange(event: any) {
     if (this.props.onChange && !this.silent) {
-      let value = [];
-      this.editor.env.split.forEach(editor => {
+      const value: any = [];
+      this.editor.env.split.forEach((editor: IAceEditorClass) => {
         value.push(editor.getValue());
       });
       this.props.onChange(value, event);
     }
   }
 
-  onSelectionChange(event) {
+  public onSelectionChange(event: any) {
     if (this.props.onSelectionChange) {
-      let value = [];
-      this.editor.env.split.forEach(editor => {
+      const value: any = [];
+      this.editor.env.split.forEach((editor: IAceEditorClass) => {
         value.push(editor.getSelection());
       });
       this.props.onSelectionChange(value, event);
     }
   }
-  onCursorChange(event) {
+  public onCursorChange(event: any) {
     if (this.props.onCursorChange) {
-      let value = [];
-      this.editor.env.split.forEach(editor => {
+      const value: any = [];
+      this.editor.env.split.forEach((editor: IAceEditorClass) => {
         value.push(editor.getSelection());
       });
       this.props.onCursorChange(value, event);
     }
   }
-  onFocus(event) {
+  public onFocus(event: any) {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
   }
 
-  onInput(event) {
+  public onInput(event: any) {
     if (this.props.onInput) {
       this.props.onInput(event);
     }
   }
 
-  onBlur(event) {
+  public onBlur(event: any) {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
   }
 
-  onCopy(text) {
+  public onCopy(text: string) {
     if (this.props.onCopy) {
       this.props.onCopy(text);
     }
   }
 
-  onPaste(text) {
+  public onPaste(text: string) {
     if (this.props.onPaste) {
       this.props.onPaste(text);
     }
   }
 
-  onScroll() {
+  public onScroll() {
     if (this.props.onScroll) {
       this.props.onScroll(this.editor);
     }
   }
 
-  handleOptions(props, editor) {
+  public handleOptions(props: ISplitEditorProps, editor: IAceEditorClass) {
     const setOptions = Object.keys(props.setOptions);
     for (let y = 0; y < setOptions.length; y++) {
       editor.setOption(setOptions[y], props.setOptions[setOptions[y]]);
     }
   }
 
-  handleMarkers(markers, editor) {
+  public handleMarkers(markers: IMarker[], editor: IAceEditorClass) {
     // remove foreground markers
     let currentMarkers = editor.getSession().getMarkers(true);
     for (const i in currentMarkers) {
@@ -440,96 +530,13 @@ export default class SplitComponent extends React.Component<
     );
   }
 
-  updateRef(item) {
+  public updateRef(item: HTMLElement) {
     this.refEditor = item;
   }
 
-  render() {
+  public render() {
     const { name, width, height, style } = this.props;
     const divStyle = { width, height, ...style };
     return <div ref={this.updateRef} id={name} style={divStyle} />;
   }
-
-  public static propTypes: PropTypes.ValidationMap<SplitEditorProps> = {
-    mode: PropTypes.string,
-    splits: PropTypes.number,
-    orientation: PropTypes.string,
-    focus: PropTypes.bool,
-    theme: PropTypes.string,
-    name: PropTypes.string,
-    className: PropTypes.string,
-    height: PropTypes.string,
-    width: PropTypes.string,
-    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    showGutter: PropTypes.bool,
-    onChange: PropTypes.func,
-    onCopy: PropTypes.func,
-    onPaste: PropTypes.func,
-    onFocus: PropTypes.func,
-    onInput: PropTypes.func,
-    onBlur: PropTypes.func,
-    onScroll: PropTypes.func,
-    value: PropTypes.arrayOf(PropTypes.string),
-    defaultValue: PropTypes.arrayOf(PropTypes.string),
-    debounceChangePeriod: PropTypes.number,
-    onLoad: PropTypes.func,
-    onSelectionChange: PropTypes.func,
-    onCursorChange: PropTypes.func,
-    onBeforeLoad: PropTypes.func,
-    minLines: PropTypes.number,
-    maxLines: PropTypes.number,
-    readOnly: PropTypes.bool,
-    highlightActiveLine: PropTypes.bool,
-    tabSize: PropTypes.number,
-    showPrintMargin: PropTypes.bool,
-    cursorStart: PropTypes.number,
-    editorProps: PropTypes.object,
-    setOptions: PropTypes.object,
-    style: PropTypes.object,
-    scrollMargin: PropTypes.array,
-    annotations: PropTypes.array,
-    markers: PropTypes.array,
-    keyboardHandler: PropTypes.string,
-    wrapEnabled: PropTypes.bool,
-    enableBasicAutocompletion: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.array
-    ]),
-    enableLiveAutocompletion: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.array
-    ]),
-    commands: PropTypes.array
-  };
-  public static defaultProps: Partial<SplitEditorProps> = {
-    name: "brace-editor",
-    focus: false,
-    orientation: "beside",
-    splits: 2,
-    mode: "",
-    theme: "",
-    height: "500px",
-    width: "500px",
-    value: [],
-    fontSize: 12,
-    showGutter: true,
-    onChange: null,
-    onPaste: null,
-    onLoad: null,
-    onScroll: null,
-    minLines: null,
-    maxLines: null,
-    readOnly: false,
-    highlightActiveLine: true,
-    showPrintMargin: true,
-    tabSize: 4,
-    cursorStart: 1,
-    editorProps: {},
-    style: {},
-    scrollMargin: [0, 0, 0, 0],
-    setOptions: {},
-    wrapEnabled: false,
-    enableBasicAutocompletion: false,
-    enableLiveAutocompletion: false
-  };
 }

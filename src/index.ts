@@ -1,5 +1,5 @@
 import ace from "./ace";
-import split from "./split";
 import diff from "./diff";
+import split from "./split";
 export { split, diff };
 export default ace;

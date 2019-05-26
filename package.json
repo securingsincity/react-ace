@@ -7,7 +7,7 @@
   "scripts": {
     "prettier": "prettier --print-width 120 --single-quote --trailing-comma all   --write \"src/**\" \"example/*.js\"",
     "clean": "rimraf lib dist",
-    "lint": "node_modules/.bin/eslint src/*",
+    "lint": "tslint src/*",
     "build:lib": "babel src --out-dir lib",
     "build:umd": "webpack src/index.ts dist/react-ace.js --config webpack.config.development.js",
     "build:umd:min": "webpack src/index.ts dist/react-ace.min.js --config webpack.config.production.js",
