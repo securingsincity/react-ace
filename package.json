@@ -1,14 +1,14 @@
 {
   "name": "react-ace",
-  "version": "6.5.0",
+  "version": "7.0.0",
   "description": "A react component for Ace Editor",
   "main": "lib/index.js",
-  "types": "types.d.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
     "prettier": "prettier --print-width 120 --single-quote --trailing-comma all   --write \"src/**\" \"example/*.js\"",
     "clean": "rimraf lib dist",
     "lint": "tslint src/*",
-    "build:lib": "babel src --out-dir lib",
+    "build:lib": "tsc",
     "build:umd": "webpack src/index.ts -o dist/react-ace.js --config webpack.config.development.js",
     "build:umd:min": "webpack src/index.ts -o dist/react-ace.min.js --config webpack.config.production.js",
     "example": "webpack-dev-server --config webpack.config.example.js",
