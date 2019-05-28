@@ -68,10 +68,7 @@ export interface IAceEditorProps {
   [index: string]: any;
 }
 
-export default class ReactAce extends React.Component<
-  IAceEditorProps,
-  undefined
-> {
+export default class ReactAce extends React.Component<IAceEditorProps> {
   [index: string]: any;
 
   public static propTypes: PropTypes.ValidationMap<IAceEditorProps> = {

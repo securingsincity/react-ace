@@ -10,7 +10,7 @@ export interface ICommandManager {
 }
 export interface IEditorProps {
   [index: string]: any;
-  $blockScrolling?: number;
+  $blockScrolling?: number | boolean;
   $blockSelectEnabled?: boolean;
   $enableBlockSelect?: boolean;
   $enableMultiselect?: boolean;
@@ -43,9 +43,9 @@ export interface IMarker {
   startCol: number;
   endRow: number;
   endCol: number;
-  inFront: boolean;
   className: string;
   type: string;
+  inFront?: boolean;
 }
 
 export interface ICommandBindKey {
