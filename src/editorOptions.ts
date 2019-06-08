@@ -1,4 +1,14 @@
-const editorOptions = [
+type EditorOption =
+  | "minLines"
+  | "maxLines"
+  | "readOnly"
+  | "highlightActiveLine"
+  | "tabSize"
+  | "enableBasicAutocompletion"
+  | "enableLiveAutocompletion"
+  | "enableSnippets";
+
+const editorOptions: EditorOption[] = [
   "minLines",
   "maxLines",
   "readOnly",
@@ -9,7 +19,20 @@ const editorOptions = [
   "enableSnippets"
 ];
 
-const editorEvents = [
+type EditorEvent =
+  | "onChange"
+  | "onFocus"
+  | "onInput"
+  | "onBlur"
+  | "onCopy"
+  | "onPaste"
+  | "onSelectionChange"
+  | "onCursorChange"
+  | "onScroll"
+  | "handleOptions"
+  | "updateRef";
+
+const editorEvents: EditorEvent[] = [
   "onChange",
   "onFocus",
   "onInput",

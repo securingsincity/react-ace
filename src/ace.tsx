@@ -46,6 +46,7 @@ export interface IAceEditorProps {
   placeholder?: string;
   defaultValue?: string;
   scrollMargin?: number[];
+  enableSnippets?: boolean;
   onSelectionChange?: (value: any, event?: any) => void;
   onCursorChange?: (value: any, event?: any) => void;
   onInput?: (event?: any) => void;
@@ -65,12 +66,9 @@ export interface IAceEditorProps {
   commands?: ICommand[];
   annotations?: Annotation[];
   markers?: IMarker[];
-  [index: string]: any;
 }
 
 export default class ReactAce extends React.Component<IAceEditorProps> {
-  [index: string]: any;
-
   public static propTypes: PropTypes.ValidationMap<IAceEditorProps> = {
     mode: PropTypes.string,
     focus: PropTypes.bool,
@@ -111,6 +109,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     markers: PropTypes.array,
     keyboardHandler: PropTypes.string,
     wrapEnabled: PropTypes.bool,
+    enableSnippets: PropTypes.bool,
     enableBasicAutocompletion: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.array
@@ -132,6 +131,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     width: "500px",
     value: "",
     fontSize: 12,
+    enableSnippets: false,
     showGutter: true,
     onChange: null,
     onPaste: null,
@@ -253,8 +253,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
 
     // get a list of possible options to avoid 'misspelled option errors'
     const availableOptions = this.editor.$options;
-    for (let i = 0; i < editorOptions.length; i++) {
-      const option = editorOptions[i];
+    editorOptions.forEach(option => {
       if (availableOptions.hasOwnProperty(option)) {
         this.editor.setOption(option, this.props[option]);
       } else if (this.props[option]) {
@@ -262,7 +261,8 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
           `ReactAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`
         );
       }
-    }
+    });
+
     this.handleOptions(this.props);
 
     if (Array.isArray(commands)) {
