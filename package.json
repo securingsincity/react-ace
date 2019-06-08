@@ -67,8 +67,8 @@
     "tslint-react": "^4.0.0",
     "typescript": "^3.4.5",
     "webpack": "4.33.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": ">=3.4.1"
+    "webpack-cli": "3.3.3",
+    "webpack-dev-server": "3.7.1"
   },
   "keywords": [
     "ace",
