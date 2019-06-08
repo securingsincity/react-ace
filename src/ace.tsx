@@ -19,7 +19,7 @@ import { IAceOptions, ICommand, IEditorProps, IMarker } from "./types";
 
 export interface IAceEditorProps {
   name?: string;
-  style: any;
+  style?: React.CSSProperties;
   /** For available modes see https://github.com/thlorenz/brace/tree/master/mode */
   mode?: string;
   /** For available themes see https://github.com/thlorenz/brace/tree/master/theme */
