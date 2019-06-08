@@ -1,5 +1,16 @@
 # Changelog
 
+## 7.0.2
+
+- Support node 11 in development
+- Upgrade dev dependencies
+- Add typings for EditorOptions/EditorEvents, remove index signatures #651
+- Fix types #652
+
+## 7.0.1
+
+- Fix types #646
+
 ## 7.0.0 
 
 - Fully move to TypeScript interally
