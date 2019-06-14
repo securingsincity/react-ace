@@ -1,3 +1,4 @@
+export * from './ace';
 import ace from "./ace";
 import diff from "./diff";
 import split from "./split";
