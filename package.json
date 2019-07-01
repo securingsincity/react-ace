@@ -46,11 +46,11 @@
     "coveralls": "^3.0.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
-    "eslint": "5.16.0",
+    "eslint": "6.0.1",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "husky": "^2.3.0",
+    "husky": "^2.7.0",
     "jsdom": "^15.1.0",
     "mocha": "6.1.4",
     "nyc": "14.1.1",
@@ -66,9 +66,9 @@
     "tslint": "^5.16.0",
     "tslint-react": "^4.0.0",
     "typescript": "^3.4.5",
-    "webpack": "4.33.0",
+    "webpack": "4.35.2",
     "webpack-cli": "3.3.5",
-    "webpack-dev-server": "3.7.1"
+    "webpack-dev-server": "3.7.2"
   },
   "keywords": [
     "ace",
