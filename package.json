@@ -68,7 +68,7 @@
     "typescript": "^3.4.5",
     "webpack": "4.35.2",
     "webpack-cli": "3.3.5",
-    "webpack-dev-server": "3.7.2"
+    "webpack-dev-server": "3.8.0"
   },
   "keywords": [
     "ace",
