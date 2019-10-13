@@ -43,18 +43,17 @@ Similarly, if you want to redo or undo, you can reference the editor from the re
 
 ## How do I add language snippets?
 
-You can import the snippets and mode directly through `brace` along with the language_tools. Here is an example below
+You can import the snippets and mode directly through `ace-builds` along with the language_tools. Here is an example below
 
 ```javascript
 import React from "react";
 import { render } from "react-dom";
-import brace from "brace";
 import AceEditor from "react-ace";
 
-import "brace/mode/python";
-import "brace/snippets/python";
-import "brace/ext/language_tools";
-import "brace/theme/github";
+import "ace-builds/src-min-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/snippets/python";
+import "ace-builds/src-noconflict/theme-github";
 
 function onChange(newValue) {
   console.log("change", newValue);
@@ -168,7 +167,7 @@ render() {
 
 Add the following line
 
-`import 'brace/ext/searchbox';`
+`import 'ace-builds/src-min-noconflict/ext-searchbox';`
 
 before introducing the component and it will add the search box.
 
@@ -181,7 +180,7 @@ before introducing the component and it will add the search box.
 My custom mode is:
 
 ```javascript
-import "brace/mode/java";
+import "ace-builds/src-noconflict/mode-java";
 
 export class CustomHighlightRules extends window.ace.acequire(
   "ace/mode/text_highlight_rules"
@@ -216,11 +215,11 @@ And my react-ace code looks like:
 
 ```javascript
 import React, { Component } from "react";
-import brace from "brace";
+
 import AceEditor from "react-ace";
 import CustomSqlMode from "./CustomSqlMode.js";
 
-import "brace/theme/github";
+import "ace-builds/src-noconflict/theme-github";
 
 class App extends Component {
   componentDidMount() {

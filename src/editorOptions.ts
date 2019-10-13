@@ -52,7 +52,7 @@ const getAceInstance = () => {
     ace = (window as any).ace;
     ace.acequire = (window as any).ace.require || (window as any).ace.acequire;
   } else {
-    ace = require("brace");
+    ace = require("ace-builds");
   }
   return ace;
 };

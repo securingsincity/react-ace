@@ -3,7 +3,6 @@ import { expect } from "chai";
 import * as sinon from "sinon";
 import * as Enzyme from "enzyme";
 import AceEditor from "../../src/ace";
-import brace from "brace"; // eslint-disable-line no-unused-vars
 import Adapter from "enzyme-adapter-react-16";
 const mount = Enzyme.mount;
 
@@ -709,13 +708,17 @@ describe("Ace Component", () => {
 
       // Read set value
       let editor = wrapper.instance().refEditor;
-      expect(editor.className).to.equal(" ace_editor ace-tm old-class");
+      expect(editor.className).to.equal(
+        " ace_editor ace_hidpi ace-tm old-class"
+      );
 
       // Now trigger the componentDidUpdate
       const newClassName = "new-class";
       wrapper.setProps({ className: newClassName });
       editor = wrapper.instance().refEditor;
-      expect(editor.className).to.equal(" new-class ace_editor ace-tm");
+      expect(editor.className).to.equal(
+        " new-class ace_editor ace_hidpi ace-tm"
+      );
     });
 
     it("should update the value on componentDidUpdate", () => {

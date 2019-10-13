@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { diff as DiffEditor } from "../src/index";
 
-import "brace/mode/jsx";
-import "brace/ext/searchbox";
-
+import "ace-builds/src-noconflict/mode-jsx";
+import "ace-builds/src-min-noconflict/ext-searchbox";
+import "ace-builds/src-min-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/theme-github";
 const defaultValue = [
   `// Use this tool to display differences in code.
 // Deletions will be highlighted on the left, insertions highlighted on the right.`,
@@ -34,8 +35,8 @@ const languages = [
 ];
 
 languages.forEach(lang => {
-  require(`brace/mode/${lang}`);
-  require(`brace/snippets/${lang}`);
+  require(`ace-builds/src-noconflict/mode-${lang}`);
+  require(`ace-builds/src-noconflict/snippets/${lang}`);
 });
 
 class App extends Component {
@@ -94,6 +95,9 @@ class App extends Component {
             value={this.state.value}
             height="1000px"
             width="1000px"
+            setOptions={{
+              useWorker: false
+            }}
             mode={this.state.mode}
             onChange={this.onChange}
           />

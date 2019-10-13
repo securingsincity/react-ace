@@ -3,6 +3,7 @@ import diff, { IDiffEditorProps, IDiffEditorState } from "./diff";
 import split, { ISplitEditorProps } from "./split";
 import {
   IAceOptions,
+  IAnnotation,
   ICommand,
   ICommandBindKey,
   ICommandManager,
@@ -14,6 +15,7 @@ export {
   diff,
   IAceOptions,
   IAceEditorProps,
+  IAnnotation,
   ICommand,
   ICommandBindKey,
   ICommandManager,

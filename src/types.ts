@@ -1,4 +1,3 @@
-// import { EditorCommand, Editor } from "brace";
 export interface ICommandManager {
   byName: any;
   commands: any;
@@ -116,4 +115,11 @@ export interface IAceOptions {
   enableSnippets?: boolean;
   spellcheck?: boolean;
   useElasticTabstops?: boolean;
+}
+
+export interface IAnnotation {
+  row: number;
+  column: number;
+  text: string;
+  type: string;
 }

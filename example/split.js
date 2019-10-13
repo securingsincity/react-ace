@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import SplitAceEditor from "../src/split";
-
-import "brace/mode/jsx";
-import "brace/ext/searchbox";
+import "ace-builds/src-noconflict/mode-jsx";
+import "ace-builds/src-min-noconflict/ext-searchbox";
+import "ace-builds/src-min-noconflict/ext-language_tools";
 
 const languages = [
   "javascript",
@@ -38,15 +38,11 @@ const themes = [
 ];
 
 languages.forEach(lang => {
-  require(`brace/mode/${lang}`);
-  require(`brace/snippets/${lang}`);
+  require(`ace-builds/src-noconflict/mode-${lang}`);
+  require(`ace-builds/src-noconflict/snippets/${lang}`);
 });
 
-themes.forEach(theme => {
-  require(`brace/theme/${theme}`);
-});
-/*eslint-disable no-alert, no-console */
-import "brace/ext/language_tools";
+themes.forEach(theme => require(`ace-builds/src-noconflict/theme-${theme}`));
 
 const defaultValue = [
   `function onLoad(editor) {
@@ -353,6 +349,7 @@ class App extends Component {
             highlightActiveLine={this.state.highlightActiveLine}
             value={this.state.value}
             setOptions={{
+              useWorker: false,
               displayIndentGuides: false,
               enableBasicAutocompletion: this.state.enableBasicAutocompletion,
               enableLiveAutocompletion: this.state.enableLiveAutocompletion,

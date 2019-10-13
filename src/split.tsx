@@ -5,23 +5,17 @@ import {
   getAceInstance
 } from "./editorOptions";
 const ace = getAceInstance();
-import "brace";
-
-const { Range } = ace.acequire("ace/range");
-
-import "brace/ext/split";
-const { Split } = ace.acequire("ace/split");
+import { Ace, Range } from "ace-builds";
+import Editor = Ace.Editor;
+import { Split } from "ace-builds/src-noconflict/ext-split";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 const isEqual = require("lodash.isequal");
 const get = require("lodash.get");
-
-import { Annotation, Editor, Selection, UndoManager } from "brace";
-import { IAceEditorProps } from "./ace";
 import {
   IAceOptions,
+  IAnnotation,
   ICommand,
-  ICommandManager,
   IEditorProps,
   IMarker
 } from "./types";
@@ -77,7 +71,7 @@ export interface ISplitEditorProps {
   setOptions?: IAceOptions;
   keyboardHandler?: string;
   commands?: ICommand[];
-  annotations?: Annotation[][];
+  annotations?: IAnnotation[][];
   markers?: IMarker[][];
 }
 
@@ -139,7 +133,7 @@ export default class SplitComponent extends React.Component<
     commands: PropTypes.array
   };
   public static defaultProps: Partial<ISplitEditorProps> = {
-    name: "brace-editor",
+    name: "ace-editor",
     focus: false,
     orientation: "beside",
     splits: 2,
@@ -255,9 +249,9 @@ export default class SplitComponent extends React.Component<
       editor.setShowPrintMargin(showPrintMargin);
       editor.on("focus", this.onFocus);
       editor.on("blur", this.onBlur);
-      editor.on("input", this.onInput);
-      editor.on("copy", this.onCopy);
-      editor.on("paste", this.onPaste);
+      editor.on("input" as any, this.onInput);
+      editor.on("copy", this.onCopy as any);
+      editor.on("paste", this.onPaste as any);
       editor.on("change", this.onChange);
       editor
         .getSession()
@@ -280,7 +274,7 @@ export default class SplitComponent extends React.Component<
       for (let i = 0; i < editorOptions.length; i++) {
         const option = editorOptions[i];
         if (availableOptions.hasOwnProperty(option)) {
-          editor.setOption(option, this.props[option]);
+          editor.setOption(option as any, this.props[option]);
         } else if (this.props[option]) {
           console.warn(
             `ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`
@@ -367,7 +361,7 @@ export default class SplitComponent extends React.Component<
       for (let i = 0; i < editorOptions.length; i++) {
         const option = editorOptions[i];
         if (nextProps[option] !== oldProps[option]) {
-          editor.setOption(option, nextProps[option]);
+          editor.setOption(option as any, nextProps[option]);
         }
       }
       if (!isEqual(nextProps.setOptions, oldProps.setOptions)) {
@@ -494,7 +488,7 @@ export default class SplitComponent extends React.Component<
   public handleOptions(props: ISplitEditorProps, editor: IAceEditorClass) {
     const setOptions = Object.keys(props.setOptions);
     for (let y = 0; y < setOptions.length; y++) {
-      editor.setOption(setOptions[y], props.setOptions[setOptions[y]]);
+      editor.setOption(setOptions[y] as any, props.setOptions[setOptions[y]]);
     }
   }
 
@@ -525,7 +519,9 @@ export default class SplitComponent extends React.Component<
         inFront = false
       }) => {
         const range = new Range(startRow, startCol, endRow, endCol);
-        editor.getSession().addMarker(range, className, type, inFront);
+        editor
+          .getSession()
+          .addMarker(range as any, className, type as any, inFront);
       }
     );
   }

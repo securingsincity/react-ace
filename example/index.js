@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import AceEditor from "../src/ace";
-import "brace/mode/jsx";
 
+import "ace-builds/src-noconflict/mode-jsx";
 const languages = [
   "javascript",
   "java",
@@ -36,16 +36,14 @@ const themes = [
 ];
 
 languages.forEach(lang => {
-  require(`brace/mode/${lang}`);
-  require(`brace/snippets/${lang}`);
+  require(`ace-builds/src-noconflict/mode-${lang}`);
+  require(`ace-builds/src-noconflict/snippets/${lang}`);
 });
 
-themes.forEach(theme => {
-  require(`brace/theme/${theme}`);
-});
+themes.forEach(theme => require(`ace-builds/src-noconflict/theme-${theme}`));
 /*eslint-disable no-alert, no-console */
-import "brace/ext/language_tools";
-import "brace/ext/searchbox";
+import "ace-builds/src-min-noconflict/ext-searchbox";
+import "ace-builds/src-min-noconflict/ext-language_tools";
 
 const defaultValue = `function onLoad(editor) {
   console.log("i've loaded");
@@ -319,6 +317,7 @@ class App extends Component {
             showGutter={this.state.showGutter}
             highlightActiveLine={this.state.highlightActiveLine}
             setOptions={{
+              useWorker: false,
               enableBasicAutocompletion: this.state.enableBasicAutocompletion,
               enableLiveAutocompletion: this.state.enableLiveAutocompletion,
               enableSnippets: this.state.enableSnippets,

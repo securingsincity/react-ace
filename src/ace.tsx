@@ -1,4 +1,3 @@
-import { Annotation } from "brace";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 const isEqual = require("lodash.isequal");
@@ -9,10 +8,16 @@ import {
   getAceInstance
 } from "./editorOptions";
 const ace = getAceInstance();
-const { Range } = ace.acequire("ace/range");
+const { Range } = ace.require("ace/range");
 
 import { AceEditorClass } from "./AceEditorClass";
-import { IAceOptions, ICommand, IEditorProps, IMarker } from "./types";
+import {
+  IAceOptions,
+  IAnnotation,
+  ICommand,
+  IEditorProps,
+  IMarker
+} from "./types";
 /**
  * See https://github.com/ajaxorg/ace/wiki/Configuring-Ace
  */
@@ -51,7 +56,7 @@ export interface IAceEditorProps {
   onCursorChange?: (value: any, event?: any) => void;
   onInput?: (event?: any) => void;
   onLoad?: (editor: IEditorProps) => void;
-  onValidate?: (annotations: Annotation[]) => void;
+  onValidate?: (annotations: IAnnotation[]) => void;
   onBeforeLoad?: (ace: any) => void;
   onChange?: (value: string, event?: any) => void;
   onSelection?: (selectedText: string, event?: any) => void;
@@ -64,7 +69,7 @@ export interface IAceEditorProps {
   setOptions?: IAceOptions;
   keyboardHandler?: string;
   commands?: ICommand[];
-  annotations?: Annotation[];
+  annotations?: IAnnotation[];
   markers?: IMarker[];
 }
 
@@ -123,7 +128,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     placeholder: PropTypes.string
   };
   public static defaultProps: Partial<IAceEditorProps> = {
-    name: "brace-editor",
+    name: "ace-editor",
     focus: false,
     mode: "",
     theme: "",
