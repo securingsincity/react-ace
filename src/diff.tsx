@@ -95,7 +95,7 @@ export default class DiffComponent extends React.Component<
     maxLines: null,
     minLines: null,
     mode: "",
-    name: "brace-editor",
+    name: "ace-editor",
     onLoad: null,
     onScroll: null,
     onPaste: null,

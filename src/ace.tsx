@@ -9,7 +9,7 @@ import {
   getAceInstance
 } from "./editorOptions";
 const ace = getAceInstance();
-const { Range } = ace.acequire("ace/range");
+const { Range } = ace.require("ace/range");
 
 import { AceEditorClass } from "./AceEditorClass";
 import { IAceOptions, ICommand, IEditorProps, IMarker } from "./types";
@@ -123,7 +123,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     placeholder: PropTypes.string
   };
   public static defaultProps: Partial<IAceEditorProps> = {
-    name: "brace-editor",
+    name: "ace-editor",
     focus: false,
     mode: "",
     theme: "",

@@ -5,18 +5,14 @@ import {
   getAceInstance
 } from "./editorOptions";
 const ace = getAceInstance();
-import "brace";
-
-const { Range } = ace.acequire("ace/range");
-
-import "brace/ext/split";
-const { Split } = ace.acequire("ace/split");
+import { Range, UndoManager } from "ace-builds";
+import { Split } from "ace-builds/src-noconflict/ext-split";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 const isEqual = require("lodash.isequal");
 const get = require("lodash.get");
 
-import { Annotation, Editor, Selection, UndoManager } from "brace";
+import { Annotation, Editor, Selection } from "brace";
 import { IAceEditorProps } from "./ace";
 import {
   IAceOptions,
@@ -139,7 +135,7 @@ export default class SplitComponent extends React.Component<
     commands: PropTypes.array
   };
   public static defaultProps: Partial<ISplitEditorProps> = {
-    name: "brace-editor",
+    name: "ace-editor",
     focus: false,
     orientation: "beside",
     splits: 2,
@@ -525,7 +521,7 @@ export default class SplitComponent extends React.Component<
         inFront = false
       }) => {
         const range = new Range(startRow, startCol, endRow, endCol);
-        editor.getSession().addMarker(range, className, type, inFront);
+        editor.getSession().addMarker(range as any, className, type, inFront);
       }
     );
   }
