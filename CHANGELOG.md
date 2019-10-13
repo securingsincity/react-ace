@@ -1,5 +1,23 @@
 # Changelog
 
+## 8.0.0
+
+_BREAKING CHANGES!!!_
+
+- Removes brace as a dependency for ace-builds
+- Updates all documentation
+- Updates all examples
+
+## 7.0.5
+
+- Upgrades dev dependencies
+
+## 7.0.4 (7.0.3 was busted)
+
+- Upgrades dev dependencies
+- Export types
+- Remove babel polyfill
+
 ## 7.0.2
 
 - Support node 11 in development
@@ -11,7 +29,7 @@
 
 - Fix types #646
 
-## 7.0.0 
+## 7.0.0
 
 - Fully move to TypeScript interally
 - Publish typings for the split and diff editor
