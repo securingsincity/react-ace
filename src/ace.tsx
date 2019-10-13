@@ -1,4 +1,3 @@
-import { Annotation } from "brace";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 const isEqual = require("lodash.isequal");
@@ -12,7 +11,13 @@ const ace = getAceInstance();
 const { Range } = ace.require("ace/range");
 
 import { AceEditorClass } from "./AceEditorClass";
-import { IAceOptions, ICommand, IEditorProps, IMarker } from "./types";
+import {
+  Annotation,
+  IAceOptions,
+  ICommand,
+  IEditorProps,
+  IMarker
+} from "./types";
 /**
  * See https://github.com/ajaxorg/ace/wiki/Configuring-Ace
  */

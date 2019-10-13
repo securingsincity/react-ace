@@ -2,6 +2,7 @@ import ace, { IAceEditorProps } from "./ace";
 import diff, { IDiffEditorProps, IDiffEditorState } from "./diff";
 import split, { ISplitEditorProps } from "./split";
 import {
+  Annotation,
   IAceOptions,
   ICommand,
   ICommandBindKey,

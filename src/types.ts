@@ -117,3 +117,10 @@ export interface IAceOptions {
   spellcheck?: boolean;
   useElasticTabstops?: boolean;
 }
+
+export interface Annotation {
+  row: number;
+  column: number;
+  text: string;
+  type: string;
+}

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { diff as DiffEditor } from "../src/index";
 
-require(`ace-builds/src-noconflict/mode-jsx`);
+import "ace-builds/src-noconflict/mode-jsx";
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
-require(`ace-builds/src-noconflict/theme-github`);
+import "ace-builds/src-noconflict/theme-github";
 const defaultValue = [
   `// Use this tool to display differences in code.
 // Deletions will be highlighted on the left, insertions highlighted on the right.`,

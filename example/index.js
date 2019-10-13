@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import AceEditor from "../src/ace";
 
-require(`ace-builds/src-noconflict/mode-jsx`);
+import "ace-builds/src-noconflict/mode-jsx";
 const languages = [
   "javascript",
   "java",
