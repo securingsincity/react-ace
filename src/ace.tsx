@@ -12,8 +12,8 @@ const { Range } = ace.require("ace/range");
 
 import { AceEditorClass } from "./AceEditorClass";
 import {
-  Annotation,
   IAceOptions,
+  IAnnotation,
   ICommand,
   IEditorProps,
   IMarker
@@ -56,7 +56,7 @@ export interface IAceEditorProps {
   onCursorChange?: (value: any, event?: any) => void;
   onInput?: (event?: any) => void;
   onLoad?: (editor: IEditorProps) => void;
-  onValidate?: (annotations: Annotation[]) => void;
+  onValidate?: (annotations: IAnnotation[]) => void;
   onBeforeLoad?: (ace: any) => void;
   onChange?: (value: string, event?: any) => void;
   onSelection?: (selectedText: string, event?: any) => void;
@@ -69,7 +69,7 @@ export interface IAceEditorProps {
   setOptions?: IAceOptions;
   keyboardHandler?: string;
   commands?: ICommand[];
-  annotations?: Annotation[];
+  annotations?: IAnnotation[];
   markers?: IMarker[];
 }
 

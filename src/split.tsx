@@ -13,8 +13,8 @@ import * as React from "react";
 const isEqual = require("lodash.isequal");
 const get = require("lodash.get");
 import {
-  Annotation,
   IAceOptions,
+  IAnnotation,
   ICommand,
   IEditorProps,
   IMarker
@@ -71,7 +71,7 @@ export interface ISplitEditorProps {
   setOptions?: IAceOptions;
   keyboardHandler?: string;
   commands?: ICommand[];
-  annotations?: Annotation[][];
+  annotations?: IAnnotation[][];
   markers?: IMarker[][];
 }
 

@@ -117,7 +117,7 @@ export interface IAceOptions {
   useElasticTabstops?: boolean;
 }
 
-export interface Annotation {
+export interface IAnnotation {
   row: number;
   column: number;
   text: string;
