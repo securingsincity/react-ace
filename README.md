@@ -13,6 +13,8 @@
 
 A set of react components for Ace
 
+_NOTE FOR VERSION 8!_ : We have stopped support for Brace and now use Ace-builds. Please read the documentation on how to migrate. Examples are being updated.
+
 [DEMO of React Ace](http://securingsincity.github.io/react-ace/)
 
 [DEMO of React Ace Split Editor](http://securingsincity.github.io/react-ace/split.html)
