@@ -1,4 +1,3 @@
-// import { EditorCommand, Editor } from "brace";
 export interface ICommandManager {
   byName: any;
   commands: any;

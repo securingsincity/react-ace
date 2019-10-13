@@ -1,4 +1,5 @@
-#  React-Ace
+# React-Ace
+
 ![logo](https://github.com/securingsincity/react-ace/raw/master/logo.png)
 
 [![Backers on Open Collective](https://opencollective.com/react-ace/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/react-ace/sponsors/badge.svg)](#sponsors) [![Greenkeeper badge](https://badges.greenkeeper.io/securingsincity/react-ace.svg)](https://greenkeeper.io/)
@@ -10,7 +11,7 @@
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/j)
 
-A set of react components for Ace / Brace
+A set of react components for Ace
 
 [DEMO of React Ace](http://securingsincity.github.io/react-ace/)
 
@@ -25,16 +26,15 @@ A set of react components for Ace / Brace
 ## Basic Usage
 
 ```javascript
-import React from 'react';
-import { render } from 'react-dom';
-import brace from 'brace';
-import AceEditor from 'react-ace';
+import React from "react";
+import { render } from "react-dom";
+import AceEditor from "react-ace";
 
-import 'brace/mode/java';
-import 'brace/theme/github';
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/theme-github";
 
 function onChange(newValue) {
-  console.log('change',newValue);
+  console.log("change", newValue);
 }
 
 // Render editor
@@ -44,9 +44,9 @@ render(
     theme="github"
     onChange={onChange}
     name="UNIQUE_ID_OF_DIV"
-    editorProps={{$blockScrolling: true}}
+    editorProps={{ $blockScrolling: true }}
   />,
-  document.getElementById('example')
+  document.getElementById("example")
 );
 ```
 
@@ -101,7 +101,6 @@ Support us with a monthly donation and help us continue our activities. [[Become
 <a href="https://opencollective.com/react-ace/backer/28/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/28/avatar.svg"></a>
 <a href="https://opencollective.com/react-ace/backer/29/website" target="_blank"><img src="https://opencollective.com/react-ace/backer/29/avatar.svg"></a>
 
-
 ## Sponsors
 
 Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/react-ace#sponsor)]
@@ -116,5 +115,3 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 <a href="https://opencollective.com/react-ace/sponsor/7/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/7/avatar.svg"></a>
 <a href="https://opencollective.com/react-ace/sponsor/8/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/react-ace/sponsor/9/website" target="_blank"><img src="https://opencollective.com/react-ace/sponsor/9/avatar.svg"></a>
-
-
