@@ -50,7 +50,6 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "file-loader": "^4.2.0",
     "husky": "^3.0.0",
     "jsdom": "^15.1.0",
     "mocha": "6.2.1",
@@ -78,7 +77,6 @@
     "react"
   ],
   "dependencies": {
-    "@types/ace": "0.0.42",
     "ace-builds": "^1.4.6",
     "diff-match-patch": "^1.0.4",
     "lodash.get": "^4.4.2",
