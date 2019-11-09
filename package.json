@@ -46,7 +46,7 @@
     "coveralls": "^3.0.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
-    "eslint": "6.5.1",
+    "eslint": "6.6.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
@@ -67,7 +67,7 @@
     "tslint-react": "^4.0.0",
     "typescript": "^3.4.5",
     "webpack": "4.41.2",
-    "webpack-cli": "3.3.8",
+    "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.9.0"
   },
   "keywords": [
