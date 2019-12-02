@@ -23,7 +23,9 @@ _NOTE FOR VERSION 8!_ : We have stopped support for Brace and now use Ace-builds
 
 ## Install
 
-`npm install react-ace`
+`npm install react-ace ace-builds`
+
+ `yarn add react-ace ace-builds`
 
 ## Basic Usage
 
