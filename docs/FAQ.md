@@ -8,7 +8,7 @@ Check out the example applications
 - [preact](https://github.com/securingsincity/react-ace-preact-example)
 - [webpack](https://github.com/securingsincity/react-ace-webpack-example)
 
-## How do call methods on the editor? How do I call Undo or Redo?
+## How do I call methods on the editor? How do I call Undo or Redo?
 
 `ReactAce` has an editor property, which is the wrapped editor. You can use refs to get to the component, and then you should be able to use the editor on the component to run the function you need:
 
