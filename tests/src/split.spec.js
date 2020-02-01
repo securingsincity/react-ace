@@ -9,20 +9,33 @@ import Adapter from "enzyme-adapter-react-16";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("Split Component", () => {
-  // Required for the document.getElementById used by Ace can work in the test environment
-  const domElement = document.getElementById("app");
-  const mountOptions = {
-    attachTo: domElement
-  };
+  beforeEach(done => {
+    const div = document.createElement("div");
+    window.domNode = div;
+    document.body.appendChild(div);
+    done();
+  });
+
+  afterEach(done => {
+    document.body.removeChild(window.domNode);
+    done();
+  });
+
+  const getMountOptions = () => ({
+    attachTo: window.domNode
+  });
 
   describe("General", () => {
     it("should render without problems with defaults properties", () => {
-      const wrapper = mount(<SplitEditor />, mountOptions);
+      const wrapper = mount(<SplitEditor />, getMountOptions());
       expect(wrapper).to.exist;
     });
     it("should get the ace library from the onBeforeLoad callback", () => {
       const beforeLoadCallback = sinon.spy();
-      mount(<SplitEditor onBeforeLoad={beforeLoadCallback} />, mountOptions);
+      mount(
+        <SplitEditor onBeforeLoad={beforeLoadCallback} />,
+        getMountOptions()
+      );
 
       expect(beforeLoadCallback.callCount).to.equal(1);
       expect(beforeLoadCallback.getCall(0).args[0]).to.deep.equal(ace);
@@ -32,7 +45,7 @@ describe("Split Component", () => {
       const stub = sinon.stub(console, "warn");
       const wrapper = mount(
         <SplitEditor enableBasicAutocompletion={true} />,
-        mountOptions
+        getMountOptions()
       );
       expect(wrapper).to.exist;
       expect(
@@ -50,7 +63,7 @@ describe("Split Component", () => {
       };
       const wrapper = mount(
         <SplitEditor editorProps={editorProperties} />,
-        mountOptions
+        getMountOptions()
       );
 
       const editor = wrapper.instance().splitEditor;
@@ -63,7 +76,7 @@ describe("Split Component", () => {
       let orientation = "below";
       const wrapper = mount(
         <SplitEditor orientation={orientation} splits={2} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Read set value
@@ -78,7 +91,7 @@ describe("Split Component", () => {
     });
 
     it("should update the orientation on componentDidUpdate", () => {
-      const wrapper = mount(<SplitEditor splits={2} />, mountOptions);
+      const wrapper = mount(<SplitEditor splits={2} />, getMountOptions());
 
       // Read set value
       let editor = wrapper.instance().split;
@@ -107,7 +120,7 @@ describe("Split Component", () => {
       ];
       const wrapper = mount(
         <SplitEditor commands={commandsMock} />,
-        mountOptions
+        getMountOptions()
       );
 
       const editor = wrapper.instance().splitEditor;
@@ -129,7 +142,7 @@ describe("Split Component", () => {
       ];
       const wrapper = mount(
         <SplitEditor commands={commandsMock} />,
-        mountOptions
+        getMountOptions()
       );
 
       const editor = wrapper.instance().splitEditor;
@@ -143,7 +156,7 @@ describe("Split Component", () => {
       const loadCallback = sinon.spy();
       const wrapper = mount(
         <SplitEditor onLoad={loadCallback} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Get the editor
@@ -157,7 +170,7 @@ describe("Split Component", () => {
       const onFocusCallback = sinon.spy();
       mount(
         <SplitEditor focus={true} onFocus={onFocusCallback} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Read the focus
@@ -165,7 +178,7 @@ describe("Split Component", () => {
     });
 
     it("should set editor to null on componentWillUnmount", () => {
-      const wrapper = mount(<SplitEditor />, mountOptions);
+      const wrapper = mount(<SplitEditor />, getMountOptions());
       expect(wrapper.getElement().editor).to.not.equal(null);
 
       // Check the editor is null after the Unmount
@@ -179,7 +192,7 @@ describe("Split Component", () => {
       const onChangeCallback = sinon.spy();
       const wrapper = mount(
         <SplitEditor onChange={onChangeCallback} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Check is not previously called
@@ -201,7 +214,7 @@ describe("Split Component", () => {
       const onCopyCallback = sinon.spy();
       const wrapper = mount(
         <SplitEditor onCopy={onCopyCallback} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Check is not previously called
@@ -219,7 +232,7 @@ describe("Split Component", () => {
       const onPasteCallback = sinon.spy();
       const wrapper = mount(
         <SplitEditor onPaste={onPasteCallback} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Check is not previously called
@@ -237,7 +250,7 @@ describe("Split Component", () => {
       const onFocusCallback = sinon.spy();
       const wrapper = mount(
         <SplitEditor onFocus={onFocusCallback} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Check is not previously called
@@ -256,7 +269,7 @@ describe("Split Component", () => {
           onSelectionChange={onSelectionChangeCallback}
           value={["some value"]}
         />,
-        mountOptions
+        getMountOptions()
       );
 
       // Check is not previously called
@@ -276,7 +289,7 @@ describe("Split Component", () => {
 
       const wrapper = mount(
         <SplitEditor value={["a"]} onCursorChange={onCursorChangeCallback} />,
-        mountOptions
+        getMountOptions()
       );
 
       // The changeCursor event is called when the initial value is set
@@ -295,7 +308,7 @@ describe("Split Component", () => {
       const onBlurCallback = sinon.spy();
       const wrapper = mount(
         <SplitEditor onBlur={onBlurCallback} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Check is not previously called
@@ -308,7 +321,7 @@ describe("Split Component", () => {
     });
 
     it("should not trigger a component error to call the events without setting the props", () => {
-      const wrapper = mount(<SplitEditor />, mountOptions);
+      const wrapper = mount(<SplitEditor />, getMountOptions());
 
       // Check the if statement is checking if the property is set.
       wrapper.instance().onChange();
@@ -323,7 +336,10 @@ describe("Split Component", () => {
       const options = {
         printMargin: 80
       };
-      const wrapper = mount(<SplitEditor setOptions={options} />, mountOptions);
+      const wrapper = mount(
+        <SplitEditor setOptions={options} />,
+        getMountOptions()
+      );
 
       // Read set value
       const editor = wrapper.instance().splitEditor;
@@ -341,7 +357,7 @@ describe("Split Component", () => {
       );
     });
     it("should update the editorOptions on componentDidUpdate", () => {
-      const wrapper = mount(<SplitEditor minLines={1} />, mountOptions);
+      const wrapper = mount(<SplitEditor minLines={1} />, getMountOptions());
 
       // Read set value
       const editor = wrapper.instance().splitEditor;
@@ -352,7 +368,10 @@ describe("Split Component", () => {
     });
 
     it("should update the mode on componentDidUpdate", () => {
-      const wrapper = mount(<SplitEditor mode="javascript" />, mountOptions);
+      const wrapper = mount(
+        <SplitEditor mode="javascript" />,
+        getMountOptions()
+      );
 
       // Read set value
       const oldMode = wrapper.first("SplitEditor").props();
@@ -374,7 +393,7 @@ describe("Split Component", () => {
           height="100px"
           width="200px"
         />,
-        mountOptions
+        getMountOptions()
       );
 
       // Read set value
@@ -398,7 +417,7 @@ describe("Split Component", () => {
       const className = "old-class";
       const wrapper = mount(
         <SplitEditor className={className} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Read set value
@@ -421,7 +440,7 @@ describe("Split Component", () => {
       const anotherStartValue = "another start value";
       const wrapper = mount(
         <SplitEditor value={[startValue, anotherStartValue]} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Read set value
@@ -449,7 +468,10 @@ describe("Split Component", () => {
           }
         ]
       ];
-      const wrapper = mount(<SplitEditor markers={markers} />, mountOptions);
+      const wrapper = mount(
+        <SplitEditor markers={markers} />,
+        getMountOptions()
+      );
 
       // Read the markers
       const editor = wrapper.instance().splitEditor;
@@ -490,7 +512,10 @@ describe("Split Component", () => {
           }
         ]
       ];
-      const wrapper = mount(<SplitEditor markers={oldMarkers} />, mountOptions);
+      const wrapper = mount(
+        <SplitEditor markers={oldMarkers} />,
+        getMountOptions()
+      );
 
       // Read the markers
       const editor = wrapper.instance().splitEditor;
@@ -523,7 +548,10 @@ describe("Split Component", () => {
         ]
       ];
       const markers = [[]];
-      const wrapper = mount(<SplitEditor markers={oldMarkers} />, mountOptions);
+      const wrapper = mount(
+        <SplitEditor markers={oldMarkers} />,
+        getMountOptions()
+      );
 
       // Read the markers
       const editor = wrapper.instance().splitEditor;
@@ -545,7 +573,7 @@ describe("Split Component", () => {
           type: "error"
         }
       ];
-      const wrapper = mount(<SplitEditor />, mountOptions);
+      const wrapper = mount(<SplitEditor />, getMountOptions());
       const editor = wrapper.instance().splitEditor;
       wrapper.setProps({ annotations: [annotations] });
       expect(editor.getSession().getAnnotations()).to.deep.equal(annotations);
@@ -557,7 +585,7 @@ describe("Split Component", () => {
       const onFocusCallback = sinon.spy();
       const wrapper = mount(
         <SplitEditor onFocus={onFocusCallback} />,
-        mountOptions
+        getMountOptions()
       );
 
       // Read the focus
