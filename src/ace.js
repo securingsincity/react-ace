@@ -95,7 +95,7 @@ export default class ReactAce extends Component {
     const availableOptions = this.editor.$options;
     for (let i = 0; i < editorOptions.length; i++) {
       const option = editorOptions[i];
-      if (availableOptions.hasOwnProperty(option)) {
+      if (Object.prototype.hasOwnProperty.call(availableOptions, option)) {
         this.editor.setOption(option, this.props[option]);
       } else if (this.props[option]) {
         console.warn(
@@ -302,14 +302,14 @@ export default class ReactAce extends Component {
     // remove foreground markers
     let currentMarkers = this.editor.getSession().getMarkers(true);
     for (const i in currentMarkers) {
-      if (currentMarkers.hasOwnProperty(i)) {
+      if (Object.prototype.hasOwnProperty.call(currentMarkers, i)) {
         this.editor.getSession().removeMarker(currentMarkers[i].id);
       }
     }
     // remove background markers
     currentMarkers = this.editor.getSession().getMarkers(false);
     for (const i in currentMarkers) {
-      if (currentMarkers.hasOwnProperty(i)) {
+      if (Object.prototype.hasOwnProperty.call(currentMarkers, i)) {
         this.editor.getSession().removeMarker(currentMarkers[i].id);
       }
     }

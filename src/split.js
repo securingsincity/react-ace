@@ -1,12 +1,12 @@
-import ace from 'ace-builds';
-import { Range, UndoManager } from 'ace-builds';
-import { Split } from 'ace-builds/src-noconflict/ext-split';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import isEqual from 'lodash.isequal';
-import get from 'lodash.get';
+import ace from "ace-builds";
+import { Range, UndoManager } from "ace-builds";
+import { Split } from "ace-builds/src-noconflict/ext-split";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import isEqual from "lodash.isequal";
+import get from "lodash.get";
 
-import { editorOptions, editorEvents, debounce } from './editorOptions.js';
+import { editorOptions, editorEvents, debounce } from "./editorOptions.js";
 
 export default class SplitComponent extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class SplitComponent extends Component {
       commands,
       annotations,
       markers,
-      splits,
+      splits
     } = this.props;
 
     this.editor = ace.edit(this.refEditor);
@@ -59,32 +59,47 @@ export default class SplitComponent extends Component {
     // get a list of possible options to avoid 'misspelled option errors'
     const availableOptions = this.splitEditor.$options;
     if (this.props.debounceChangePeriod) {
-      this.onChange = this.debounce(this.onChange, this.props.debounceChangePeriod);
+      this.onChange = this.debounce(
+        this.onChange,
+        this.props.debounceChangePeriod
+      );
     }
     split.forEach((editor, index) => {
       for (let i = 0; i < editorProps.length; i++) {
         editor[editorProps[i]] = this.props.editorProps[editorProps[i]];
       }
       const defaultValueForEditor = get(defaultValue, index);
-      const valueForEditor = get(value, index, '');
+      const valueForEditor = get(value, index, "");
       editor.session.setUndoManager(new UndoManager());
       editor.setTheme(`ace/theme/${theme}`);
-      editor.renderer.setScrollMargin(scrollMargin[0], scrollMargin[1], scrollMargin[2], scrollMargin[3]);
+      editor.renderer.setScrollMargin(
+        scrollMargin[0],
+        scrollMargin[1],
+        scrollMargin[2],
+        scrollMargin[3]
+      );
       editor.getSession().setMode(`ace/mode/${mode}`);
       editor.setFontSize(fontSize);
       editor.renderer.setShowGutter(showGutter);
       editor.getSession().setUseWrapMode(wrapEnabled);
       editor.setShowPrintMargin(showPrintMargin);
-      editor.on('focus', this.onFocus);
-      editor.on('blur', this.onBlur);
-      editor.on('input', this.onInput);
-      editor.on('copy', this.onCopy);
-      editor.on('paste', this.onPaste);
-      editor.on('change', this.onChange);
-      editor.getSession().selection.on('changeSelection', this.onSelectionChange);
-      editor.getSession().selection.on('changeCursor', this.onCursorChange);
-      editor.session.on('changeScrollTop', this.onScroll);
-      editor.setValue(defaultValueForEditor === undefined ? valueForEditor : defaultValueForEditor, cursorStart);
+      editor.on("focus", this.onFocus);
+      editor.on("blur", this.onBlur);
+      editor.on("input", this.onInput);
+      editor.on("copy", this.onCopy);
+      editor.on("paste", this.onPaste);
+      editor.on("change", this.onChange);
+      editor
+        .getSession()
+        .selection.on("changeSelection", this.onSelectionChange);
+      editor.getSession().selection.on("changeCursor", this.onCursorChange);
+      editor.session.on("changeScrollTop", this.onScroll);
+      editor.setValue(
+        defaultValueForEditor === undefined
+          ? valueForEditor
+          : defaultValueForEditor,
+        cursorStart
+      );
       const newAnnotations = get(annotations, index, []);
       const newMarkers = get(markers, index, []);
       editor.getSession().setAnnotations(newAnnotations);
@@ -94,11 +109,11 @@ export default class SplitComponent extends Component {
 
       for (let i = 0; i < editorOptions.length; i++) {
         const option = editorOptions[i];
-        if (availableOptions.hasOwnProperty(option)) {
+        if (Object.prototype.hasOwnProperty.call(availableOptions, option)) {
           editor.setOption(option, this.props[option]);
         } else if (this.props[option]) {
           console.warn(
-            `ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`,
+            `ReaceAce: editor option ${option} was activated but not found. Did you need to import a related tool or did you possibly mispell the option?`
           );
         }
       }
@@ -106,7 +121,7 @@ export default class SplitComponent extends Component {
 
       if (Array.isArray(commands)) {
         commands.forEach(command => {
-          if (typeof command.exec == 'string') {
+          if (typeof command.exec == "string") {
             editor.commands.bindKey(command.bindKey, command.exec);
           } else {
             editor.commands.addCommand(command);
@@ -115,12 +130,12 @@ export default class SplitComponent extends Component {
       }
 
       if (keyboardHandler) {
-        editor.setKeyboardHandler('ace/keyboard/' + keyboardHandler);
+        editor.setKeyboardHandler("ace/keyboard/" + keyboardHandler);
       }
     });
 
     if (className) {
-      this.refEditor.className += ' ' + className;
+      this.refEditor.className += " " + className;
     }
 
     if (focus) {
@@ -128,7 +143,9 @@ export default class SplitComponent extends Component {
     }
 
     const sp = this.editor.env.split;
-    sp.setOrientation(this.props.orientation === 'below' ? sp.BELOW : sp.BESIDE);
+    sp.setOrientation(
+      this.props.orientation === "below" ? sp.BELOW : sp.BESIDE
+    );
     sp.resize(true);
     if (onLoad) {
       onLoad(sp);
@@ -146,16 +163,20 @@ export default class SplitComponent extends Component {
     }
 
     if (nextProps.orientation !== oldProps.orientation) {
-      split.setOrientation(nextProps.orientation === 'below' ? split.BELOW : split.BESIDE);
+      split.setOrientation(
+        nextProps.orientation === "below" ? split.BELOW : split.BESIDE
+      );
     }
 
     split.forEach((editor, index) => {
       if (nextProps.mode !== oldProps.mode) {
-        editor.getSession().setMode('ace/mode/' + nextProps.mode);
+        editor.getSession().setMode("ace/mode/" + nextProps.mode);
       }
       if (nextProps.keyboardHandler !== oldProps.keyboardHandler) {
         if (nextProps.keyboardHandler) {
-          editor.setKeyboardHandler('ace/keyboard/' + nextProps.keyboardHandler);
+          editor.setKeyboardHandler(
+            "ace/keyboard/" + nextProps.keyboardHandler
+          );
         } else {
           editor.setKeyboardHandler(null);
         }
@@ -182,7 +203,7 @@ export default class SplitComponent extends Component {
       if (!isEqual(nextProps.setOptions, oldProps.setOptions)) {
         this.handleOptions(nextProps, editor);
       }
-      const nextValue = get(nextProps.value, index, '');
+      const nextValue = get(nextProps.value, index, "");
       if (editor.getValue() !== nextValue) {
         // editor.setValue is a synchronous function call, change event is emitted before setValue return.
         this.silent = true;
@@ -206,23 +227,27 @@ export default class SplitComponent extends Component {
 
     if (nextProps.className !== oldProps.className) {
       let appliedClasses = this.refEditor.className;
-      let appliedClassesArray = appliedClasses.trim().split(' ');
-      let oldClassesArray = oldProps.className.trim().split(' ');
+      let appliedClassesArray = appliedClasses.trim().split(" ");
+      let oldClassesArray = oldProps.className.trim().split(" ");
       oldClassesArray.forEach(oldClass => {
         let index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
-      this.refEditor.className = ' ' + nextProps.className + ' ' + appliedClassesArray.join(' ');
+      this.refEditor.className =
+        " " + nextProps.className + " " + appliedClassesArray.join(" ");
     }
 
     if (nextProps.theme !== oldProps.theme) {
-      split.setTheme('ace/theme/' + nextProps.theme);
+      split.setTheme("ace/theme/" + nextProps.theme);
     }
 
     if (nextProps.focus && !oldProps.focus) {
       this.splitEditor.focus();
     }
-    if (nextProps.height !== this.props.height || nextProps.width !== this.props.width) {
+    if (
+      nextProps.height !== this.props.height ||
+      nextProps.width !== this.props.width
+    ) {
       this.editor.resize();
     }
   }
@@ -307,22 +332,32 @@ export default class SplitComponent extends Component {
     // remove foreground markers
     let currentMarkers = editor.getSession().getMarkers(true);
     for (const i in currentMarkers) {
-      if (currentMarkers.hasOwnProperty(i)) {
+      if (Object.prototype.hasOwnProperty.call(currentMarkers, i)) {
         editor.getSession().removeMarker(currentMarkers[i].id);
       }
     }
     // remove background markers
     currentMarkers = editor.getSession().getMarkers(false);
     for (const i in currentMarkers) {
-      if (currentMarkers.hasOwnProperty(i)) {
+      if (Object.prototype.hasOwnProperty.call(currentMarkers, i)) {
         editor.getSession().removeMarker(currentMarkers[i].id);
       }
     }
     // add new markers
-    markers.forEach(({ startRow, startCol, endRow, endCol, className, type, inFront = false }) => {
-      const range = new Range(startRow, startCol, endRow, endCol);
-      editor.getSession().addMarker(range, className, type, inFront);
-    });
+    markers.forEach(
+      ({
+        startRow,
+        startCol,
+        endRow,
+        endCol,
+        className,
+        type,
+        inFront = false
+      }) => {
+        const range = new Range(startRow, startCol, endRow, endCol);
+        editor.getSession().addMarker(range, className, type, inFront);
+      }
+    );
   }
 
   updateRef(item) {
@@ -377,20 +412,26 @@ SplitComponent.propTypes = {
   markers: PropTypes.array,
   keyboardHandler: PropTypes.string,
   wrapEnabled: PropTypes.bool,
-  enableBasicAutocompletion: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
-  enableLiveAutocompletion: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
-  commands: PropTypes.array,
+  enableBasicAutocompletion: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array
+  ]),
+  enableLiveAutocompletion: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array
+  ]),
+  commands: PropTypes.array
 };
 
 SplitComponent.defaultProps = {
-  name: 'ace-editor',
+  name: "ace-editor",
   focus: false,
-  orientation: 'beside',
+  orientation: "beside",
   splits: 2,
-  mode: '',
-  theme: '',
-  height: '500px',
-  width: '500px',
+  mode: "",
+  theme: "",
+  height: "500px",
+  width: "500px",
   value: [],
   fontSize: 12,
   showGutter: true,
@@ -411,5 +452,5 @@ SplitComponent.defaultProps = {
   setOptions: {},
   wrapEnabled: false,
   enableBasicAutocompletion: false,
-  enableLiveAutocompletion: false,
+  enableLiveAutocompletion: false
 };

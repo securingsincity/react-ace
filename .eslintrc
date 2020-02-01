@@ -12,6 +12,11 @@
   "plugins": [
     "react"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "globals": {
       "ENVIRONMENT": true,
       "STANDALONE": true,
