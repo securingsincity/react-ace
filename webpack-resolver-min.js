@@ -35,6 +35,10 @@ ace.config.setModuleUrl(
   require("file-loader!ace-builds/src-min-noconflict/ext-options.js")
 );
 ace.config.setModuleUrl(
+  "ace/ext/prompt",
+  require("file-loader!ace-builds/src-min-noconflict/ext-prompt.js")
+);
+ace.config.setModuleUrl(
   "ace/ext/rtl",
   require("file-loader!ace-builds/src-min-noconflict/ext-rtl.js")
 );
@@ -79,6 +83,10 @@ ace.config.setModuleUrl(
   require("file-loader!ace-builds/src-min-noconflict/keybinding-emacs.js")
 );
 ace.config.setModuleUrl(
+  "ace/keyboard/sublime",
+  require("file-loader!ace-builds/src-min-noconflict/keybinding-sublime.js")
+);
+ace.config.setModuleUrl(
   "ace/keyboard/vim",
   require("file-loader!ace-builds/src-min-noconflict/keybinding-vim.js")
 );
@@ -103,8 +111,16 @@ ace.config.setModuleUrl(
   require("file-loader!ace-builds/src-min-noconflict/mode-apache_conf.js")
 );
 ace.config.setModuleUrl(
+  "ace/mode/apex",
+  require("file-loader!ace-builds/src-min-noconflict/mode-apex.js")
+);
+ace.config.setModuleUrl(
   "ace/mode/applescript",
   require("file-loader!ace-builds/src-min-noconflict/mode-applescript.js")
+);
+ace.config.setModuleUrl(
+  "ace/mode/aql",
+  require("file-loader!ace-builds/src-min-noconflict/mode-aql.js")
 );
 ace.config.setModuleUrl(
   "ace/mode/asciidoc",
@@ -153,6 +169,10 @@ ace.config.setModuleUrl(
 ace.config.setModuleUrl(
   "ace/mode/coldfusion",
   require("file-loader!ace-builds/src-min-noconflict/mode-coldfusion.js")
+);
+ace.config.setModuleUrl(
+  "ace/mode/crystal",
+  require("file-loader!ace-builds/src-min-noconflict/mode-crystal.js")
 );
 ace.config.setModuleUrl(
   "ace/mode/csharp",
@@ -249,6 +269,10 @@ ace.config.setModuleUrl(
 ace.config.setModuleUrl(
   "ace/mode/fsharp",
   require("file-loader!ace-builds/src-min-noconflict/mode-fsharp.js")
+);
+ace.config.setModuleUrl(
+  "ace/mode/fsl",
+  require("file-loader!ace-builds/src-min-noconflict/mode-fsl.js")
 );
 ace.config.setModuleUrl(
   "ace/mode/ftl",
@@ -399,6 +423,10 @@ ace.config.setModuleUrl(
   require("file-loader!ace-builds/src-min-noconflict/mode-logiql.js")
 );
 ace.config.setModuleUrl(
+  "ace/mode/logtalk",
+  require("file-loader!ace-builds/src-min-noconflict/mode-logtalk.js")
+);
+ace.config.setModuleUrl(
   "ace/mode/lsl",
   require("file-loader!ace-builds/src-min-noconflict/mode-lsl.js")
 );
@@ -451,6 +479,14 @@ ace.config.setModuleUrl(
   require("file-loader!ace-builds/src-min-noconflict/mode-mysql.js")
 );
 ace.config.setModuleUrl(
+  "ace/mode/nginx",
+  require("file-loader!ace-builds/src-min-noconflict/mode-nginx.js")
+);
+ace.config.setModuleUrl(
+  "ace/mode/nim",
+  require("file-loader!ace-builds/src-min-noconflict/mode-nim.js")
+);
+ace.config.setModuleUrl(
   "ace/mode/nix",
   require("file-loader!ace-builds/src-min-noconflict/mode-nix.js")
 );
@@ -473,6 +509,10 @@ ace.config.setModuleUrl(
 ace.config.setModuleUrl(
   "ace/mode/perl",
   require("file-loader!ace-builds/src-min-noconflict/mode-perl.js")
+);
+ace.config.setModuleUrl(
+  "ace/mode/perl6",
+  require("file-loader!ace-builds/src-min-noconflict/mode-perl6.js")
 );
 ace.config.setModuleUrl(
   "ace/mode/pgsql",
@@ -691,6 +731,10 @@ ace.config.setModuleUrl(
   require("file-loader!ace-builds/src-min-noconflict/mode-vhdl.js")
 );
 ace.config.setModuleUrl(
+  "ace/mode/visualforce",
+  require("file-loader!ace-builds/src-min-noconflict/mode-visualforce.js")
+);
+ace.config.setModuleUrl(
   "ace/mode/wollok",
   require("file-loader!ace-builds/src-min-noconflict/mode-wollok.js")
 );
@@ -705,6 +749,10 @@ ace.config.setModuleUrl(
 ace.config.setModuleUrl(
   "ace/mode/yaml",
   require("file-loader!ace-builds/src-min-noconflict/mode-yaml.js")
+);
+ace.config.setModuleUrl(
+  "ace/mode/zeek",
+  require("file-loader!ace-builds/src-min-noconflict/mode-zeek.js")
 );
 
 ace.config.setModuleUrl(
@@ -890,4 +938,668 @@ ace.config.setModuleUrl(
 ace.config.setModuleUrl(
   "ace/mode/xquery_worker",
   require("file-loader!ace-builds/src-min-noconflict/worker-xquery.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/abap",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/abap.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/abc",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/abc.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/actionscript",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/actionscript.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/ada",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/ada.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/apache_conf",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/apache_conf.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/apex",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/apex.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/applescript",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/applescript.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/aql",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/aql.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/asciidoc",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/asciidoc.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/asl",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/asl.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/assembly_x86",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/assembly_x86.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/autohotkey",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/autohotkey.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/batchfile",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/batchfile.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/bro",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/bro.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/c9search",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/c9search.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/cirru",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/cirru.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/clojure",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/clojure.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/cobol",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/cobol.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/coffee",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/coffee.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/coldfusion",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/coldfusion.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/crystal",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/crystal.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/csharp",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/csharp.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/csound_document",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/csound_document.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/csound_orchestra",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/csound_orchestra.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/csound_score",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/csound_score.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/csp",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/csp.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/css",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/css.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/curly",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/curly.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/c_cpp",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/c_cpp.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/d",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/d.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/dart",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/dart.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/diff",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/diff.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/django",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/django.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/dockerfile",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/dockerfile.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/dot",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/dot.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/drools",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/drools.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/edifact",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/edifact.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/eiffel",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/eiffel.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/ejs",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/ejs.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/elixir",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/elixir.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/elm",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/elm.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/erlang",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/erlang.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/forth",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/forth.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/fortran",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/fortran.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/fsharp",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/fsharp.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/fsl",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/fsl.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/ftl",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/ftl.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/gcode",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/gcode.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/gherkin",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/gherkin.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/gitignore",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/gitignore.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/glsl",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/glsl.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/gobstones",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/gobstones.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/golang",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/golang.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/graphqlschema",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/graphqlschema.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/groovy",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/groovy.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/haml",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/haml.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/handlebars",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/handlebars.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/haskell",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/haskell.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/haskell_cabal",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/haskell_cabal.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/haxe",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/haxe.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/hjson",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/hjson.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/html",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/html.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/html_elixir",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/html_elixir.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/html_ruby",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/html_ruby.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/ini",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/ini.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/io",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/io.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/jack",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/jack.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/jade",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/jade.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/java",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/java.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/javascript",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/javascript.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/json",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/json.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/jsoniq",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/jsoniq.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/jsp",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/jsp.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/jssm",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/jssm.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/jsx",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/jsx.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/julia",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/julia.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/kotlin",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/kotlin.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/latex",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/latex.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/less",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/less.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/liquid",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/liquid.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/lisp",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/lisp.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/livescript",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/livescript.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/logiql",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/logiql.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/logtalk",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/logtalk.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/lsl",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/lsl.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/lua",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/lua.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/luapage",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/luapage.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/lucene",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/lucene.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/makefile",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/makefile.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/markdown",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/markdown.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/mask",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/mask.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/matlab",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/matlab.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/maze",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/maze.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/mel",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/mel.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/mixal",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/mixal.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/mushcode",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/mushcode.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/mysql",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/mysql.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/nginx",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/nginx.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/nim",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/nim.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/nix",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/nix.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/nsis",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/nsis.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/objectivec",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/objectivec.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/ocaml",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/ocaml.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/pascal",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/pascal.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/perl",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/perl.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/perl6",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/perl6.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/pgsql",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/pgsql.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/php",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/php.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/php_laravel_blade",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/php_laravel_blade.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/pig",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/pig.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/plain_text",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/plain_text.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/powershell",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/powershell.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/praat",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/praat.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/prolog",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/prolog.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/properties",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/properties.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/protobuf",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/protobuf.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/puppet",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/puppet.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/python",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/python.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/r",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/r.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/razor",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/razor.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/rdoc",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/rdoc.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/red",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/red.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/redshift",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/redshift.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/rhtml",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/rhtml.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/rst",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/rst.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/ruby",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/ruby.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/rust",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/rust.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/sass",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/sass.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/scad",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/scad.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/scala",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/scala.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/scheme",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/scheme.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/scss",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/scss.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/sh",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/sh.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/sjs",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/sjs.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/slim",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/slim.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/smarty",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/smarty.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/snippets",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/snippets.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/soy_template",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/soy_template.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/space",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/space.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/sparql",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/sparql.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/sql",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/sql.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/sqlserver",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/sqlserver.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/stylus",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/stylus.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/svg",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/svg.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/swift",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/swift.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/tcl",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/tcl.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/terraform",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/terraform.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/tex",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/tex.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/text",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/text.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/textile",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/textile.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/toml",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/toml.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/tsx",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/tsx.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/turtle",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/turtle.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/twig",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/twig.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/typescript",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/typescript.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/vala",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/vala.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/vbscript",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/vbscript.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/velocity",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/velocity.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/verilog",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/verilog.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/vhdl",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/vhdl.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/visualforce",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/visualforce.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/wollok",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/wollok.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/xml",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/xml.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/xquery",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/xquery.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/yaml",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/yaml.js")
+);
+ace.config.setModuleUrl(
+  "ace/snippets/zeek",
+  require("file-loader!ace-builds/src-min-noconflict/snippets/zeek.js")
 );
