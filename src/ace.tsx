@@ -26,7 +26,7 @@ export interface IAceEditorProps {
   name?: string;
   style?: React.CSSProperties;
   /** For available modes see https://github.com/thlorenz/brace/tree/master/mode */
-  mode?: string;
+  mode?: string | object;
   /** For available themes see https://github.com/thlorenz/brace/tree/master/theme */
   theme?: string;
   height?: string;
