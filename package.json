@@ -50,7 +50,7 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "husky": "^3.0.0",
+    "husky": "^4.2.3",
     "jsdom": "^16.1.0",
     "mocha": "7.1.0",
     "nyc": "15.0.0",
