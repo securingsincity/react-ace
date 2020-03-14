@@ -201,6 +201,7 @@ export default class SplitComponent extends React.Component<
     } = this.props;
 
     this.editor = ace.edit(this.refEditor);
+    this.editor.setTheme(`ace/theme/${theme}`);
 
     if (onBeforeLoad) {
       onBeforeLoad(ace);
