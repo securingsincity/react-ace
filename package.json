@@ -52,6 +52,7 @@
     "eslint-plugin-react": "^7.13.0",
     "husky": "^4.2.3",
     "jsdom": "^16.1.0",
+    "minimist": ">=1.2.2",
     "mocha": "7.1.0",
     "nyc": "15.0.0",
     "prettier": "^1.17.1",
