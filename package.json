@@ -39,7 +39,7 @@
     "@types/prop-types": "^15.7.1",
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
-    "@types/sinon": "^7.0.12",
+    "@types/sinon": "^9.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
