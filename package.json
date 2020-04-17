@@ -33,7 +33,7 @@
     "@types/chai": "^4.1.7",
     "@types/enzyme": "^3.9.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
-    "@types/lodash": "^4.14.132",
+    "@types/lodash": "^4.14.150",
     "@types/mocha": "^7.0.1",
     "@types/node": "^13.9.1",
     "@types/prop-types": "^15.7.1",
