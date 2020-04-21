@@ -1,3 +1,5 @@
+import * as AceBuilds from "ace-builds";
+
 type EditorOption =
   | "minLines"
   | "maxLines"
@@ -45,7 +47,7 @@ const editorEvents: EditorEvent[] = [
   "handleOptions",
   "updateRef"
 ];
-const getAceInstance = () => {
+const getAceInstance = (): typeof AceBuilds => {
   let ace;
   // Fallback for ace.require when vanilla ACE is hosted over a CDN
   if ((window as any).ace) {

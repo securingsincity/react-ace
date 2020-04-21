@@ -504,7 +504,7 @@ describe("Ace Component", () => {
 
       // Trigger the copy event
       const expectText = "React Ace Test";
-      wrapper.instance().onCopy(expectText);
+      wrapper.instance().onCopy({ text: expectText });
 
       expect(onCopyCallback.callCount).to.equal(1);
       expect(onCopyCallback.getCall(0).args[0]).to.equal(expectText);
@@ -522,7 +522,7 @@ describe("Ace Component", () => {
 
       // Trigger the Paste event
       const expectText = "React Ace Test";
-      wrapper.instance().onPaste(expectText);
+      wrapper.instance().onPaste({ text: expectText });
 
       expect(onPasteCallback.callCount).to.equal(1);
       expect(onPasteCallback.getCall(0).args[0]).to.equal(expectText);

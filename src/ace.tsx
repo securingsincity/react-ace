@@ -1,3 +1,5 @@
+import { Ace } from "ace-builds";
+import * as AceBuilds from "ace-builds";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 const isEqual = require("lodash.isequal");
@@ -10,10 +12,9 @@ import {
 const ace = getAceInstance();
 const { Range } = ace.require("ace/range");
 
-import { AceEditorClass } from "./AceEditorClass";
 import {
+  IAceEditor,
   IAceOptions,
-  IAnnotation,
   ICommand,
   IEditorProps,
   IMarker
@@ -55,21 +56,21 @@ export interface IAceEditorProps {
   onSelectionChange?: (value: any, event?: any) => void;
   onCursorChange?: (value: any, event?: any) => void;
   onInput?: (event?: any) => void;
-  onLoad?: (editor: IEditorProps) => void;
-  onValidate?: (annotations: IAnnotation[]) => void;
-  onBeforeLoad?: (ace: any) => void;
+  onLoad?: (editor: Ace.Editor) => void;
+  onValidate?: (annotations: Ace.Annotation[]) => void;
+  onBeforeLoad?: (ace: typeof AceBuilds) => void;
   onChange?: (value: string, event?: any) => void;
   onSelection?: (selectedText: string, event?: any) => void;
   onCopy?: (value: string) => void;
   onPaste?: (value: string) => void;
-  onFocus?: (event: any, editor?: AceEditorClass) => void;
-  onBlur?: (event: any, editor?: AceEditorClass) => void;
+  onFocus?: (event: any, editor?: Ace.Editor) => void;
+  onBlur?: (event: any, editor?: Ace.Editor) => void;
   onScroll?: (editor: IEditorProps) => void;
   editorProps?: IEditorProps;
   setOptions?: IAceOptions;
   keyboardHandler?: string;
   commands?: ICommand[];
-  annotations?: IAnnotation[];
+  annotations?: Ace.Annotation[];
   markers?: IMarker[];
 }
 
@@ -159,7 +160,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     placeholder: null,
     navigateToFileEnd: true
   };
-  public editor: AceEditorClass;
+  public editor: IAceEditor;
   public refEditor: HTMLElement;
   public debounce: (fn: any, delay: number) => (...args: any) => void;
   // [index: string]: any;
@@ -183,7 +184,6 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       fontSize,
       value,
       defaultValue,
-      cursorStart,
       showGutter,
       wrapEnabled,
       showPrintMargin,
@@ -220,10 +220,11 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     );
     this.editor.getSession().setMode(`ace/mode/${mode}`);
     this.editor.setTheme(`ace/theme/${theme}`);
-    this.editor.setFontSize(fontSize);
-    this.editor
-      .getSession()
-      .setValue(!defaultValue ? value : defaultValue, cursorStart);
+    this.editor.setFontSize(
+      typeof fontSize === "number" ? `${fontSize}px` : fontSize
+    );
+    this.editor.getSession().setValue(!defaultValue ? value : defaultValue);
+
     if (this.props.navigateToFileEnd) {
       this.editor.navigateFileEnd();
     }
@@ -244,6 +245,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       .selection.on("changeSelection", this.onSelectionChange);
     this.editor.getSession().selection.on("changeCursor", this.onCursorChange);
     if (onValidate) {
+      // @ts-ignore types don't include
       this.editor.getSession().on("changeAnnotation", () => {
         // tslint:disable-next-line:no-shadowed-variable
         const annotations = this.editor.getSession().getAnnotations();
@@ -260,6 +262,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     const availableOptions = this.editor.$options;
     editorOptions.forEach(option => {
       if (availableOptions.hasOwnProperty(option)) {
+        // @ts-ignore
         this.editor.setOption(option, this.props[option]);
       } else if (this.props[option]) {
         console.warn(
@@ -306,6 +309,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     for (let i = 0; i < editorOptions.length; i++) {
       const option = editorOptions[i];
       if (nextProps[option] !== oldProps[option]) {
+        // @ts-ignore
         this.editor.setOption(option, nextProps[option]);
       }
     }
@@ -351,7 +355,11 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       }
     }
     if (nextProps.fontSize !== oldProps.fontSize) {
-      this.editor.setFontSize(nextProps.fontSize);
+      this.editor.setFontSize(
+        typeof nextProps.fontSize === "number"
+          ? `${nextProps.fontSize}px`
+          : nextProps.fontSize
+      );
     }
     if (nextProps.wrapEnabled !== oldProps.wrapEnabled) {
       this.editor.getSession().setUseWrapMode(nextProps.wrapEnabled);
@@ -392,7 +400,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
   }
 
   public handleScrollMargins(margins = [0, 0, 0, 0]) {
-    this.editor.renderer.setScrollMargins(
+    this.editor.renderer.setScrollMargin(
       margins[0],
       margins[1],
       margins[2],
@@ -424,7 +432,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       this.props.onCursorChange(value, event);
     }
   }
-  public onInput(event: any) {
+  public onInput(event?: any) {
     if (this.props.onInput) {
       this.props.onInput(event);
     }
@@ -444,13 +452,13 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     }
   }
 
-  public onCopy(text: string) {
+  public onCopy({ text }: { text: string }) {
     if (this.props.onCopy) {
       this.props.onCopy(text);
     }
   }
 
-  public onPaste(text: string) {
+  public onPaste({ text }: { text: string }) {
     if (this.props.onPaste) {
       this.props.onPaste(text);
     }
@@ -465,6 +473,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
   public handleOptions(props: IAceEditorProps) {
     const setOptions = Object.keys(props.setOptions);
     for (let y = 0; y < setOptions.length; y++) {
+      // @ts-ignore
       this.editor.setOption(setOptions[y], props.setOptions[setOptions[y]]);
     }
   }
@@ -513,6 +522,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
 
     const showPlaceholder = !editor.session.getValue().length;
     let node = editor.renderer.placeholderNode;
+
     if (!showPlaceholder && node) {
       editor.renderer.scroller.removeChild(editor.renderer.placeholderNode);
       editor.renderer.placeholderNode = null;
