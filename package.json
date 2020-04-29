@@ -29,7 +29,7 @@
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
-    "@babel/register": "^7.4.4",
+    "@babel/register": "^7.9.0",
     "@types/chai": "^4.1.7",
     "@types/enzyme": "^3.9.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
