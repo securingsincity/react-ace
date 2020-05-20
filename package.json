@@ -79,7 +79,7 @@
   ],
   "dependencies": {
     "ace-builds": "^1.4.6",
-    "diff-match-patch": "^1.0.4",
+    "diff-match-patch": "^1.0.5",
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.5.0",
     "prop-types": "^15.7.2"
