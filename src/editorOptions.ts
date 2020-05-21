@@ -45,10 +45,26 @@ const editorEvents: EditorEvent[] = [
   "handleOptions",
   "updateRef"
 ];
+// Typescript globals definition to allow us to create a window object during SSR.
+declare global {
+  namespace NodeJS {
+    interface Global {
+      window: any;
+    }
+  }
+}
 const getAceInstance = () => {
   let ace;
-  // Fallback for ace.require when vanilla ACE is hosted over a CDN
-  if ((window as any).ace) {
+  if (typeof window === "undefined") {
+    // ace-builds just needs some window object to attach ace to.
+    // During SSR even just an empty object will work.
+    global.window = {};
+    ace = require("ace-builds");
+    // And it can be discarded immediately afterward to avoid confusing
+    // other libraries that might detect SSR the same way we did.
+    delete global.window;
+  } else if ((window as any).ace) {
+    // Fallback for ace.require when vanilla ACE is hosted over a CDN
     ace = (window as any).ace;
     ace.acequire = (window as any).ace.require || (window as any).ace.acequire;
   } else {
