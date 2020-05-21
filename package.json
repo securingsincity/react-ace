@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "prettier": "prettier --print-width 120 --single-quote --trailing-comma all   --write \"src/**\" \"example/*.js\"",
+    "prettier": "prettier --write \"src/**\" \"example/*.js\"",
     "clean": "rimraf lib dist",
     "lint": "tslint src/*",
     "build:lib": "tsc",
@@ -113,5 +113,9 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/securingsincity/react-ace.git"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "trailingComma": "none"
   }
 }
