@@ -79,6 +79,7 @@ const getAceInstance = (): typeof AceBuilds => {
 
 const debounce = (fn: (...args: any[]) => void, delay: number) => {
   let timer: any = null;
+  // tslint:disable-next-line
   return function () {
     const context = this;
     const args = arguments;
