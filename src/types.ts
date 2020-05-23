@@ -76,7 +76,7 @@ export interface IAceOptions {
   showInvisibles?: boolean;
   showPrintMargin?: boolean;
   printMarginColumn?: number;
-  printMargin?: boolean|number;
+  printMargin?: boolean | number;
   fadeFoldWidgets?: boolean;
   showFoldWidgets?: boolean;
   showLineNumbers?: boolean;
