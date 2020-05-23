@@ -51,6 +51,7 @@ const editorEvents: EditorEvent[] = [
 // Typescript globals definition to allow us to create a window object during SSR.
 declare global {
   namespace NodeJS {
+    // tslint:disable-next-line
     interface Global {
       window: any;
     }
@@ -78,7 +79,7 @@ const getAceInstance = (): typeof AceBuilds => {
 
 const debounce = (fn: (...args: any[]) => void, delay: number) => {
   let timer: any = null;
-  return function() {
+  return function () {
     const context = this;
     const args = arguments;
     clearTimeout(timer);
