@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "prettier": "prettier --print-width 120 --single-quote --trailing-comma all   --write \"src/**\" \"example/*.js\"",
+    "prettier": "prettier --write \"src/**\" \"example/*.js\"",
     "clean": "rimraf lib dist",
     "lint": "tslint src/*",
     "build:lib": "tsc",
@@ -39,7 +39,7 @@
     "@types/prop-types": "^15.7.1",
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
-    "@types/sinon": "^7.0.12",
+    "@types/sinon": "^9.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
@@ -54,18 +54,18 @@
     "jsdom": "^16.1.0",
     "minimist": ">=1.2.2",
     "mocha": "7.1.2",
-    "nyc": "15.0.0",
+    "nyc": "15.0.1",
     "prettier": "^1.17.1",
     "pretty-quick": "^2.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",
     "rimraf": "3.0.2",
-    "sinon": "9.0.1",
+    "sinon": "9.0.2",
     "ts-loader": "^6.0.1",
     "ts-node": "^8.2.0",
     "tslint": "^5.16.0",
-    "tslint-react": "^4.0.0",
+    "tslint-react": "^5.0.0",
     "typescript": "^3.4.5",
     "webpack": "4.42.0",
     "webpack-cli": "3.3.10",
@@ -113,5 +113,9 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/securingsincity/react-ace.git"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "trailingComma": "none"
   }
 }
