@@ -1,3 +1,5 @@
+import { Ace } from "ace-builds";
+
 export interface ICommandManager {
   byName: any;
   commands: any;
@@ -43,7 +45,7 @@ export interface IMarker {
   endRow: number;
   endCol: number;
   className: string;
-  type: string;
+  type: "fullLine" | "screenLine" | "text" | Ace.MarkerRenderer;
   inFront?: boolean;
 }
 
@@ -123,3 +125,13 @@ export interface IAnnotation {
   text: string;
   type: string;
 }
+
+interface IRenderer extends Ace.VirtualRenderer {
+  placeholderNode?: HTMLDivElement;
+  scroller?: HTMLDivElement;
+}
+
+export type IAceEditor = Ace.Editor & {
+  renderer: IRenderer;
+  [index: string]: any;
+};

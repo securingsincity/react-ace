@@ -1,3 +1,5 @@
+import * as AceBuilds from "ace-builds";
+
 type EditorOption =
   | "minLines"
   | "maxLines"
@@ -45,6 +47,7 @@ const editorEvents: EditorEvent[] = [
   "handleOptions",
   "updateRef"
 ];
+
 // Typescript globals definition to allow us to create a window object during SSR.
 declare global {
   namespace NodeJS {
@@ -53,7 +56,7 @@ declare global {
     }
   }
 }
-const getAceInstance = () => {
+const getAceInstance = (): typeof AceBuilds => {
   let ace;
   if (typeof window === "undefined") {
     // ace-builds just needs some window object to attach ace to.

@@ -4,11 +4,6 @@ import SplitEditor from "./split";
 const DiffMatchPatch = require("diff-match-patch");
 import { IEditorProps } from "./types";
 
-interface IDiffObject {
-  left: any[];
-  right: any[];
-}
-
 export interface IDiffEditorProps {
   cursorStart?: number;
   editorProps?: object;
