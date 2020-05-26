@@ -70,6 +70,8 @@ Checkout the `example` directory for a working example using webpack.
 
 [Frequently Asked Questions](https://github.com/securingsincity/react-ace/blob/master/docs/FAQ.md)
 
+[Migrate to version 8](https://github.com/securingsincity/react-ace/blob/master/docs/Migrate-v7-to-v8.md)
+
 ## Backers
 
 Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/react-ace#backer)]
