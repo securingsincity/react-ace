@@ -1,4 +1,15 @@
 # Changelog
+## 9.0.0
+
+- Use Ace.Editor types - Possible breaking change (#828)
+- Upgrade dev dependencies
+- Enables simple Server Side Rendering support (#841)
+
+## 8.1.0
+- Fixes iAceEditorProps.mode prop to include support custom mode
+- Fix theme not set properly for split editor (#785)
+- Fixes types for print margin option
+- Upgrade dev dependencies
 
 ## 8.0.0
 
