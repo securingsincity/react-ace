@@ -116,6 +116,7 @@
   },
   "prettier": {
     "singleQuote": false,
-    "trailingComma": "none"
+    "trailingComma": "none",
+    "arrowParens": "avoid"
   }
 }
