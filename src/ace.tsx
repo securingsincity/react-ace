@@ -135,7 +135,6 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     theme: "",
     height: "500px",
     width: "500px",
-    value: "",
     fontSize: 12,
     enableSnippets: false,
     showGutter: true,
@@ -223,7 +222,9 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     this.editor.setFontSize(
       typeof fontSize === "number" ? `${fontSize}px` : fontSize
     );
-    this.editor.getSession().setValue(!defaultValue ? value : defaultValue);
+    this.editor
+      .getSession()
+      .setValue(!defaultValue ? value || "" : defaultValue);
 
     if (this.props.navigateToFileEnd) {
       this.editor.navigateFileEnd();
@@ -327,7 +328,11 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     }
 
     // First process editor value, as it may create a new session (see issue #300)
-    if (this.editor && this.editor.getValue() !== nextProps.value) {
+    if (
+      this.editor &&
+      nextProps.value &&
+      this.editor.getValue() !== nextProps.value
+    ) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
       const pos = this.editor.session.selection.toJSON();
