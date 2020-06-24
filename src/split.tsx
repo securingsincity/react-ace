@@ -171,12 +171,21 @@ export default class SplitComponent extends React.Component<
   public debounce: (fn: any, delay: number) => (...args: any) => void;
   constructor(props: ISplitEditorProps) {
     super(props);
-    editorEvents.forEach(method => {
+    editorEvents.forEach((method) => {
       this[method] = this[method].bind(this);
     });
     this.debounce = debounce;
   }
-
+  public isInShadow(node: HTMLElement): boolean {
+    let parent = node && node.parentNode;
+    while (parent) {
+      if (parent.toString() === "[object ShadowRoot]") {
+        return true;
+      }
+      parent = parent.parentNode;
+    }
+    return false;
+  }
   public componentDidMount() {
     const {
       className,
@@ -201,6 +210,9 @@ export default class SplitComponent extends React.Component<
     } = this.props;
 
     this.editor = ace.edit(this.refEditor);
+    if (this.isInShadow(this.refEditor)) {
+      this.editor.renderer.attachToShadowRoot();
+    }
     this.editor.setTheme(`ace/theme/${theme}`);
 
     if (onBeforeLoad) {
@@ -285,7 +297,7 @@ export default class SplitComponent extends React.Component<
       this.handleOptions(this.props, editor);
 
       if (Array.isArray(commands)) {
-        commands.forEach(command => {
+        commands.forEach((command) => {
           if (typeof command.exec === "string") {
             (editor.commands as any).bindKey(command.bindKey, command.exec);
           } else {
@@ -394,7 +406,7 @@ export default class SplitComponent extends React.Component<
       const appliedClasses = this.refEditor.className;
       const appliedClassesArray = appliedClasses.trim().split(" ");
       const oldClassesArray = oldProps.className.trim().split(" ");
-      oldClassesArray.forEach(oldClass => {
+      oldClassesArray.forEach((oldClass) => {
         const index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
