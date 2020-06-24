@@ -54,7 +54,7 @@
     "husky": "^4.2.3",
     "jsdom": "^16.1.0",
     "minimist": ">=1.2.2",
-    "mocha": "7.1.2",
+    "mocha": "7.2.0",
     "nyc": "15.0.1",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.0",
