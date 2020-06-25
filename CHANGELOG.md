@@ -1,4 +1,8 @@
 # Changelog
+## 9.1.1
+
+- Upgrade ace-builds to 1.4.11
+- Upgrade dev dependencies
 
 ## 9.1.0
 
