@@ -1,4 +1,12 @@
 # Changelog
+
+## 9.1.0
+
+- fix typescript binding for ICommand.exec() (#860)
+- Remove default value for editor value. (#857)
+- fix no ace_editor.css in shadow dom (#864)
+- update build dependencies, build scripts, and prettier
+
 ## 9.0.0
 
 - Use Ace.Editor types - Possible breaking change (#828)
@@ -6,6 +14,7 @@
 - Enables simple Server Side Rendering support (#841)
 
 ## 8.1.0
+
 - Fixes iAceEditorProps.mode prop to include support custom mode
 - Fix theme not set properly for split editor (#785)
 - Fixes types for print margin option
