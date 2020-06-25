@@ -57,7 +57,7 @@ export interface ICommandBindKey {
 export interface ICommand {
   name: string;
   bindKey: ICommandBindKey;
-  exec(): any;
+  exec(editor: Ace.Editor, args?: any): any;
 }
 export interface IAceOptions {
   [index: string]: any;

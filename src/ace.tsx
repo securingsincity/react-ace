@@ -135,7 +135,6 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     theme: "",
     height: "500px",
     width: "500px",
-    value: "",
     fontSize: 12,
     enableSnippets: false,
     showGutter: true,
@@ -167,12 +166,21 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
   public silent: boolean;
   constructor(props: IAceEditorProps) {
     super(props);
-    editorEvents.forEach(method => {
+    editorEvents.forEach((method) => {
       this[method] = this[method].bind(this);
     });
     this.debounce = debounce;
   }
-
+  public isInShadow(node: HTMLElement): boolean {
+    let parent = node && node.parentNode;
+    while (parent) {
+      if (parent.toString() === "[object ShadowRoot]") {
+        return true;
+      }
+      parent = parent.parentNode;
+    }
+    return false;
+  }
   public componentDidMount() {
     const {
       className,
@@ -218,12 +226,17 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       scrollMargin[2],
       scrollMargin[3]
     );
+    if (this.isInShadow(this.refEditor)) {
+      this.editor.renderer.attachToShadowRoot();
+    }
     this.editor.getSession().setMode(`ace/mode/${mode}`);
     this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(
       typeof fontSize === "number" ? `${fontSize}px` : fontSize
     );
-    this.editor.getSession().setValue(!defaultValue ? value : defaultValue);
+    this.editor
+      .getSession()
+      .setValue(!defaultValue ? value || "" : defaultValue);
 
     if (this.props.navigateToFileEnd) {
       this.editor.navigateFileEnd();
@@ -260,7 +273,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
 
     // get a list of possible options to avoid 'misspelled option errors'
     const availableOptions = this.editor.$options;
-    editorOptions.forEach(option => {
+    editorOptions.forEach((option) => {
       if (availableOptions.hasOwnProperty(option)) {
         // @ts-ignore
         this.editor.setOption(option, this.props[option]);
@@ -274,7 +287,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     this.handleOptions(this.props);
 
     if (Array.isArray(commands)) {
-      commands.forEach(command => {
+      commands.forEach((command) => {
         if (typeof command.exec === "string") {
           this.editor.commands.bindKey(command.bindKey, command.exec);
         } else {
@@ -318,7 +331,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       const appliedClasses = this.refEditor.className;
       const appliedClassesArray = appliedClasses.trim().split(" ");
       const oldClassesArray = oldProps.className.trim().split(" ");
-      oldClassesArray.forEach(oldClass => {
+      oldClassesArray.forEach((oldClass) => {
         const index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
@@ -327,7 +340,11 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     }
 
     // First process editor value, as it may create a new session (see issue #300)
-    if (this.editor && this.editor.getValue() !== nextProps.value) {
+    if (
+      this.editor &&
+      nextProps.value &&
+      this.editor.getValue() !== nextProps.value
+    ) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
       const pos = this.editor.session.selection.toJSON();
