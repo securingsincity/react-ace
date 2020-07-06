@@ -51,6 +51,7 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
+    "file-loader": "^6.2.0",
     "husky": "^4.2.3",
     "jsdom": "^16.1.0",
     "minimist": ">=1.2.2",

@@ -13,6 +13,7 @@ For example replace
 ```js
 import 'brace/mode/html'
 import 'brace/theme/monokai'
+import 'brace/snippets/html'
 ```
 
 with
@@ -20,6 +21,7 @@ with
 ```js
 import 'ace-builds/src-noconflict/mode-html'
 import 'ace-builds/src-noconflict/theme-monokai'
+import 'ace-builds/src-noconflict/snippets/html'
 ```
 
 ## 3) You may need to configure the ace-build workers 
