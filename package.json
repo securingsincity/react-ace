@@ -65,7 +65,7 @@
     "sinon": "9.0.2",
     "ts-loader": "^6.0.1",
     "ts-node": "^8.2.0",
-    "tslint": "^5.16.0",
+    "tslint": "^6.1.2",
     "tslint-react": "^5.0.0",
     "typescript": "^3.4.5",
     "webpack": "4.43.0",
