@@ -342,7 +342,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     // First process editor value, as it may create a new session (see issue #300)
     if (
       this.editor &&
-      nextProps.value !== undefined &&
+      nextProps.value != null &&
       this.editor.getValue() !== nextProps.value
     ) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
