@@ -1,4 +1,10 @@
 # Changelog
+
+## 9.1.2
+
+- Upgrade dev dependencies
+- Allow Editor to be reset to empty value by passing an empty value. (#895)
+
 ## 9.1.1
 
 - Upgrade ace-builds to 1.4.11
