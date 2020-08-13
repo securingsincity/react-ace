@@ -1,9 +1,13 @@
 # Changelog
 
-## 9.1.2
+## 9.1.3
 
 - Upgrade dev dependencies
 - Allow Editor to be reset to empty value by passing an empty value. (#895)
+
+## 9.1.2
+
+- Upgrade dependencies including lodash
 
 ## 9.1.1
 
