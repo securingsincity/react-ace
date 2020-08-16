@@ -15,17 +15,17 @@ A set of react components for Ace
 
 _NOTE FOR VERSION 8!_ : We have stopped support for Brace and now use Ace-builds. Please read the documentation on how to migrate. Examples are being updated.
 
-[DEMO of React Ace](http://securingsincity.github.io/react-ace/)
+[DEMO of React Ace](https://securingsincity.github.io/react-ace/)
 
-[DEMO of React Ace Split Editor](http://securingsincity.github.io/react-ace/split.html)
+[DEMO of React Ace Split Editor](https://securingsincity.github.io/react-ace/split.html)
 
-[DEMO of React Ace Diff Editor](http://securingsincity.github.io/react-ace/diff.html)
+[DEMO of React Ace Diff Editor](https://securingsincity.github.io/react-ace/diff.html)
 
 ## Install
 
 `npm install react-ace ace-builds`
 
- `yarn add react-ace ace-builds`
+`yarn add react-ace ace-builds`
 
 ## Basic Usage
 
