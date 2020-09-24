@@ -55,6 +55,7 @@
     "jsdom": "^16.1.0",
     "minimist": ">=1.2.2",
     "mocha": "7.2.0",
+    "node-forge": ">=0.10.0",
     "nyc": "15.1.0",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.0",
