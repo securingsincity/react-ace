@@ -1,4 +1,4 @@
-import { Ace } from "ace-builds";
+import { Ace, Range } from "ace-builds";
 import * as AceBuilds from "ace-builds";
 import * as PropTypes from "prop-types";
 import * as React from "react";
@@ -10,7 +10,6 @@ import {
   getAceInstance
 } from "./editorOptions";
 const ace = getAceInstance();
-const { Range } = ace.require("ace/range");
 
 import {
   IAceEditor,
