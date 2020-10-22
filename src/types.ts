@@ -54,10 +54,12 @@ export interface ICommandBindKey {
   mac: string;
 }
 
+type ICommandExecFunction = (editor: Ace.Editor, args?: any) => any;
+
 export interface ICommand {
   name: string;
   bindKey: ICommandBindKey;
-  exec(editor: Ace.Editor, args?: any): any;
+  exec: string | ICommandExecFunction;
 }
 export interface IAceOptions {
   [index: string]: any;

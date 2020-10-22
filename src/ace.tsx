@@ -289,9 +289,9 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     if (Array.isArray(commands)) {
       commands.forEach((command) => {
         if (typeof command.exec === "string") {
-          this.editor.commands.bindKey(command.bindKey, command.exec);
+          (this.editor.commands as any).bindKey(command.bindKey, command.exec);
         } else {
-          this.editor.commands.addCommand(command);
+          (this.editor.commands as any).addCommand(command);
         }
       });
     }
