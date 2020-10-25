@@ -301,7 +301,7 @@ export default class SplitComponent extends React.Component<
           if (typeof command.exec === "string") {
             (editor.commands as any).bindKey(command.bindKey, command.exec);
           } else {
-            editor.commands.addCommand(command);
+            (editor.commands as any).addCommand(command);
           }
         });
       }
