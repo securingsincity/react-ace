@@ -228,6 +228,7 @@ class App extends Component {
             <p className="control">
               <label className="checkbox">
                 <input
+                  style={{marginRight: '5px'}}
                   type="checkbox"
                   checked={this.state.enableBasicAutocompletion}
                   onChange={e =>
@@ -245,6 +246,7 @@ class App extends Component {
             <p className="control">
               <label className="checkbox">
                 <input
+                  style={{marginRight: '5px'}}
                   type="checkbox"
                   checked={this.state.enableLiveAutocompletion}
                   onChange={e =>
@@ -262,6 +264,7 @@ class App extends Component {
             <p className="control">
               <label className="checkbox">
                 <input
+                  style={{marginRight: '5px'}}
                   type="checkbox"
                   checked={this.state.showGutter}
                   onChange={e =>
@@ -276,6 +279,7 @@ class App extends Component {
             <p className="control">
               <label className="checkbox">
                 <input
+                  style={{marginRight: '5px'}}
                   type="checkbox"
                   checked={this.state.showPrintMargin}
                   onChange={e =>
@@ -290,6 +294,7 @@ class App extends Component {
             <p className="control">
               <label className="checkbox">
                 <input
+                  style={{marginRight: '5px'}}
                   type="checkbox"
                   checked={this.state.highlightActiveLine}
                   onChange={e =>
@@ -304,6 +309,7 @@ class App extends Component {
             <p className="control">
               <label className="checkbox">
                 <input
+                  style={{marginRight: '5px'}}
                   type="checkbox"
                   checked={this.state.enableSnippets}
                   onChange={e =>
@@ -318,6 +324,7 @@ class App extends Component {
             <p className="control">
               <label className="checkbox">
                 <input
+                  style={{marginRight: '5px'}}
                   type="checkbox"
                   checked={this.state.showLineNumbers}
                   onChange={e =>
