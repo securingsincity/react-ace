@@ -125,7 +125,7 @@ export interface IAnnotation {
   row: number;
   column: number;
   text: string;
-  type: string;
+  type: 'error' | 'info' | 'success';
 }
 
 interface IRenderer extends Ace.VirtualRenderer {
