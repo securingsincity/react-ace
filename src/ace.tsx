@@ -75,7 +75,7 @@ export interface IAceEditorProps {
 
 export default class ReactAce extends React.Component<IAceEditorProps> {
   public static propTypes: PropTypes.ValidationMap<IAceEditorProps> = {
-    mode: PropTypes.string,
+    mode: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     focus: PropTypes.bool,
     theme: PropTypes.string,
     name: PropTypes.string,
@@ -165,7 +165,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
   public silent: boolean;
   constructor(props: IAceEditorProps) {
     super(props);
-    editorEvents.forEach((method) => {
+    editorEvents.forEach(method => {
       this[method] = this[method].bind(this);
     });
     this.debounce = debounce;
@@ -228,7 +228,11 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     if (this.isInShadow(this.refEditor)) {
       this.editor.renderer.attachToShadowRoot();
     }
-    this.editor.getSession().setMode(`ace/mode/${mode}`);
+    this.editor
+      .getSession()
+      .setMode(
+        typeof mode === "string" ? `ace/mode/${mode}` : (mode as Ace.SyntaxMode)
+      );
     this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(
       typeof fontSize === "number" ? `${fontSize}px` : fontSize
@@ -272,7 +276,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
 
     // get a list of possible options to avoid 'misspelled option errors'
     const availableOptions = this.editor.$options;
-    editorOptions.forEach((option) => {
+    editorOptions.forEach(option => {
       if (availableOptions.hasOwnProperty(option)) {
         // @ts-ignore
         this.editor.setOption(option, this.props[option]);
@@ -286,7 +290,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     this.handleOptions(this.props);
 
     if (Array.isArray(commands)) {
-      commands.forEach((command) => {
+      commands.forEach(command => {
         if (typeof command.exec === "string") {
           (this.editor.commands as any).bindKey(command.bindKey, command.exec);
         } else {
@@ -330,7 +334,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       const appliedClasses = this.refEditor.className;
       const appliedClassesArray = appliedClasses.trim().split(" ");
       const oldClassesArray = oldProps.className.trim().split(" ");
-      oldClassesArray.forEach((oldClass) => {
+      oldClassesArray.forEach(oldClass => {
         const index = appliedClassesArray.indexOf(oldClass);
         appliedClassesArray.splice(index, 1);
       });
@@ -356,7 +360,13 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       this.updatePlaceholder();
     }
     if (nextProps.mode !== oldProps.mode) {
-      this.editor.getSession().setMode("ace/mode/" + nextProps.mode);
+      this.editor
+        .getSession()
+        .setMode(
+          typeof nextProps.mode === "string"
+            ? `ace/mode/${nextProps.mode}`
+            : (nextProps.mode as Ace.SyntaxMode)
+        );
     }
     if (nextProps.theme !== oldProps.theme) {
       this.editor.setTheme("ace/theme/" + nextProps.theme);
