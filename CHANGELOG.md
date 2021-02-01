@@ -1,5 +1,25 @@
 # Changelog
 
+## 9.3.0
+
+- Upgrade dev dependencies
+- Update annotations type #998
+- Accept an object as mode #1001
+
+## 9.2.1
+
+- Bump ace-builds from 1.4.11 to 1.4.12
+- Import Range from ace-builds in ace.tsx to match split.tsx
+- Fix type for exec param in ICommand interface
+- Add React 17 Support
+- Upgrade dev dependencies
+
+## 9.1.4
+
+- Use https for demo site
+- style prop type to conditional object
+- Security fixes and dev dependencies upgrades
+
 ## 9.1.3
 
 - Upgrade dev dependencies
