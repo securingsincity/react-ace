@@ -103,7 +103,9 @@
     ],
     "extension": [
       ".js",
-      ".jsx"
+      ".jsx",
+      ".tsx",
+      ".ts"
     ],
     "reporter": [
       "lcov",
