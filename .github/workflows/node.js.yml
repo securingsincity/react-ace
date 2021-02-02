@@ -29,4 +29,7 @@ jobs:
       - run: npm run lint
       - run: npm run coverage
       - run: npm run build:example
-      - run: cat ./coverage/*.info | ./node_modules/coveralls/bin/coveralls.js
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
