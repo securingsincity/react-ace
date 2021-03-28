@@ -1,5 +1,10 @@
 # Changelog
 
+## 9.4.0
+
+- Upgrade dev dependencies
+- Prevent no theme error #1038
+
 ## 9.3.0
 
 - Upgrade dev dependencies
