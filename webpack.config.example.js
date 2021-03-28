@@ -17,10 +17,7 @@ module.exports = {
   resolve: {
     extensions: [".jsx", ".js", ".tsx", ".ts"]
   },
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   module: {
     rules: [
       {
