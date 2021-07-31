@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.4.2
+
+- Upgrade dev dependencies
+
 ## 9.4.1
 
 - Upgrade dev dependencies
