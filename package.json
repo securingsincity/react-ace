@@ -52,7 +52,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "husky": "^6.0.0",
-    "jsdom": "16.5.3",
+    "jsdom": "16.6.0",
     "minimist": ">=1.2.2",
     "mocha": "8.4.0",
     "node-forge": ">=0.10.0",
