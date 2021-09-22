@@ -29,10 +29,10 @@ jobs:
       - run: npm run lint
       - run: npm run coverage
       - run: npm run build:example
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Coveralls
+      #   uses: coverallsapp/github-action@master
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy
         if: ${{ github.ref == 'refs/heads/main' }}
