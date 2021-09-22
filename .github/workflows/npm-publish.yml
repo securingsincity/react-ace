@@ -4,9 +4,9 @@
 name: Node.js Package
 
 on:
-   create:
-     tags:
-       - v*
+  create:
+    tags:
+      - v*
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
       - run: npm ci
       - run: npm test
 
@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
@@ -36,9 +36,10 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.2
         with:
-            # Artifact name
-          name: react-ace.min.js
+          # Artifact name
+          name:
+            react-ace.min.js
             # A file, directory or wildcard pattern that describes what to upload
-          path: dist/react-ace.min.js
+          path:
+            dist/react-ace.min.js
             # The desired behavior if no files are found using the provided path.
-       
