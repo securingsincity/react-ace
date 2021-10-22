@@ -80,7 +80,7 @@
     "react"
   ],
   "dependencies": {
-    "ace-builds": "^1.4.12",
+    "ace-builds": "^1.4.13",
     "diff-match-patch": "^1.0.5",
     "lodash.get": "^4.4.2",
     "lodash.isequal": "^4.5.0",
