@@ -344,11 +344,11 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     }
 
     // First process editor value, as it may create a new session (see issue #300)
-    if (
-      this.editor &&
+    const valueChanged = this.editor &&
       nextProps.value != null &&
-      this.editor.getValue() !== nextProps.value
-    ) {
+      this.editor.getValue() !== nextProps.value;
+
+    if (valueChanged) {
       // editor.setValue is a synchronous function call, change event is emitted before setValue return.
       this.silent = true;
       const pos = this.editor.session.selection.toJSON();
@@ -400,7 +400,9 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     if (!isEqual(nextProps.setOptions, oldProps.setOptions)) {
       this.handleOptions(nextProps);
     }
-    if (!isEqual(nextProps.annotations, oldProps.annotations)) {
+    // if the value or annotations changed, set the annotations
+    // changing the value may create create a new session which will require annotations to be re-set
+    if (valueChanged || !isEqual(nextProps.annotations, oldProps.annotations)) {
       this.editor.getSession().setAnnotations(nextProps.annotations || []);
     }
     if (
