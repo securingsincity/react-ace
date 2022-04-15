@@ -441,7 +441,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     if (this.editor) {
       this.editor.destroy();
       this.editor = null;
-    } 
+    }
   }
 
   public onChange(event: any) {
