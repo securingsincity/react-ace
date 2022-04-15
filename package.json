@@ -38,7 +38,7 @@
     "@types/mocha": "^9.0.0",
     "@types/node": "^15.14.9",
     "@types/prop-types": "^15.7.4",
-    "@types/react": "^17.0.31",
+    "@types/react": "^18.0.5",
     "@types/react-dom": "^17.0.10",
     "@types/sinon": "^10.0.4",
     "babel-eslint": "^10.1.0",
