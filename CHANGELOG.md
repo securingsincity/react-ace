@@ -1,9 +1,16 @@
 # Changelog
-## 9.5.0 
+## 10.0.0
+- Fix changing value loses annotations #1429
+- Fix Uncaught TypeError: (reading 'destroy') #1293
+- Upgrade dev dependencies
+- Upgrade Ace-builds to 1.4.14
+
+
+## 9.5.0
 - Upgrade dev dependencies
 - Upgrade Ace-builds to 1.4.13
 
-## 9.4.4 
+## 9.4.4
 
 - Upgrade dev dependencies
 
