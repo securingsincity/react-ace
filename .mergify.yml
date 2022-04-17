@@ -1,0 +1,19 @@
+pull_request_rules:
+  - name: Automatic merge on approval
+    conditions:
+      - "#approved-reviews-by>=1"
+      - check-success=CodeQL
+      - check-success=build (16.x)
+      - base=main
+    actions:
+      merge:
+        method: merge
+  - name: Automatic merge of dependabot
+    conditions:
+      - author~=^dependabot(|-preview)\[bot\]$
+      - check-success=CodeQL
+      - check-success=build (16.x)
+      - base=main
+    actions:
+      merge:
+        method: merge
