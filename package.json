@@ -17,7 +17,6 @@
     "check": "npm run lint",
     "preversion": "npm run clean && npm run check",
     "version": "npm run build",
-    "postversion": "git push && git push --tags && npm run clean",
     "prepublishOnly": "npm run clean && npm run build",
     "test": "_mocha --require ts-node/register --require @babel/register --require tests/setup.js tests/src/*.spec.js --exit",
     "coverage": "nyc npm run test",
