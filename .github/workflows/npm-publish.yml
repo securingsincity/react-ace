@@ -21,7 +21,8 @@ jobs:
       - run: npm run build
       - run: git config --global user.name "GitHub CD bot"
       - run: git config --global user.email "james.hrisho@gmail.com"
-      - run: npm version ${{ github.event.release.tag_name }}
+      - run: npm version ${{ github.event.release.tag_name }}  --no-git-tag-version
+      - run: git commit -m "[Release] ${{ github.event.release.tag_name }}"
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
