@@ -103,7 +103,7 @@ export interface IAceOptions {
   tooltipFollowsMouse?: boolean;
   firstLineNumber?: number;
   overwrite?: boolean;
-  newLineMode?: boolean;
+  newLineMode?: "auto" | "unix" | "windows";
   useWorker?: boolean;
   useSoftTabs?: boolean;
   tabSize?: number;
