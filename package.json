@@ -41,7 +41,7 @@
     "@types/react-dom": "^18.0.1",
     "@types/sinon": "^10.0.4",
     "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.2.3",
+    "babel-loader": "^9.0.0",
     "chai": "^4.3.4",
     "coveralls": "^3.1.1",
     "enzyme": "^3.11.0",
