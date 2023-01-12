@@ -8,7 +8,6 @@
 [![CDNJS](https://img.shields.io/cdnjs/v/react-ace.svg)](https://cdnjs.com/libraries/react-ace)
 [![Coverage Status](https://coveralls.io/repos/github/securingsincity/react-ace/badge.svg?branch=main)](https://coveralls.io/github/securingsincity/react-ace?branch=main)
 
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/j)
 
 A set of react components for Ace
 
