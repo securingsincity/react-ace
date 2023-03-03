@@ -35,7 +35,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/lodash": "^4.14.176",
     "@types/mocha": "^10.0.0",
-    "@types/node": "^15.14.9",
+    "@types/node": "^18.14.4",
     "@types/prop-types": "^15.7.4",
     "@types/react": "^18.0.5",
     "@types/react-dom": "^18.0.1",
