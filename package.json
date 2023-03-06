@@ -61,7 +61,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.14.0",
-    "rimraf": "3.0.2",
+    "rimraf": "4.3.0",
     "sinon": "14.0.1",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.3.1",
