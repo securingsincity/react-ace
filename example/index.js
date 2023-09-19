@@ -98,6 +98,11 @@ class App extends Component {
       fontSize: parseInt(e.target.value, 10)
     });
   }
+  setLineHeight(e) {
+    this.setState({
+      lineHeight: parseInt(e.target.value, 10)
+    });
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -108,6 +113,7 @@ class App extends Component {
       enableBasicAutocompletion: false,
       enableLiveAutocompletion: false,
       fontSize: 14,
+      lineHeight: 19,
       showGutter: true,
       showPrintMargin: true,
       highlightActiveLine: true,
@@ -119,6 +125,7 @@ class App extends Component {
     this.setMode = this.setMode.bind(this);
     this.onChange = this.onChange.bind(this);
     this.setFontSize = this.setFontSize.bind(this);
+    this.setLineHeight = this.setLineHeight.bind(this),
     this.setBoolean = this.setBoolean.bind(this);
   }
   render() {
@@ -173,6 +180,25 @@ class App extends Component {
                   value={this.state.fontSize}
                 >
                   {[14, 16, 18, 20, 24, 28, 32, 40].map(lang => (
+                    <option key={lang} value={lang}>
+                      {lang}
+                    </option>
+                  ))}
+                </select>
+              </span>
+            </p>
+          </div>
+
+          <div className="field">
+            <label>Line Height:</label>
+            <p className="control">
+              <span className="select">
+                <select
+                  name="Line Height"
+                  onChange={this.setLineHeight}
+                  value={this.state.lineHeight}
+                >
+                  {[19, 24, 28, 32, 40].map(lang => (
                     <option key={lang} value={lang}>
                       {lang}
                     </option>
@@ -312,6 +338,7 @@ class App extends Component {
             onCursorChange={this.onCursorChange}
             onValidate={this.onValidate}
             value={this.state.value}
+            lineHeight={this.state.lineHeight}
             fontSize={this.state.fontSize}
             showPrintMargin={this.state.showPrintMargin}
             showGutter={this.state.showGutter}
@@ -340,6 +367,7 @@ class App extends Component {
   onLoad={this.onLoad}
   onChange={this.onChange}
   fontSize={${this.state.fontSize}}
+  lineHeight={${this.state.lineHeight}}
   showPrintMargin={${this.state.showPrintMargin}}
   showGutter={${this.state.showGutter}}
   highlightActiveLine={${this.state.highlightActiveLine}}

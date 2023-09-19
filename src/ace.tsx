@@ -33,6 +33,7 @@ export interface IAceEditorProps {
   width?: string;
   className?: string;
   fontSize?: number | string;
+  lineHeight?: number | string;
   showGutter?: boolean;
   showPrintMargin?: boolean;
   highlightActiveLine?: boolean;
@@ -83,6 +84,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     height: PropTypes.string,
     width: PropTypes.string,
     fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    lineHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     showGutter: PropTypes.bool,
     onChange: PropTypes.func,
     onCopy: PropTypes.func,
@@ -189,6 +191,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       focus,
       theme,
       fontSize,
+      lineHeight,
       value,
       defaultValue,
       showGutter,
@@ -238,6 +241,10 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     this.editor.setFontSize(
       typeof fontSize === "number" ? `${fontSize}px` : fontSize
     );
+    if (lineHeight) {
+      this.editor.container.style.lineHeight = typeof lineHeight === "number" ? `${lineHeight}px` : `${lineHeight}`
+      this.editor.renderer.updateFontSize()
+    }
     this.editor
       .getSession()
       .setValue(!defaultValue ? value || "" : defaultValue);
@@ -387,6 +394,14 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
           ? `${nextProps.fontSize}px`
           : nextProps.fontSize
       );
+    }
+    if (nextProps.lineHeight !== oldProps.lineHeight) {
+      this.editor.container.style.lineHeight =
+        typeof nextProps.lineHeight === "number"
+          ? `${nextProps.lineHeight}px`
+          : nextProps.lineHeight
+      ;
+      this.editor.renderer.updateFontSize()
     }
     if (nextProps.wrapEnabled !== oldProps.wrapEnabled) {
       this.editor.getSession().setUseWrapMode(nextProps.wrapEnabled);
