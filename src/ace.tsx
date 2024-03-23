@@ -206,7 +206,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       placeholder
     } = this.props;
 
-    this.editor = ace.edit(this.refEditor);
+    this.editor = ace.edit(this.refEditor) as IAceEditor;
 
     if (onBeforeLoad) {
       onBeforeLoad(ace);

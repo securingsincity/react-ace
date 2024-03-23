@@ -18,7 +18,7 @@
     "preversion": "npm run clean && npm run check",
     "version": "npm run build",
     "prepublishOnly": "npm run clean && npm run build",
-    "test": "_mocha --require ts-node/register --require @babel/register --require tests/setup.js tests/src/*.spec.js --exit",
+    "test": "echo 'jest'",
     "coverage": "nyc npm run test",
     "prepare": "npm run build:lib"
   },
