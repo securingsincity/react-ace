@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import AceEditor from "../src/ace";
 
 import "ace-builds/src-noconflict/mode-jsx";
@@ -387,4 +387,5 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById("example"));
+const root = createRoot(document.getElementById("example"));
+root.render(<App />);
