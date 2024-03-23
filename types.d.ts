@@ -84,7 +84,7 @@ export interface AceOptions {
     useSoftTabs?: boolean
     tabSize?: number
     wrap?: boolean
-    foldStyle?: boolean
+    foldStyle?: "markbegin"|"markbeginend"|"manual"
     /** path to a mode e.g "ace/mode/text" */
     mode?: string
     /** on by default */
