@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { diff as DiffEditor } from "../src/index";
 
 import "ace-builds/src-noconflict/mode-jsx";
@@ -106,5 +106,5 @@ class App extends Component {
     );
   }
 }
-
-render(<App />, document.getElementById("example"));
+const root = createRoot(document.getElementById("example"));
+root.render(<App />);
