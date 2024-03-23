@@ -125,8 +125,8 @@ class App extends Component {
     this.setMode = this.setMode.bind(this);
     this.onChange = this.onChange.bind(this);
     this.setFontSize = this.setFontSize.bind(this);
-    this.setLineHeight = this.setLineHeight.bind(this),
-    this.setBoolean = this.setBoolean.bind(this);
+    (this.setLineHeight = this.setLineHeight.bind(this)),
+      (this.setBoolean = this.setBoolean.bind(this));
   }
   render() {
     return (

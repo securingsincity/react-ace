@@ -1,17 +1,13 @@
-import * as React from "react";
-import { expect } from "chai";
-import * as sinon from "sinon";
-import * as Enzyme from "enzyme";
 import AceEditor from "../../src/ace";
-import Adapter from "enzyme-adapter-react-16";
-const mount = Enzyme.mount;
-
-Enzyme.configure({ adapter: new Adapter() });
+import {expect} from '@jest/globals';
+import * as sinon from "sinon";
+import {RenderOptions, render as mount} from '@testing-library/react'
+import React from 'react';
 describe("Ace Component", () => {
   // Required for the document.getElementById used by Ace can work in the test environment
   const domElement = document.getElementById("app");
   const mountOptions = {
-    attachTo: domElement
+    container: domElement
   };
 
   describe("General", () => {

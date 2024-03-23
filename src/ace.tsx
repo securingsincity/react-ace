@@ -236,14 +236,14 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       .setMode(
         typeof mode === "string" ? `ace/mode/${mode}` : (mode as Ace.SyntaxMode)
       );
-    if(theme && theme !== "")
-      this.editor.setTheme(`ace/theme/${theme}`);
+    if (theme && theme !== "") this.editor.setTheme(`ace/theme/${theme}`);
     this.editor.setFontSize(
       typeof fontSize === "number" ? `${fontSize}px` : fontSize
     );
     if (lineHeight) {
-      this.editor.container.style.lineHeight = typeof lineHeight === "number" ? `${lineHeight}px` : `${lineHeight}`
-      this.editor.renderer.updateFontSize()
+      this.editor.container.style.lineHeight =
+        typeof lineHeight === "number" ? `${lineHeight}px` : `${lineHeight}`;
+      this.editor.renderer.updateFontSize();
     }
     this.editor
       .getSession()
@@ -351,7 +351,8 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     }
 
     // First process editor value, as it may create a new session (see issue #300)
-    const valueChanged = this.editor &&
+    const valueChanged =
+      this.editor &&
       nextProps.value != null &&
       this.editor.getValue() !== nextProps.value;
 
@@ -399,9 +400,8 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
       this.editor.container.style.lineHeight =
         typeof nextProps.lineHeight === "number"
           ? `${nextProps.lineHeight}px`
-          : nextProps.lineHeight
-      ;
-      this.editor.renderer.updateFontSize()
+          : nextProps.lineHeight;
+      this.editor.renderer.updateFontSize();
     }
     if (nextProps.wrapEnabled !== oldProps.wrapEnabled) {
       this.editor.getSession().setUseWrapMode(nextProps.wrapEnabled);

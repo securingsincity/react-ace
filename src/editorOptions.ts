@@ -62,7 +62,7 @@ const getAceInstance = (): typeof AceBuilds => {
   if (typeof window === "undefined") {
     // ace-builds just needs some window object to attach ace to.
     // During SSR even just an empty object will work.
-    global.window = {};
+    global.window = {} as any;
     ace = require("ace-builds");
     // And it can be discarded immediately afterward to avoid confusing
     // other libraries that might detect SSR the same way we did.
