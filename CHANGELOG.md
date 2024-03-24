@@ -1,4 +1,10 @@
 # Changelog
+## 11.0.0
+- Updated every dependency and dev dependency
+- Rewrote tests
+- Support line height #1843
+- Fix fold style #1804
+
 ## 10.0.0
 - Fix changing value loses annotations #1429
 - Fix Uncaught TypeError: (reading 'destroy') #1293
