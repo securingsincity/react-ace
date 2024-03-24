@@ -6,13 +6,13 @@ import {
 } from "./editorOptions";
 const ace = getAceInstance();
 import { Ace, Range } from "ace-builds";
-import Editor = Ace.Editor;
 import { Split } from "ace-builds/src-noconflict/ext-split";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 const isEqual = require("lodash.isequal");
 const get = require("lodash.get");
 import {
+  IAceEditor,
   IAceOptions,
   IAnnotation,
   ICommand,
@@ -20,7 +20,7 @@ import {
   IMarker
 } from "./types";
 
-interface IAceEditorClass extends Editor {
+interface IAceEditorClass extends IAceEditor {
   [index: string]: any;
   $options?: any;
 }
@@ -75,10 +75,7 @@ export interface ISplitEditorProps {
   markers?: IMarker[][];
 }
 
-export default class SplitComponent extends React.Component<
-  ISplitEditorProps,
-  undefined
-> {
+export default class SplitComponent extends React.Component<ISplitEditorProps> {
   [index: string]: any;
 
   public static propTypes: PropTypes.ValidationMap<ISplitEditorProps> = {
@@ -209,7 +206,7 @@ export default class SplitComponent extends React.Component<
       splits
     } = this.props;
 
-    this.editor = ace.edit(this.refEditor);
+    this.editor = ace.edit(this.refEditor) as IAceEditor;
     if (this.isInShadow(this.refEditor)) {
       this.editor.renderer.attachToShadowRoot();
     }
