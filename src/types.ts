@@ -60,6 +60,7 @@ export interface ICommand {
   name: string;
   bindKey: ICommandBindKey;
   exec: string | ICommandExecFunction;
+  readOnly?: boolean;
 }
 export interface IAceOptions {
   [index: string]: any;
