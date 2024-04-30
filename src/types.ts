@@ -130,7 +130,7 @@ export interface IAnnotation {
 
 interface IRenderer extends Ace.VirtualRenderer {
   placeholderNode?: HTMLDivElement;
-  scroller: HTMLDivElement;
+  scroller: HTMLElement;
 }
 
 export type IAceEditor = Ace.Editor & {
