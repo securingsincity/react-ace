@@ -1,4 +1,10 @@
 # Changelog
+## 12.0.0
+- Updated dependencies
+- #1884 this.editor null check
+- #1898 update types.ts to match ace-builds
+- #1881 Add readOnly property to ICommand interface
+
 ## 11.0.0
 - Updated every dependency and dev dependency
 - Rewrote tests
