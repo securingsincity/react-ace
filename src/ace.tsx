@@ -460,7 +460,7 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
   }
 
   public onChange(event: any) {
-    if (this.props.onChange && !this.silent) {
+    if (this.editor && this.props.onChange && !this.silent) {
       const value = this.editor.getValue();
       this.props.onChange(value, event);
     }
