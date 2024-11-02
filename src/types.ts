@@ -78,7 +78,7 @@ export interface IAceOptions {
   vScrollBarAlwaysVisible?: boolean;
   highlightGutterLine?: boolean;
   animatedScroll?: boolean;
-  showInvisibles?: boolean;
+  showInvisibles?: string | boolean;
   showPrintMargin?: boolean;
   printMarginColumn?: number;
   printMargin?: boolean | number;
