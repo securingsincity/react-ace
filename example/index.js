@@ -115,6 +115,7 @@ class App extends Component {
       fontSize: 14,
       lineHeight: 19,
       showGutter: true,
+      enableMobileMenu: true,
       showPrintMargin: true,
       highlightActiveLine: true,
       enableSnippets: false,
@@ -254,6 +255,23 @@ class App extends Component {
               </label>
             </p>
           </div>
+            <div className="field">
+            <p className="control">
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  checked={this.state.enableMobileMenu}
+                  onChange={e =>{
+                    this.setBoolean(
+                      "enableMobileMenu",
+                      e.target.checked
+                    )
+                  }}
+                />
+                Enable Mobile Menue
+              </label>
+            </p>
+          </div>
           <div className="field">
             <p className="control">
               <label className="checkbox">
@@ -346,6 +364,7 @@ class App extends Component {
             setOptions={{
               useWorker: false,
               enableBasicAutocompletion: this.state.enableBasicAutocompletion,
+              enableMobileMenu: this.state.enableMobileMenu,
               enableLiveAutocompletion: this.state.enableLiveAutocompletion,
               enableSnippets: this.state.enableSnippets,
               showLineNumbers: this.state.showLineNumbers,
@@ -376,6 +395,7 @@ class App extends Component {
   enableBasicAutocompletion: ${this.state.enableBasicAutocompletion},
   enableLiveAutocompletion: ${this.state.enableLiveAutocompletion},
   enableSnippets: ${this.state.enableSnippets},
+  enableMobileMenu: ${this.state.enableMobileMenu},
   showLineNumbers: ${this.state.showLineNumbers},
   tabSize: 2,
   }}/>
