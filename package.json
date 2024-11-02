@@ -36,7 +36,7 @@
     "@types/chai": "^4.3.14",
     "@types/jest": "^29.5.12",
     "@types/lodash": "^4.17.0",
-    "@types/node": "^20.11.30",
+    "@types/node": "^22.5.5",
     "@types/prop-types": "^15.7.12",
     "@types/react": "^18.2.69",
     "@types/react-dom": "^18.2.22",
