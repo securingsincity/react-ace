@@ -1,4 +1,5 @@
-name: Node.js Package
+name: Publish to npm
+
 on:
   release:
     types: [published]
@@ -7,35 +8,39 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          # "ref" specifies the branch to check out.
-          # "github.event.release.target_commitish" is a global variable and specifies the branch the release targeted
           ref: ${{ github.event.release.target_commitish }}
-      - uses: actions/setup-node@v1
+
+      - uses: actions/setup-node@v3
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
+
       - run: npm ci
+
       - run: npm test
+
       - run: npm run build
+
       - run: git config --global user.name "GitHub CD bot"
+
       - run: git config --global user.email "james.hrisho@gmail.com"
-      - run: npm version ${{ github.event.release.tag_name }}  --no-git-tag-version
+
+      - run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+
       - run: git add . && git commit -m "[Release] ${{ github.event.release.tag_name }}"
+
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v3
         with:
-          # Artifact name
-          name:
-            react-ace.min.js
-            # A file, directory or wildcard pattern that describes what to upload
-          path:
-            dist/react-ace.min.js
-            # The desired behavior if no files are found using the provided path.
+          name: react-ace.min.js
+          path: dist/react-ace.min.js
+
       - run: git push
         env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
