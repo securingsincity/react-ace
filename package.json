@@ -33,7 +33,7 @@
     "@babel/register": "^7.23.7",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^16.0.0",
-    "@types/chai": "^4.3.14",
+    "@types/chai": "^5.0.1",
     "@types/jest": "^29.5.12",
     "@types/lodash": "^4.17.0",
     "@types/node": "^22.5.5",
