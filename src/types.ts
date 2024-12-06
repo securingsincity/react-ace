@@ -1,4 +1,4 @@
-import { Ace } from "ace-builds";
+import type { Ace } from "ace-builds";
 
 export interface ICommandManager {
   byName: any;

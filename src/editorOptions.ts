@@ -1,4 +1,4 @@
-import * as AceBuilds from "ace-builds";
+import type * as AceBuilds from "ace-builds";
 
 type EditorOption =
   | "minLines"
@@ -81,11 +81,10 @@ const debounce = (fn: (...args: any[]) => void, delay: number) => {
   let timer: any = null;
   // tslint:disable-next-line
   return function () {
-    const context = this;
     const args = arguments;
     clearTimeout(timer);
     timer = setTimeout(() => {
-      fn.apply(context, args);
+      fn.apply(this, args);
     }, delay);
   };
 };

@@ -1,5 +1,5 @@
-import { Ace, Range } from "ace-builds";
-import * as AceBuilds from "ace-builds";
+import { type Ace, Range } from "ace-builds";
+import type * as AceBuilds from "ace-builds";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 const isEqual = require("lodash.isequal");
@@ -11,7 +11,7 @@ import {
 } from "./editorOptions";
 const ace = getAceInstance();
 
-import {
+import type {
   IAceEditor,
   IAceOptions,
   ICommand,
