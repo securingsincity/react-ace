@@ -1,4 +1,3 @@
-const webpack = require("webpack");
 const path = require("path");
 
 module.exports = {
@@ -17,29 +16,43 @@ module.exports = {
   resolve: {
     extensions: [".jsx", ".js", ".tsx", ".ts"]
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
   module: {
     rules: [
       {
         test: /(\.js|\.jsx)$/,
         use: {
-          loader: "babel-loader"
+          loader: "builtin:swc-loader",
+          options: {
+            jsc: {
+              parser: {
+                syntax: "ecmascript",
+                jsx: true
+              }
+            }
+          }
         },
         exclude: /node_modules/
       },
       {
         test: /\.ts(x?)$/,
-        use: ["babel-loader", "ts-loader"],
+        use: {
+          loader: "builtin:swc-loader",
+          options: {
+            jsc: {
+              parser: {
+                syntax: "typescript",
+                tsx: true
+              }
+            }
+          }
+        },
         exclude: /node_modules/
       }
     ]
   },
   devServer: {
     hot: true,
-    static: [
-      path.join(__dirname, "example"),
-      path.join(__dirname, "dist")
-    ],
+    static: [path.join(__dirname, "example"), path.join(__dirname, "dist")],
     compress: true,
     port: 9000
   }

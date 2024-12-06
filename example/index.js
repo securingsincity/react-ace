@@ -255,17 +255,14 @@ class App extends Component {
               </label>
             </p>
           </div>
-            <div className="field">
+          <div className="field">
             <p className="control">
               <label className="checkbox">
                 <input
                   type="checkbox"
                   checked={this.state.enableMobileMenu}
-                  onChange={e =>{
-                    this.setBoolean(
-                      "enableMobileMenu",
-                      e.target.checked
-                    )
+                  onChange={e => {
+                    this.setBoolean("enableMobileMenu", e.target.checked);
                   }}
                 />
                 Enable Mobile Menue

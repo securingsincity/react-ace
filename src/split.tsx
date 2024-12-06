@@ -5,13 +5,13 @@ import {
   getAceInstance
 } from "./editorOptions";
 const ace = getAceInstance();
-import { Ace, Range } from "ace-builds";
+import { Range } from "ace-builds";
 import { Split } from "ace-builds/src-noconflict/ext-split";
 import * as PropTypes from "prop-types";
 import * as React from "react";
 const isEqual = require("lodash.isequal");
 const get = require("lodash.get");
-import {
+import type {
   IAceEditor,
   IAceOptions,
   IAnnotation,
