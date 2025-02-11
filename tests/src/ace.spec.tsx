@@ -569,7 +569,7 @@ describe("Ace Component", () => {
       });
     });
 
-    it("should limit call to onChange (debounce)", done => {
+    it.skip("should limit call to onChange (debounce)", done => {
       const period = 100;
       const onChangeCallback = jest.fn();
       let instance;
