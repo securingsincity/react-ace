@@ -64,7 +64,7 @@ export interface ISplitEditorProps {
   onSelection?: (selectedText: string, event?: any) => void;
   onCopy?: (value: string) => void;
   onPaste?: (value: string) => void;
-  onFocus?: (value: Event) => void;
+  onFocus?: (value: Event, index: number) => void;
   onBlur?: (value: Event) => void;
   onScroll?: (editor: IEditorProps) => void;
   editorProps?: IEditorProps;
@@ -257,7 +257,7 @@ export default class SplitComponent extends React.Component<ISplitEditorProps> {
       editor.renderer.setShowGutter(showGutter);
       editor.getSession().setUseWrapMode(wrapEnabled);
       editor.setShowPrintMargin(showPrintMargin);
-      editor.on("focus", this.onFocus);
+      editor.on("focus", event => this.onFocus(event, index));
       editor.on("blur", this.onBlur);
       editor.on("input" as any, this.onInput);
       editor.on("copy", this.onCopy as any);
@@ -459,9 +459,9 @@ export default class SplitComponent extends React.Component<ISplitEditorProps> {
       this.props.onCursorChange(value, event);
     }
   }
-  public onFocus(event: any) {
+  public onFocus(event: any, index: number) {
     if (this.props.onFocus) {
-      this.props.onFocus(event);
+      this.props.onFocus(event, index);
     }
   }
 
