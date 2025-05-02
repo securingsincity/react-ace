@@ -60,6 +60,9 @@ class App extends Component {
       value: newValue
     });
   }
+  onFocus(event, index) {
+    console.log(`Editor ${index} has been focused. Event emitted: `, event);
+  }
 
   onSelectionChange(newValue, event) {
     console.log("select-change", newValue);
@@ -337,6 +340,7 @@ class App extends Component {
             splits={this.state.splits}
             theme={this.state.theme}
             name="blah2"
+            onFocus={this.onFocus}
             onLoad={this.onLoad}
             debounceChangePeriod={1000}
             onChange={this.onChange}
