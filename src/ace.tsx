@@ -421,11 +421,10 @@ export default class ReactAce extends React.Component<IAceEditorProps> {
     if (valueChanged || !isEqual(nextProps.annotations, oldProps.annotations)) {
       this.editor.getSession().setAnnotations(nextProps.annotations || []);
     }
-    if (
-      !isEqual(nextProps.markers, oldProps.markers) &&
-      Array.isArray(nextProps.markers)
-    ) {
-      this.handleMarkers(nextProps.markers);
+    const oldMarkers = oldProps.markers || [];
+    const nextMarkers = nextProps.markers || [];
+    if (!isEqual(oldMarkers, nextMarkers)) {
+      this.handleMarkers(nextMarkers);
     }
 
     // this doesn't look like it works at all....
