@@ -309,7 +309,7 @@ describe("Split Component", () => {
       expect(onPasteCallback).toBeCalledWith(expectText);
     });
 
-    it.skip("should call the onFocus method callback", () => {
+    it("should call the onFocus method callback", () => {
       const onFocusCallback = jest.fn();
       const wrapper = mount(
         <SplitEditor
