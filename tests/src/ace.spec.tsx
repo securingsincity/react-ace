@@ -433,7 +433,7 @@ describe("Ace Component", () => {
   });
   // //inspired from https://github.com/goodtimeaj/debounce-function/blob/master/test/unit/debounce-function.js
   describe("Debounce function", () => {
-    it("function arg should be called when after timeout", done => {
+    it("function arg should be called when after timeout", async () => {
       let instance;
       const wrapper = mount(
         <AceEditor
@@ -448,13 +448,15 @@ describe("Ace Component", () => {
       }, 100);
       func();
       expect(flag).toBeFalsy();
-      setTimeout(function () {
-        expect(flag).toBeTruthy;
-        done();
-      }, 150);
+      await new Promise(resolve => {
+        setTimeout(function () {
+          expect(flag).toBeTruthy();
+          resolve();
+        }, 150);
+      });
     });
 
-    it("timer should be reset on successive call", done => {
+    it("timer should be reset on successive call", async () => {
       let instance;
       const wrapper = mount(
         <AceEditor
@@ -470,20 +472,31 @@ describe("Ace Component", () => {
       }, 100);
       func();
       expect(flag).toBeFalsy();
-      setTimeout(function () {
-        expect(flag).toBeFalsy();
-        func();
-      }, 50);
-      setTimeout(function () {
-        expect(flag).toBeFalsy();
-      }, 120);
-      setTimeout(function () {
-        expect(flag).toBeTruthy();
-        done();
-      }, 160);
+      
+      await new Promise(resolve => {
+        setTimeout(function () {
+          expect(flag).toBeFalsy();
+          func();
+          resolve();
+        }, 50);
+      });
+      
+      await new Promise(resolve => {
+        setTimeout(function () {
+          expect(flag).toBeFalsy();
+          resolve();
+        }, 70);
+      });
+      
+      await new Promise(resolve => {
+        setTimeout(function () {
+          expect(flag).toBeTruthy();
+          resolve();
+        }, 40);
+      });
     });
 
-    it("function should be called only once per period", done => {
+    it("function should be called only once per period", async () => {
       let instance;
       const wrapper = mount(
         <AceEditor
@@ -505,21 +518,32 @@ describe("Ace Component", () => {
       func();
       expect(flag1).toBeFalsy();
       expect(flag2).toBeFalsy();
-      setTimeout(function () {
-        expect(flag1).toBeFalsy();
-        expect(flag2).toBeFalsy();
-        func();
+      
+      await new Promise(resolve => {
+        setTimeout(function () {
+          expect(flag1).toBeFalsy();
+          expect(flag2).toBeFalsy();
+          func();
+          resolve();
+        }, 50);
+      });
+      
+      await new Promise(resolve => {
         setTimeout(function () {
           expect(flag1).toBeTruthy();
           expect(flag2).toBeFalsy();
           func();
-          setTimeout(function () {
-            expect(flag1).toBeTruthy();
-            expect(flag2).toBeFalsy();
-            done();
-          }, 90);
+          resolve();
         }, 110);
-      }, 50);
+      });
+      
+      await new Promise(resolve => {
+        setTimeout(function () {
+          expect(flag1).toBeTruthy();
+          expect(flag2).toBeFalsy();
+          resolve();
+        }, 90);
+      });
     });
     it("should keep initial value after undo event", () => {
       let instance;

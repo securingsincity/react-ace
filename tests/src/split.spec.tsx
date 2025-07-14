@@ -107,10 +107,6 @@ describe("Split Component", () => {
             instance = node!;
           }}
           splits={2}
-          ref={node => {
-            instance = node!;
-          }}
-          splits={2}
         />
       );
 
