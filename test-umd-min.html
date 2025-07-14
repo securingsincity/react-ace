@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Ace UMD Min Test</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/ace-builds@1.33.2/src-min-noconflict/ace.js"></script>
+    <script src="./dist/react-ace.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      const { createElement } = React;
+      const { createRoot } = ReactDOM;
+      const AceEditor = ReactAce.default;
+
+      const App = () => {
+        return createElement(AceEditor, {
+          mode: "javascript",
+          theme: "github",
+          value:
+            "function hello() {\n  console.log('Hello from React Ace UMD!');\n}",
+          onChange: value => console.log("Editor value changed:", value),
+          name: "test-editor",
+          editorProps: { $blockScrolling: true },
+          width: "100%",
+          height: "400px"
+        });
+      };
+
+      const root = createRoot(document.getElementById("root"));
+      root.render(createElement(App));
+    </script>
+  </body>
+</html>

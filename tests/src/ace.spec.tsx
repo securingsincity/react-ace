@@ -1,5 +1,5 @@
 import AceEditor from "../../src/ace";
-import { jest, expect } from "@jest/globals";
+import { vi, expect } from "vitest";
 import { render as mount, screen } from "@testing-library/react";
 import React from "react";
 import { IAceEditor, IMarker } from "../../src/types";
@@ -12,7 +12,7 @@ describe("Ace Component", () => {
     });
 
     it("should trigger console warn if editorOption is called", () => {
-      jest.spyOn(console, "warn");
+      vi.spyOn(console, "warn");
       mount(<AceEditor enableBasicAutocompletion={true} />);
       expect(console.warn).toBeCalledWith(
         "ReactAce: editor option enableBasicAutocompletion was activated but not found. Did you need to import a related tool or did you possibly mispell the option?"
@@ -41,14 +41,14 @@ describe("Ace Component", () => {
     });
 
     it("should get the ace library from the onBeforeLoad callback", () => {
-      const beforeLoadCallback = jest.fn();
+      const beforeLoadCallback = vi.fn();
       mount(<AceEditor onBeforeLoad={beforeLoadCallback} />);
 
       expect(beforeLoadCallback).toBeCalledTimes(1);
     });
 
     it("should get the editor from the onLoad callback", () => {
-      const loadCallback = jest.fn();
+      const loadCallback = vi.fn();
       mount(<AceEditor onLoad={loadCallback} />);
 
       expect(loadCallback).toBeCalledTimes(1);
@@ -543,7 +543,7 @@ describe("Ace Component", () => {
 
   describe("Events", () => {
     it("should call the onChange method callback", () => {
-      const onChangeCallback = jest.fn();
+      const onChangeCallback = vi.fn();
       const wrapper = mount(
         <AceEditor
           onChange={onChangeCallback}
@@ -571,7 +571,7 @@ describe("Ace Component", () => {
 
     it.skip("should limit call to onChange (debounce)", done => {
       const period = 100;
-      const onChangeCallback = jest.fn();
+      const onChangeCallback = vi.fn();
       let instance;
       const wrapper = mount(
         <AceEditor
@@ -622,7 +622,7 @@ describe("Ace Component", () => {
 
     it("should call the onCopy method", () => {
       let instance;
-      const onCopyCallback = jest.fn();
+      const onCopyCallback = vi.fn();
       const wrapper = mount(
         <AceEditor
           onCopy={onCopyCallback}
@@ -644,7 +644,7 @@ describe("Ace Component", () => {
 
     it("should call the onPaste method", () => {
       let instance;
-      const onPasteCallback = jest.fn();
+      const onPasteCallback = vi.fn();
       const wrapper = mount(
         <AceEditor
           onPaste={onPasteCallback}
@@ -665,7 +665,7 @@ describe("Ace Component", () => {
     });
 
     it("should call the onFocus method callback", () => {
-      const onFocusCallback = jest.fn();
+      const onFocusCallback = vi.fn();
       let instance;
       const wrapper = mount(
         <AceEditor
@@ -685,83 +685,87 @@ describe("Ace Component", () => {
       expect(onFocusCallback).toBeCalledTimes(1);
     });
 
-    it("should call the onSelectionChange method callback", done => {
-      let onSelectionChange = function (selection) {};
-      const value = `
-        function main(value) {
-          console.log('hi james')
-          return value;
-        }
-      `;
-      let instance;
-      const wrapper = mount(
-        <AceEditor
-          value={value}
-          ref={node => {
-            instance = node;
-          }}
-        />
-      );
-
-      onSelectionChange = function (selection) {
-        const content = instance.editor.session.getTextRange(
-          selection.getRange()
+    it("should call the onSelectionChange method callback", () => {
+      return new Promise<void>((resolve) => {
+        let onSelectionChange = function (selection) {};
+        const value = `
+          function main(value) {
+            console.log('hi james')
+            return value;
+          }
+        `;
+        let instance;
+        const wrapper = mount(
+          <AceEditor
+            value={value}
+            ref={node => {
+              instance = node;
+            }}
+          />
         );
-        expect(content).toEqual(value);
-        done();
-      };
-      wrapper.rerender(
-        <AceEditor
-          value={value}
-          ref={node => {
-            instance = node;
-          }}
-          onSelectionChange={onSelectionChange}
-        />
-      );
-      instance.editor.getSession().selection.selectAll();
+
+        onSelectionChange = function (selection) {
+          const content = instance.editor.session.getTextRange(
+            selection.getRange()
+          );
+          expect(content).toEqual(value);
+          resolve();
+        };
+        wrapper.rerender(
+          <AceEditor
+            value={value}
+            ref={node => {
+              instance = node;
+            }}
+            onSelectionChange={onSelectionChange}
+          />
+        );
+        instance.editor.getSession().selection.selectAll();
+      });
     });
 
-    it("should call the onCursorChange method callback", done => {
-      let onCursorChange = function (selection) {};
-      const value = `
-        function main(value) {
-          console.log('hi james')
-          return value;
-        }
-      `;
-      let instance;
-      const wrapper = mount(
-        <AceEditor
-          value={value}
-          ref={node => {
-            instance = node;
-          }}
-        />
-      );
-      onCursorChange = function (selection) {
-        expect(selection.getCursor()).toEqual({ row: 0, column: 0 });
-        done();
-      };
-      wrapper.rerender(
-        <AceEditor
-          value={value}
-          ref={node => {
-            instance = node;
-          }}
-          onCursorChange={onCursorChange}
-        />
-      );
+    it("should call the onCursorChange method callback", () => {
+      return new Promise<void>((resolve) => {
+        let onCursorChange = function (selection) {};
+        const value = `
+          function main(value) {
+            console.log('hi james')
+            return value;
+          }
+        `;
+        let instance;
+        const wrapper = mount(
+          <AceEditor
+            value={value}
+            ref={node => {
+              instance = node;
+            }}
+          />
+        );
+        onCursorChange = function (selection) {
+          expect(selection.getCursor()).toEqual({ row: 0, column: 0 });
+          resolve();
+        };
+        wrapper.rerender(
+          <AceEditor
+            value={value}
+            ref={node => {
+              instance = node;
+            }}
+            onCursorChange={onCursorChange}
+          />
+        );
 
-      expect(instance.editor.getSession().selection.getCursor()).toEqual({
-        row: 5,
-        column: 6
+        expect(instance.editor.getSession().selection.getCursor()).toEqual({
+          row: 5,
+          column: 8
+        });
+        instance.editor.getSession().selection.moveCursorTo(0, 0);
       });
-      instance.editor.getSession().selection.moveCursorTo(0, 0);
     });
 
     it("should call the onBlur method callback", () => {
-      const onBlurCallback = jest.fn();
+      const onBlurCallback = vi.fn();
       let instance;
       const wrapper = mount(
         <AceEditor
@@ -900,7 +904,7 @@ describe("Ace Component", () => {
           />
         );
         const session = instance?.editor.getSession();
-        const sessionSpy = jest.spyOn(session!, "setMode");
+        const sessionSpy = vi.spyOn(session!, "setMode");
 
         const mode = {
           path: "ace/mode/javascript"
