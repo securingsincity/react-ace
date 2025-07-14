@@ -1,5 +1,5 @@
 import SplitEditor from "../../src/split";
-import { jest, expect } from "@jest/globals";
+import { vi, expect } from "vitest";
 import { render as mount, screen } from "@testing-library/react";
 import React from "react";
 import { IAceEditor, IMarker } from "../../src/types";
@@ -19,7 +19,7 @@ describe("Split Component", () => {
       );
     });
     it("should get the ace library from the onBeforeLoad callback", () => {
-      const beforeLoadCallback = jest.fn();
+      const beforeLoadCallback = vi.fn();
       mount(
         <SplitEditor
           ref={node => {
@@ -34,8 +34,8 @@ describe("Split Component", () => {
     });
 
     it("should trigger console warn if editorOption is called", () => {
-      jest.resetModules();
-      jest.spyOn(console, "warn");
+      vi.resetModules();
+      vi.spyOn(console, "warn");
       const wrapper = mount(
         <SplitEditor
           ref={node => {
@@ -103,10 +103,6 @@ describe("Split Component", () => {
     it("should update the orientation on componentDidUpdate", () => {
       const wrapper = mount(
         <SplitEditor
-          ref={node => {
-            instance = node!;
-          }}
-          splits={2}
           ref={node => {
             instance = node!;
           }}
@@ -186,7 +182,7 @@ describe("Split Component", () => {
     });
 
     it("should get the editor from the onLoad callback", () => {
-      const loadCallback = jest.fn();
+      const loadCallback = vi.fn();
       const wrapper = mount(
         <SplitEditor
           ref={node => {
@@ -204,7 +200,7 @@ describe("Split Component", () => {
     });
 
     it.skip("should trigger the focus on mount", () => {
-      const onFocusCallback = jest.fn();
+      const onFocusCallback = vi.fn();
       mount(
         <SplitEditor
           ref={node => {
@@ -240,7 +236,7 @@ describe("Split Component", () => {
   describe("Events", () => {
     let instance;
     it("should call the onChange method callback", () => {
-      const onChangeCallback = jest.fn();
+      const onChangeCallback = vi.fn();
       const wrapper = mount(
         <SplitEditor
           ref={node => {
@@ -267,7 +263,7 @@ describe("Split Component", () => {
       });
     });
     it("should call the onCopy method", () => {
-      const onCopyCallback = jest.fn();
+      const onCopyCallback = vi.fn();
       const wrapper = mount(
         <SplitEditor
           ref={node => {
@@ -289,7 +285,7 @@ describe("Split Component", () => {
     });
 
     it("should call the onPaste method", () => {
-      const onPasteCallback = jest.fn();
+      const onPasteCallback = vi.fn();
       const wrapper = mount(
         <SplitEditor
           ref={node => {
@@ -310,7 +306,7 @@ describe("Split Component", () => {
     });
 
     it("should call the onFocus method callback", () => {
-      const onFocusCallback = jest.fn();
+      const onFocusCallback = vi.fn();
       const wrapper = mount(
         <SplitEditor
           ref={node => {
@@ -331,7 +327,7 @@ describe("Split Component", () => {
     });
 
     it("should call the onSelectionChange method callback", () => {
-      const onSelectionChangeCallback = jest.fn();
+      const onSelectionChangeCallback = vi.fn();
       const wrapper = mount(
         <SplitEditor
           ref={node => {
@@ -353,7 +349,7 @@ describe("Split Component", () => {
     });
 
     it("should call the onCursorChange method callback", () => {
-      const onCursorChangeCallback = jest.fn();
+      const onCursorChangeCallback = vi.fn();
 
       const wrapper = mount(
         <SplitEditor
@@ -376,7 +372,7 @@ describe("Split Component", () => {
     });
 
     it("should call the onBlur method callback", () => {
-      const onBlurCallback = jest.fn();
+      const onBlurCallback = vi.fn();
       const wrapper = mount(
         <SplitEditor
           ref={node => {
@@ -799,7 +795,7 @@ describe("Split Component", () => {
     });
 
     it.skip("should trigger the focus on componentDidUpdate", () => {
-      const onFocusCallback = jest.fn();
+      const onFocusCallback = vi.fn();
       const wrapper = mount(
         <SplitEditor
           ref={node => {
