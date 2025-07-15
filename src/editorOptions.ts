@@ -79,9 +79,8 @@ const getAceInstance = (): typeof AceBuilds => {
 
 const debounce = (fn: (...args: any[]) => void, delay: number) => {
   let timer: any = null;
-  // tslint:disable-next-line
   return function () {
-    const context = this;
+    const context = this; // oxlint-disable-line
     const args = arguments;
     clearTimeout(timer);
     timer = setTimeout(() => {

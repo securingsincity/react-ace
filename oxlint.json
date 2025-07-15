@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "rules": {
+    "typescript/no-unused-vars": "error",
+    "typescript/no-explicit-any": "warn",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/no-unused-prop-types": "error",
+    "react/require-render-return": "error",
+    "unicorn/prefer-node-protocol": "error",
+    "unicorn/prefer-module": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

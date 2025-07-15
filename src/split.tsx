@@ -5,12 +5,12 @@ import {
   getAceInstance
 } from "./editorOptions";
 const ace = getAceInstance();
-import { Ace, Range } from "ace-builds";
+import { Ace, Range } from "ace-builds"; // oxlint-disable-line
 import { Split } from "ace-builds/src-noconflict/ext-split";
 import * as PropTypes from "prop-types";
 import * as React from "react";
-const isEqual = require("lodash.isequal");
-const get = require("lodash.get");
+import isEqual from "lodash.isequal";
+import get from "lodash.get";
 import {
   IAceEditor,
   IAceOptions,

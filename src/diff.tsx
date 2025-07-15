@@ -1,7 +1,7 @@
 import * as PropTypes from "prop-types";
 import * as React from "react";
 import SplitEditor from "./split";
-const DiffMatchPatch = require("diff-match-patch");
+import DiffMatchPatch from "diff-match-patch";
 import { IEditorProps } from "./types";
 
 export interface IDiffEditorProps {

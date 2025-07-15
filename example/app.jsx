@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { createRoot } from "react-dom/client";
-import SplitAceEditor from "../src/split";
+import AceEditor from "../src/ace";
+import "ace-builds/esm-resolver";
 import "ace-builds/src-noconflict/mode-jsx";
-import "ace-builds/src-min-noconflict/ext-searchbox";
-import "ace-builds/src-min-noconflict/ext-language_tools";
-
 const languages = [
   "javascript",
   "java",
@@ -37,20 +35,61 @@ const themes = [
   "terminal"
 ];
 
-languages.forEach(lang => {
-  require(`ace-builds/src-noconflict/mode-${lang}`);
-  require(`ace-builds/src-noconflict/snippets/${lang}`);
-});
+// Language imports
 
-themes.forEach(theme => require(`ace-builds/src-noconflict/theme-${theme}`));
+// Snippet imports
 
-const defaultValue = [
-  `function onLoad(editor) {
-    console.log("i've loaded");
-  }`,
-  'const secondInput = "me i am the second input";'
-];
-class App extends Component {
+// Theme imports
+/*eslint-disable no-alert, no-console */
+import "ace-builds/src-min-noconflict/ext-searchbox";
+import "ace-builds/src-min-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-xml";
+import "ace-builds/src-noconflict/mode-ruby";
+import "ace-builds/src-noconflict/mode-sass";
+import "ace-builds/src-noconflict/mode-markdown";
+import "ace-builds/src-noconflict/mode-mysql";
+import "ace-builds/src-noconflict/mode-json";
+import "ace-builds/src-noconflict/mode-html";
+import "ace-builds/src-noconflict/mode-handlebars";
+import "ace-builds/src-noconflict/mode-golang";
+import "ace-builds/src-noconflict/mode-csharp";
+import "ace-builds/src-noconflict/mode-elixir";
+import "ace-builds/src-noconflict/mode-typescript";
+import "ace-builds/src-noconflict/mode-css";
+import "ace-builds/src-noconflict/snippets/javascript";
+import "ace-builds/src-noconflict/snippets/java";
+import "ace-builds/src-noconflict/snippets/python";
+import "ace-builds/src-noconflict/snippets/xml";
+import "ace-builds/src-noconflict/snippets/ruby";
+import "ace-builds/src-noconflict/snippets/sass";
+import "ace-builds/src-noconflict/snippets/markdown";
+import "ace-builds/src-noconflict/snippets/mysql";
+import "ace-builds/src-noconflict/snippets/json";
+import "ace-builds/src-noconflict/snippets/html";
+import "ace-builds/src-noconflict/snippets/handlebars";
+import "ace-builds/src-noconflict/snippets/golang";
+import "ace-builds/src-noconflict/snippets/csharp";
+import "ace-builds/src-noconflict/snippets/elixir";
+import "ace-builds/src-noconflict/snippets/typescript";
+import "ace-builds/src-noconflict/snippets/css";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-tomorrow";
+import "ace-builds/src-noconflict/theme-kuroir";
+import "ace-builds/src-noconflict/theme-twilight";
+import "ace-builds/src-noconflict/theme-xcode";
+import "ace-builds/src-noconflict/theme-textmate";
+import "ace-builds/src-noconflict/theme-solarized_dark";
+import "ace-builds/src-noconflict/theme-solarized_light";
+import "ace-builds/src-noconflict/theme-terminal";
+
+const defaultValue = `function onLoad(editor) {
+  console.log("i've loaded");
+}`;
+export default class App extends Component {
   onLoad() {
     console.log("i've loaded");
   }
@@ -59,9 +98,6 @@ class App extends Component {
     this.setState({
       value: newValue
     });
-  }
-  onFocus(event, index) {
-    console.log(`Editor ${index} has been focused. Event emitted: `, event);
   }
 
   onSelectionChange(newValue, event) {
@@ -74,6 +110,15 @@ class App extends Component {
     console.log("cursor-change-event", event);
   }
 
+  onValidate(annotations) {
+    console.log("onValidate", annotations);
+  }
+
+  setPlaceholder(e) {
+    this.setState({
+      placeholder: e.target.value
+    });
+  }
   setTheme(e) {
     this.setState({
       theme: e.target.value
@@ -94,40 +139,36 @@ class App extends Component {
       fontSize: parseInt(e.target.value, 10)
     });
   }
-  setSplits(e) {
+  setLineHeight(e) {
     this.setState({
-      splits: parseInt(e.target.value, 10)
-    });
-  }
-  setOrientation(e) {
-    this.setState({
-      orientation: e.target.value
+      lineHeight: parseInt(e.target.value, 10)
     });
   }
   constructor(props) {
     super(props);
     this.state = {
-      splits: 2,
-      orientation: "beside",
       value: defaultValue,
-      theme: "github",
+      placeholder: "Placeholder Text",
+      theme: "monokai",
       mode: "javascript",
       enableBasicAutocompletion: false,
       enableLiveAutocompletion: false,
       fontSize: 14,
+      lineHeight: 19,
       showGutter: true,
+      enableMobileMenu: true,
       showPrintMargin: true,
       highlightActiveLine: true,
       enableSnippets: false,
       showLineNumbers: true
     };
+    this.setPlaceholder = this.setPlaceholder.bind(this);
     this.setTheme = this.setTheme.bind(this);
     this.setMode = this.setMode.bind(this);
     this.onChange = this.onChange.bind(this);
     this.setFontSize = this.setFontSize.bind(this);
-    this.setBoolean = this.setBoolean.bind(this);
-    this.setSplits = this.setSplits.bind(this);
-    this.setOrientation = this.setOrientation.bind(this);
+    (this.setLineHeight = this.setLineHeight.bind(this)),
+      (this.setBoolean = this.setBoolean.bind(this));
   }
   render() {
     return (
@@ -180,7 +221,7 @@ class App extends Component {
                   onChange={this.setFontSize}
                   value={this.state.fontSize}
                 >
-                  {[10, 12, 14, 16, 18, 20, 24, 28, 32, 40].map(lang => (
+                  {[14, 16, 18, 20, 24, 28, 32, 40].map(lang => (
                     <option key={lang} value={lang}>
                       {lang}
                     </option>
@@ -191,15 +232,15 @@ class App extends Component {
           </div>
 
           <div className="field">
-            <label>Number of Splits:</label>
+            <label>Line Height:</label>
             <p className="control">
               <span className="select">
                 <select
-                  name="splits"
-                  onChange={this.setSplits}
-                  value={this.state.splits}
+                  name="Line Height"
+                  onChange={this.setLineHeight}
+                  value={this.state.lineHeight}
                 >
-                  {[1, 2, 3, 4].map(lang => (
+                  {[19, 24, 28, 32, 40].map(lang => (
                     <option key={lang} value={lang}>
                       {lang}
                     </option>
@@ -210,23 +251,17 @@ class App extends Component {
           </div>
 
           <div className="field">
-            <label>Orientation:</label>
+            <label>Placeholder:</label>
             <p className="control">
-              <span className="select">
-                <select
-                  name="orientation"
-                  onChange={this.setOrientation}
-                  value={this.state.orientation}
-                >
-                  {["beside", "below"].map(lang => (
-                    <option key={lang} value={lang}>
-                      {lang}
-                    </option>
-                  ))}
-                </select>
-              </span>
+              <input
+                className="input"
+                type="text"
+                onChange={this.setPlaceholder}
+                value={this.state.placeholder}
+              />
             </p>
           </div>
+
           <div className="field">
             <p className="control">
               <label className="checkbox">
@@ -258,6 +293,20 @@ class App extends Component {
                   }
                 />
                 Enable Live Autocomplete
+              </label>
+            </p>
+          </div>
+          <div className="field">
+            <p className="control">
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  checked={this.state.enableMobileMenu}
+                  onChange={e => {
+                    this.setBoolean("enableMobileMenu", e.target.checked);
+                  }}
+                />
+                Enable Mobile Menue
               </label>
             </p>
           </div>
@@ -334,28 +383,26 @@ class App extends Component {
         </div>
         <div className="examples column">
           <h2>Editor</h2>
-          <SplitAceEditor
+          <AceEditor
+            placeholder={this.state.placeholder}
             mode={this.state.mode}
-            orientation={this.state.orientation}
-            splits={this.state.splits}
             theme={this.state.theme}
             name="blah2"
-            onFocus={this.onFocus}
             onLoad={this.onLoad}
-            debounceChangePeriod={1000}
             onChange={this.onChange}
             onSelectionChange={this.onSelectionChange}
+            onCursorChange={this.onCursorChange}
+            onValidate={this.onValidate}
+            value={this.state.value}
+            lineHeight={this.state.lineHeight}
             fontSize={this.state.fontSize}
-            height="1000px"
-            width="1000px"
             showPrintMargin={this.state.showPrintMargin}
             showGutter={this.state.showGutter}
             highlightActiveLine={this.state.highlightActiveLine}
-            value={this.state.value}
             setOptions={{
               useWorker: false,
-              displayIndentGuides: false,
               enableBasicAutocompletion: this.state.enableBasicAutocompletion,
+              enableMobileMenu: this.state.enableMobileMenu,
               enableLiveAutocompletion: this.state.enableLiveAutocompletion,
               enableSnippets: this.state.enableSnippets,
               showLineNumbers: this.state.showLineNumbers,
@@ -363,9 +410,37 @@ class App extends Component {
             }}
           />
         </div>
+        <div className="column">
+          <h2>Code</h2>
+          <AceEditor
+            mode="jsx"
+            theme="monokai"
+            readOnly={true}
+            value={`<AceEditor
+  placeholder="${this.state.placeholder}"
+  mode="${this.state.mode}"
+  theme="${this.state.theme}"
+  name="blah2"
+  onLoad={this.onLoad}
+  onChange={this.onChange}
+  fontSize={${this.state.fontSize}}
+  lineHeight={${this.state.lineHeight}}
+  showPrintMargin={${this.state.showPrintMargin}}
+  showGutter={${this.state.showGutter}}
+  highlightActiveLine={${this.state.highlightActiveLine}}
+  value={\`${this.state.value}\`}
+  setOptions={{
+  enableBasicAutocompletion: ${this.state.enableBasicAutocompletion},
+  enableLiveAutocompletion: ${this.state.enableLiveAutocompletion},
+  enableSnippets: ${this.state.enableSnippets},
+  enableMobileMenu: ${this.state.enableMobileMenu},
+  showLineNumbers: ${this.state.showLineNumbers},
+  tabSize: 2,
+  }}/>
+            `}
+          />
+        </div>
       </div>
     );
   }
 }
-const root = createRoot(document.getElementById("example"));
-root.render(<App />);

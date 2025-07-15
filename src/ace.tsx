@@ -2,7 +2,9 @@ import { Ace, Range } from "ace-builds";
 import * as AceBuilds from "ace-builds";
 import * as PropTypes from "prop-types";
 import * as React from "react";
-const isEqual = require("lodash.isequal");
+
+import isEqual from "lodash.isequal";
+
 import {
   debounce,
   editorEvents,
