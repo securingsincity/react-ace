@@ -1,4 +1,6 @@
-import * as PropTypes from "prop-types";
+// Default import: Node's ESM loader can't detect named exports in
+// prop-types' CJS entry.
+import PropTypes from "prop-types";
 import * as React from "react";
 import SplitEditor from "./split";
 import DiffMatchPatch from "diff-match-patch";

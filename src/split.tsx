@@ -6,8 +6,12 @@ import {
 } from "./editorOptions";
 const ace = getAceInstance();
 import { Ace, Range } from "ace-builds"; // oxlint-disable-line
-import { Split } from "ace-builds/src-noconflict/ext-split";
-import * as PropTypes from "prop-types";
+// Explicit extension and default import: Node's ESM loader neither resolves
+// extensionless subpaths nor reliably detects named exports in ext-split's
+// UMD wrapper.
+import extSplit from "ace-builds/src-noconflict/ext-split.js";
+const { Split } = extSplit;
+import PropTypes from "prop-types";
 import * as React from "react";
 import { deepEqual } from "fast-equals";
 import {

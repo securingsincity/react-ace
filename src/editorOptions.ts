@@ -1,4 +1,5 @@
-import * as AceBuilds from "ace-builds";
+import type * as AceBuilds from "ace-builds";
+import aceBuilds from "ace-builds";
 
 type EditorOption =
   | "minLines"
@@ -48,33 +49,15 @@ const editorEvents: EditorEvent[] = [
   "updateRef"
 ];
 
-// Typescript globals definition to allow us to create a window object during SSR.
-declare global {
-  namespace NodeJS {
-    // tslint:disable-next-line
-    interface Global {
-      window: any;
-    }
-  }
-}
 const getAceInstance = (): typeof AceBuilds => {
-  let ace;
-  if (typeof window === "undefined") {
-    // ace-builds just needs some window object to attach ace to.
-    // During SSR even just an empty object will work.
-    global.window = {} as any;
-    ace = require("ace-builds");
-    // And it can be discarded immediately afterward to avoid confusing
-    // other libraries that might detect SSR the same way we did.
-    delete global.window;
-  } else if ((window as any).ace) {
+  if (typeof window !== "undefined" && (window as any).ace) {
     // Fallback for ace.require when vanilla ACE is hosted over a CDN
-    ace = (window as any).ace;
-    ace.acequire = (window as any).ace.require || (window as any).ace.acequire;
-  } else {
-    ace = require("ace-builds");
+    const ace = (window as any).ace;
+    ace.acequire = ace.require || ace.acequire;
+    return ace;
   }
-  return ace;
+  // ace-builds evaluates without a window object during SSR.
+  return aceBuilds;
 };
 
 const debounce = (fn: (...args: any[]) => void, delay: number) => {
