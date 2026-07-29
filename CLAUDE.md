@@ -9,10 +9,8 @@ React-Ace is a React component library providing wrapper components for the Ace 
 ## Key Commands
 
 ### Build Commands
-- `npm run build` - Full build (lib + UMD)
-- `npm run build:lib` - TypeScript compilation to CommonJS (lib/)
-- `npm run build:umd` - Vite UMD build for browsers (dist/)
-- `npm run build:umd:min` - Minified UMD build (production mode)
+- `npm run build` - Full build via tsdown: per-file CommonJS + declarations (lib/), plus UMD and minified UMD bundles (dist/), all in one pass (see `tsdown.config.mts`)
+- `npm run typecheck` - TypeScript type-checking only (`tsc --noEmit`)
 
 ### Development Commands
 - `npm run example` - Start Vite development server for examples
@@ -24,7 +22,8 @@ React-Ace is a React component library providing wrapper components for the Ace 
 
 ### Maintenance Commands
 - `npm run clean` - Remove lib/ and dist/ directories
-- `npm run lint` - Currently a no-op (echo 'foo')
+- `npm run lint` - oxlint on src/
+- `npm run check` - lint + typecheck
 
 ## Code Architecture
 
@@ -41,9 +40,9 @@ The library provides three main editor components in `/src/`:
 - **`src/editorOptions.ts`** - Editor configuration utilities and Ace instance management
 
 ### Build System
-- **TypeScript** - Primary language with strict typing
-- **Vite** - Modern build tool with fast dev server and optimized builds
-- **Babel** - JavaScript transpilation with React/TypeScript presets
+- **TypeScript 7** - Primary language; native compiler used for type-checking only (`tsc --noEmit`)
+- **tsdown** - Rolldown/Oxc-based bundler producing all outputs (CJS lib + declarations, UMD bundles) in one pass
+- **Vite** - Dev server for the examples (`vite.config.example.ts`)
 - **Vitest** - Testing framework with jsdom environment
 
 ### Dependencies
@@ -65,8 +64,7 @@ The library provides three main editor components in `/src/`:
 - UI mode available with `npm run test:ui`
 
 ### Code Quality
-- Prettier formatting (no single quotes, no trailing commas, avoid arrow parens)
-- Husky pre-commit hooks with pretty-quick
+- Prettier formatting (no single quotes, no trailing commas, avoid arrow parens) via `npm run prettier`
 - PropTypes for runtime validation
 
 ### Build Outputs
@@ -78,6 +76,6 @@ The library provides three main editor components in `/src/`:
 - Ace builds integration instead of legacy brace
 - Comprehensive event callback system
 - Flexible editor configuration through props
-- Multi-format build system (CommonJS + UMD) with Vite
+- Multi-format build system (CommonJS + UMD) with tsdown
 - TypeScript-first development approach
 - Fast development server with HMR
