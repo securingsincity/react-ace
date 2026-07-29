@@ -1,6 +1,6 @@
 import AceEditor from "../../src/ace";
 import { vi, expect } from "vitest";
-import { render as mount, screen } from "@testing-library/react";
+import { render as mount } from "@testing-library/react";
 import React from "react";
 import { IAceEditor, IMarker } from "../../src/types";
 describe("Ace Component", () => {
@@ -20,8 +20,18 @@ describe("Ace Component", () => {
     });
 
     it("should render without problems with defaults properties, defaultValue and keyboardHandler", () => {
-      mount(<AceEditor keyboardHandler="vim" defaultValue={"hi james"} />);
-      expect(screen.findAllByText("hi james")).toBeTruthy();
+      // Ace does its own virtualised rendering, which jsdom never lays out, so
+      // the text is not queryable from the DOM - assert on the editor instead.
+      mount(
+        <AceEditor
+          keyboardHandler="vim"
+          defaultValue={"hi james"}
+          ref={node => {
+            editor = node?.editor;
+          }}
+        />
+      );
+      expect(editor?.getValue()).toBe("hi james");
     });
 
     it("should render editor options not default values", () => {
