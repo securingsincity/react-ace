@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -33,8 +33,8 @@ jobs:
       - name: Build project
         run: npm run build --if-present
 
-      - name: Lint code
-        run: npm run lint
+      - name: Lint and typecheck
+        run: npm run check
 
       - name: Run tests and collect coverage
         run: npm run coverage
