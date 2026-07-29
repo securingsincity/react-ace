@@ -25,27 +25,39 @@ const umdBase: UserConfig = {
   report: false
 };
 
+const libBase: UserConfig = {
+  entry: [
+    "src/index.ts",
+    "src/ace.tsx",
+    "src/split.tsx",
+    "src/diff.tsx",
+    "src/editorOptions.ts",
+    "src/types.ts"
+  ],
+  unbundle: true,
+  dts: true,
+  outDir: "lib",
+  target: "es2020",
+  platform: "neutral",
+  sourcemap: true,
+  deps: { neverBundle: true },
+  // clean is disabled because the CJS and ESM passes share lib/;
+  // prepublishOnly and preversion run `npm run clean` beforehand.
+  clean: false,
+  report: false
+};
+
 export default defineConfig([
   {
-    entry: [
-      "src/index.ts",
-      "src/ace.tsx",
-      "src/split.tsx",
-      "src/diff.tsx",
-      "src/editorOptions.ts",
-      "src/types.ts"
-    ],
+    ...libBase,
     format: "cjs",
-    unbundle: true,
-    dts: true,
-    outDir: "lib",
-    target: "es2020",
-    platform: "neutral",
-    sourcemap: true,
-    deps: { neverBundle: true },
     outputOptions: { exports: "named" },
-    outExtensions: () => ({ js: ".js", dts: ".d.ts" }),
-    report: false
+    outExtensions: () => ({ js: ".js", dts: ".d.ts" })
+  },
+  {
+    ...libBase,
+    format: "esm",
+    outExtensions: () => ({ js: ".mjs", dts: ".d.mts" })
   },
   { ...umdBase, minify: false },
   {

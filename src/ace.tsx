@@ -1,6 +1,6 @@
 import { Ace, Range } from "ace-builds";
-import * as AceBuilds from "ace-builds";
-import * as PropTypes from "prop-types";
+import type * as AceBuilds from "ace-builds";
+import PropTypes from "prop-types";
 import * as React from "react";
 
 import { deepEqual } from "fast-equals";
