@@ -68,7 +68,7 @@
   "dependencies": {
     "ace-builds": "^1.36.3",
     "diff-match-patch": "^1.0.5",
-    "fast-equals": "^5.3.3",
+    "fast-equals": "^6.0.3",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {
