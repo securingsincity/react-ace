@@ -57,7 +57,7 @@
     "tsdown": "^0.22.14",
     "typescript": "^7.0.2",
     "vite": "^6.3.5",
-    "vitest": "^3.2.4"
+    "vitest": "^5.0.0"
   },
   "keywords": [
     "ace",
